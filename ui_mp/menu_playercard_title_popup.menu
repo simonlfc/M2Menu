@@ -1,0 +1,592 @@
+#include "ui/menudef.h"
+#include "ui_mp/common_macro.inc"
+#include "ui_mp/iw4_macros.inc"
+
+#define CHOICE_GROUP	"menu_playercard_title_popup"
+
+#include "ui/iw5_setup_common.menu"
+#include "ui_mp/menustyle.inc"
+{
+	menuDef
+	{
+		name "menu_playercard_title_popup"
+		rect 0 0 640 480 0 0
+		style 1
+		forecolor 1 1 1 1
+		focuscolor 1 1 1 1
+		fullscreen 1
+		fadeCycle 1
+		fadeClamp 1
+		fadeAmount 0.1
+		soundLoop "music_mainmenu_mp"
+		onOpen
+		{
+			setLocalVarInt "ui_pageIndex" ( 0 );
+			setLocalVarInt "ui_numPages" ( 0 );
+			if ( ( tablelookupbyrow( "mp/cardTitleTable.csv" , ( 1 * 27 ) , 0 ) != "" ) )
+			{
+				setLocalVarInt "ui_numPages" ( 1 );
+			}
+			if ( ( tablelookupbyrow( "mp/cardTitleTable.csv" , ( 2 * 27 ) , 0 ) != "" ) )
+			{
+				setLocalVarInt "ui_numPages" ( 2 );
+			}
+			if ( ( tablelookupbyrow( "mp/cardTitleTable.csv" , ( 3 * 27 ) , 0 ) != "" ) )
+			{
+				setLocalVarInt "ui_numPages" ( 3 );
+			}
+			if ( ( tablelookupbyrow( "mp/cardTitleTable.csv" , ( 4 * 27 ) , 0 ) != "" ) )
+			{
+				setLocalVarInt "ui_numPages" ( 4 );
+			}
+			if ( ( tablelookupbyrow( "mp/cardTitleTable.csv" , ( 5 * 27 ) , 0 ) != "" ) )
+			{
+				setLocalVarInt "ui_numPages" ( 5 );
+			}
+			if ( ( tablelookupbyrow( "mp/cardTitleTable.csv" , ( 6 * 27 ) , 0 ) != "" ) )
+			{
+				setLocalVarInt "ui_numPages" ( 6 );
+			}
+			if ( ( tablelookupbyrow( "mp/cardTitleTable.csv" , ( 7 * 27 ) , 0 ) != "" ) )
+			{
+				setLocalVarInt "ui_numPages" ( 7 );
+			}
+			if ( ( tablelookupbyrow( "mp/cardTitleTable.csv" , ( 8 * 27 ) , 0 ) != "" ) )
+			{
+				setLocalVarInt "ui_numPages" ( 8 );
+			}
+			if ( ( tablelookupbyrow( "mp/cardTitleTable.csv" , ( 9 * 27 ) , 0 ) != "" ) )
+			{
+				setLocalVarInt "ui_numPages" ( 9 );
+			}
+			if ( ( tablelookupbyrow( "mp/cardTitleTable.csv" , ( 10 * 27 ) , 0 ) != "" ) )
+			{
+				setLocalVarInt "ui_numPages" ( 10 );
+			}
+			if ( ( tablelookupbyrow( "mp/cardTitleTable.csv" , ( 11 * 27 ) , 0 ) != "" ) )
+			{
+				setLocalVarInt "ui_numPages" ( 11 );
+			}
+			if ( ( tablelookupbyrow( "mp/cardTitleTable.csv" , ( 12 * 27 ) , 0 ) != "" ) )
+			{
+				setLocalVarInt "ui_numPages" ( 12 );
+			}
+			if ( ( tablelookupbyrow( "mp/cardTitleTable.csv" , ( 13 * 27 ) , 0 ) != "" ) )
+			{
+				setLocalVarInt "ui_numPages" ( 13 );
+			}
+			if ( ( tablelookupbyrow( "mp/cardTitleTable.csv" , ( 14 * 27 ) , 0 ) != "" ) )
+			{
+				setLocalVarInt "ui_numPages" ( 14 );
+			}
+			if ( ( tablelookupbyrow( "mp/cardTitleTable.csv" , ( 15 * 27 ) , 0 ) != "" ) )
+			{
+				setLocalVarInt "ui_numPages" ( 15 );
+			}
+			if ( ( tablelookupbyrow( "mp/cardTitleTable.csv" , ( 16 * 27 ) , 0 ) != "" ) )
+			{
+				setLocalVarInt "ui_numPages" ( 16 );
+			}
+			if ( ( tablelookupbyrow( "mp/cardTitleTable.csv" , ( 17 * 27 ) , 0 ) != "" ) )
+			{
+				setLocalVarInt "ui_numPages" ( 17 );
+			}
+			if ( ( tablelookupbyrow( "mp/cardTitleTable.csv" , ( 18 * 27 ) , 0 ) != "" ) )
+			{
+				setLocalVarInt "ui_numPages" ( 18 );
+			}
+			if ( ( tablelookupbyrow( "mp/cardTitleTable.csv" , ( 19 * 27 ) , 0 ) != "" ) )
+			{
+				setLocalVarInt "ui_numPages" ( 19 );
+			}
+			if ( ( tablelookupbyrow( "mp/cardTitleTable.csv" , ( 20 * 27 ) , 0 ) != "" ) )
+			{
+				setLocalVarInt "ui_numPages" ( 20 );
+			}
+			if ( ( tablelookupbyrow( "mp/cardTitleTable.csv" , ( 21 * 27 ) , 0 ) != "" ) )
+			{
+				setLocalVarInt "ui_numPages" ( 21 );
+			}
+			if ( ( tablelookupbyrow( "mp/cardTitleTable.csv" , ( 22 * 27 ) , 0 ) != "" ) )
+			{
+				setLocalVarInt "ui_numPages" ( 22 );
+			}
+			if ( ( tablelookupbyrow( "mp/cardTitleTable.csv" , ( 23 * 27 ) , 0 ) != "" ) )
+			{
+				setLocalVarInt "ui_numPages" ( 23 );
+			}
+			if ( ( tablelookupbyrow( "mp/cardTitleTable.csv" , ( 24 * 27 ) , 0 ) != "" ) )
+			{
+				setLocalVarInt "ui_numPages" ( 24 );
+			}
+			if ( ( tablelookupbyrow( "mp/cardTitleTable.csv" , ( 25 * 27 ) , 0 ) != "" ) )
+			{
+				setLocalVarInt "ui_numPages" ( 25 );
+			}
+			if ( ( tablelookupbyrow( "mp/cardTitleTable.csv" , ( 26 * 27 ) , 0 ) != "" ) )
+			{
+				setLocalVarInt "ui_numPages" ( 26 );
+			}
+			if ( ( tablelookupbyrow( "mp/cardTitleTable.csv" , ( 27 * 27 ) , 0 ) != "" ) )
+			{
+				setLocalVarInt "ui_numPages" ( 27 );
+			}
+			if ( ( tablelookupbyrow( "mp/cardTitleTable.csv" , ( 28 * 27 ) , 0 ) != "" ) )
+			{
+				setLocalVarInt "ui_numPages" ( 28 );
+			}
+			if ( ( tablelookupbyrow( "mp/cardTitleTable.csv" , ( 29 * 27 ) , 0 ) != "" ) )
+			{
+				setLocalVarInt "ui_numPages" ( 29 );
+			}
+			if ( ( tablelookupbyrow( "mp/cardTitleTable.csv" , ( 30 * 27 ) , 0 ) != "" ) )
+			{
+				setLocalVarInt "ui_numPages" ( 30 );
+			}
+			setPlayerData( "titleNew" , "cardtitle_flag_uk" , "false" ) setPlayerData( "titleNew" , "cardtitle_flag_canada" , "false" ) setPlayerData( "titleNew" , "cardtitle_flag_australia" , "false" ) setPlayerData( "titleNew" , "cardtitle_flag_spain" , "false" ) setPlayerData( "titleNew" , "cardtitle_flag_austria" , "false" ) setPlayerData( "titleNew" , "cardtitle_flag_japan" , "false" ) setPlayerData( "titleNew" , "cardtitle_flag_brazil" , "false" ) setPlayerData( "titleNew" , "cardtitle_flag_swiss" , "false" ) setPlayerData( "titleNew" , "cardtitle_flag_russia" , "false" ) setPlayerData( "titleNew" , "cardtitle_flag_mexico" , "false" ) setPlayerData( "titleNew" , "cardtitle_flag_france" , "false" ) setPlayerData( "titleNew" , "cardtitle_flag_germany" , "false" ) setPlayerData( "titleNew" , "cardtitle_flag_italy" , "false" ) setPlayerData( "titleNew" , "cardtitle_flag_norway" , "false" ) setPlayerData( "titleNew" , "cardtitle_flag_greece" , "false" ) setPlayerData( "titleNew" , "cardtitle_flag_sweden" , "false" ) setPlayerData( "titleNew" , "cardtitle_flag_ireland" , "false" ) setPlayerData( "titleNew" , "cardtitle_flag_belgium" , "false" ) setPlayerData( "titleNew" , "cardtitle_flag_finland" , "false" ) setPlayerData( "titleNew" , "cardtitle_flag_luxemburg" , "false" ) setPlayerData( "titleNew" , "cardtitle_flag_czech" , "false" ) setPlayerData( "titleNew" , "cardtitle_flag_netherlands" , "false" ) setPlayerData( "titleNew" , "cardtitle_flag_newzealand" , "false" ) setPlayerData( "titleNew" , "cardtitle_flag_philippines" , "false" ) setPlayerData( "titleNew" , "cardtitle_flag_poland" , "false" ) setPlayerData( "titleNew" , "cardtitle_flag_portugal" , "false" ) setPlayerData( "titleNew" , "cardtitle_flag_denmark" , "false" ) setPlayerData( "titleNew" , "cardtitle_flag_saudiarabia" , "false" ) setPlayerData( "titleNew" , "cardtitle_flag_singapore" , "false" ) setPlayerData( "titleNew" , "cardtitle_flag_southafrica" , "false" ) setPlayerData( "titleNew" , "cardtitle_flag_southkorea" , "false" ) setPlayerData( "titleNew" , "cardtitle_flag_hongkong" , "false" ) setPlayerData( "titleNew" , "cardtitle_flag_india" , "false" ) setPlayerData( "titleNew" , "cardtitle_flag_taiwan" , "false" ) setPlayerData( "titleNew" , "cardtitle_flag_united_arab_emirates" , "false" ) setPlayerData( "titleNew" , "cardtitle_flag_elsalvador" , "false" ) setPlayerData( "titleNew" , "cardtitle_flag_china" , "false" ) setPlayerData( "titleNew" , "cardtitle_flag_iran" , "false" );
+		}
+		onRequestClose
+		{
+			execnow "uploadstats";
+		}
+		onEsc
+		{
+			close "self";
+		}
+		itemDef // no blur 
+		{
+			rect -426.667 -240 853.333 480 2 2
+			decoration
+			visible 1
+			style 3
+			forecolor 1 1 1 1
+			background "mw2_main_sp_image"
+			textscale 0.55
+			visible when ( ! ( dvarbool( "cl_ingame" ) || dvarbool( "sv_running" ) ) )
+		}
+		itemDef // blur bg
+		{
+			rect -426.667 -240 853.333 480 2 2
+			decoration
+			visible 1
+			style 3
+			forecolor 1 1 1 1
+			background "mw2_main_co_image"
+			textscale 0.55
+			visible when ( ! ( dvarbool( "cl_ingame" ) || dvarbool( "sv_running" ) ) )
+		}	
+		itemDef
+		{
+			rect -574.85 0 1708 480 0 0
+			decoration
+			visible 1
+			style 3
+			forecolor 0.35 0.35 0.35 1
+			background "mw2_main_cloud_overlay"
+			textscale 0.55
+			exp rect x ( ( 0 - 107 ) - ( ( float( milliseconds( ) % 60000 ) / 60000 ) * ( 854 ) ) )
+			visible when ( ! ( dvarbool( "cl_ingame" ) || dvarbool( "sv_running" ) ) )
+		}
+		itemDef
+		{
+			rect -228.78 0 -1708 -480 0 0
+			decoration
+			visible 1
+			style 3
+			forecolor 0.35 0.35 0.35 1
+			background "mw2_main_cloud_overlay"
+			textscale 0.55
+			exp rect x ( ( - 107 + 854 ) + ( ( float( milliseconds( ) % 50000 ) / 50000 ) * ( 854 ) ) )
+			visible when ( ! ( dvarbool( "cl_ingame" ) || dvarbool( "sv_running" ) ) )
+		}
+		
+		itemDef
+		{
+			rect -426.667 -36 853.333 480 2 1
+			decoration
+			visible 1
+			style 3
+			forecolor 0 0 0 0.4
+			background "white"
+			textscale 0.55
+			visible when ( 1 )
+		}
+		itemDef
+		{
+			rect -141.667 25.667 283.333 1.333 2 1
+			decoration
+			visible 1
+			style 3
+			forecolor 1 1 1 1
+			background "gradient_inset_rect"
+			textscale 0.55
+			visible when ( 1 )
+		}
+		itemDef
+		{
+			rect 0 0 0 28 2 1
+			decoration
+			visible 1
+			forecolor 1 1 1 1
+			textfont 9
+			textalign 5
+			textscale 0.5833
+			text "@MENU_TITLE_CAPS"
+		}
+		itemDef
+		{
+			rect -254 76 508 250 2 1
+			decoration
+			visible 1
+			style 3
+			forecolor 0.2118 0.2314 0.22 1
+			background "white"
+			type 1
+			textscale 0.55
+			visible when ( 1 )
+		}
+		itemDef
+		{
+			rect -254 76 508 25 2 1
+			decoration
+			visible 1
+			style 3
+			forecolor 0.1569 0.1725 0.1608 1
+			background "gradient_top"
+			type 1
+			textscale 0.55
+			visible when ( 1 )
+		}
+		itemDef
+		{
+			rect -254 28 508 48 2 1
+			decoration
+			visible 1
+			style 3
+			forecolor 0.1569 0.1725 0.1608 1
+			background "white"
+			type 1
+			textscale 0.55
+			visible when ( 1 )
+		}
+		itemDef
+		{
+			rect -254 299 508 -25 2 1
+			decoration
+			visible 1
+			style 3
+			forecolor 0.1569 0.1725 0.1608 1
+			background "gradient_top"
+			type 1
+			textscale 0.55
+			visible when ( 1 )
+		}
+		itemDef
+		{
+			rect -254 324 508 48 2 1
+			decoration
+			visible 1
+			style 3
+			forecolor 0.3098 0.349 0.2745 1
+			background "white"
+			type 1
+			textscale 0.55
+			visible when ( 1 )
+		}
+		itemDef // cardtitle lower frame
+		{
+			rect 0 0 237.333 37.333 2 1
+			decoration
+			visible 1
+			style 3
+			border 1
+			bordersize 1
+			forecolor 1 1 1 1
+			bordercolor 0 0 0 0.75
+			background "cardtitle_248x48"
+			textscale 0.55
+			exp rect x ( ( 0 - ( 240 / 2 ) ) + 1.333 )
+			exp rect y ( ( 32 ) + 1.333 )
+			visible when ( 1 && ( getplayercardinfo( 0 , 1 , 0 ) != 0 ) )
+		}
+		itemDef
+		{
+			rect 0 0 156.667 31.333 2 1
+			decoration
+			visible 1
+			style 1
+			forecolor 1 1 1 1
+			backcolor 1 1 1 1
+			textfont 3
+			textstyle 8
+			textalign 9
+			textscale 0.375
+			exp rect x ( ( 0 - ( 240 / 2 ) ) + 33.9 )
+			exp rect y ( ( 32 ) + ( 0 - 4.1 ) )
+			exp forecolor r ( tablelookupbyrow( "mp/cardTitleTable.csv" , getplayercardinfo( 1 , 1 , 0 ) , 3 ) )
+			exp forecolor g ( tablelookupbyrow( "mp/cardTitleTable.csv" , getplayercardinfo( 1 , 1 , 0 ) , 4 ) )
+			exp forecolor b ( tablelookupbyrow( "mp/cardTitleTable.csv" , getplayercardinfo( 1 , 1 , 0 ) , 5 ) )
+			exp forecolor a ( 1 )
+			exp text ( "@" + tablelookupbyrow( "mp/cardTitleTable.csv" , getplayercardinfo( 1 , 1 , 0 ) , 1 ) )
+			exp material ( tablelookupbyrow( "mp/cardTitleTable.csv" , getplayercardinfo( 1 , 1 , 0 ) , 2 ) )
+		}
+		itemDef // player name
+		{
+			rect 0 0 146.7 16.6 2 1
+			decoration
+			visible 1
+			style 1
+			forecolor 1 1 1 1
+			textfont 9
+			textstyle 8
+			textalign 8
+			textscale 0.375
+			exp rect x ( ( 0 - ( 240 / 2 ) ) + 40 )
+			exp rect y ( ( 32 ) + 21.5 )
+			exp forecolor r ( 0.941 )
+			exp forecolor g ( 0.773 )
+			exp forecolor b ( 0.361 )
+			exp forecolor a ( 1 )
+			exp text ( getplayercardinfo( 8 , 1 , 0 ) )
+		}
+		itemDef
+		{
+			rect 0 0 35.3 35.3 2 1
+			decoration
+			visible 1
+			style 3
+			forecolor 1 1 1 1
+			textscale 0.55
+			exp rect x ( ( 0 - ( 240 / 2 ) ) + 2.533 )
+			exp rect y ( ( 32 ) + 2.567 )
+			visible when ( 1 && ( getplayercardinfo( 0 , 1 , 0 ) != 0 ) )
+			exp material ( tablelookupbyrow( "mp/cardIconTable.csv" , getplayercardinfo( 2 , 1 , 0 ) , 1 ) )
+		}
+		itemDef
+		{
+			rect 0 0 18.667 18.667 2 1
+			decoration
+			visible 1
+			style 3
+			forecolor 1 1 1 1
+			textscale 0.55
+			exp rect x ( ( 0 - ( 240 / 2 ) ) + 192 )
+			exp rect y ( ( 32 ) + 18.9 )
+			exp forecolor a ( 1 )
+			exp material ( tablelookup( "mp/rankIconTable.csv" , 0 , getplayercardinfo( 4 , 1 , 0 ) , ( getplayercardinfo( 5 , 1 , 0 ) + 1 ) ) )
+		}
+		itemDef
+		{
+			rect 0 0 22 18.033 2 1
+			decoration
+			visible 1
+			style 1
+			forecolor 1 1 1 1
+			textfont 3
+			textstyle 8
+			textalign 8
+			textscale 0.375
+			exp rect x ( ( 0 - ( 240 / 2 ) ) + 212 )
+			exp rect y ( ( 32 ) + 19.167 )
+			exp forecolor a ( 1 )
+			exp text ( tablelookup( "mp/rankTable.csv" , 0 , getplayercardinfo( 4 , 1 , 0 ) , 14 ) )
+		}
+
+		#include "ui_mp/playercard_info.inc"
+
+		PLAYERCARD_DRAW( 0, "cardTitle1_0", 0 )
+		PLAYERCARD_DRAW( 1, "cardTitle1_1", 1 )
+		PLAYERCARD_DRAW( 2, "cardTitle1_2", 2 )
+		PLAYERCARD_DRAW( 3, "cardTitle2_0", 3 )
+		PLAYERCARD_DRAW( 4, "cardTitle2_1", 4 )
+		PLAYERCARD_DRAW( 5, "cardTitle2_2", 5 )
+		PLAYERCARD_DRAW( 6, "cardTitle3_0", 6 )
+		PLAYERCARD_DRAW( 7, "cardTitle3_1", 7 )
+		PLAYERCARD_DRAW( 8, "cardTitle3_2", 8 )
+
+		PLAYERCARD_DRAW( 20, "cardTitle4_0", 9 )
+		PLAYERCARD_DRAW( 21, "cardTitle4_1", 10 )
+		PLAYERCARD_DRAW( 22, "cardTitle4_2", 11 )
+		PLAYERCARD_DRAW( 23, "cardTitle5_0", 12 )
+		PLAYERCARD_DRAW( 24, "cardTitle5_1", 13 )
+		PLAYERCARD_DRAW( 25, "cardTitle5_2", 14 )
+		PLAYERCARD_DRAW( 26, "cardTitle6_0", 15 )
+		PLAYERCARD_DRAW( 27, "cardTitle6_1", 16 )
+		PLAYERCARD_DRAW( 28, "cardTitle6_2", 17 )
+		
+		// should be 30 from here, but need to re-evaluate current CHOICE_RECT definititon
+		PLAYERCARD_DRAW( 40, "cardTitle7_0", 18 )
+		PLAYERCARD_DRAW( 41, "cardTitle7_1", 19 )
+		PLAYERCARD_DRAW( 42, "cardTitle7_2", 20 )
+		PLAYERCARD_DRAW( 43, "cardTitle8_0", 21 )
+		PLAYERCARD_DRAW( 44, "cardTitle8_1", 22 )
+		PLAYERCARD_DRAW( 45, "cardTitle8_2", 23 )
+		PLAYERCARD_DRAW( 46, "cardTitle9_0", 24 )
+		PLAYERCARD_DRAW( 47, "cardTitle9_1", 25 )
+		PLAYERCARD_DRAW( 48, "cardTitle9_2", 26 )
+
+		itemDef
+		{
+			rect -254 28 -48 48 2 1
+			visible 1
+			group "left_arrow"
+			style 3
+			forecolor 1 1 1 1
+			background "summary_arrow"
+			type 1
+			textscale 0.55
+			visible when ( localvarint( "ui_pageIndex" ) && dvarbool( "wideScreen" ) )
+			action
+			{
+				if ( localvarint( "ui_pageIndex" ) )
+				{
+					setLocalVarInt "ui_pageIndex" ( localvarint( "ui_pageIndex" ) - 1 );
+				}
+			}
+		}
+		itemDef
+		{
+			rect -254 28 48 48 2 1
+			visible 1
+			forecolor 1 1 1 1
+			type 1
+			textscale 0.55
+			visible when ( localvarint( "ui_pageIndex" ) && dvarbool( "wideScreen" ) )
+			onFocus
+			{
+				play "mouse_over";
+				setItemColor "left_arrow" forecolor 1 1 "0.5" 1;
+			}
+			leaveFocus
+			{
+				setItemColor "left_arrow" forecolor 1 1 1 1;
+			}
+			action
+			{
+				if ( localvarint( "ui_pageIndex" ) )
+				{
+					setLocalVarInt "ui_pageIndex" ( localvarint( "ui_pageIndex" ) - 1 );
+				}
+			}
+		}
+		itemDef
+		{
+			rect 206 28 48 48 2 1
+			visible 1
+			group "right_arrow"
+			style 3
+			forecolor 1 1 1 1
+			background "summary_arrow"
+			type 1
+			textscale 0.55
+			visible when ( localvarint( "ui_pageIndex" ) < localvarint( "ui_numPages" ) && dvarbool( "wideScreen" ) )
+			onFocus
+			{
+				play "mouse_over";
+				setItemColor "right_arrow" forecolor 1 1 "0.5" 1;
+			}
+			leaveFocus
+			{
+				setItemColor "right_arrow" forecolor 1 1 1 1;
+			}
+			action
+			{
+				if ( localvarint( "ui_pageIndex" ) < localvarint( "ui_numPages" ) )
+				{
+					setLocalVarInt "ui_pageIndex" ( localvarint( "ui_pageIndex" ) + 1 );
+				}
+			}
+		}
+		itemDef
+		{
+			rect -254 28 -48 48 2 1
+			decoration
+			visible 1
+			group "left_arrow"
+			style 3
+			forecolor 1 1 1 1
+			background "summary_arrow"
+			type 1
+			textscale 0.55
+			visible when ( localvarint( "ui_pageIndex" ) && !dvarbool( "wideScreen" ) )
+		}
+		itemDef
+		{
+			rect -254 28 -48 48 2 1	
+			visible 1
+			forecolor 1 1 1 1
+			type 1
+			textscale 0.55
+			visible when ( localvarint( "ui_pageIndex" ) && !dvarbool( "wideScreen" ) )
+			onFocus
+			{
+				play "mouse_over";
+				setItemColor "left_arrow" forecolor 1 1 "0.5" 1;
+			}
+			leaveFocus
+			{
+				setItemColor "left_arrow" forecolor 1 1 1 1;
+			}
+			action
+			{
+				if ( localvarint( "ui_pageIndex" ) )
+				{
+					setLocalVarInt "ui_pageIndex" ( localvarint( "ui_pageIndex" ) - 1 );
+				}
+			}
+		}
+		itemDef
+		{
+			rect 240 26 20 80 2 1
+			visible 1
+			group "right_arrow"
+			style 3
+			forecolor 1 1 1 1
+			background "summary_arrow"
+			type 1
+			textscale 0.55
+			visible when ( localvarint( "ui_pageIndex" ) < localvarint( "ui_numPages" ) && !dvarbool( "wideScreen" ) )
+			onFocus
+			{
+				play "mouse_over";
+				setItemColor "right_arrow" forecolor 1 1 "0.5" 1;
+			}
+			leaveFocus
+			{
+				setItemColor "right_arrow" forecolor 1 1 1 1;
+			}
+			action
+			{
+				if ( localvarint( "ui_pageIndex" ) < localvarint( "ui_numPages" ) )
+				{
+					setLocalVarInt "ui_pageIndex" ( localvarint( "ui_pageIndex" ) + 1 );
+				}
+			}
+		}
+		itemDef
+		{
+			rect 0 -20 50 24 2 3
+			decoration
+			visible 1
+			forecolor 1 1 1 1
+			textfont 10
+			textalign 5
+			textalignx -30
+			textscale 0.3333
+			visible when ( 1 )
+			exp text ( locstring( "@MPUI_PAGE_N_SLASH_N" , ( localvarint( "ui_pageIndex" ) + 1 ) , ( localvarint( "ui_numPages" ) + 1 ) ) )
+		}
+		itemDef
+		{
+			rect -234 -85 468 50 2 3
+			decoration
+			autowrapped
+			visible 1
+			forecolor 1 1 1 1
+			textfont 3
+			textalign 5
+			textscale 0.4583
+			exp text ( locstring( "@" + tablelookup( "mp/cardTitleTable.csv" , 0 , localvarstring( "ui_title_ref" ) , 8 ) ) )
+		}
+	}
+}

@@ -1,0 +1,176 @@
+#include "ui/menudef.h"
+#include "ui_mp/common_macro.inc"
+#include "ui_mp/iw4_macros.inc"
+
+#define CHOICE_GROUP	"popup_friends"
+
+#include "ui/iw5_setup_common.menu"
+#include "ui_mp/menustyle.inc"
+{
+	menuDef
+	{
+		name "popup_friends"
+		rect 0 0 640 480 0 0
+		popup
+		outOfBoundsClick
+		legacySplitScreenScale
+		forecolor 1 1 1 1
+		background "white"
+		focuscolor 1 1 1 1
+		allowedBinding "+talk"
+		onOpen
+		{
+			uiScript "LoadFriends";
+			setLocalVarInt "ui_centerPopup" ( 1 );
+		}
+		onClose
+		{
+			setLocalVarInt "ui_centerPopup" ( 0 );
+		}
+		onEsc
+		{
+			close "self";
+		}
+		itemDef // black bg
+		{
+			rect -1546.67 -460 2560 960 2 2
+			decoration
+			visible 1
+			style 3
+			forecolor 0 0 0 0.8
+			background "white"
+			textscale 0.55
+		}
+		itemDef // frame
+		{
+			rect -266.667 22 533.333 350 2 1
+			decoration
+			visible 1
+			style 1
+			forecolor 1 1 1 1
+			backcolor 0.2118 0.2314 0.22 1
+			textscale 0.55
+		}
+		itemDef // bottom green
+		{
+			rect -266.667 350 533.333 22 2 1
+			decoration
+			visible 1
+			style 1
+			forecolor 1 1 1 1
+			backcolor 0.3098 0.349 0.2745 1
+			textscale 0.55
+		}
+
+		itemDef
+		{
+			rect -266.667 20 533.333 40 2 1
+			decoration
+			visible 1
+			style 1
+			forecolor 1 1 1 1
+			backcolor 0 0 0 0.15
+			textscale 0.55
+			exp rect y ( 0 + 24 )
+		}
+		itemDef
+		{
+			rect -266.667 20 533.333 40 2 1
+			decoration
+			visible 1
+			style 1
+			forecolor 1 1 1 1
+			backcolor 0 0 0 0.15
+			textscale 0.55
+			exp rect y ( 80 + 24 )
+		}
+		itemDef
+		{
+			rect -266.667 20 533.333 40 2 1
+			decoration
+			visible 1
+			style 1
+			forecolor 1 1 1 1
+			backcolor 0 0 0 0.15
+			textscale 0.55
+			exp rect y ( 160 + 24 )
+		}
+		itemDef
+		{
+			rect -266.667 20 533.333 40 2 1
+			decoration
+			visible 1
+			style 1
+			forecolor 1 1 1 1
+			backcolor 0 0 0 0.15
+			textscale 0.55
+			exp rect y ( 240 + 24 )
+		}
+		itemDef
+		{
+			rect -266.667 44 533.333 5.667 2 1
+			decoration
+			visible 1
+			style 3
+			forecolor 1 1 1 1
+			background "gradient_top"
+			textscale 0.55
+		}
+		itemDef
+		{
+			rect -266.667 344.667 533.333 -5.667 2 1
+			decoration
+			visible 1
+			style 3
+			forecolor 1 1 1 1
+			background "gradient_top"
+			textscale 0.55
+		}
+		itemDef
+		{
+			rect -266.667 20 0 20 2 1
+			decoration
+			visible 1
+			forecolor 1 1 1 1
+			textfont 3
+			textalign 8
+			textscale 0.375
+			exp rect x ( ( 533.333 ) - ( 1 * 5 ) - ( 20 / 2 ) )
+			exp rect y ( ( 370 - 22 ) )
+			exp text ( "Back ESC" )
+		}
+		itemDef
+		{
+			rect -266.667 20 533.333 24 2 1
+			decoration
+			visible 1
+			forecolor 1 1 1 1
+			textfont 9
+			textalign 9
+			textscale 0.5
+			text "@MENU_FRIENDS"
+		}
+		itemDef
+		{
+			name "friendList"
+			rect -268.667 42 537.333 314 2 1
+			visible 1
+			forecolor 1 1 1 1
+			backcolor 0.5 0.5 0.5 0
+			type 6
+			textscale 0.375
+			feeder 61
+			selectBorder 0.8 0.95 1 0
+			elementWidth 200
+			elementHeight 40
+//			numcol			xpos	xwidth	textlen	  alignment
+			columns 3		8			16			4			0
+							52			178			51			0
+							226			263			52			0
+			doubleClick
+			{
+				uiScript "JoinFriend";
+			}
+		}
+	}
+}

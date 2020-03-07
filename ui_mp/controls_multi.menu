@@ -1,0 +1,84 @@
+#include "ui/menudef.h"
+
+#define CHOICE_GROUP		"controls_multi"
+
+#include "ui/iw5_setup_common.menu"
+{
+	menuDef
+	{
+		name "controls_multi"
+		rect 0 0 640 480 0 0
+		forecolor CHOICE_TEXTCOLOR
+		focuscolor CHOICE_TEXTCOLOR
+		fadeCycle 1
+		fadeClamp 1
+		fadeAmount 0.1
+		blurWorld 7
+		onOpen
+		{
+			exec "setfromdvar ui_name name";
+			setLocalVarBool "ui_hideBack" ( 1 );
+		}
+		onRequestClose
+		{
+			setLocalVarBool "ui_hideBack" ( 0 );
+			open "pc_options_controls";
+		}
+		onEsc
+		{
+			close "self";
+		}
+		
+		#define BACKGROUND_BLUR
+		#include "ui_mp/bg.inc"
+		
+		itemDef
+		{
+			rect -64 3 276.667 24.233 1 1
+			decoration
+			visible 0
+			style 1
+			forecolor 1 1 1 1
+			textfont 9
+			textalign 14
+			textscale 0.5
+			visible when ( 1 )
+			exp text ( locstring( "@MENU_CHAT" ) )
+		}
+		
+		CHOICE_SEPERATOR( 0 )
+		
+		#undef CHOICE_X_START
+		#define CHOICE_X_START	-317
+		
+		// caption
+		#undef CHOICE_TEXTALIGN
+		#define CHOICE_TEXTALIGN 6
+		//
+		#undef CHOICE_TEXT_OFFSET_X
+		#define CHOICE_TEXT_OFFSET_X -258	
+		
+		// dvar
+		#undef CHOICE_DVAR_TEXTALIGN
+		#define CHOICE_DVAR_TEXTALIGN 4
+		// 
+		#undef CHOICE_DVAR_OFFSET_X
+		#define CHOICE_DVAR_OFFSET_X 338
+		
+		#undef CHOICE_SIZE_X
+		#define CHOICE_SIZE_X 544
+
+		#undef CHOICE_HIGHLIGHT_COLOR
+		#define CHOICE_HIGHLIGHT_COLOR 1 1 1 1
+
+		#undef CHOICE_TEXT_HIGHLIGHT
+		#define CHOICE_TEXT_HIGHLIGHT "menu_button_selection_bar"
+		
+		CHOICE_BIND( 20, "tc", "@MENU_TEXT_CHAT", "chatmodepublic", ; )
+		CHOICE_BIND( 21, "ttc", "@MENU_TEXT_TEAM_CHAT", "chatmodeteam", ; )
+		CHOICE_BIND( 22, "vcb", "@MENU_VOICE_CHAT_BUTTON", "+talk", ; )
+		
+		CHOICE_KEYBINDHELP
+				
+	}
+}

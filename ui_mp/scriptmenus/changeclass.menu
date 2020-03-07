@@ -1,0 +1,97 @@
+#include "ui/menudef.h"
+
+#define CHOICE_GROUP		"changeclass"
+
+#include "ui/iw5_setup_common.menu"
+#include "ui_mp/menustyle.inc"
+{
+	menuDef
+	{
+		name "changeclass"
+		rect 0 0 640 480 0 0
+		forecolor 1 1 1 1
+		focuscolor 1 1 1 1
+		blurWorld 7
+		onOpen
+		{
+			focusFirst;
+		}
+		onEsc
+		{
+			scriptmenuresponse "back";
+		}
+
+		#define BACKGROUND_BLUR
+		#include "ui_mp/bg.inc"
+
+		#include "ui_mp/teamicon.inc"
+		#include "ui_mp/cac_macros.inc"
+		itemDef
+		{
+			rect -274 -100 400 600 3 1
+			decoration
+			visible 1
+			style 3
+			forecolor 0 0 0 0.4
+			background "white"
+			textscale 0.55
+			visible when ( 1 )
+		}
+		itemDef
+		{
+			rect -64 3 276.667 24.233 1 1
+			decoration
+			visible 1
+			style 1
+			forecolor 1 1 1 1
+			textfont 9
+			textalign 10
+			textscale 0.5
+			exp text ( "@MENU_OPTIONS_UPPER_CASE" )
+		}
+		itemDef
+		{
+			rect -287 -100 -13 600 3 1
+			decoration
+			visible 1
+			style 3
+			forecolor 1 1 1 0.75
+			background "gradient"
+			textscale 0.55
+			exp forecolor r ( 0.596078 )
+			exp forecolor g ( 0.654902 )
+			exp forecolor b ( 0.603922 )
+			visible when ( 1 )
+		}
+		CHOICE_SEPERATOR( 0 )
+		CHOICE_CAC_DEFAULT( 0, "buttonName_0", "@CLASS_CLASS1", scriptmenuresponse "class0";, 1 )
+		CHOICE_CAC_DEFAULT( 1, "buttonName_1", "@CLASS_CLASS2", scriptmenuresponse "class1";, 1 )
+		CHOICE_CAC_DEFAULT( 2, "buttonName_2", "@CLASS_CLASS3", scriptmenuresponse "class2";, 1 )
+
+		CHOICE_CAC_DEFAULT( 3, "buttonName_3", "@CLASS_CLASS4", scriptmenuresponse "class3";, 1)
+		//CHOICE_DBUTTON_VIS( 3, "buttonName_3", "@CLASS_CLASS4", when ( !isitemunlocked( "sniper" ) ) )
+
+		CHOICE_CAC_DEFAULT( 4, "buttonName_4", "@CLASS_CLASS5", scriptmenuresponse "class4";, 1 )
+		//CHOICE_DBUTTON_VIS( 4, "buttonName_4", "@CLASS_CLASS5", when ( !isitemunlocked( "demolitions" ) ) )
+
+		CHOICE_SEPERATOR( 5 )
+
+		CHOICE_CAC_CUSTOM( 5, "buttonName_5", 0, scriptmenuresponse "custom1"; )
+		CHOICE_CAC_CUSTOM( 6, "buttonName_6", 1, scriptmenuresponse "custom2"; )
+		CHOICE_CAC_CUSTOM( 7, "buttonName_7", 2, scriptmenuresponse "custom3"; )
+		CHOICE_CAC_CUSTOM( 8, "buttonName_8", 3, scriptmenuresponse "custom4"; )
+		CHOICE_CAC_CUSTOM( 9, "buttonName_9", 4, scriptmenuresponse "custom5"; )
+		CHOICE_CAC_CUSTOM( 10, "buttonName_10", 5, scriptmenuresponse "custom6"; )
+		CHOICE_CAC_CUSTOM( 11, "buttonName_11", 6, scriptmenuresponse "custom7"; )
+		CHOICE_CAC_CUSTOM( 12, "buttonName_12", 7, scriptmenuresponse "custom8"; )
+		CHOICE_CAC_CUSTOM( 13, "buttonName_13", 8, scriptmenuresponse "custom9"; )
+		CHOICE_CAC_CUSTOM( 14, "buttonName_14", 9, scriptmenuresponse "custom10"; )
+		CHOICE_CAC_CUSTOM( 15, "buttonName_15", 10, scriptmenuresponse "custom11"; )
+		CHOICE_CAC_CUSTOM( 16, "buttonName_16", 11, scriptmenuresponse "custom12"; )
+		CHOICE_CAC_CUSTOM( 17, "buttonName_17", 12, scriptmenuresponse "custom13"; )
+		CHOICE_CAC_CUSTOM( 18, "buttonName_18", 13, scriptmenuresponse "custom14"; )
+		CHOICE_CAC_CUSTOM( 19, "buttonName_19", 14, scriptmenuresponse "custom15"; )
+
+		#include "ui_mp/cac_loadout_ingame.inc"
+	}
+}

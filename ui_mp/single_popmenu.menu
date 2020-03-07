@@ -1,0 +1,84 @@
+#include "ui/menudef.h"
+
+#define CHOICE_GROUP		"single_popmenu"
+
+#include "ui/iw5_setup_common.menu"
+#include "ui_mp/menustyle.inc"
+{
+	menuDef
+	{
+		name "single_popmenu"
+		rect 0 0 0 0 2 2
+		popup
+		outOfBoundsClick
+		forecolor 1 1 1 1
+		focuscolor 1 1 1 1
+		onEsc
+		{
+			close "self";
+		}
+		itemDef
+		{
+			rect -1280 -480 2560 960 2 2
+			decoration
+			visible 1
+			style 3
+			forecolor 0 0 0 0.8
+			background "white"
+			textscale 0.55
+		}
+#define IW5_POPUP( width, height, itemIndex) \
+		itemDef \
+		{ \
+			rect ( 0 - ( width / 2 ) ) ( 0 - ( height / 2 ) ) width height 2 2 \
+			decoration \
+			visible 1 \
+			style 3 \
+			forecolor 0.317 0.349 0.286 1 \
+			background "white" \
+			textscale 0.55 \
+		} \
+		itemDef \
+		{ \
+			rect ( 0 - ( width / 2 ) ) ( 0 - ( height / 2 ) ) width 25 2 2 \
+			decoration \
+			visible 1 \
+			style 3 \
+			forecolor 0.1569 0.1725 0.1608 1 \
+			background "white" \
+			textscale 0.55 \
+		} \
+		itemDef \
+		{ \
+			rect ( 0 - ( width / 2 ) ) ( 0 - ( height / 2 ) - -25 ) width 8.666 2 2 \
+			decoration \
+			visible 1 \
+			style 3 \
+			forecolor 1 1 1 1 \
+			background "gradient_top" \
+			textscale 0.55 \
+		} \
+		itemDef \
+		{ \
+			rect ( 0 - ( width / 2 ) ) ( 0 - ( height / 2 ) - ( ( itemIndex * 20 ) + 5 ) ) width ( itemIndex * 20 ) 2 2 \
+			decoration \
+			visible 1 \
+			style 3 \
+			forecolor 0.1569 0.1725 0.1608 1 \
+			background "white" \
+			textscale 0.55 \
+		}
+		#undef CHOICE_HORIZONTAL_ALIGN
+		#define CHOICE_HORIZONTAL_ALIGN 	2
+
+		#undef CHOICE_VERTICAL_ALIGN
+		#define CHOICE_VERTICAL_ALIGN 		2
+		
+		#undef CHOICE_TEXTALIGN
+		#define CHOICE_TEXTALIGN 8
+		
+		IW5_POPUP(534, 340, 2)
+		CHOICE_BUTTON( 0, "button_0", "BUTTON 0", ; )
+		CHOICE_BUTTON( 1, "button_1", "BUTTON 1", ; )
+	}	
+}

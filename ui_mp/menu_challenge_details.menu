@@ -1,0 +1,421 @@
+#include "ui/menudef.h"
+#include "ui_mp/common_macro.inc"
+#include "ui_mp/iw4_macros.inc"
+
+#define CHOICE_GROUP	"menu_challenge_details"
+
+#include "ui/iw5_setup_common.menu"
+#include "ui_mp/menustyle.inc"
+{
+	menuDef
+	{
+		name "menu_challenge_details"
+		rect 0 0 640 480 0 0
+		foreColor CHOICE_TEXTCOLOR
+		focusColor CHOICE_TEXTCOLOR
+		fadeCycle 1
+		fadeClamp 1
+		fadeAmount 0.1
+		blurWorld 7
+		onOpen
+		{
+			focusfirst;
+			setLocalVarInt "ui_centerPopup" ( "false" );
+		}
+		onEsc
+		{
+			close "self";
+		}
+		#define BACKGROUND_BLUR
+		#include "ui_mp/bg.inc"
+
+		itemDef
+		{
+			rect -64 3 276.667 24.233 1 1
+			decoration
+			visible 0
+			style 1
+			forecolor 1 1 1 1
+			textfont 9
+			textalign 14
+			textscale 0.5
+			visible when ( 1 )
+			exp text ( "@" + tablelookup( "mp/challengeTable.csv", 4, localvarstring( "ui_challengeTierTable" ), 1 ) )
+		}
+		
+		CHOICE_SEPERATOR( 0 )
+		
+		#include "ui_mp/challenges.inc"
+		
+		LOCAL_CHD_BUTTON ( 0, "0", 0 )
+		LOCAL_CHD_BUTTON ( 1, "1", 1 )
+		LOCAL_CHD_BUTTON ( 2, "2", 2 )
+		LOCAL_CHD_BUTTON ( 3, "3", 3 )
+		LOCAL_CHD_BUTTON ( 4, "4", 4 )
+		LOCAL_CHD_BUTTON ( 5, "5", 5 )
+		LOCAL_CHD_BUTTON ( 6, "6", 6 )
+		LOCAL_CHD_BUTTON ( 7, "7", 7 )
+		LOCAL_CHD_BUTTON ( 8, "8", 8 )
+		LOCAL_CHD_BUTTON ( 9, "9", 9 )
+		
+		LOCAL_CHD_BUTTON ( 10, "10", 10 )
+		LOCAL_CHD_BUTTON ( 11, "11", 11 )
+		LOCAL_CHD_BUTTON ( 12, "12", 12 )
+		LOCAL_CHD_BUTTON ( 13, "13", 13 )
+		LOCAL_CHD_BUTTON ( 14, "14", 14 )
+		LOCAL_CHD_BUTTON ( 15, "15", 15 )
+		LOCAL_CHD_BUTTON ( 16, "16", 16 )
+		LOCAL_CHD_BUTTON ( 17, "17", 17 )
+		LOCAL_CHD_BUTTON ( 18, "18", 18 )
+		LOCAL_CHD_BUTTON ( 19, "19", 19 )
+		
+		itemDef
+		{
+			rect 237.6 -36 301.5 480 1 1
+			decoration
+			visible 1
+			style 3
+			forecolor 0 0 0 0.4
+			background "white"
+			textscale 0.55
+			exp rect w ( 226 )
+		}
+		itemDef
+		{
+			rect 237.5 -236 13 680 1 1
+			decoration
+			visible 1
+			style 3
+			forecolor 1 1 1 0.75
+			background "gradient"
+			textscale 0.55
+			exp rect x ( 457.5 )
+			exp forecolor r ( 0.596078 )
+			exp forecolor g ( 0.654902 )
+			exp forecolor b ( 0.603922 )
+		}
+		itemDef
+		{
+			rect 237.5 -236 13 680 1 1
+			decoration
+			visible 1
+			style 3
+			forecolor 1 1 1 0.75
+			background "gradient"
+			textscale 0.55
+			exp rect x ( 457.5 )
+			exp forecolor r ( 0.596078 )
+			exp forecolor g ( 0.654902 )
+			exp forecolor b ( 0.603922 )
+		}
+#define VIS_WHEN_CHECK( statNum ) \
+		when ( tablelookupbyrow( localvarstring( "ui_challengeTierTable" ) , statNum , 0 ) != "" && !( int( tablelookup( "mp/allChallengesTable.csv" , 0 , tablelookupbyrow( localvarstring( "ui_challengeTierTable" ) , statNum , 0 ) , 6 + ( ( int( max( getplayerdata( "challengeState" , tablelookupbyrow( localvarstring( "ui_challengeTierTable" ) , statNum , 0 ) ) , 1 ) ) - 1 ) * 2 ) ) ) == "" ) && !( ( tablelookupbyrow( localvarstring( "ui_challengeTierTable" ) , statNum , 1 ) == "tier_prestige" ) && !isitemunlocked( "tier_prestige" ) ) )
+
+#define CH_PROGRESS( IW5_CHOICE_Y, statNum ) \
+		itemDef \
+		{ \
+			rect 288.667 0 122 9.333 1 1 \
+			decoration \
+			visible 1 \
+			style 3 \
+			forecolor 0.2 0.5 0.2 1 \
+			background "white" \
+			textscale 0.55 \
+			exp rect y ( IW5_CHOICE_Y ) \
+			exp rect w ( ( ( getplayerdata( "challengeProgress" , tablelookupbyrow( localvarstring( "ui_challengeTierTable" ) , statNum , 0 ) ) - 0 ) / ( int( tablelookup( "mp/allChallengesTable.csv" , 0 , tablelookupbyrow( localvarstring( "ui_challengeTierTable" ) , statNum , 0 ) , 6 + ( ( int( max( getplayerdata( "challengeState" , tablelookupbyrow( localvarstring( "ui_challengeTierTable" ) , statNum , 0 ) ) , 1 ) ) - 1 ) * 2 ) ) ) - 0 ) ) * 40 ) \
+			visible when ( tablelookupbyrow( localvarstring( "ui_challengeTierTable" ) , statNum , 0 ) != "" && !( ( tablelookupbyrow( localvarstring( "ui_challengeTierTable" ) , statNum , 1 ) == "tier_prestige" ) && !isitemunlocked( "tier_prestige" ) ) ) \
+		}
+		
+#define CH_DONE_TEXT( IW5_CHOICE_Y, statNum ) \
+		itemDef \
+		{ \
+			rect 288.667 0 122 19.567 1 1 \
+			decoration \
+			visible 1 \
+			style 1 \
+			forecolor 1 1 1 1 \
+			textfont 3 \
+			textalign 9 \
+			textscale 0.375 \
+			text "@MPUI_DONE_CAPS" \
+			exp rect y ( IW5_CHOICE_Y ) \
+			visible when ( tablelookupbyrow( localvarstring( "ui_challengeTierTable" ) , statNum , 0 ) != "" && ( int( tablelookup( "mp/allChallengesTable.csv" , 0 , tablelookupbyrow( localvarstring( "ui_challengeTierTable" ) , statNum , 0 ) , 6 + ( ( int( max( getplayerdata( "challengeState" , tablelookupbyrow( localvarstring( "ui_challengeTierTable" ) , statNum , 0 ) ) , 1 ) ) - 1 ) * 2 ) ) ) == "" ) && !( ( tablelookupbyrow( localvarstring( "ui_challengeTierTable" ) , statNum , 1 ) == "tier_prestige" ) && !isitemunlocked( "tier_prestige" ) ) ) \
+		}
+
+		PREPROC_SHADER_DRAW_VIS( 288.667 39.333 122 9.333 1 1,  ORIGIN_NONE, "white", 0 0 0 1, VIS_WHEN_CHECK( 0 ) )
+		CH_PROGRESS( 39.333, 0 )
+		CH_DONE_TEXT( 33.333, 0 )
+
+		PREPROC_SHADER_DRAW_VIS( 288.667 59.333 122 9.333 1 1,  ORIGIN_NONE, "white", 0 0 0 1, VIS_WHEN_CHECK( 1 ) )
+		CH_PROGRESS( 59.333, 1 )
+		CH_DONE_TEXT( 53.333, 1 )
+
+		PREPROC_SHADER_DRAW_VIS( 288.667 79.333 122 9.333 1 1,  ORIGIN_NONE, "white", 0 0 0 1, VIS_WHEN_CHECK( 2 ) )
+		CH_PROGRESS( 79.333, 2 )
+		CH_DONE_TEXT( 73.333, 2 )
+
+		PREPROC_SHADER_DRAW_VIS( 288.667 99.333 122 9.333 1 1,  ORIGIN_NONE, "white", 0 0 0 1, VIS_WHEN_CHECK( 3 ) )
+		CH_PROGRESS( 99.333, 3 )
+		CH_DONE_TEXT( 93.333, 3 )
+
+		PREPROC_SHADER_DRAW_VIS( 288.667 119.333 122 9.333 1 1, ORIGIN_NONE, "white", 0 0 0 1, VIS_WHEN_CHECK( 4 ) )
+		CH_PROGRESS( 119.333, 4 )
+		CH_DONE_TEXT( 113.333, 4 )
+
+		PREPROC_SHADER_DRAW_VIS( 288.667 139.333 122 9.333 1 1, ORIGIN_NONE, "white", 0 0 0 1, VIS_WHEN_CHECK( 5 ) )
+		CH_PROGRESS( 139.333, 5 )
+		CH_DONE_TEXT( 133.333, 5 )
+
+		PREPROC_SHADER_DRAW_VIS( 288.667 159.333 122 9.333 1 1, ORIGIN_NONE, "white", 0 0 0 1, VIS_WHEN_CHECK( 6 ) )
+		CH_PROGRESS( 159.333, 6 )
+		CH_DONE_TEXT( 153.333, 6 )
+
+		PREPROC_SHADER_DRAW_VIS( 288.667 179.333 122 9.333 1 1, ORIGIN_NONE, "white", 0 0 0 1, VIS_WHEN_CHECK( 7 ) )
+		CH_PROGRESS( 179.333, 7 )
+		CH_DONE_TEXT( 173.333, 7 )
+
+		PREPROC_SHADER_DRAW_VIS( 288.667 199.333 122 9.333 1 1, ORIGIN_NONE, "white", 0 0 0 1, VIS_WHEN_CHECK( 8 ) )
+		CH_PROGRESS( 199.333, 8 )
+		CH_DONE_TEXT( 193.333, 8 )
+
+		PREPROC_SHADER_DRAW_VIS( 288.667 219.333 122 9.333 1 1, ORIGIN_NONE, "white", 0 0 0 1, VIS_WHEN_CHECK( 9 ) )
+		CH_PROGRESS( 219.333, 9 )
+		CH_DONE_TEXT( 213.333, 9 )
+
+		PREPROC_SHADER_DRAW_VIS( 288.667 239.333 122 9.333 1 1, ORIGIN_NONE, "white", 0 0 0 1, VIS_WHEN_CHECK( 10 ) )
+		CH_PROGRESS( 239.333, 10 )
+		CH_DONE_TEXT( 233.333, 10 )
+
+		PREPROC_SHADER_DRAW_VIS( 288.667 259.333 122 9.333 1 1, ORIGIN_NONE, "white", 0 0 0 1, VIS_WHEN_CHECK( 11 ) )
+		CH_PROGRESS( 259.333, 11 )
+		CH_DONE_TEXT( 253.333, 11 )
+
+		PREPROC_SHADER_DRAW_VIS( 288.667 279.333 122 9.333 1 1, ORIGIN_NONE, "white", 0 0 0 1, VIS_WHEN_CHECK( 12 ) )
+		CH_PROGRESS( 279.333, 12 )
+		CH_DONE_TEXT( 273.333, 12 )
+
+		PREPROC_SHADER_DRAW_VIS( 288.667 299.333 122 9.333 1 1, ORIGIN_NONE, "white", 0 0 0 1, VIS_WHEN_CHECK( 13 ) )
+		CH_PROGRESS( 299.333, 13 )
+		CH_DONE_TEXT( 293.333, 13 )
+
+		PREPROC_SHADER_DRAW_VIS( 288.667 319.333 122 9.333 1 1, ORIGIN_NONE, "white", 0 0 0 1, VIS_WHEN_CHECK( 14 ) )
+		CH_PROGRESS( 319.333, 14 )
+		CH_DONE_TEXT( 313.333, 14 )
+
+
+		PREPROC_SHADER_DRAW_VIS( 288.667 339.333 122 9.333 1 1, ORIGIN_NONE, "white", 0 0 0 1, VIS_WHEN_CHECK( 15 ) )
+		CH_PROGRESS( 339.333, 14 )
+		CH_DONE_TEXT( 333.333, 14 )
+
+		PREPROC_SHADER_DRAW_VIS( 288.667 359.333 122 9.333 1 1, ORIGIN_NONE, "white", 0 0 0 1, VIS_WHEN_CHECK( 16 ) )
+		CH_PROGRESS( 359.333, 14 )
+		CH_DONE_TEXT( 352.333, 14 )
+
+		PREPROC_SHADER_DRAW_VIS( 288.667 379.333 122 9.333 1 1, ORIGIN_NONE, "white", 0 0 0 1, VIS_WHEN_CHECK( 17 ) )
+		CH_PROGRESS( 379.333, 14 )
+		CH_DONE_TEXT( 373.333, 14 )
+
+		itemDef // challenge title 1
+		{
+			rect 133.333 6.7 186.667 92.5 2 1
+			autowrapped
+			decoration
+			visible 1
+			style 1
+			forecolor 1 1 1 1
+			textfont 9
+			textalign 5
+			textscale 0.375
+			exp forecolor r ( 0.2 )
+			exp forecolor g ( 0.5 )
+			exp forecolor b ( 0.2 )
+			exp rect x ( ( ( !dvarbool( "widescreen" ) ) * ( 0 - 50 ) ) + ( ( ( 130.2 ) + 3.133 ) ) + ( 0 ) )
+			visible when ( localvarstring( "ui_selected_ref" ) != "" && !( int( tablelookup( "mp/allChallengesTable.csv" , 0 , localvarstring( "ui_selected_ref" ) , 6 + ( ( int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) - 1 ) * 2 ) ) ) == "" ) )
+			exp text ( locstring( "@" + tablelookup( "mp/allChallengesTable.csv" , 0 , localvarstring( "ui_selected_ref" ) , 1 ) ) + locstring( "@" + tablelookup( "mp/allChallengesTable.csv" , 0 , localvarstring( "ui_selected_ref" ) , 3 ) + "_" + int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) ) )
+		}		
+		itemDef // challenge title 2
+		{
+			rect 133.333 6.7 186.667 92.5 2 1
+			autowrapped
+			decoration
+			visible 1
+			style 1
+			forecolor 1 1 1 1
+			textfont 9
+			textalign 5
+			textscale 0.375
+			exp forecolor r ( 0.2 )
+			exp forecolor g ( 0.5 )
+			exp forecolor b ( 0.2 )
+			exp rect x ( ( ( !dvarbool( "widescreen" ) ) * ( 0 - 50 ) ) + ( ( ( 130.2 ) + 3.133 ) ) + ( 0 ) )
+			visible when ( localvarstring( "ui_selected_ref" ) != "" && ( int( tablelookup( "mp/allChallengesTable.csv" , 0 , localvarstring( "ui_selected_ref" ) , 6 + ( ( int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) - 1 ) * 2 ) ) ) == "" ) )
+			exp text ( locstring( "@" + tablelookup( "mp/allChallengesTable.csv" , 0 , localvarstring( "ui_selected_ref" ) , 1 ) ) + locstring( "@" + tablelookup( "mp/allChallengesTable.csv" , 0 , localvarstring( "ui_selected_ref" ) , 3 ) + "_" + int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) - 1 ) )
+		}
+		itemDef // challenge description 1
+		{
+			rect 133.333 116.7 186.667 92.5 2 1
+			autowrapped
+			decoration
+			visible 1
+			style 1
+			forecolor 1 1 1 1
+			textfont 3
+			textalign 5
+			textscale 0.375
+			exp rect x ( ( ( !dvarbool( "widescreen" ) ) * ( 0 - 50 ) ) + ( ( ( 130.2 ) + 3.133 ) ) + ( 0 ) )
+			visible when ( "@" + tablelookup( "mp/allChallengesTable.csv" , 0 , localvarstring( "ui_selected_ref" ) , 3 ) != "@CHALLENGE_BLANK" && !( int( tablelookup( "mp/allChallengesTable.csv" , 0 , localvarstring( "ui_selected_ref" ) , 6 + ( ( int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) - 1 ) * 2 ) ) ) == "" ) && localvarstring( "ui_selected_ref" ) != "ch_marathon_pro" && localvarstring( "ui_selected_ref" ) != "ch_lightweight_pro" )
+			exp text ( locstring( "@" + tablelookup( "mp/allChallengesTable.csv" , 0 , localvarstring( "ui_selected_ref" ) , 2 ) , int( tablelookup( "mp/allChallengesTable.csv" , 0 , localvarstring( "ui_selected_ref" ) , 6 + ( ( int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) - 1 ) * 2 ) ) ) - 0 ) )
+		}
+		itemDef // challenge description 2
+		{
+			rect 133.333 116.7 186.667 92.5 2 1
+			decoration
+			autowrapped
+			visible 1
+			style 1
+			forecolor 1 1 1 1
+			textfont 3
+			textalign 5
+			textscale 0.375
+			exp rect x ( ( ( !dvarbool( "widescreen" ) ) * ( 0 - 50 ) ) + ( ( ( 130.2 ) + 3.133 ) ) + ( 0 ) )
+			//exp rect y ( ( select( ( ( tablelookup( "mp/statsTable.csv" , 4 , tablelookup( "mp/challengeTable.csv" , 4 , localvarstring( "ui_challengeTierTable" ) , 6 ) , 6 ) != "" ) || ( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "ui_selected_perk_ref" ) , 3 ) != "" ) || ( ( select( tablelookup( "mp/killstreakTable.csv" , 1 , localvarstring( "ui_selected_ks_ref" ) , 14 ) != "" , tablelookup( "mp/killstreakTable.csv" , 1 , localvarstring( "ui_selected_ks_ref" ) , 14 ) + "_frontend" , "" ) ) != "" ) ) , 0 , ( 0 - 58 ) ) ) + ( ( ( 6 + 110.7 ) ) ) + ( 0 ) )
+			visible when ( "@" + tablelookup( "mp/allChallengesTable.csv" , 0 , localvarstring( "ui_selected_ref" ) , 3 ) != "@CHALLENGE_BLANK" && ( int( tablelookup( "mp/allChallengesTable.csv" , 0 , localvarstring( "ui_selected_ref" ) , 6 + ( ( int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) - 1 ) * 2 ) ) ) == "" ) && localvarstring( "ui_selected_ref" ) != "ch_marathon_pro" && localvarstring( "ui_selected_ref" ) != "ch_lightweight_pro" )
+			exp text ( locstring( "@" + tablelookup( "mp/allChallengesTable.csv" , 0 , localvarstring( "ui_selected_ref" ) , 2 ) , int( tablelookup( "mp/allChallengesTable.csv" , 0 , localvarstring( "ui_selected_ref" ) , 6 + ( ( ( int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) - 1 ) - 1 ) * 2 ) ) ) ) )
+		}
+		itemDef // challenge description 3
+		{
+			rect 133.333 116.7 186.667 92.5 2 1
+			decoration
+			autowrapped
+			visible 1
+			style 1
+			forecolor 1 1 1 1
+			textfont 3
+			textalign 5
+			textscale 0.375
+			exp rect x ( ( ( !dvarbool( "widescreen" ) ) * ( 0 - 50 ) ) + ( ( ( 130.2 ) + 3.133 ) ) + ( 0 ) )
+			//exp rect y ( ( select( ( ( tablelookup( "mp/statsTable.csv" , 4 , tablelookup( "mp/challengeTable.csv" , 4 , localvarstring( "ui_challengeTierTable" ) , 6 ) , 6 ) != "" ) || ( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "ui_selected_perk_ref" ) , 3 ) != "" ) || ( ( select( tablelookup( "mp/killstreakTable.csv" , 1 , localvarstring( "ui_selected_ks_ref" ) , 14 ) != "" , tablelookup( "mp/killstreakTable.csv" , 1 , localvarstring( "ui_selected_ks_ref" ) , 14 ) + "_frontend" , "" ) ) != "" ) ) , 0 , ( 0 - 58 ) ) ) + ( ( ( 6 + 110.7 ) ) ) + ( 0 ) )
+			visible when ( "@" + tablelookup( "mp/allChallengesTable.csv" , 0 , localvarstring( "ui_selected_ref" ) , 3 ) == "@CHALLENGE_BLANK" )
+			exp text ( locstring( "@" + tablelookup( "mp/allChallengesTable.csv" , 0 , localvarstring( "ui_selected_ref" ) , 2 ) ) )
+		}
+		itemDef // challenge description 4
+		{
+			rect 133.333 116.7 186.667 92.5 2 1
+			decoration
+			autowrapped
+			visible 1
+			style 1
+			forecolor 1 1 1 1
+			textfont 3
+			textalign 5
+			textscale 0.375
+			exp rect x ( ( ( !dvarbool( "widescreen" ) ) * ( 0 - 50 ) ) + ( ( ( 130.2 ) + 3.133 ) ) + ( 0 ) )
+			//exp rect y ( ( select( ( ( tablelookup( "mp/statsTable.csv" , 4 , tablelookup( "mp/challengeTable.csv" , 4 , localvarstring( "ui_challengeTierTable" ) , 6 ) , 6 ) != "" ) || ( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "ui_selected_perk_ref" ) , 3 ) != "" ) || ( ( select( tablelookup( "mp/killstreakTable.csv" , 1 , localvarstring( "ui_selected_ks_ref" ) , 14 ) != "" , tablelookup( "mp/killstreakTable.csv" , 1 , localvarstring( "ui_selected_ks_ref" ) , 14 ) + "_frontend" , "" ) ) != "" ) ) , 0 , ( 0 - 58 ) ) ) + ( ( ( 6 + 110.7 ) ) ) + ( 0 ) )
+			visible when ( "@" + tablelookup( "mp/allChallengesTable.csv" , 0 , localvarstring( "ui_selected_ref" ) , 3 ) != "@CHALLENGE_BLANK" && ( int( tablelookup( "mp/allChallengesTable.csv" , 0 , localvarstring( "ui_selected_ref" ) , 6 + ( ( int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) - 1 ) * 2 ) ) ) == "" ) && localvarstring( "ui_selected_ref" ) != "ch_marathon_pro" && localvarstring( "ui_selected_ref" ) != "ch_lightweight_pro" )
+			exp text ( locstring( "@" + tablelookup( "mp/allChallengesTable.csv" , 0 , localvarstring( "ui_selected_ref" ) , 2 ) , int( tablelookup( "mp/allChallengesTable.csv" , 0 , localvarstring( "ui_selected_ref" ) , 6 + ( ( ( int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) - 1 ) - 1 ) * 2 ) ) ) ) )
+		}
+		itemDef // challenge description 5
+		{
+			rect 133.333 116.7 186.667 92.5 2 1
+			decoration
+			autowrapped
+			visible 1
+			style 1
+			forecolor 1 1 1 1
+			textfont 3
+			textalign 5
+			textscale 0.375
+			exp rect x ( ( ( !dvarbool( "widescreen" ) ) * ( 0 - 50 ) ) + ( ( ( 130.2 ) + 3.133 ) ) + ( 0 ) )
+			//exp rect y ( ( select( ( ( tablelookup( "mp/statsTable.csv" , 4 , tablelookup( "mp/challengeTable.csv" , 4 , localvarstring( "ui_challengeTierTable" ) , 6 ) , 6 ) != "" ) || ( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "ui_selected_perk_ref" ) , 3 ) != "" ) || ( ( select( tablelookup( "mp/killstreakTable.csv" , 1 , localvarstring( "ui_selected_ks_ref" ) , 14 ) != "" , tablelookup( "mp/killstreakTable.csv" , 1 , localvarstring( "ui_selected_ks_ref" ) , 14 ) + "_frontend" , "" ) ) != "" ) ) , 0 , ( 0 - 58 ) ) ) + ( ( ( 6 + 110.7 ) ) ) + ( 0 ) )
+			visible when ( "@" + tablelookup( "mp/allChallengesTable.csv" , 0 , localvarstring( "ui_selected_ref" ) , 3 ) != "@CHALLENGE_BLANK" && ( int( tablelookup( "mp/allChallengesTable.csv" , 0 , localvarstring( "ui_selected_ref" ) , 6 + ( ( int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) - 1 ) * 2 ) ) ) == "" ) && localvarstring( "ui_selected_ref" ) == "ch_marathon_pro" || localvarstring( "ui_selected_ref" ) == "ch_lightweight_pro" )
+			exp text ( locstring( "@" + tablelookup( "mp/allChallengesTable.csv" , 0 , localvarstring( "ui_selected_ref" ) , 2 ) , int( int( tablelookup( "mp/allChallengesTable.csv" , 0 , localvarstring( "ui_selected_ref" ) , 6 + ( ( ( int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) - 1 ) - 1 ) * 2 ) ) ) / 5280 ) ) )
+		}
+		itemDef
+		{
+			rect 145.333 203.367 162.667 19.567 2 1
+			decoration
+			visible 1
+			style 1
+			forecolor 1 1 1 1
+			textfont 3
+			textalign 9
+			textscale 0.375
+			exp rect x ( ( ( !dvarbool( "widescreen" ) ) * ( 0 - 50 ) ) + ( ( ( 130.2 ) + 15.133 ) ) + ( 0 ) )
+			visible when ( !( int( tablelookup( "mp/allChallengesTable.csv" , 0 , localvarstring( "ui_selected_ref" ) , 6 + ( ( int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) - 1 ) * 2 ) ) ) == "" ) && localvarstring( "ui_selected_ref" ) != "ch_marathon_pro" && localvarstring( "ui_selected_ref" ) != "ch_lightweight_pro" )
+			exp text ( locstring( "@CHALLENGE_PROGRESS_X_OF_Y" , getplayerdata( "challengeProgress" , localvarstring( "ui_selected_ref" ) ) - 0 , int( tablelookup( "mp/allChallengesTable.csv" , 0 , localvarstring( "ui_selected_ref" ) , 6 + ( ( int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) - 1 ) * 2 ) ) ) - 0 ) )
+		}
+		itemDef
+		{
+			rect 145.333 203.367 162.667 19.567 2 1
+			decoration
+			visible 1
+			style 1
+			forecolor 1 1 1 1
+			textfont 3
+			textalign 9
+			textscale 0.375
+			exp rect x ( ( ( !dvarbool( "widescreen" ) ) * ( 0 - 50 ) ) + ( ( ( 130.2 ) + 15.133 ) ) + ( 0 ) )
+			visible when ( !( int( tablelookup( "mp/allChallengesTable.csv" , 0 , localvarstring( "ui_selected_ref" ), 6 + ( ( int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) - 1 ) * 2 ) ) ) == "" ) && ( localvarstring( "ui_selected_ref" ) == "ch_marathon_pro" || localvarstring( "ui_selected_ref" ) == "ch_lightweight_pro" ) )
+			exp text ( locstring( "@CHALLENGE_PROGRESS_X_OF_Y" , int( ( getplayerdata( "challengeProgress" , localvarstring( "ui_selected_ref" ) ) - 0 ) / 5280 ) , int( ( int( tablelookup( "mp/allChallengesTable.csv" , 0 , localvarstring( "ui_selected_ref" ) , 6 + ( ( int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) - 1 ) * 2 ) ) ) - 0 ) / 5280 ) ) )
+		}
+		itemDef
+		{
+			rect 145.333 203.367 162.667 19.567 2 1
+			decoration
+			visible 1
+			style 1
+			forecolor 1 1 1 1
+			textfont 3
+			textalign 9
+			textscale 0.375
+			exp rect x ( ( ( !dvarbool( "widescreen" ) ) * ( 0 - 50 ) ) + ( ( ( 130.2 ) + 15.133 ) ) + ( 0 ) )
+			//exp rect y ( ( select( ( ( tablelookup( "mp/statsTable.csv" , 4 , tablelookup( "mp/challengeTable.csv" , 4 , localvarstring( "ui_challengeTierTable" ) , 6 ) , 6 ) != "" ) || ( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "ui_selected_perk_ref" ) , 3 ) != "" ) || ( ( select( tablelookup( "mp/killstreakTable.csv" , 1 , localvarstring( "ui_selected_ks_ref" ) , 14 ) != "" , tablelookup( "mp/killstreakTable.csv" , 1 , localvarstring( "ui_selected_ks_ref" ) , 14 ) + "_frontend" , "" ) ) != "" ) ) , 0 , ( 0 - 58 ) ) ) + ( ( ( 6 + 110.7 ) + 86.667 ) ) + ( 0 ) )
+			exp forecolor r ( 0.2 )
+			exp forecolor g ( 0.5 )
+			exp forecolor b ( 0.2 )
+			text "@CHALLENGE_COMPLETE"
+			visible when ( ( int( tablelookup( "mp/allChallengesTable.csv" , 0 , localvarstring( "ui_selected_ref" ) , 6 + ( ( int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) - 1 ) * 2 ) ) ) == "" ) )
+		}
+		itemDef
+		{
+			rect 130.2 226.933 200 1.333 2 1
+			decoration
+			visible 1
+			style 3
+			forecolor 1 1 1 1
+			background "gradient_inset_rect"
+			textscale 0.55
+			exp rect x ( ( ( !dvarbool( "widescreen" ) ) * ( 0 - 50 ) ) + ( ( ( 130.2 ) ) ) + ( 0 ) )
+			//exp rect y ( ( select( ( ( tablelookup( "mp/statsTable.csv" , 4 , tablelookup( "mp/challengeTable.csv" , 4 , localvarstring( "ui_challengeTierTable" ) , 6 ) , 6 ) != "" ) || ( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "ui_selected_perk_ref" ) , 3 ) != "" ) || ( ( select( tablelookup( "mp/killstreakTable.csv" , 1 , localvarstring( "ui_selected_ks_ref" ) , 14 ) != "" , tablelookup( "mp/killstreakTable.csv" , 1 , localvarstring( "ui_selected_ks_ref" ) , 14 ) + "_frontend" , "" ) ) != "" ) ) , 0 , ( 0 - 58 ) ) ) + ( ( ( 6 + 110.7 ) + 110.233 ) ) + ( 0 ) )
+			visible when ( localvarstring( "ui_selected_ref" ) != "" && !( int( tablelookup( "mp/allChallengesTable.csv" , 0 , localvarstring( "ui_selected_ref" ) , 6 + ( ( int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) - 1 ) * 2 ) ) ) == "" ) )
+		}
+		itemDef
+		{
+			rect 145.333 229.367 162.667 22.2 2 1
+			decoration
+			visible 1
+			style 1
+			forecolor 1 1 1 1
+			textfont 9
+			textalign 9
+			textscale 0.466667
+			exp rect x ( ( ( !dvarbool( "widescreen" ) ) * ( 0 - 50 ) ) + ( ( ( 130.2 ) + 15.133 ) ) + ( 0 ) )
+			visible when ( !( int( tablelookup( "mp/allChallengesTable.csv" , 0 , localvarstring( "ui_selected_ref" ) , 6 + ( ( int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) - 1 ) * 2 ) ) ) == "" ) )
+			exp text ( "REWARDS" )
+		}
+		itemDef
+		{
+			rect 145.333 249.033 162.667 21.1 2 1
+			decoration
+			visible 1
+			style 1
+			forecolor 0.941 0.769 0.357 1
+			textfont 3
+			textalign 9
+			textscale 0.4
+			exp rect x ( ( ( !dvarbool( "widescreen" ) ) * ( 0 - 50 ) ) + ( ( ( 130.2 ) + 15.133 ) ) + ( 0 ) )
+			visible when ( !( int( tablelookup( "mp/allChallengesTable.csv" , 0 , localvarstring( "ui_selected_ref" ) , 6 + ( ( int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) - 1 ) * 2 ) ) ) == "" ) )
+			exp text ( locstring( "@MPUI_REWARD_XP" , int( tablelookup( "mp/allChallengesTable.csv" , 0 , localvarstring( "ui_selected_ref" ) , 7 + ( ( int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) - 1 ) * 2 ) ) ) ) )
+		}
+	}
+}

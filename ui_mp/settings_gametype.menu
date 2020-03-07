@@ -1,0 +1,420 @@
+#include "ui/menudef.h"
+#include "ui/iw5_setup_common.menu"
+#include "ui_mp/menustyle.inc"
+{
+	menuDef
+	{
+		name "settings_gametype"
+		rect 0 0 640 480 0 0
+		visible 1
+		forecolor 1 1 1 1
+		focuscolor 1 1 1 1
+		fullscreen 1
+		soundLoop "music_mainmenu_mp"
+		onOpen
+		{
+			setLocalVarInt "ui_buttonNavGroupOffset" ( 0 );
+			setLocalVarInt "ui_buttonNavGroupCurrent" ( 0 );
+			setLocalVarString "ui_buttonNavGroupName" ( "invalid" );
+			setLocalVarBool "ui_swfSelectionButtonVis" ( 0 );
+			setLocalVarBool "ui_swfSelectionBarVis" ( 0 );
+			setLocalVarBool "ui_swfSelectionDisabled" ( 0 );
+			setLocalVarBool "ui_swfPopupSelectionButtonVis" ( 0 );
+			setLocalVarBool "ui_swfPopupSelectionBarVis" ( 0 );
+			setLocalVarBool "ui_swfPopupSelectionDisabled" ( 0 );
+			setLocalVarString "ui_swfPopupContext" ( "invalid" );
+			focusfirst;
+			setdvar "ui_version_show" 0;
+			setLocalVarBool "ui_centerPopup" ( 0 );
+			setLocalVarInt "ui_open_time" ( milliseconds( ) );
+			setLocalVarString "sharedBackgroundMusic" ( "music_mainmenu_mp" );
+			setLocalVarString "temp" ( debugprint( "DEBUG" , " MP Root Open" ) );
+			if ( menuisopen( "menu_xboxlive_partyended" ) )
+			{
+				setLocalVarInt "ui_buttonNavGroupOffset" ( 0 );
+				setLocalVarInt "ui_buttonNavGroupCurrent" ( 0 );
+				setLocalVarString "ui_buttonNavGroupName" ( "invalid" );
+				setLocalVarBool "ui_swfSelectionButtonVis" ( 0 );
+				setLocalVarBool "ui_swfSelectionBarVis" ( 0 );
+				setLocalVarBool "ui_swfSelectionDisabled" ( 0 );
+				close "menu_xboxlive_partyended";
+				open "menu_xboxlive_partyended";
+			}
+		}
+		onEsc
+		{
+			close self;
+		}
+
+		#define BACKGROUND_BLUR
+		#include "ui_mp/bg.inc"
+
+		itemDef
+		{
+			rect -64 3 276.667 24.233 1 1
+			decoration
+			visible 0
+			style 1
+			forecolor 1 1 1 1
+			textfont 9
+			textalign 14
+			textscale 0.5
+			visible when ( 1 )
+			text "MODE"
+		}
+		
+		CHOICE_SEPERATOR( 0 )
+		CHOICE_BUTTON( 0, "standard", "STANDARD MODES", open "standard_gametypes"; )
+		CHOICE_BUTTON( 1, "alt", "ALTERNATE MODES", open "alt_gametypes"; )
+		CHOICE_SEPERATOR( 2 )
+		CHOICE_BUTTON_EX( 2, "recent", "RECENT MODES", open "menu_xboxlive";, disabled when( 1 ) )
+		CHOICE_BUTTON_EX( 3, "mymodes", "MY MODES", open "menu_xboxlive";, disabled when( 1 ) )
+		CHOICE_SEPERATOR( 4 )
+		CHOICE_BUTTON_EX( 4, "onlinev", "ONLINE VAULT", open "menu_xboxlive";, disabled when( 1 ) )
+		CHOICE_BUTTON_EX( 5, "friendsv", "FRIEND'S VAULT", open "menu_xboxlive";, disabled when( 1 ) )
+
+		itemDef
+		{
+			rect -252.667 2.667 253.333 20 3 1
+			decoration
+			visible 1
+			style 1
+			forecolor 0.784314 0.784314 0.784314 1
+			background "white"
+			textfont 3
+			textalign 4
+			textalignx 20
+			textscale 0.375
+			visible when ( privatepartyhost( ) )
+			exp text ( locstring( "@MPUI_RECOMMENDEDPLAYERS" , int( min( dvarint( "party_maxPlayers" ) , maxrecommendedplayers( ) ) ) ) )
+		}
+		itemDef
+		{
+			rect 0 0 0 20 3 3
+			visible 1
+			foreColor 1 1 1 0.5
+			type 1
+			style 1
+			textFont UI_FONT_NORMAL
+			textAlignX 9
+			textAlignY 17
+			textScale 0.325
+			exp rect x ( -755 )
+			exp rect y ( -13.667 )
+			exp rect w ( 45 )
+			visible when ( dvarString( "wideScreen" ) == 1 )
+			text "BACK"
+			onFocus
+			{
+				play "mouse_over";
+				setItemColor self "backColor" 0 0 0 0.25;
+			}
+			leaveFocus
+			{
+				setItemColor self "backColor" 0 0 0 0;
+			}
+			action
+			{
+				play "mouse_click";
+				close "self";
+			}
+		}
+	}
+	menuDef
+	{
+		name "standard_gametypes"
+		rect 0 0 640 480 0 0
+		style 1
+		forecolor 1 1 1 1
+		focuscolor 1 1 1 1
+		fullscreen 1
+		fadeCycle 1
+		fadeClamp 1
+		fadeAmount 0.1
+		soundLoop "music_mainmenu_mp"
+		onOpen
+		{
+			focusFirst;
+			setFocusByDvar "ui_gametype";
+		}
+		onClose
+		{
+			execNow "xupdatepartystate";
+		}
+		onEsc
+		{
+			close "standard_gametypes";
+		}
+
+		#undef BACKGROUND_BLUR
+		#define BACKGROUND_BLUR
+		#include "ui_mp/bg.inc"
+
+		itemDef
+		{
+			rect 237.6 -36 301.5 480 1 1
+			decoration
+			visible 1
+			style 3
+			forecolor 0 0 0 0.4
+			background "white"
+			textscale 0.55
+			exp rect w ( 226 )
+		}
+		itemDef
+		{
+			rect 237.5 -236 13 680 1 1
+			decoration
+			visible 1
+			style 3
+			forecolor 1 1 1 0.75
+			background "gradient"
+			textscale 0.55
+			exp rect x ( 457.5 )
+			exp forecolor r ( 0.596078 )
+			exp forecolor g ( 0.654902 )
+			exp forecolor b ( 0.603922 )
+		}
+		itemDef
+		{
+			rect 237.5 -236 13 680 1 1
+			decoration
+			visible 1
+			style 3
+			forecolor 1 1 1 0.75
+			background "gradient"
+			textscale 0.55
+			exp rect x ( 457.5 )
+			exp forecolor r ( 0.596078 )
+			exp forecolor g ( 0.654902 )
+			exp forecolor b ( 0.603922 )
+		}
+
+		itemDef
+		{
+			rect -64 3 276.667 24.233 1 1
+			decoration
+			visible 0
+			style 1
+			forecolor 1 1 1 1
+			textfont 9
+			textalign 14
+			textscale 0.5
+			visible when ( 1 )
+			text "STANDARD MODES"
+		}
+		#include "ui_mp/gametype_info.inc"
+
+		CHOICE_SEPERATOR( 0 )
+		LOCAL_GAMETYPE_SELECTION( 0, "button_0", "dm",   "dm" )
+		LOCAL_GAMETYPE_SELECTION( 1, "button_1", "war",  "war" )
+		LOCAL_GAMETYPE_SELECTION( 2, "button_2", "sd",   "sd" )
+		LOCAL_GAMETYPE_SELECTION( 3, "button_3", "sab",  "sab" )
+		LOCAL_GAMETYPE_SELECTION( 4, "button_4", "dom",  "dom" )
+		LOCAL_GAMETYPE_SELECTION( 5, "button_5", "koth", "koth" )
+		LOCAL_GAMETYPE_SELECTION( 6, "button_6", "ctf",  "ctf" )
+		LOCAL_GAMETYPE_SELECTION( 7, "button_7", "dd",   "dd" )
+
+		itemDef
+		{
+			rect 251 34.667 200 20 1 1
+			decoration
+			autowrapped
+			visible 1
+			forecolor 1 1 1 1
+			textfont 9
+			textalign 13
+			textscale 0.4
+			exp text ( localvarstring( "ui_info_name" ) )
+		}
+		itemDef
+		{
+			rect 251 204.667 200 20 1 1
+			decoration
+			autowrapped
+			visible 1
+			forecolor 1 1 1 1
+			textfont 3
+			textalign 9
+			textscale 0.340278
+			exp text ( localvarstring( "ui_info_desc" ) )
+		}
+		itemDef
+		{
+			rect 0 0 0 20 3 3
+			visible 1
+			foreColor 1 1 1 0.5
+			type 1
+			style 1
+			textFont UI_FONT_NORMAL
+			textAlignX 9
+			textAlignY 17
+			textScale 0.325
+			exp rect x ( -755 )
+			exp rect y ( -13.667 )
+			exp rect w ( 45 )
+			visible when ( dvarString( "wideScreen" ) == 1 )
+			text "BACK"
+			onFocus
+			{
+				play "mouse_over";
+				setItemColor self "backColor" 0 0 0 0.25;
+			}
+			leaveFocus
+			{
+				setItemColor self "backColor" 0 0 0 0;
+			}
+			action
+			{
+				play "mouse_click";
+				close "self";
+			}
+		}
+	}	
+	menuDef
+	{
+		name "alt_gametypes"
+		rect 0 0 640 480 0 0
+		style 1
+		forecolor 1 1 1 1
+		focuscolor 1 1 1 1
+		fullscreen 1
+		fadeCycle 1
+		fadeClamp 1
+		fadeAmount 0.1
+		soundLoop "music_mainmenu_mp"
+		onOpen
+		{
+			focusFirst;
+			setFocusByDvar "ui_gametype";
+		}
+		onClose
+		{
+			execNow "xupdatepartystate";
+		}
+		onEsc
+		{
+			close "alt_gametypes";
+		}
+	
+		#undef BACKGROUND_BLUR
+		#define BACKGROUND_BLUR
+		#include "ui_mp/bg.inc"
+		
+		itemDef
+		{
+			rect 237.6 -36 301.5 480 1 1
+			decoration
+			visible 1
+			style 3
+			forecolor 0 0 0 0.4
+			background "white"
+			textscale 0.55
+			exp rect w ( 226 )
+		}
+		itemDef
+		{
+			rect 237.5 -236 13 680 1 1
+			decoration
+			visible 1
+			style 3
+			forecolor 1 1 1 0.75
+			background "gradient"
+			textscale 0.55
+			exp rect x ( 457.5 )
+			exp forecolor r ( 0.596078 )
+			exp forecolor g ( 0.654902 )
+			exp forecolor b ( 0.603922 )
+		}
+		itemDef
+		{
+			rect 237.5 -236 13 680 1 1
+			decoration
+			visible 1
+			style 3
+			forecolor 1 1 1 0.75
+			background "gradient"
+			textscale 0.55
+			exp rect x ( 457.5 )
+			exp forecolor r ( 0.596078 )
+			exp forecolor g ( 0.654902 )
+			exp forecolor b ( 0.603922 )
+		}
+
+		itemDef
+		{
+			rect -64 3 276.667 24.233 1 1
+			decoration
+			visible 0
+			style 1
+			forecolor 1 1 1 1
+			textfont 9
+			textalign 14
+			textscale 0.5
+			visible when ( 1 )
+			text "ALTERNATE MODES"
+		}
+		
+		CHOICE_SEPERATOR( 0 )
+		LOCAL_GAMETYPE_SELECTION( 0, "button_0", "oneflag",   "oneflag" )
+		LOCAL_GAMETYPE_SELECTION( 1, "button_1", "arena",  "arena" )
+		LOCAL_GAMETYPE_SELECTION( 2, "button_2", "vip",   "vip" )
+		LOCAL_GAMETYPE_SELECTION( 3, "button_3", "gtnw",  "gtnw" )
+
+		itemDef
+		{
+			rect 251 34.667 200 20 1 1
+			decoration
+			autowrapped
+			visible 1
+			forecolor 1 1 1 1
+			textfont 9
+			textalign 13
+			textscale 0.4
+			exp text ( localvarstring( "ui_info_name" ) )
+		}
+		itemDef
+		{
+			rect 251 204.667 200 20 1 1
+			decoration
+			autowrapped
+			visible 1
+			forecolor 1 1 1 1
+			textfont 3
+			textalign 9
+			textscale 0.340278
+			exp text ( localvarstring( "ui_info_desc" ) )
+		}
+		itemDef
+		{
+			rect 0 0 0 20 3 3
+			visible 1
+			foreColor 1 1 1 0.5
+			type 1
+			style 1
+			textFont UI_FONT_NORMAL
+			textAlignX 9
+			textAlignY 17
+			textScale 0.325
+			exp rect x ( -755 )
+			exp rect y ( -13.667 )
+			exp rect w ( 45 )
+			visible when ( dvarString( "wideScreen" ) == 1 )
+			text "BACK"
+			onFocus
+			{
+				play "mouse_over";
+				setItemColor self "backColor" 0 0 0 0.25;
+			}
+			leaveFocus
+			{
+				setItemColor self "backColor" 0 0 0 0;
+			}
+			action
+			{
+				play "mouse_click";
+				close "self";
+			}
+		}
+	}	
+}

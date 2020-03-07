@@ -1,0 +1,603 @@
+#include "ui/menudef.h"
+#include "ui_mp/common_macro.inc"
+#include "ui_mp/iw4_macros.inc"
+
+#define CHOICE_GROUP	"menu_cas_popup"
+
+#include "ui/iw5_setup_common.menu"
+#include "ui_mp/menustyle.inc"
+{
+	menuDef
+	{
+		name "menu_cas_popup"
+		rect 0 0 640 480 0 0
+		visible 1
+		forecolor 1 1 1 1
+		focuscolor 1 1 1 1
+		fullscreen 1
+		soundLoop "music_mainmenu_mp"
+		execKey "F1"
+		{
+			setLocalVarInt "ui_numStreaks" ( 0 );
+			setLocalVarString "ui_streak1Name" ( "none" );
+			setLocalVarString "ui_streak2Name" ( "none" );
+			setLocalVarString "ui_streak3Name" ( "none" );
+		}
+		onOpen
+		{
+			setLocalVarInt "ui_unlockedStreaks" ( 0 );
+			if ( getplayerdata( "killstreakUnlocked" , "uav" ) && "uav" != "uav" && "uav" != "airdrop" && "uav" != "predator_missile" )
+			{
+				setLocalVarInt "ui_unlockedStreaks" ( localvarint( "ui_unlockedStreaks" ) + 1 );
+			}
+			if ( getplayerdata( "killstreakUnlocked" , "airdrop" ) && "airdrop" != "uav" && "airdrop" != "airdrop" && "airdrop" != "predator_missile" )
+			{
+				setLocalVarInt "ui_unlockedStreaks" ( localvarint( "ui_unlockedStreaks" ) + 1 );
+			}
+			if ( getplayerdata( "killstreakUnlocked" , "counter_uav" ) && "counter_uav" != "uav" && "counter_uav" != "airdrop" && "counter_uav" != "predator_missile" )
+			{
+				setLocalVarInt "ui_unlockedStreaks" ( localvarint( "ui_unlockedStreaks" ) + 1 );
+			}
+			if ( getplayerdata( "killstreakUnlocked" , "airdrop_sentry_minigun" ) && "airdrop_sentry_minigun" != "uav" && "airdrop_sentry_minigun" != "airdrop" && "airdrop_sentry_minigun" != "predator_missile" )
+			{
+				setLocalVarInt "ui_unlockedStreaks" ( localvarint( "ui_unlockedStreaks" ) + 1 );
+			}
+			if ( getplayerdata( "killstreakUnlocked" , "predator_missile" ) && "predator_missile" != "uav" && "predator_missile" != "airdrop" && "predator_missile" != "predator_missile" )
+			{
+				setLocalVarInt "ui_unlockedStreaks" ( localvarint( "ui_unlockedStreaks" ) + 1 );
+			}
+			if ( getplayerdata( "killstreakUnlocked" , "precision_airstrike" ) && "precision_airstrike" != "uav" && "precision_airstrike" != "airdrop" && "precision_airstrike" != "predator_missile" )
+			{
+				setLocalVarInt "ui_unlockedStreaks" ( localvarint( "ui_unlockedStreaks" ) + 1 );
+			}
+			if ( getplayerdata( "killstreakUnlocked" , "harrier_airstrike" ) && "harrier_airstrike" != "uav" && "harrier_airstrike" != "airdrop" && "harrier_airstrike" != "predator_missile" )
+			{
+				setLocalVarInt "ui_unlockedStreaks" ( localvarint( "ui_unlockedStreaks" ) + 1 );
+			}
+			if ( getplayerdata( "killstreakUnlocked" , "helicopter" ) && "helicopter" != "uav" && "helicopter" != "airdrop" && "helicopter" != "predator_missile" )
+			{
+				setLocalVarInt "ui_unlockedStreaks" ( localvarint( "ui_unlockedStreaks" ) + 1 );
+			}
+			if ( getplayerdata( "killstreakUnlocked" , "airdrop_mega" ) && "airdrop_mega" != "uav" && "airdrop_mega" != "airdrop" && "airdrop_mega" != "predator_missile" )
+			{
+				setLocalVarInt "ui_unlockedStreaks" ( localvarint( "ui_unlockedStreaks" ) + 1 );
+			}
+			if ( getplayerdata( "killstreakUnlocked" , "helicopter_flares" ) && "helicopter_flares" != "uav" && "helicopter_flares" != "airdrop" && "helicopter_flares" != "predator_missile" )
+			{
+				setLocalVarInt "ui_unlockedStreaks" ( localvarint( "ui_unlockedStreaks" ) + 1 );
+			}
+			if ( getplayerdata( "killstreakUnlocked" , "stealth_airstrike" ) && "stealth_airstrike" != "uav" && "stealth_airstrike" != "airdrop" && "stealth_airstrike" != "predator_missile" )
+			{
+				setLocalVarInt "ui_unlockedStreaks" ( localvarint( "ui_unlockedStreaks" ) + 1 );
+			}
+			if ( getplayerdata( "killstreakUnlocked" , "helicopter_minigun" ) && "helicopter_minigun" != "uav" && "helicopter_minigun" != "airdrop" && "helicopter_minigun" != "predator_missile" )
+			{
+				setLocalVarInt "ui_unlockedStreaks" ( localvarint( "ui_unlockedStreaks" ) + 1 );
+			}
+			if ( getplayerdata( "killstreakUnlocked" , "ac130" ) && "ac130" != "uav" && "ac130" != "airdrop" && "ac130" != "predator_missile" )
+			{
+				setLocalVarInt "ui_unlockedStreaks" ( localvarint( "ui_unlockedStreaks" ) + 1 );
+			}
+			if ( getplayerdata( "killstreakUnlocked" , "emp" ) && "emp" != "uav" && "emp" != "airdrop" && "emp" != "predator_missile" )
+			{
+				setLocalVarInt "ui_unlockedStreaks" ( localvarint( "ui_unlockedStreaks" ) + 1 );
+			}
+			if ( getplayerdata( "killstreakUnlocked" , "nuke" ) && "nuke" != "uav" && "nuke" != "airdrop" && "nuke" != "predator_missile" )
+			{
+				setLocalVarInt "ui_unlockedStreaks" ( localvarint( "ui_unlockedStreaks" ) + 1 );
+			}
+			setLocalVarInt "ui_numTokens" ( 0 );
+			setLocalVarString "ui_nextToken" ( "" );
+			if ( isitemunlocked( "token_1" ) )
+			{
+				setLocalVarInt "ui_numTokens" ( 1 );
+			}
+			else
+			{
+				if ( localvarstring( "ui_nextToken" ) == "" )
+				{
+					setLocalVarString "ui_nextToken" ( "token_1" );
+				}
+			}
+			if ( isitemunlocked( "token_2" ) )
+			{
+				setLocalVarInt "ui_numTokens" ( 2 );
+			}
+			else
+			{
+				if ( localvarstring( "ui_nextToken" ) == "" )
+				{
+					setLocalVarString "ui_nextToken" ( "token_2" );
+				}
+			}
+			if ( isitemunlocked( "token_3" ) )
+			{
+				setLocalVarInt "ui_numTokens" ( 3 );
+			}
+			else
+			{
+				if ( localvarstring( "ui_nextToken" ) == "" )
+				{
+					setLocalVarString "ui_nextToken" ( "token_3" );
+				}
+			}
+			if ( isitemunlocked( "token_4" ) )
+			{
+				setLocalVarInt "ui_numTokens" ( 4 );
+			}
+			else
+			{
+				if ( localvarstring( "ui_nextToken" ) == "" )
+				{
+					setLocalVarString "ui_nextToken" ( "token_4" );
+				}
+			}
+			if ( isitemunlocked( "token_5" ) )
+			{
+				setLocalVarInt "ui_numTokens" ( 5 );
+			}
+			else
+			{
+				if ( localvarstring( "ui_nextToken" ) == "" )
+				{
+					setLocalVarString "ui_nextToken" ( "token_5" );
+				}
+			}
+			if ( isitemunlocked( "token_6" ) )
+			{
+				setLocalVarInt "ui_numTokens" ( 6 );
+			}
+			else
+			{
+				if ( localvarstring( "ui_nextToken" ) == "" )
+				{
+					setLocalVarString "ui_nextToken" ( "token_6" );
+				}
+			}
+			if ( isitemunlocked( "token_7" ) )
+			{
+				setLocalVarInt "ui_numTokens" ( 7 );
+			}
+			else
+			{
+				if ( localvarstring( "ui_nextToken" ) == "" )
+				{
+					setLocalVarString "ui_nextToken" ( "token_7" );
+				}
+			}
+			if ( isitemunlocked( "token_8" ) )
+			{
+				setLocalVarInt "ui_numTokens" ( 8 );
+			}
+			else
+			{
+				if ( localvarstring( "ui_nextToken" ) == "" )
+				{
+					setLocalVarString "ui_nextToken" ( "token_8" );
+				}
+			}
+			if ( isitemunlocked( "token_9" ) )
+			{
+				setLocalVarInt "ui_numTokens" ( 9 );
+			}
+			else
+			{
+				if ( localvarstring( "ui_nextToken" ) == "" )
+				{
+					setLocalVarString "ui_nextToken" ( "token_9" );
+				}
+			}
+			if ( isitemunlocked( "token_10" ) )
+			{
+				setLocalVarInt "ui_numTokens" ( 10 );
+			}
+			else
+			{
+				if ( localvarstring( "ui_nextToken" ) == "" )
+				{
+					setLocalVarString "ui_nextToken" ( "token_10" );
+				}
+			}
+			if ( isitemunlocked( "token_11" ) )
+			{
+				setLocalVarInt "ui_numTokens" ( 11 );
+			}
+			else
+			{
+				if ( localvarstring( "ui_nextToken" ) == "" )
+				{
+					setLocalVarString "ui_nextToken" ( "token_11" );
+				}
+			}
+			if ( isitemunlocked( "token_12" ) )
+			{
+				setLocalVarInt "ui_numTokens" ( 12 );
+			}
+			else
+			{
+				if ( localvarstring( "ui_nextToken" ) == "" )
+				{
+					setLocalVarString "ui_nextToken" ( "token_12" );
+				}
+			}
+			setLocalVarInt "ui_numTokens" ( max( ( localvarint( "ui_numTokens" ) - localvarint( "ui_unlockedStreaks" ) ) , 0 ) );
+			setLocalVarBool "ui_buttonFocused" ( 0 );
+			focusfirst;
+			if ( int( tablelookup( "mp/killstreakTable.csv" , 1 , getplayerdata( "killstreaks" , 0 ) , 4 ) ) == int( tablelookup( "mp/killstreakTable.csv" , 1 , getplayerdata( "killstreaks" , 1 ) , 4 ) ) && int( tablelookup( "mp/killstreakTable.csv" , 1 , getplayerdata( "killstreaks" , 0 ) , 4 ) ) )
+			{
+				setPlayerData( "killstreaks" , 1 , "none" ) ;;
+			}
+			if ( int( tablelookup( "mp/killstreakTable.csv" , 1 , getplayerdata( "killstreaks" , 0 ) , 4 ) ) == int( tablelookup( "mp/killstreakTable.csv" , 1 , getplayerdata( "killstreaks" , 2 ) , 4 ) ) && int( tablelookup( "mp/killstreakTable.csv" , 1 , getplayerdata( "killstreaks" , 0 ) , 4 ) ) )
+			{
+				setPlayerData( "killstreaks" , 2 , "none" ) ;;
+			}
+			if ( int( tablelookup( "mp/killstreakTable.csv" , 1 , getplayerdata( "killstreaks" , 1 ) , 4 ) ) == int( tablelookup( "mp/killstreakTable.csv" , 1 , getplayerdata( "killstreaks" , 2 ) , 4 ) ) && int( tablelookup( "mp/killstreakTable.csv" , 1 , getplayerdata( "killstreaks" , 1 ) , 4 ) ) )
+			{
+				setPlayerData( "killstreaks" , 2 , "none" ) ;;
+			}
+			setLocalVarInt "ui_numStreaks" ( 0 );
+			setLocalVarString "ui_streak1Name" ( getplayerdata( "killstreaks" , 0 ) );
+			setLocalVarString "ui_streak2Name" ( getplayerdata( "killstreaks" , 1 ) );
+			setLocalVarString "ui_streak3Name" ( getplayerdata( "killstreaks" , 2 ) );
+			if ( getplayerdata( "featureNew" , "cas" ) )
+			{
+				setPlayerData( "featureNew" , "cas" , "false" );
+				open "popup_welcometocas";
+			}
+			if ( localvarstring( "ui_streak1Name" ) != "none" )
+			{
+				setLocalVarInt "ui_numStreaks" ( localvarint( "ui_numStreaks" ) + 1 );
+			}
+			if ( localvarstring( "ui_streak2Name" ) != "none" )
+			{
+				setLocalVarInt "ui_numStreaks" ( localvarint( "ui_numStreaks" ) + 1 );
+			}
+			if ( localvarstring( "ui_streak3Name" ) != "none" )
+			{
+				setLocalVarInt "ui_numStreaks" ( localvarint( "ui_numStreaks" ) + 1 );
+			}
+			if ( !localvarint( "ui_numTokens" ) )
+			{
+				setPlayerData( "featureNew" , "token_1" , "false" );
+				setPlayerData( "featureNew" , "token_2" , "false" );
+				setPlayerData( "featureNew" , "token_3" , "false" );
+				setPlayerData( "featureNew" , "token_4" , "false" );
+				setPlayerData( "featureNew" , "token_5" , "false" );
+				setPlayerData( "featureNew" , "token_6" , "false" );
+				setPlayerData( "featureNew" , "token_7" , "false" );
+				setPlayerData( "featureNew" , "token_8" , "false" );
+				setPlayerData( "featureNew" , "token_9" , "false" );
+				setPlayerData( "featureNew" , "token_10" , "false" );
+				setPlayerData( "featureNew" , "token_11" , "false" );
+				setPlayerData( "featureNew" , "token_12" , "false" );
+			}
+			else
+			{
+				open "popup_tokensavailable";
+			}
+			setLocalVarString "ui_selected_ref" ( "uav" );
+		}
+		onEsc
+		{
+			if ( localvarstring( "ui_streak1Name" ) == "none" || ( int( tablelookup( "mp/killstreakTable.csv" , 1 , localvarstring( "ui_streak2Name" ) , 4 ) ) < int( tablelookup( "mp/killstreakTable.csv" , 1 , localvarstring( "ui_streak1Name" ) , 4 ) ) && localvarstring( "ui_streak2Name" ) != "none" ) )
+			{
+				setLocalVarString "ui_tempStreak" ( localvarstring( "ui_streak1Name" ) );
+				setLocalVarString "ui_streak1Name" ( localvarstring( "ui_streak2Name" ) );
+				setLocalVarString "ui_streak2Name" ( localvarstring( "ui_tempStreak" ) );
+			}
+			if ( localvarstring( "ui_streak2Name" ) == "none" || ( int( tablelookup( "mp/killstreakTable.csv" , 1 , localvarstring( "ui_streak3Name" ) , 4 ) ) < int( tablelookup( "mp/killstreakTable.csv" , 1 , localvarstring( "ui_streak2Name" ) , 4 ) ) && localvarstring( "ui_streak3Name" ) != "none" ) )
+			{
+				setLocalVarString "ui_tempStreak" ( localvarstring( "ui_streak2Name" ) );
+				setLocalVarString "ui_streak2Name" ( localvarstring( "ui_streak3Name" ) );
+				setLocalVarString "ui_streak3Name" ( localvarstring( "ui_tempStreak" ) );
+			}
+			if ( localvarstring( "ui_streak1Name" ) == "none" || ( int( tablelookup( "mp/killstreakTable.csv" , 1 , localvarstring( "ui_streak2Name" ) , 4 ) ) < int( tablelookup( "mp/killstreakTable.csv" , 1 , localvarstring( "ui_streak1Name" ) , 4 ) ) && localvarstring( "ui_streak2Name" ) != "none" ) )
+			{
+				setLocalVarString "ui_tempStreak" ( localvarstring( "ui_streak1Name" ) );
+				setLocalVarString "ui_streak1Name" ( localvarstring( "ui_streak2Name" ) );
+				setLocalVarString "ui_streak2Name" ( localvarstring( "ui_tempStreak" ) );
+			}
+			if ( localvarstring( "ui_streak1Name" ) == "none" || localvarstring( "ui_streak2Name" ) == "none" || localvarstring( "ui_streak3Name" ) == "none" )
+			{
+				open "popup_needstreaks";
+			}
+			else
+			{
+				setPlayerData( "killstreaks" , 0 , "localVarString" ( "ui_streak1Name" ) );
+				setPlayerData( "killstreaks" , 1 , "localVarString" ( "ui_streak2Name" ) );
+				setPlayerData( "killstreaks" , 2 , "localVarString" ( "ui_streak3Name" ) );
+				execnow "uploadstats";
+				close "self";
+			}
+		}
+		#define BACKGROUND_BLUR
+		#include "ui_mp/bg.inc"
+
+		itemDef
+		{
+			rect -64 3 276.667 24.233 1 1
+			decoration
+			visible 1
+			style 1
+			forecolor 1 1 1 1
+			textfont 9
+			textalign 14
+			textscale 0.5
+			exp text ( "ASSAULT" )
+		}
+
+		CHOICE_SEPERATOR( 0 )
+
+		#include "ui_mp/cas_info.inc"
+
+		CHOICE_BUTTON_KILLSTREAK( 0, "button_0", "uav" )
+		CHOICE_BUTTON_KILLSTREAK( 1, "button_1", "airdrop" )
+		CHOICE_BUTTON_KILLSTREAK( 2, "button_2", "counter_uav" )
+		CHOICE_BUTTON_KILLSTREAK( 3, "button_3", "airdrop_sentry_minigun" )
+		CHOICE_BUTTON_KILLSTREAK( 4, "button_4", "predator_missile" )
+		CHOICE_BUTTON_KILLSTREAK( 5, "button_5", "precision_airstrike" )
+		CHOICE_BUTTON_KILLSTREAK( 6, "button_6", "harrier_airstrike" )
+		CHOICE_BUTTON_KILLSTREAK( 7, "button_7", "helicopter" )
+		CHOICE_BUTTON_KILLSTREAK( 8, "button_8", "airdrop_mega" )
+		CHOICE_BUTTON_KILLSTREAK( 9, "button_9", "helicopter_flares" )
+		CHOICE_BUTTON_KILLSTREAK( 10, "button_10", "stealth_airstrike" )
+		CHOICE_BUTTON_KILLSTREAK( 11, "button_11", "helicopter_minigun" )
+		CHOICE_BUTTON_KILLSTREAK( 12, "button_12", "ac130" )
+		CHOICE_BUTTON_KILLSTREAK( 13, "button_13", "emp" )
+		CHOICE_BUTTON_KILLSTREAK( 14, "button_14", "nuke" )
+		
+		#include "ui_mp/cac_loadout.inc"
+		
+		itemDef
+		{
+			rect 237.6 -36 301.5 480 1 1
+			decoration
+			visible 1
+			style 3
+			forecolor 0 0 0 0.4
+			background "white"
+			textscale 0.55
+			exp rect w ( 226 )
+		}
+		itemDef
+		{
+			rect 237.5 -236 13 680 1 1
+			decoration
+			visible 1
+			style 3
+			forecolor 1 1 1 0.75
+			background "gradient"
+			textscale 0.55
+			exp rect x ( 457.5 )
+			exp forecolor r ( 0.596078 )
+			exp forecolor g ( 0.654902 )
+			exp forecolor b ( 0.603922 )
+		}
+		itemDef
+		{
+			rect 237.5 -236 13 680 1 1
+			decoration
+			visible 1
+			style 3
+			forecolor 1 1 1 0.75
+			background "gradient"
+			textscale 0.55
+			exp rect x ( 457.5 )
+			exp forecolor r ( 0.596078 )
+			exp forecolor g ( 0.654902 )
+			exp forecolor b ( 0.603922 )
+		}
+		itemDef
+		{
+			rect 254.333 34.667 186.667 44.4 1 1
+			decoration
+			autowrapped
+			visible 1
+			style 1
+			forecolor 1 1 1 1
+			textfont 9
+			textalign 5
+			textscale 0.383333
+			visible when ( ( 1 ) )
+			disabled when ( !getplayerdata( "killstreakUnlocked" , localvarstring( "ui_selected_ref" ) ) )
+			exp text ( "@" + tablelookup( "mp/killstreakTable.csv" , 1 , localvarstring( "ui_selected_ref" ) , 2 ) )
+		}
+		itemDef
+		{
+			rect 261 145.033 173.333 48 1 1
+			decoration
+			autowrapped
+			visible 1
+			style 1
+			forecolor 1 1 1 1
+			type 21
+			textfont 3
+			textalign 5
+			textscale 0.340278
+			exp rect x ( ( 0 ) + ( ( 261 ) ) + ( 0 ) )
+			exp forecolor a ( 0.65 + ( isitemunlocked( localvarstring( "ui_selected_ref" ) ) && getplayerdata( "killstreakUnlocked" , localvarstring( "ui_selected_ref" ) ) ) )
+			visible when ( ( isitemunlocked( localvarstring( "ui_selected_ref" ) ) && getplayerdata( "killstreakUnlocked" , localvarstring( "ui_selected_ref" ) ) ) || 1 )
+			exp text ( "@" + tablelookup( "mp/killstreakTable.csv" , 1 , localvarstring( "ui_selected_ref" ) , 3 ) )
+		}
+		itemDef
+		{
+			rect 267.667 69.833 72 72 1 1
+			decoration
+			visible 1
+			style 3
+			forecolor 1 1 1 1
+			textscale 0.55
+			exp rect x ( ( 0 ) + ( ( 261 + 6.667 ) ) + ( 1 * 36 ) + 8 )
+			exp rect w ( 144 - ( 1 * 72 ) )
+			visible when ( !( isitemunlocked( localvarstring( "ui_selected_ref" ) ) && getplayerdata( "killstreakUnlocked" , localvarstring( "ui_selected_ref" ) ) ) && localvarstring( "ui_selected_ref" ) != "" )
+			exp material ( tablelookup( "mp/killstreakTable.csv" , 1 , localvarstring( "ui_selected_ref" ) , 14 ) + "_locked" )
+		}
+		itemDef
+		{
+			rect 267.667 69.833 72 72 1 1
+			decoration
+			visible 1
+			style 3
+			forecolor 1 1 1 1
+			textscale 0.55
+			exp rect x ( ( 0 ) + ( ( 261 + 6.667 ) ) + ( 1 * 36 ) + 8 )
+			exp rect w ( 144 - ( 1 * 72 ) )
+			visible when ( ( isitemunlocked( localvarstring( "ui_selected_ref" ) ) && getplayerdata( "killstreakUnlocked" , localvarstring( "ui_selected_ref" ) ) ) )
+			exp material ( tablelookup( "mp/killstreakTable.csv" , 1 , localvarstring( "ui_selected_ref" ) , 14 ) )
+		}
+		itemDef
+		{
+			rect 247.667 203.166 200 1.333 1 1
+			decoration
+			visible 1
+			style 3
+			forecolor 1 1 1 0.211
+			background "gradient_inset_rect"
+			textscale 0.55
+			exp rect x ( ( 0 ) + ( ( 261 + ( 0 - 13.333 ) ) ) + ( 0 ) )
+		}
+		itemDef
+		{
+			rect 254.333 207 186.667 44.4 1 1
+			decoration
+			autowrapped
+			visible 1
+			style 1
+			forecolor 1 1 1 1
+			textfont 9
+			textalign 5
+			textscale 0.383333
+			exp rect x ( ( 0 ) + ( ( 261 + ( 0 - 6.667 ) ) ) + ( 0 ) )
+			exp text ( "STRIKE CHAIN" )
+		}
+		itemDef
+		{
+			rect 266.033 236 42.667 42.667 1 1
+			decoration
+			visible 1
+			style 3
+			forecolor 1 1 1 1
+			textscale 0.55
+			exp rect x ( ( 0 ) + ( ( 261 + 5.033 ) ) + ( 0 ) )
+			visible when ( ( ( 1 && 1 ) ) )
+			exp material ( tablelookup( "mp/killstreakTable.csv" , 1 , localvarstring( "ui_streak1Name" ) , 14 ) )
+		}
+		itemDef
+		{
+			rect 255.367 280.666 60 18.667 1 1
+			decoration
+			visible 1
+			style 1
+			forecolor 1 1 1 1
+			textfont 3
+			textalign 9
+			textscale 0.340278
+			exp rect x ( ( 0 ) + ( ( 261 + ( 0 - 5.633 ) ) ) + ( 0 ) )
+			visible when ( ( ( ( localvarstring( "ui_assaultStreak1" ) != "none" ) && 1 ) ) )
+			exp text ( locstring( "@MPUI_N_KILLS" , int( tablelookup( "mp/killstreakTable.csv" , 1 , localvarstring( "ui_streak1Name" ) , 4 ) ) ) )
+		}
+		itemDef
+		{
+			rect 326.033 236 42.667 42.667 1 1
+			decoration
+			visible 1
+			style 3
+			forecolor 1 1 1 1
+			textscale 0.55
+			exp rect x ( ( 0 ) + ( ( 261 + 65.033 ) ) + ( 0 ) )
+			visible when ( ( ( 1 && 1 ) ) )
+			exp material ( tablelookup( "mp/killstreakTable.csv" , 1 , localvarstring( "ui_streak2Name" ) , 14 ) )
+		}
+		itemDef
+		{
+			rect 315.367 280.666 60 18.667 1 1
+			decoration
+			visible 1
+			style 1
+			forecolor 1 1 1 1
+			textfont 3
+			textalign 9
+			textscale 0.340278
+			exp rect x ( ( 0 ) + ( ( 261 + 54.367 ) ) + ( 0 ) )
+			visible when ( ( ( ( localvarstring( "ui_assaultStreak2" ) != "none" ) && 1 ) ) )
+			exp text ( locstring( "@MPUI_N_KILLS" , int( tablelookup( "mp/killstreakTable.csv" , 1 , localvarstring( "ui_streak2Name" ) , 4 ) ) ) )
+		}
+		itemDef
+		{
+			rect 386.033 236 42.667 42.667 1 1
+			decoration
+			visible 1
+			style 3
+			forecolor 1 1 1 1
+			textscale 0.55
+			exp rect x ( ( 0 ) + ( ( 261 + 125.033 ) ) + ( 0 ) )
+			visible when ( ( ( 1 && 1 ) ) )
+			exp material ( tablelookup( "mp/killstreakTable.csv" , 1 , localvarstring( "ui_streak3Name" ) , 14 ) )
+		}
+		itemDef
+		{
+			rect 375.367 280.666 60 18.667 1 1
+			decoration
+			visible 1
+			style 1
+			forecolor 1 1 1 1
+			textfont 3
+			textalign 9
+			textscale 0.340278
+			exp rect x ( ( 0 ) + ( ( 261 + 114.367 ) ) + ( 0 ) )
+			visible when ( ( ( ( localvarstring( "ui_assaultStreak3" ) != "none" ) && 1 ) ) )
+			exp text ( locstring( "@MPUI_N_KILLS" , int( tablelookup( "mp/killstreakTable.csv" , 1 , localvarstring( "ui_streak3Name" ) , 4 ) ) ) )
+		}
+
+		itemDef
+		{
+			rect 310.667 246.666 15.333 15.333 1 1
+			decoration
+			visible 1
+			style 3
+			forecolor 1 1 1 1
+			background "summary_arrow"
+			textscale 0.55
+			visible when ( ( ( 1 && 1 ) ) )
+		}
+		itemDef
+		{
+			rect 370.667 246.666 15.333 15.333 1 1
+			decoration
+			visible 1
+			style 3
+			forecolor 1 1 1 1
+			background "summary_arrow"
+			textscale 0.55
+			visible when ( ( ( 1 && 1 ) ) )
+		}
+		itemDef
+		{
+			rect 315.667 364 60 18.667 1 1
+			decoration
+			visible 1
+			style 1
+			forecolor 1 1 1 1
+			textfont 3
+			textalign 9
+			textscale 0.340278
+			exp rect x ( ( 0 ) + ( ( 261 + 54.667 ) ) + ( 0 ) )
+			exp text ( locstring( "@MPUI_N_UNLOCKS_AVAILABLE" , localvarint( "ui_numTokens" ) ) )
+			visible when ( localvarint( "ui_numTokens" ) > 1 )
+
+
+		}
+		itemDef
+		{
+			rect 335 342.666 21.333 21.333 1 1
+			decoration
+			visible 1
+			style 3
+			forecolor 1 1 1 1
+			textscale 0.55
+			exp rect x ( ( 0 ) + ( ( 261 + 74 ) ) + ( 0 ) )
+			visible when ( ( ( 1 && 1 ) ) )
+			exp material ( "hud_status_dead" )
+		}
+	}
+}

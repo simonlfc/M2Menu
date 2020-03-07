@@ -1,0 +1,148 @@
+#include "ui/menudef.h"
+#include "ui_mp/iw4_macros.inc"
+
+#define CHOICE_GROUP		"class"
+
+#include "ui/iw5_setup_common.menu"
+#include "ui_mp/menustyle.inc"
+
+#define LOCAL_TEAMRESPONSE \
+		if ( ( localvarstring( "ui_team" ) == "marines" ) ) \
+		{ scriptmenuresponse "changeclass_marines"; } \
+		if ( ( localvarstring( "ui_team" ) == "opfor" ) ) \
+		{ scriptmenuresponse "changeclass_opfor"; }
+{
+	menuDef
+	{
+		name "class"
+		rect 0 0 640 480 0 0
+		foreColor 1 1 1 1
+		focusColor 1 1 1 1
+		blurWorld 7
+		onOpen
+		{
+			focusFirst;
+		}
+		onEsc 
+		{
+			scriptMenuResponse "back";
+		}
+		
+		#define BACKGROUND_BLUR
+		#include "ui_mp/bg.inc"
+		
+		itemDef
+		{
+			rect -64 3 276.667 24.233 1 1
+			decoration
+			visible 1
+			style 1
+			forecolor 1 1 1 1
+			textfont 9
+			textalign 10
+			textscale 0.5
+			exp text ( "@MENU_OPTIONS_UPPER_CASE" )
+		}
+		itemDef
+		{
+			rect -272.733 3 266.667 23.633 3 1
+			decoration
+			visible 1
+			style 1
+			forecolor 1 1 1 1
+			textfont 9
+			textalign 10
+			textscale 0.5
+			exp text ( gametypename( ) )
+		}
+		itemDef
+		{
+			rect -272.733 31.866 266.667 48.133 3 1
+			decoration
+			autowrapped
+			visible 1
+			style 1
+			forecolor 1 1 1 1
+			textfont 3
+			textalign 4
+			textscale 0.375
+			visible when ( 1 )
+			exp text ( gametypedescription( ) )
+		}
+
+		#include "ui_mp/tactical_map.inc"
+		#include "ui_mp/teamicon.inc"
+
+		CHOICE_SEPERATOR( 0 )
+		CHOICE_BUTTON_EX( 0, "choose_class", "@MPUI_CHOOSE_CLASS", LOCAL_TEAMRESPONSE, disabled when ( !( ( localvarstring( "ui_team" ) == "marines" ) || ( localvarstring( "ui_team" ) == "opfor" ) ) ) )
+		
+		CHOICE_BUTTON_EX( 1, "change_team", "@MPUI_CHANGE_TEAM", scriptMenuResponse "changeteam";, disabled when ( ( !( ( dvarbool( "ui_allow_teamchange" ) && ( !dvarbool( "onlinegame" ) || dvarbool( "xblive_privatematch" ) ) ) ) ) ) )
+
+		CHOICE_SEPERATOR( 2 )
+
+		CHOICE_BUTTON_VIS( 2, "options", "@MENU_OPTIONS", close "self"; open "pc_options_video"; execNow "set ui_allow_graphic_change 0";, when ( dvarString("ui_allowMoreOptions") == 0 ) )
+		CHOICE_BUTTON_VIS( 2, "options", "@MENU_OPTIONS", close "self"; open "options_graphics"; execNow "set ui_allow_graphic_change 0";, when ( dvarString("ui_allowMoreOptions") == 1 ) )
+
+		CHOICE_BUTTON( 3, "mute_player", "@MPUI_MUTE_PLAYERS", open "muteplayer"; close "self"; )
+		CHOICE_BUTTON_NOHI_VIS( 4, "end_game", "@MENU_END_GAME", open "popup_endgame", when ( ( dvarbool( "onlinegame" ) && !dvarbool( "xblive_privatematch" ) ) == 0 && ( dvarbool( "sv_running" ) ) ) )
+		CHOICE_BUTTON_NOHI_VIS( 4, "leave_game", "@MENU_LEAVE_GAME", ;, when ( ( dvarbool( "onlinegame" ) && !dvarbool( "xblive_privatematch" ) ) || !( dvarbool( "sv_running" ) ) ) )
+	}
+		itemDef
+		{
+			rect 0 0 0 20 3 3
+			visible 1
+			forecolor 1 1 1 1
+			type 1
+			textfont 3
+			textalign 8
+			textscale 0.375
+			exp rect x ( ( 0 ) - ( 0 * 5 ) - ( 20 ) )
+			exp rect y ( ( ( 0 - 20.667 ) ) )
+			exp rect w (  20 )
+			action
+			{
+				play "mouse_click";
+				"uiscript" "simulateKeyPress" "102" ;;
+			}
+			onFocus
+			{
+				setLocalVarInt "ui_ralign_index" ( 2 );
+				setLocalVarString "ui_ralign_group" ( "class" );
+				play "mouse_over";
+			}
+			leaveFocus
+			{
+				setLocalVarInt "ui_ralign_index" ( - 1 ) );
+				setLocalVarString "ui_ralign_group" ( "" );
+			}
+		}
+		itemDef
+		{
+			rect 0 0 0 20 3 3
+			decoration
+			visible 1
+			forecolor 1 1 1 1
+			textfont 3
+			textalign 8
+			textscale 0.375
+			exp text ( "@PLATFORM_FRIENDS_SHORTCUT" )
+			exp rect x ( ( 0 ) - ( 0 * 5 ) - ( 20 ) )
+			exp rect y ( ( ( 0 - 20.667 ) ) )
+			exp rect w (  20 )
+		}
+		itemDef
+		{
+			rect 0 0 0 20 3 3
+			decoration
+			visible 1
+			forecolor 1 1 1 1
+			textfont 3
+			textalign 8
+			textscale 0.375
+			exp text ( "@PLATFORM_BACK_SHORTCUT" )
+			exp rect x ( ( 0 ) - ( 0 * 5 ) - ( 20 ) )
+			exp rect y ( ( ( 0 - 20.667 ) ) )
+			exp rect w (  20 )
+		}
+	}
+}

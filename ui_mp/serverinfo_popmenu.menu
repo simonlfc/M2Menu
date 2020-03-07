@@ -1,0 +1,423 @@
+#include "ui/menudef.h"
+
+#define CHOICE_GROUP		"serverinfo_popmenu"
+
+#include "ui/iw5_setup_common.menu"
+#include "ui_mp/menustyle.inc"
+{
+	menuDef
+	{
+		name "serverinfo_popmenu"
+		rect 0 0 380 334 2 2
+		popup
+		style 1
+		forecolor 1 1 1 1
+		focuscolor 1 1 1 1
+		onOpen
+		{
+			uiScript "ServerStatus";
+			setLocalVarBool "si_btnRefreshFocused" ( 0 );
+			setLocalVarBool "si_btnCloseFocused" ( 0 );
+			setLocalVarBool "ui_centerPopup" ( 1 );
+			setLocalVarString "uiSi_mapname" ( "" );
+			//open "serverinfo_loading";
+		}
+		onClose
+		{
+			setLocalVarBool "ui_centerPopup" ( 0 );
+			//close "serverinfo_loading";
+		}
+		onEsc
+		{
+			setLocalVarBool "ui_centerPopup" ( 0 );
+			play "mouse_click";
+			close self;
+		}
+		itemDef
+		{
+			rect -1470 -647 2560 960 2 2
+			decoration
+			visible 1
+			style 3
+			forecolor 0 0 0 0.8
+			background "white"
+			textscale 0.55
+		}
+		itemDef
+		{
+			name "titleBar"
+			rect -190 -167 380 24 2 2
+			decoration
+			visible 1
+			style 1
+			forecolor 1 1 1 1
+			backcolor 0.1569 0.1765 0.1608 1
+			textscale 0.55
+		}
+		itemDef
+		{
+			name "siServerName"
+			rect -190 -167 380 24 2 2
+			decoration
+			visible 1
+			border 1
+			//ownerdraw 384
+			forecolor 1 1 1 1
+			textfont 9
+			textaligny 23
+			textscale 0.375
+			exp text ( dvarString("uiSi_ServerName") )
+		}
+		itemDef
+		{
+			name "block1"
+			rect -190 -141 380 110 2 2
+			decoration
+			visible 1
+			style 1
+			forecolor 1 1 1 1
+			backcolor 0.2431 0.2431 0.2431 1
+			textscale 0.55
+		}
+		itemDef // max clients
+		{
+			name "siMaxClients"
+			rect -185 -130 183.13 18 2 2
+			decoration
+			visible 1
+			style 1
+			forecolor 1 1 1 1
+			textfont 1
+			textscale 0.25
+			text "@MPUI_MAX_CLIENTS"
+		}
+		itemDef // max clients
+		{
+			name "siMaxClients"
+			rect -185 -130 183.13 18 2 2
+			decoration
+			visible 1
+			style 1
+			forecolor 1 1 1 1
+			textAlignX 130
+			textfont 1
+			textscale 0.25
+			exp text( dvarString( "uiSi_MaxClients" ) )
+		}
+		itemDef // password protected
+		{
+			name "Si_isPrivate"
+			rect -185 -115 183.13 18 2 2
+			decoration
+			visible 1
+			style 1
+			forecolor 1 1 1 1
+			textfont 1
+			textscale 0.25
+			text "@MPUI_IS_PRIVATE"
+		} 
+		itemDef // password protected
+		{
+			name "Si_isPrivate"
+			rect -185 -115 183.13 18 2 2
+			decoration
+			visible 1
+			style 1
+			forecolor 1 1 1 1
+			textAlignX 130
+			textfont 1
+			textscale 0.25
+			exp text( dvarString( "uiSi_isPrivate" ) )
+		}
+		itemDef // hardcore
+		{
+			name "Si_Hardcore"
+			rect -185 -100 183.13 18 2 2
+			decoration
+			visible 1
+			style 1
+			forecolor 1 1 1 1
+			textfont 1
+			textscale 0.25
+			text "@MPUI_RULES_HARDCORE"
+		}
+		itemDef // hardcore
+		{
+			name "Si_Hardcore"
+			rect -185 -100 183.13 18 2 2
+			decoration
+			visible 1
+			style 1
+			forecolor 1 1 1 1
+			textAlignX 130
+			textfont 1
+			textscale 0.25
+			exp text( dvarString( "uiSi_Hardcore" ) )
+		}
+
+		itemDef // killcam
+		{
+			name "Si_KillCam"
+			rect -185 -85 183.13 18 2 2
+			decoration
+			visible 1
+			style 1
+			forecolor 1 1 1 1
+			textfont 1
+			textscale 0.25
+			text "@MPUI_RULES_KILLCAM"
+		}
+		itemDef // killcam
+		{
+			name "Si_KillCam"
+			rect -185 -85 183.13 18 2 2
+			decoration
+			visible 1
+			style 1
+			forecolor 1 1 1 1
+			textAlignX 130
+			textfont 1
+			textscale 0.25
+			exp text( dvarString( "uiSi_KillCam" ) )
+		}
+
+		itemDef // friendly fire
+		{
+			name "Si_ffType"
+			rect -185 -70 183.13 18 2 2
+			decoration
+			visible 1
+			style 1
+			forecolor 1 1 1 1
+			textfont 1
+			textscale 0.25
+			text "@MPUI_RULES_FRIENDLY_FIRE"
+		}
+		itemDef // friendly fire
+		{
+			name "Si_ffType"
+			rect -185 -70 183.13 18 2 2
+			decoration
+			visible 1
+			style 1
+			forecolor 1 1 1 1
+			textAlignX 130
+			textfont 1
+			textscale 0.25
+			exp text( dvarString( "uiSi_ffType" ) )
+		}
+
+		itemDef // mod name
+		{
+			name "Si_ModName"
+			rect -185 -55 183.13 18 2 2
+			decoration
+			visible 1
+			style 1
+			forecolor 1 1 1 1
+			textfont 1
+			textscale 0.25
+			text "@MPUI_MOD"
+		}
+		itemDef // mod name
+		{
+			name "Si_ModName"
+			rect -185 -55 183.13 18 2 2
+			decoration
+			visible 1
+			style 1
+			forecolor 1 1 1 1
+			textAlignX 130
+			textfont 1
+			textscale 0.25
+			exp text( dvarString( "uiSi_ModName" ) )
+		}
+		itemDef
+		{
+			name "mapImageBox"
+			rect 2.86957 -138 183.13 104 2 2
+			decoration
+			visible 1
+			style 3
+			forecolor 1 1 1 1
+			textscale 0.55
+			visible when ( dvarString( "uiSi_MapName" ) != "" )
+			exp material ( "preview_" + dvarString( "uiSi_MapName" ) )
+		}
+		itemDef
+		{
+			name "siMapNameShadow"
+			rect 2.86957 -64 183.13 18 2 2
+			decoration
+			visible 1
+			forecolor 0 0 0 1
+			textFont 9
+			textalign 14
+			textalignx -9
+			textaligny 0
+			textscale 0.5
+			exp text ( dvarString( "uiSi_MapName" ) )
+		}
+		itemDef
+		{
+			name "siMapName"
+			rect 2.86957 -64 183.13 18 2 2
+			decoration
+			visible 1
+			forecolor 1 1 1 1
+			textFont 9
+			textalign 14
+			textalignx -10
+			textaligny 0
+			textscale 0.5
+			exp text ( dvarString( "uiSi_MapName" ) )
+		}
+		itemDef
+		{
+			name "siGameTypeShadow"
+			rect 2.86957 -52 183.13 18 2 2
+			decoration
+			visible 1
+			forecolor 0 0 0 1
+			textFont 9
+			textalign 14
+			textalignx -9
+			textaligny 0
+			textscale 0.27
+			exp text ( dvarString( "uiSi_GameType" ) )
+		}
+		itemDef
+		{
+			name "siGameType"
+			rect 2.86957 -52 183.13 18 2 2
+			decoration
+			visible 1
+			forecolor 1 1 1 1
+			textFont 9
+			textalign 14
+			textalignx -10
+			textaligny 0
+			textscale 0.27
+			exp text ( dvarString( "uiSi_GameType" ) )
+		}
+		itemDef
+		{
+			name "centerLine"
+			rect -190 -29 380 2 2 2
+			decoration
+			visible 1
+			style 1
+			forecolor 1 1 1 1
+			backcolor 0.3686 0.4431 0.3333 1
+			textscale 0.55
+		}
+		itemDef
+		{
+			name "block2"
+			rect -190 -25 380 143 2 2
+			decoration
+			visible 1
+			style 1
+			forecolor 1 1 1 1
+			backcolor 0.2431 0.2431 0.2431 1
+			textscale 0.55
+		}
+		itemDef
+		{
+			name "siList2"
+			rect -190 -24 380 143 2 2
+			decoration
+			visible 1
+			style 1
+			forecolor 1 1 1 1
+			type 6
+			textfont 1
+			textscale 0.25
+			feeder FEEDER_SERVERSTATUS
+			elementWidth 120
+			elementHeight 16
+			notselectable
+//			numcol			xpos	xwidth	textlen	  alignment
+			columns 4		8		2		2		  0
+							20		16		16		  0
+							100		4		4		  0
+							150		4		4		  0
+		}
+		itemDef
+		{
+			name "block3"
+			rect -190 118 380 42 2 2
+			decoration
+			visible 1
+			style 1
+			forecolor 1 1 1 1
+			backcolor 0.2431 0.2431 0.2431 1
+			textscale 0.55
+		}
+		itemDef
+		{
+			name "btnGap"
+			rect -190 140 380 0 2 2
+			decoration
+			visible 1
+			style 1
+			forecolor 1 1 1 1
+			backcolor 0.2431 0.2431 0.2431 1
+			textscale 0.55
+		}
+		itemDef
+		{
+			name "bottomBorder"
+			rect -190 160 380 7 2 2
+			decoration
+			visible 1
+			style 1
+			forecolor 1 1 1 1
+			backcolor 0.3686 0.4431 0.3333 1
+			textscale 0.55
+		}
+		#undef CHOICE_X_START
+		#define CHOICE_X_START			172.667
+
+		#undef CHOICE_Y_START 
+		#define CHOICE_Y_START 			324
+
+		#undef CHOICE_SIZE_X
+		#define CHOICE_SIZE_X			380
+
+		#undef CHOICE_TEXTALIGN
+		#define CHOICE_TEXTALIGN 		8
+		
+		#undef CHOICE_TEXT_OFFSET_X
+		#define CHOICE_TEXT_OFFSET_X 4
+
+		#undef CHOICE_TEXT_HIGHLIGHT
+		#define CHOICE_TEXT_HIGHLIGHT	"white"
+
+		CHOICE_BUTTON( 0, "refreshBtn", "@MENU_REFRESH", uiScript "ServerStatus"; )
+		CHOICE_BUTTON( 1, "closeBtn", "@MENU_CLOSE", close "self"; )
+
+		itemDef
+		{
+			rect -190 -143 380 3.6667 2 2
+			decoration
+			visible 1
+			style 3
+			forecolor 1 1 1 1
+			background "gradient_top"
+			textscale 0.55
+			visible when ( 1 )
+		}
+		itemDef
+		{
+			rect -190 118 380 3.6667 2 2
+			decoration
+			visible 1
+			style 3
+			forecolor 1 1 1 1
+			background "gradient_top"
+			textscale 0.55
+			visible when ( 1 )
+		}
+	}
+}

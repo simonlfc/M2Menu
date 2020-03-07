@@ -1,0 +1,764 @@
+#include "ui/menudef.h"
+
+#define CHOICE_GROUP		"menu_online_barracks"
+
+#include "ui/iw5_setup_common.menu"
+#include "ui_mp/menustyle.inc"
+{
+	menuDef
+	{
+		name "menu_online_barracks"
+		rect 0 0 640 480 0 0
+		style 1
+		forecolor 1 1 1 1
+		focuscolor 1 1 1 1
+		fullscreen 1
+		blurWorld 7
+		soundLoop "music_mainmenu_mp"
+		onOpen
+		{
+			setLocalVarInt "ui_buttonNavGroupOffset" ( 0 );
+			setLocalVarInt "ui_buttonNavGroupCurrent" ( 0 );
+			setLocalVarString "ui_buttonNavGroupName" ( "invalid" );
+			focusfirst;
+		}
+		onClose
+		{
+			//execnow "decnosplitscreencontrol menu_online_barracks";
+		}
+		onEsc
+		{
+			close self;
+		}
+		
+		#define BACKGROUND_BLUR
+		#include "ui_mp/bg.inc"
+		itemDef
+		{
+			rect -64 3 276.667 24.233 1 1
+			decoration
+			visible 0
+			style 1
+			forecolor 1 1 1 1
+			textfont 9
+			textalign 14
+			textscale 0.5
+			visible when ( 1 )
+			exp text ( locstring( "@MPUI_BARRACKS_CAP" ) )
+		}
+		
+		CHOICE_SEPERATOR( 0 )
+
+		CHOICE_BUTTON( 0, "SWF_BUTTON_LIST_0", "@MPUI_CHALLENGES_CAPS", open "menu_challenges"; )
+		CHOICE_BUTTON( 1, "SWF_BUTTON_LIST_1", "@MPUI_HIGHLIGHTS_CAPS", open "menu_records"; )
+		CHOICE_BUTTON_EX( 2, "SWF_BUTTON_LIST_2", "@MENU_LEADERBOARDS_CAP", open "menu_leaderboards";, disabled when ( 1 ) )
+		CHOICE_BUTTON( 3, "SWF_BUTTON_LIST_3", "@MENU_OPTIONS_CAPS", open "main_options"; )
+		
+		CHOICE_SEPERATOR_VIS( 4, when ( ( dvarint( "xblive_privatematch" ) ) && ( ( ( localvarint( "ui_buttonNavGroupOffset" ) + ( 7 - 1 ) ) >= ( 4 ) && ( ( ( 4 ) - localvarint( "ui_buttonNavGroupOffset" ) ) >= 0 ) ) ) ) )
+		
+		CHOICE_BUTTON_EX_VIS( 4, "SWF_BUTTON_LIST_4", "@MPUI_PRESTIGE_MODE_CAPS", open "pc_options_video";, when ( !( getplayerdata( "prestige" ) == int( tablelookup( "mp/rankIconTable.csv" , 0 , "maxprestige" , 1 ) ) ) ), disabled when ( !( getplayerdata( "prestige" ) < int( tablelookup( "mp/rankIconTable.csv" , 0 , "maxprestige" , 1 ) ) && getplayerdata( "experience" ) >= int( tablelookup( "mp/rankTable.csv" , 0 , int( tablelookup( "mp/rankTable.csv" , 0 , "maxrank" , 1 ) ) , 7 ) ) ) && !( getplayerdata( "prestige" ) == int( tablelookup( "mp/rankIconTable.csv" , 0 , "maxprestige" , 1 ) ) ) ) )
+		CHOICE_BUTTON_EX( 5, "SWF_BUTTON_LIST_5", "PRESTIGE SHOP", open "pc_options_video";, disabled when( 1 ) )
+		
+		CHOICE_SEPERATOR_VIS( 6, when ( ( 1 ) && ( ( ( localvarint( "ui_buttonNavGroupOffset" ) + ( 7 - 1 ) ) >= ( 6 ) && ( ( ( 6 ) - localvarint( "ui_buttonNavGroupOffset" ) ) >= 0 ) ) ) ) )
+		itemDef
+		{
+			rect -293.333 34 293.333 50.667 3 1
+			decoration
+			visible 1
+			style 3
+			forecolor 0.157 0.173 0.161 1
+			background "white"
+			textscale 0.55
+			visible when ( ( 1 ) )
+		}
+		itemDef
+		{
+			rect -293.333 134 293.333 200 3 1
+			decoration
+			visible 1
+			style 3
+			forecolor 0.212 0.231 0.22 1
+			background "white"
+			textscale 0.55
+			exp rect h ( 200 + ( ( ( ( getplayercardinfo( 10 , 1 , 0 ) > 0 ) ) + ( ( getplayercardinfo( 15 , 1 , 0 ) > 0 ) ) ) * 14.667 ) )
+			visible when ( ( 1 ) )
+		}
+		itemDef
+		{
+			rect -293.333 84.667 293.333 49.333 3 1
+			decoration
+			visible 1
+			style 3
+			forecolor 0.212 0.231 0.22 1
+			background "white"
+			textscale 0.55
+			visible when ( ( 1 ) )
+		}
+		itemDef
+		{
+			rect -293.333 151.333 293.333 14.667 3 1
+			decoration
+			visible 1
+			style 3
+			forecolor 0 0 0 0.148
+			background "white"
+			textscale 0.55
+			visible when ( ( 1 ) )
+		}
+		itemDef
+		{
+			rect -293.333 180.667 293.333 14.667 3 1
+			decoration
+			visible 1
+			style 3
+			forecolor 0 0 0 0.148
+			background "white"
+			textscale 0.55
+			visible when ( ( 1 ) )
+		}
+		itemDef
+		{
+			rect -293.333 210 293.333 14.667 3 1
+			decoration
+			visible 1
+			style 3
+			forecolor 0 0 0 0.148
+			background "white"
+			textscale 0.55
+			visible when ( ( 1 ) )
+		}
+		itemDef
+		{
+			rect -293.333 239.333 293.333 14.667 3 1
+			decoration
+			visible 1
+			style 3
+			forecolor 0 0 0 0.148
+			background "white"
+			textscale 0.55
+			visible when ( ( 1 ) )
+		}
+		itemDef
+		{
+			rect -293.333 268.667 293.333 14.667 3 1
+			decoration
+			visible 1
+			style 3
+			forecolor 0 0 0 0.148
+			background "white"
+			textscale 0.55
+			visible when ( ( 1 ) )
+		}
+		itemDef
+		{
+			rect -293.333 298 293.333 14.667 3 1
+			decoration
+			visible 1
+			style 3
+			forecolor 0 0 0 0.148
+			background "white"
+			textscale 0.55
+			visible when ( ( 1 ) )
+		}
+		itemDef
+		{
+			rect -289.3 134 129.4 18.033 3 1
+			decoration
+			visible 1
+			style 1
+			forecolor 0.929 0.933 0.933 1
+			textfont 3
+			textalign 8
+			textscale 0.340278
+			visible when ( ( 1 ) )
+			exp text ( "@MPUI_SCORE_PRE" )
+		}
+		itemDef
+		{
+			rect -289.366 207.333 122 18.033 3 1
+			decoration
+			visible 1
+			style 1
+			forecolor 0.929 0.933 0.933 1
+			textfont 3
+			textalign 8
+			textscale 0.340278
+			visible when ( ( 1 ) )
+			exp text ( "@MPUI_KILLS_PRE" )
+		}
+		itemDef
+		{
+			rect -134.5 134 126.667 18.033 3 1
+			decoration
+			visible 1
+			style 1
+			forecolor 0.914 0.749 0.345 1
+			textfont 3
+			textalign 10
+			textscale 0.340278
+			visible when ( ( 1 ) )
+			exp text ( getplayerdata( "score" ) )
+		}
+		itemDef
+		{
+			rect -130.666 207.5 122.867 18.033 3 1
+			decoration
+			visible 1
+			style 1
+			forecolor 0.914 0.749 0.345 1
+			textfont 3
+			textalign 10
+			textscale 0.340278
+			visible when ( ( 1 ) )
+			exp text ( getplayerdata( "kills" ) )
+		}
+		itemDef
+		{
+			rect -289.333 148.666 120.1 18.033 3 1
+			decoration
+			visible 1
+			style 1
+			forecolor 1 1 1 1
+			textfont 3
+			textalign 8
+			textscale 0.340278
+			visible when ( ( 1 ) )
+			exp text ( "@MPUI_WINS_PRE" )
+		}
+		itemDef
+		{
+			rect -131.066 148.933 123.267 18.667 3 1
+			decoration
+			visible 1
+			style 1
+			forecolor 0.988 0.988 0.988 1
+			textfont 3
+			textalign 10
+			textscale 0.340278
+			visible when ( ( 1 ) )
+			exp text ( getplayerdata( "wins" ) )
+		}
+		itemDef
+		{
+			rect -289.366 251.4 153.433 18.033 3 1
+			decoration
+			visible 1
+			style 1
+			forecolor 1 1 1 1
+			textfont 3
+			textalign 8
+			textscale 0.340278
+			visible when ( ( 1 ) )
+			exp text ( "@MPUI_HEADSHOTS_PRE" )
+		}
+		itemDef
+		{
+			rect -161.8 251.333 154 18.033 3 1
+			decoration
+			visible 1
+			style 1
+			forecolor 0.988 0.988 0.988 1
+			textfont 3
+			textalign 10
+			textscale 0.340278
+			visible when ( ( 1 ) )
+			exp text ( getplayerdata( "headshots" ) )
+		}
+		itemDef
+		{
+			rect -289.333 163.466 133.467 18.033 3 1
+			decoration
+			visible 1
+			style 1
+			forecolor 1 1 1 1
+			textfont 3
+			textalign 8
+			textscale 0.340278
+			visible when ( ( 1 ) )
+			exp text ( "@MPUI_LOSSES_PRE" )
+		}
+		itemDef
+		{
+			rect -140.4 163.333 132.567 18.033 3 1
+			decoration
+			visible 1
+			style 1
+			forecolor 0.988 0.988 0.988 1
+			textfont 3
+			textalign 10
+			textscale 0.340278
+			visible when ( ( 1 ) )
+			exp text ( getplayerdata( "losses" ) )
+		}
+		itemDef
+		{
+			rect -289.433 280.7 134.033 18.033 3 1
+			decoration
+			visible 1
+			style 1
+			forecolor 1 1 1 1
+			textfont 3
+			textalign 8
+			textscale 0.340278
+			visible when ( ( 1 ) )
+			exp text ( "@MPUI_ASSISTS_PRE" )
+		}
+		itemDef
+		{
+			rect -141.933 280.666 134.1 18.667 3 1
+			decoration
+			visible 1
+			style 1
+			forecolor 0.988 0.988 0.988 1
+			textfont 3
+			textalign 10
+			textscale 0.340278
+			visible when ( ( 1 ) )
+			exp text ( getplayerdata( "assists" ) )
+		}
+		itemDef
+		{
+			rect -289.333 178 114.733 18.033 3 1
+			decoration
+			visible 1
+			style 1
+			forecolor 1 1 1 1
+			textfont 3
+			textalign 8
+			textscale 0.340278
+			visible when ( ( 1 ) )
+			exp text ( "@MPUI_TIES_PRE" )
+		}
+		itemDef
+		{
+			rect -123.366 178.133 115.533 18.033 3 1
+			decoration
+			visible 1
+			style 1
+			forecolor 0.988 0.988 0.988 1
+			textfont 3
+			textalign 10
+			textscale 0.340278
+			visible when ( ( 1 ) )
+			exp text ( getplayerdata( "ties" ) )
+		}
+		itemDef
+		{
+			rect -289.433 295.333 152.767 18.033 3 1
+			decoration
+			visible 1
+			style 1
+			forecolor 1 1 1 1
+			textfont 3
+			textalign 8
+			textscale 0.340278
+			visible when ( ( 1 ) )
+			exp text ( "@MPUI_STREAK_PRE" )
+		}
+		itemDef
+		{
+			rect -161.766 295.333 153.933 18.033 3 1
+			decoration
+			visible 1
+			style 1
+			forecolor 0.988 0.988 0.988 1
+			textfont 3
+			textalign 10
+			textscale 0.340278
+			visible when ( ( 1 ) )
+			exp text ( getplayerdata( "killStreak" ) )
+		}
+		itemDef
+		{
+			rect -289.3 192.666 151.5 18.033 3 1
+			decoration
+			visible 1
+			style 1
+			forecolor 1 1 1 1
+			textfont 3
+			textalign 8
+			textscale 0.340278
+			visible when ( ( 1 ) )
+			exp text ( "@MPUI_WINSTREAK_PRE" )
+		}
+		itemDef
+		{
+			rect -159.266 192.733 151.433 18.033 3 1
+			decoration
+			visible 1
+			style 1
+			forecolor 0.988 0.988 0.988 1
+			textfont 3
+			textalign 10
+			textscale 0.340278
+			visible when ( ( 1 ) )
+			exp text ( getplayerdata( "winStreak" ) )
+		}
+		itemDef
+		{
+			rect -289.433 222 132 18.033 3 1
+			decoration
+			visible 1
+			style 1
+			forecolor 1 1 1 1
+			textfont 3
+			textalign 8
+			textscale 0.340278
+			visible when ( ( 1 ) )
+			exp text ( "@MPUI_DEATHS_PRE" )
+		}
+		itemDef
+		{
+			rect -156.1 222 148.267 18.033 3 1
+			decoration
+			visible 1
+			style 1
+			forecolor 0.988 0.988 0.988 1
+			textfont 3
+			textalign 10
+			textscale 0.340278
+			visible when ( ( 1 ) )
+			exp text ( getplayerdata( "deaths" ) )
+		}
+		itemDef
+		{
+			rect -289.4 310 154.467 18.033 3 1
+			decoration
+			visible 1
+			style 1
+			forecolor 1 1 1 1
+			textfont 3
+			textalign 8
+			textscale 0.340278
+			visible when ( ( 1 ) )
+			exp text ( "@MPUI_TIME_PLAYED_PRE" )
+		}
+		itemDef
+		{
+			rect -167.333 310.266 159.5 18.033 3 1
+			decoration
+			visible 1
+			style 1
+			forecolor 0.988 0.988 0.988 1
+			textfont 3
+			textalign 10
+			textscale 0.340278
+			visible when ( ( 1 ) )
+			exp text ( secondsastime( getplayerdata( "timePlayedAllies" ) + getplayerdata( "timePlayedOpfor" ) + getplayerdata( "timePlayedOther" ) ) )
+		}
+		itemDef
+		{
+			rect -289.433 236.666 141.433 18.033 3 1
+			decoration
+			visible 1
+			style 1
+			forecolor 1 1 1 1
+			textfont 3
+			textalign 8
+			textscale 0.340278
+			visible when ( ( 1 ) )
+			exp text ( "KD Ratio:"/*"@MPUI_KDRATIO_PRE"*/ )
+		}
+		itemDef
+		{
+			rect -156.1 236.666 148.267 18.033 3 1
+			decoration
+			visible 1
+			style 1
+			forecolor 0.988 0.988 0.988 1
+			textfont 3
+			textalign 10
+			textscale 0.340278
+			visible when ( ( 1 ) )
+			exp text ( ( ( ( int( getplayerdata( "kills" ) / 1000 ) ) ) + "." + ( ( ( int( getplayerdata( "deaths" ) / 100 )  ) ) % 10  ) ) )
+			//exp text ( ( ( ( int( ) "kills" ) / 1000 ) ) + "." + ( ( ( int( ) "deaths" ) / 100 ) ) % 10 ) + "" + ( ( ( int( ) "kills" ) / 10 ) ) % 10 ) + "" + ( getplayerdata( "deaths" ) % 10 )
+			//exp text ( ( ( ( int( getplayerdata( "kills" ) ) / 1000 ) ) + "." + ( ( ( int( getplayerdata( "deaths" ) ) / 100 ) ) % 10 ) + "" + ( ( ( int( getplayerdata( "kills" ) ) / 10 ) ) % 10 ) + "" + ( getplayerdata( "deaths" ) % 10 ) ) )
+		}
+		itemDef
+		{
+			rect -289.433 266 143.433 18.033 3 1
+			decoration
+			visible 1
+			style 1
+			forecolor 1 1 1 1
+			textfont 3
+			textalign 8
+			textscale 0.340278
+			visible when ( ( 1 ) )
+			exp text ( "Accuracy"/*"@MPUI_ACCURACY_PRE"*/ )
+		}
+		itemDef
+		{
+			rect -160.733 266 152.9 18.033 3 1
+			decoration
+			visible 1
+			style 1
+			forecolor 0.988 0.988 0.988 1
+			textfont 3
+			textalign 10
+			textscale 0.340278
+			visible when ( ( 1 ) )
+			//exp text ( ( int( ) "accuracy" ) / 100 ) + "." + ( ( ( int( ) "accuracy" ) / 10 ) ) % 10 ) + "" + ( getplayerdata( "accuracy" ) % 10 ) + "%" )
+		}
+		itemDef
+		{
+			rect -293.333 328 293.333 9.333 3 1
+			decoration
+			visible 1
+			style 3
+			forecolor 0.306 0.349 0.275 1
+			background "white"
+			textscale 0.55
+			exp rect y ( 34 + 294 + ( ( ( ( getplayercardinfo( 10 , 1 , 0 ) > 0 ) ) + ( ( getplayercardinfo( 15 , 1 , 0 ) > 0 ) ) ) * 14.667 ) )
+			visible when ( ( 1 ) )
+		}
+		itemDef
+		{
+			rect 0 0 240 40 3 1
+			decoration
+			visible 1
+			style 3
+			forecolor 0 0 0 1
+			background "white"
+			textscale 0.55
+			exp rect x ( ( ( 0 - 293.333 ) + 6 + 20.666 ) )
+			exp rect y ( ( 34 + 6 ) )
+			visible when ( 1 && ( getplayercardinfo( 0 , 1 , 0 ) != 0 ) )
+		}
+		itemDef
+		{
+			rect 0 0 237.333 37.333 3 1
+			decoration
+			visible 1
+			style 3
+			forecolor 1 1 1 1
+			background "cardtitle_248x48"
+			textscale 0.55
+			exp rect x ( ( ( 0 - 293.333 ) + 6 + 20.666 ) + 1.333 )
+			exp rect y ( ( 34 + 6 ) + 1.333 )
+			visible when ( 1 && ( getplayercardinfo( 0 , 1 , 0 ) != 0 ) )
+		}
+		itemDef
+		{
+			rect -293.333 134 293.333 5.667 3 1
+			decoration
+			visible 1
+			style 3
+			forecolor 1 1 1 1
+			background "gradient_top"
+			textscale 0.55
+			visible when ( 1 )
+		}
+		itemDef
+		{
+			rect -293.333 318 293.333 -5.667 3 1
+			decoration
+			visible 1
+			style 3
+			forecolor 1 1 1 1
+			background "gradient_top"
+			textscale 0.55
+			exp rect y ( 34 + 290 + ( ( ( ( getplayercardinfo( 10 , 1 , 0 ) > 0 ) ) + ( ( getplayercardinfo( 15 , 1 , 0 ) > 0 ) ) ) * 14.667 ) )
+			visible when ( 1 )
+		}
+		itemDef // card icon
+		{
+			rect 0 0 35.3 35.3 3 1
+			decoration
+			visible 1
+			style 3
+			forecolor 1 1 1 1
+			textscale 0.55
+			exp rect x ( ( ( 0 - 293.333 ) + 6 + 20.666 ) + 2.533 )
+			exp rect y ( ( 34 + 6 ) + 2.567 )
+			exp forecolor a ( 1 )
+			visible when ( 1 && ( getplayercardinfo( 0 , 1 , 0 ) != 0 ) && !localvarbool( "browsingCardIcon" ) )
+			exp material ( tablelookupbyrow( "mp/cardIconTable.csv" , getplayercardinfo( 2 , 1 , 0 ) , 1 ) )
+		}
+		itemDef // card title
+		{
+			rect 0 0 156.667 31.333 3 1
+			decoration
+			visible 1
+			style 1
+			forecolor 1 1 1 1
+			backcolor 1 1 1 1
+			textfont 3
+			textstyle 8
+			textalign 9
+			textscale 0.375
+			exp rect x ( ( ( 0 - 293.333 ) + 6 + 20.666 ) + 33.9 )
+			exp rect y ( ( 34 + 6 ) + ( 0 - 4.1 ) )
+			visible when ( 1 && ( getplayercardinfo( 0 , 1 , 0 ) != 0 ) && !localvarbool( "browsingCardTitle" ) )
+			exp text ( "@" + tablelookupbyrow( "mp/cardTitleTable.csv" , getplayercardinfo( 1 , 1 , 0 ) , 1 ) )
+			exp material ( tablelookupbyrow( "mp/cardTitleTable.csv" , getplayercardinfo( 1 , 1 , 0 ) , 2 ) )
+		}
+		itemDef // player name
+		{
+			rect 0 0 146.7 16.6 3 1
+			decoration
+			visible 1
+			style 1
+			forecolor 1 1 1 1
+			textfont 9
+			textstyle 8
+			textalign 8
+			textscale 0.375
+			exp rect x ( ( ( 0 - 293.333 ) + 6 + 20.666 ) + 40 )
+			exp rect y ( ( 34 + 6 ) + 21.5 )
+			exp forecolor r ( 0.941 )
+			exp forecolor g ( 0.773 )
+			exp forecolor b ( 0.361 )
+			visible when ( ( 1 ) && ( getplayercardinfo( 0 , 1 , 0 ) != 0 ) )
+			exp text ( getplayercardinfo( 8 , 1 , 0 ) )
+		}
+		itemDef // clan tag
+		{
+			rect 0 0 51.333 18.033 3 1
+			decoration
+			visible 1
+			style 1
+			forecolor 0.941 0.773 0.361 1
+			textfont 3
+			textalign 8
+			textscale 0.375
+			exp rect x ( ( ( 0 - 293.333 ) + 6 + 20.666 ) + 188 )
+			exp rect y ( ( 34 + 6 ) + 2.5 )
+			exp forecolor a ( 1 )
+			visible when ( 1 && ( getplayercardinfo( 0 , 1 , 0 ) != 0 ) && getplayercardinfo( 9 , 1 , 0 ) != "" )
+			exp text ( "[" + getplayercardinfo( 9 , 1 , 0 ) + "]" )
+		}
+		itemDef // rank icon
+		{
+			rect 0 0 18.667 18.667 3 1
+			decoration
+			visible 1
+			style 3
+			forecolor 1 1 1 1
+			textscale 0.55
+			exp rect x ( ( ( 0 - 293.333 ) + 6 + 20.666 ) + 192 )
+			exp rect y ( ( 34 + 6 ) + 18.9 )
+			exp forecolor a ( 1 )
+			visible when ( 1 && ( getplayercardinfo( 0 , 1 , 0 ) != 0 ) && ( getplayercardinfo( 4 , 1 , 0 ) >= 0 ) && dvarstring( "gameMode" ) == "mp" )
+			exp material ( tablelookup( "mp/rankIconTable.csv" , 0 , getplayercardinfo( 4 , 1 , 0 ) , ( getplayercardinfo( 5 , 1 , 0 ) + 1 ) ) )
+		}
+		itemDef // rank icon text
+		{
+			rect 0 0 22 18.033 3 1
+			decoration
+			visible 1
+			style 1
+			forecolor 1 1 1 1
+			textfont 3
+			textstyle 8
+			textalign 8
+			textscale 0.375
+			exp rect x ( ( ( 0 - 293.333 ) + 6 + 20.666 ) + 212 )
+			exp rect y ( ( 34 + 6 ) + 19.167 )
+			exp forecolor a ( 1 )
+			visible when ( 1 && ( getplayercardinfo( 0 , 1 , 0 ) != 0 ) && ( getplayercardinfo( 4 , 1 , 0 ) >= 0 ) && dvarstring( "gameMode" ) == "mp" )
+			exp text ( tablelookup( "mp/rankTable.csv" , 0 , getplayercardinfo( 4 , 1 , 0 ) , 14 ) )
+		}
+		itemDef
+		{
+			rect -293.333 100.633 285.333 18.033 3 1
+			decoration
+			visible 1
+			style 1
+			forecolor 0.996 0.988 0.255 1
+			textfont 3
+			textalign 9
+			textscale 0.340278
+			visible when ( ( 1 ) )
+			exp text ( ( ( getplayerdata( "experience" ) ) + " / " ) + ( tablelookup( "mp/rankTable.csv" , 0 , levelforexperience( getplayerdata( "experience" ) ) , 7 ) + " " + locstring( "@MPUI_XP_PRE" ) ) )
+		}
+		itemDef
+		{
+			rect -24.1 101 113.867 18.033 3 1
+			decoration
+			visible 1
+			style 1
+			forecolor 1 1 1 1
+			textfont 3
+			textstyle 8
+			textalign 8
+			textscale 0.340278
+			visible when ( ( 1 ) )
+			exp text ( tablelookup( "mp/rankTable.csv" , 0 , ( levelforexperience( getplayerdata( "experience" ) ) + 1 ) , 14 ) )
+		}
+		itemDef
+		{
+			rect -262.8 101 109.167 18.033 3 1
+			decoration
+			visible 1
+			style 1
+			forecolor 1 1 1 1
+			textfont 3
+			textstyle 8
+			textalign 8
+			textscale 0.340278
+			visible when ( ( 1 ) )
+			exp text ( tablelookup( "mp/rankTable.csv" , 0 , levelforexperience( getplayerdata( "experience" ) ) , 14 ) )
+		}
+		itemDef
+		{
+			rect -293.333 81.733 293.333 18.033 3 1
+			decoration
+			visible 1
+			style 1
+			forecolor 1 1 1 1
+			textfont 3
+			textalign 9
+			textscale 0.340278
+			visible when ( ( 1 ) )
+			exp text ( "@" + tablelookup( "mp/ranktable.csv" , 0 , levelforexperience( getplayerdata( "experience" ) ) , 5 ) )
+		}
+		itemDef
+		{
+			rect -287.866 120.7 279.333 7.333 3 1
+			decoration
+			visible 1
+			style 3
+			forecolor 1 0.9 0.5 0.6
+			background "white"
+			textscale 0.55
+			exp rect w ( ( ( getplayerdata( "experience" ) - tablelookup( "mp/rankTable.csv" , 0 , levelforexperience( getplayerdata( "experience" ) ) , 2 ) ) / float( tablelookup( "mp/rankTable.csv" , 0 , levelforexperience( getplayerdata( "experience" ) ) , 7 ) - tablelookup( "mp/rankTable.csv" , 0 , levelforexperience( getplayerdata( "experience" ) ) , 2 ) ) ) * 279.333 )
+			visible when ( 1 )
+		}
+		itemDef
+		{
+			rect -287.866 120.7 279.333 7.333 3 1
+			decoration
+			visible 1
+			style 3
+			forecolor 0 0 0 1
+			background "white"
+			textscale 0.55
+			exp rect x ( ( ( ( getplayerdata( "experience" ) - tablelookup( "mp/rankTable.csv" , 0 , levelforexperience( getplayerdata( "experience" ) ) , 2 ) ) / float( tablelookup( "mp/rankTable.csv" , 0 , levelforexperience( getplayerdata( "experience" ) ) , 7 ) - tablelookup( "mp/rankTable.csv" , 0 , levelforexperience( getplayerdata( "experience" ) ) , 2 ) ) ) * 279.333 ) + ( ( ( 0 - 293.333 ) + 5.467 ) ) )
+			exp rect w ( 279.333 * ( 1 - ( ( getplayerdata( "experience" ) - tablelookup( "mp/rankTable.csv" , 0 , levelforexperience( getplayerdata( "experience" ) ) , 2 ) ) / float( tablelookup( "mp/rankTable.csv" , 0 , levelforexperience( getplayerdata( "experience" ) ) , 7 ) - tablelookup( "mp/rankTable.csv" , 0 , levelforexperience( getplayerdata( "experience" ) ) , 2 ) ) ) ) )
+			visible when ( 1 )
+		}
+		itemDef
+		{
+			rect -53 92 26.667 26.667 3 1
+			decoration
+			visible 0
+			style 3
+			forecolor 1 1 1 1
+			textscale 0.55
+			visible when ( ( 1 ) && ( ( levelforexperience( getplayerdata( "experience" ) ) < int( tablelookup( "mp/rankTable.csv" , 0 , "maxrank" , 1 ) ) || getplayerdata( "prestige" ) < int( tablelookup( "mp/rankIconTable.csv" , 0 , "maxprestige" , 1 ) ) ) ) )
+			exp material ( tablelookup( "mp/rankIconTable.csv" , 0 , levelforexperience( getplayerdata( "experience" ) ) , getplayerdata( "prestige" ) + 1 ) )
+		}
+		itemDef
+		{
+			rect -288.333 92 26.667 26.667 3 1
+			decoration
+			visible 1
+			style 3
+			forecolor 1 1 1 1
+			textscale 0.55
+			visible when ( ( 1 ) && ( 1 ) )
+			exp material ( tablelookup( "mp/rankIconTable.csv" , 0 , levelforexperience( getplayerdata( "experience" ) ) , getplayerdata( "prestige" ) + 1 ) )
+		}
+	}	
+}

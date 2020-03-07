@@ -1,0 +1,372 @@
+#include "ui/menudef.h"
+
+#define CHOICE_GROUP		"popup_cac_smg_primary"
+
+#include "ui_mp/iw4_macros.inc"
+#include "ui_mp/cac_macros.inc"
+#include "ui_mp/cac.inc"
+
+#include "ui/iw5_setup_common.menu"
+#include "ui_mp/menustyle.inc"
+{
+	menuDef
+	{
+		name "popup_cac_smg_primary"
+		popup
+		rect 0 0 640 480 0 0
+		forecolor 1 1 1 1
+		focuscolor 1 1 1 1
+		fullscreen 1
+		soundLoop "music_mainmenu_mp"
+		onOpen
+		{
+			focusFirst;
+			setLocalVarString "ui_selected_ref" ( "mp5k" );
+			setLocalVarInt "ui_buttonNavGroupOffset" ( 0 );
+			setLocalVarInt "ui_buttonNavGroupCurrent" ( 0 );
+			setLocalVarString "ui_buttonNavGroupName" ( "invalid" );
+			setLocalVarBool "ui_swfSelectionButtonVis" ( 0 );
+			setLocalVarBool "ui_swfSelectionBarVis" ( 0 );
+			setLocalVarBool "ui_swfSelectionDisabled" ( 0 );
+			setLocalVarBool "ui_swfPopupSelectionButtonVis" ( 0 );
+			setLocalVarBool "ui_swfPopupSelectionBarVis" ( 0 );
+			setLocalVarBool "ui_swfPopupSelectionDisabled" ( 0 );
+			setLocalVarString "ui_swfPopupContext" ( "invalid" );
+		}
+		onEsc
+		{
+			close self;
+		}
+		#define BACKGROUND_BLUR
+		#include "ui_mp/bg.inc"
+		
+		itemDef
+		{
+			rect 237.6 -36 301.5 480 1 1
+			decoration
+			visible 1
+			style 3
+			forecolor 0 0 0 0.4
+			background "white"
+			textscale 0.55
+			exp rect w ( 226 )
+		}
+		itemDef
+		{
+			rect 237.5 -236 13 680 1 1
+			decoration
+			visible 1
+			style 3
+			forecolor 1 1 1 0.75
+			background "gradient"
+			textscale 0.55
+			exp rect x ( 457.5 )
+			exp forecolor r ( 0.596078 )
+			exp forecolor g ( 0.654902 )
+			exp forecolor b ( 0.603922 )
+		}
+		itemDef
+		{
+			rect 237.5 -236 13 680 1 1
+			decoration
+			visible 1
+			style 3
+			forecolor 1 1 1 0.75
+			background "gradient"
+			textscale 0.55
+			exp rect x ( 457.5 )
+			exp forecolor r ( 0.596078 )
+			exp forecolor g ( 0.654902 )
+			exp forecolor b ( 0.603922 )
+		}
+		itemDef
+		{
+			rect -64 3 276.667 24.233 1 1
+			decoration
+			visible 0
+			style 1
+			forecolor 1 1 1 1
+			textfont 9
+			textalign 14
+			textscale 0.5
+			visible when ( 1 )
+			exp text ( "@MENU_SMGS_CAPS" )
+		}		
+		
+		CHOICE_SEPERATOR( 0 )
+		
+		LOCAL_WEAPON_ITEM( 0, "cac_weapon_mp5k", "mp5k" )
+		LOCAL_WEAPON_ITEM( 1, "cac_weapon_ump45", "ump45" )
+		LOCAL_WEAPON_ITEM( 2, "cac_weapon_kriss", "kriss" )
+		LOCAL_WEAPON_ITEM( 3, "cac_weapon_p90", "p90" )
+		LOCAL_WEAPON_ITEM( 4, "cac_weapon_uzi", "uzi" )
+
+		#include "ui_mp/cac_loadout.inc"
+		itemDef
+		{
+			rect 254.333 34.667 186.667 44.4 1 1
+			decoration
+			autowrapped
+			visible 1
+			style 1
+			forecolor 1 1 1 1
+			textfont 9
+			textalign 5
+			textscale 0.383333
+			exp rect x ( ( 0 ) + ( ( 261 + ( 0 - 6.667 ) ) ) + ( 0 ) )
+			visible when ( ( 1 ) )
+			exp text ( "@" + tablelookup( "mp/statsTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 3 ) )
+		}
+		itemDef
+		{
+			rect 254.333 49.667 186.667 44.4 1 1
+			decoration
+			autowrapped
+			visible 1
+			style 1
+			forecolor 1 1 1 1
+			textfont 9
+			textalign 5
+			textscale 0.383333
+			exp rect x ( ( 0 ) + ( ( 261 + ( 0 - 6.667 ) ) ) + ( 0 ) )
+			visible when ( ( 1 ) )
+			exp text ( "WEAPON LEVEL N/A" )
+		}
+		itemDef
+		{
+			rect 267.667 69.833 144 72 1 1
+			decoration
+			visible 1
+			style 3
+			forecolor 1 1 1 1
+			textscale 0.55
+			exp rect x ( ( 0 ) + ( ( 261 + 6.667 ) ) + ( 0 * 36 ) + 8 )
+			exp rect w ( 144 - ( 0 * 72 ) )
+			visible when ( ( 1 ) )
+			exp material ( tablelookup( "mp/statsTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 6 ) )
+		}
+		itemDef
+		{
+			rect 261 145.033 173.333 48 1 1
+			decoration
+			autowrapped
+			visible 1
+			style 1
+			forecolor 1 1 1 1
+			type 21
+			textfont 3
+			textalign 5
+			textscale 0.340278
+			exp rect x ( ( 0 ) + ( ( 261 ) ) + ( 0 ) )
+			visible when ( ( 1 ) )
+			exp text ( "@" + tablelookup( "mp/statstable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 7 ) )
+		}
+		itemDef
+		{
+			rect 255.9 207.2 186.667 44.4 1 1
+			decoration
+			autowrapped
+			visible 1
+			style 1
+			forecolor 1 1 1 1
+			textfont 9
+			textalign 5
+			textscale 0.383333
+			//exp rect x ( ( select( localvarbool( "ui_shelfTimeInvert" ) , select( ( milliseconds( ) - localvarfloat( "ui_shelfTime" ) ) > 100 , ( 0 - 242 ) , ( ( milliseconds( ) - localvarfloat( "ui_shelfTime" ) ) / 100 ) * ( 0 - 242 ) ) , select( ( milliseconds( ) - localvarfloat( "ui_shelfTime" ) ) > 100 , 0 , ( 1 - ( milliseconds( ) - localvarfloat( "ui_shelfTime" ) ) / 100 ) * ( 0 - 242 ) ) ) ) + ( ( ( 261 ) + ( 0 - 5.1 ) ) ) + ( 0 ) )
+			//visible when ( ( ( ( ( localvarstring( "loadoutPrimary" ) != "none" ) && ( localvarstring( "loadoutPrimary" ) != "throwingknife" ) ) || ( localvarstring( "ui_info_filter" ) == "riotshield" ) ) ) )
+			exp text ( "@MENU_STATS" )
+		}		
+		itemDef
+		{
+			rect 381 237.166 108.667 18.033 1 1
+			decoration
+			visible 1
+			style 1
+			forecolor 1 1 1 1
+			textfont 3
+			textalign 8
+			textscale 0.340278
+			text "@MPUI_ACCURACY"
+			//exp rect x ( ( select( localvarbool( "ui_shelfTimeInvert" ) , select( ( milliseconds( ) - localvarfloat( "ui_shelfTime" ) ) > 100 , ( 0 - 242 ) , ( ( milliseconds( ) - localvarfloat( "ui_shelfTime" ) ) / 100 ) * ( 0 - 242 ) ) , select( ( milliseconds( ) - localvarfloat( "ui_shelfTime" ) ) > 100 , 0 , ( 1 - ( milliseconds( ) - localvarfloat( "ui_shelfTime" ) ) / 100 ) * ( 0 - 242 ) ) ) ) + ( ( 261 ) ) + ( 120 ) )
+			//visible when ( ( ( ( ( localvarstring( "loadoutPrimary" ) != "none" ) && ( localvarstring( "loadoutPrimary" ) != "throwingknife" ) ) || ( localvarstring( "ui_info_filter" ) == "riotshield" ) ) ) )
+		}
+		itemDef
+		{
+			rect 261 241.833 110 10 1 1
+			decoration
+			visible 1
+			style 3
+			forecolor 0 0 0 1
+			background "white"
+			textscale 0.55
+		}
+		itemDef
+		{
+			rect 261 241.833 110 10 1 1
+			decoration
+			visible 1
+			style 3
+			forecolor 1 1 1 1
+			background "white"
+			textscale 0.55
+			exp rect w ( ( tablelookup( "mp/statsTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 22 ) / 100 ) * 120 )
+			visible when ( tablelookup( "mp/statsTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 22 ) && 1 )
+		}
+		itemDef
+		{
+			rect 381 257.166 108.667 18.2 1 1
+			decoration
+			visible 1
+			style 1
+			forecolor 1 1 1 1
+			textfont 3
+			textalign 8
+			textscale 0.340278
+			text "@MPUI_DAMAGE"
+			//exp rect x ( ( select( localvarbool( "ui_shelfTimeInvert" ) , select( ( milliseconds( ) - localvarfloat( "ui_shelfTime" ) ) > 100 , ( 0 - 242 ) , ( ( milliseconds( ) - localvarfloat( "ui_shelfTime" ) ) / 100 ) * ( 0 - 242 ) ) , select( ( milliseconds( ) - localvarfloat( "ui_shelfTime" ) ) > 100 , 0 , ( 1 - ( milliseconds( ) - localvarfloat( "ui_shelfTime" ) ) / 100 ) * ( 0 - 242 ) ) ) ) + ( ( 261 ) ) + ( 120 ) )
+			//visible when ( ( ( ( ( localvarstring( "loadoutPrimary" ) != "none" ) && ( localvarstring( "loadoutPrimary" ) != "throwingknife" ) ) || ( localvarstring( "ui_info_filter" ) == "riotshield" ) ) ) )
+		}
+		itemDef
+		{
+			rect 261 261.833 110 10 1 1
+			decoration
+			visible 1
+			style 3
+			forecolor 0 0 0 1
+			background "white"
+			textscale 0.55
+		}
+		itemDef
+		{
+			rect 261 261.833 110 10 1 1
+			decoration
+			visible 1
+			style 3
+			forecolor 1 1 1 1
+			background "white"
+			textscale 0.55
+			exp rect w ( ( tablelookup( "mp/statsTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 23 ) / 100 ) * 120 )
+			visible when ( tablelookup( "mp/statsTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 23 ) && 1 )
+		}
+		itemDef
+		{
+			rect 381 277.166 108.667 18.2 1 1
+			decoration
+			visible 1
+			style 1
+			forecolor 1 1 1 1
+			textfont 3
+			textalign 8
+			textscale 0.340278
+			text "@MPUI_RANGE"
+			//exp rect x ( ( select( localvarbool( "ui_shelfTimeInvert" ) , select( ( milliseconds( ) - localvarfloat( "ui_shelfTime" ) ) > 100 , ( 0 - 242 ) , ( ( milliseconds( ) - localvarfloat( "ui_shelfTime" ) ) / 100 ) * ( 0 - 242 ) ) , select( ( milliseconds( ) - localvarfloat( "ui_shelfTime" ) ) > 100 , 0 , ( 1 - ( milliseconds( ) - localvarfloat( "ui_shelfTime" ) ) / 100 ) * ( 0 - 242 ) ) ) ) + ( ( 261 ) ) + ( 120 ) )
+			//visible when ( ( ( ( ( localvarstring( "loadoutPrimary" ) != "none" ) && ( localvarstring( "loadoutPrimary" ) != "throwingknife" ) ) || ( localvarstring( "ui_info_filter" ) == "riotshield" ) ) ) )
+		}
+		itemDef
+		{
+			rect 261 281.833 110 10 1 1
+			decoration
+			visible 1
+			style 3
+			forecolor 0 0 0 1
+			background "white"
+			textscale 0.55
+		}
+		itemDef
+		{
+			rect 261 281.833 110 10 1 1
+			decoration
+			visible 1
+			style 3
+			forecolor 1 1 1 1
+			background "white"
+			textscale 0.55
+			exp rect w ( ( tablelookup( "mp/statsTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 24 ) / 100 ) * 120 )
+			visible when ( tablelookup( "mp/statsTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 24 ) && 1 )
+		}
+		itemDef
+		{
+			rect 381 297.166 108.667 18.2 1 1
+			decoration
+			visible 1
+			style 1
+			forecolor 1 1 1 1
+			textfont 3
+			textalign 8
+			textscale 0.340278
+			text "@MPUI_FIRE_RATE"
+			//exp rect x ( ( select( localvarbool( "ui_shelfTimeInvert" ) , select( ( milliseconds( ) - localvarfloat( "ui_shelfTime" ) ) > 100 , ( 0 - 242 ) , ( ( milliseconds( ) - localvarfloat( "ui_shelfTime" ) ) / 100 ) * ( 0 - 242 ) ) , select( ( milliseconds( ) - localvarfloat( "ui_shelfTime" ) ) > 100 , 0 , ( 1 - ( milliseconds( ) - localvarfloat( "ui_shelfTime" ) ) / 100 ) * ( 0 - 242 ) ) ) ) + ( ( 261 ) ) + ( 120 ) )
+			//visible when ( ( ( ( ( localvarstring( "loadoutPrimary" ) != "none" ) && ( localvarstring( "loadoutPrimary" ) != "throwingknife" ) ) || ( localvarstring( "ui_info_filter" ) == "riotshield" ) ) ) )
+		}
+		itemDef
+		{
+			rect 261 301.833 110 10 1 1
+			decoration
+			visible 1
+			style 3
+			forecolor 0 0 0 1
+			background "white"
+			textscale 0.55
+		}
+		itemDef
+		{
+			rect 261 301.833 110 10 1 1
+			decoration
+			visible 1
+			style 3
+			forecolor 1 1 1 1
+			background "white"
+			textscale 0.55
+			exp rect w ( ( tablelookup( "mp/statsTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 25 ) / 100 ) * 120 )
+			visible when ( tablelookup( "mp/statsTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 25 ) && 1 )
+		}
+		itemDef
+		{
+			rect 381 317.166 108.667 18.033 1 1
+			decoration
+			visible 1
+			style 1
+			forecolor 1 1 1 1
+			textfont 3
+			textalign 8
+			textscale 0.340278
+			text "@MPUI_MOBILITY"
+			//exp rect x ( ( select( localvarbool( "ui_shelfTimeInvert" ) , select( ( milliseconds( ) - localvarfloat( "ui_shelfTime" ) ) > 100 , ( 0 - 242 ) , ( ( milliseconds( ) - localvarfloat( "ui_shelfTime" ) ) / 100 ) * ( 0 - 242 ) ) , select( ( milliseconds( ) - localvarfloat( "ui_shelfTime" ) ) > 100 , 0 , ( 1 - ( milliseconds( ) - localvarfloat( "ui_shelfTime" ) ) / 100 ) * ( 0 - 242 ) ) ) ) + ( ( 261 ) ) + ( 120 ) )
+			//visible when ( ( ( ( ( localvarstring( "loadoutPrimary" ) != "none" ) && ( localvarstring( "loadoutPrimary" ) != "throwingknife" ) ) || ( localvarstring( "ui_info_filter" ) == "riotshield" ) ) ) )
+		}
+		itemDef
+		{
+			rect 261 321.833 110 10 1 1
+			decoration
+			visible 1
+			style 3
+			forecolor 0 0 0 1
+			background "white"
+			textscale 0.55
+		}
+		itemDef
+		{
+			rect 261 321.833 110 10 1 1
+			decoration
+			visible 1
+			style 3
+			forecolor 1 1 1 1
+			background "white"
+			textscale 0.55
+			exp rect w ( ( tablelookup( "mp/statsTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 26 ) / 100 ) * 120 )
+			visible when ( tablelookup( "mp/statsTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 25 ) && 1 )
+		}
+		itemDef
+		{
+			rect 247.667 203.166 200 1.333 1 1
+			decoration
+			visible 1
+			style 3
+			forecolor 1 1 1 0.211
+			background "gradient_inset_rect"
+			textscale 0.55
+			//exp rect x ( ( select( localvarbool( "ui_shelfTimeInvert" ) , select( ( milliseconds( ) - localvarfloat( "ui_shelfTime" ) ) > 100 , ( 0 - 242 ) , ( ( milliseconds( ) - localvarfloat( "ui_shelfTime" ) ) / 100 ) * ( 0 - 242 ) ) , select( ( milliseconds( ) - localvarfloat( "ui_shelfTime" ) ) > 100 , 0 , ( 1 - ( milliseconds( ) - localvarfloat( "ui_shelfTime" ) ) / 100 ) * ( 0 - 242 ) ) ) ) + ( ( 261 + ( 0 - 13.333 ) ) ) + ( 0 ) )
+			//visible when ( ( ( ( ( ( localvarstring( "loadoutPrimary" ) != "none" ) && ( localvarstring( "loadoutPrimary" ) != "throwingknife" ) ) || ( localvarstring( "ui_info_filter" ) == "riotshield" ) ) || 0 || 0 ) ) )
+		}
+	}
+}

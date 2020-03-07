@@ -1,0 +1,282 @@
+#include "ui/menudef.h"
+#include "ui_mp/common_macro.inc"
+#include "ui_mp/iw4_macros.inc"
+
+#define CHOICE_GROUP	"menu_challenges"
+
+#include "ui/iw5_setup_common.menu"
+#include "ui_mp/menustyle.inc"
+{
+	menuDef
+	{
+		name "menu_challenges"
+		rect 0 0 640 480 0 0
+		visible 1
+		forecolor 1 1 1 1
+		focuscolor 1 1 1 1
+		fullscreen 1
+		soundLoop "music_mainmenu_mp"
+		onOpen
+		{
+			focusfirst;
+		}
+		onEsc
+		{
+			close self;
+		}
+		#define BACKGROUND_BLUR
+		#include "ui_mp/bg.inc"
+
+		itemDef
+		{
+			rect -64 3 276.667 24.233 1 1
+			decoration
+			visible 0
+			style 1
+			forecolor 1 1 1 1
+			textfont 9
+			textalign 14
+			textscale 0.5
+			visible when ( 1 )
+			exp text ( locstring( "@MPUI_CHALLENGE_CAP" ) )
+		}
+		
+		CHOICE_SEPERATOR( 0 )
+		
+		#include "ui_mp/challenges.inc"
+		
+		#undef CLEAR_UI_HINT
+		#define CLEAR_UI_HINT \
+				setLocalVarString "ui_selected_weapon_ref" ( "" ); \
+				setLocalVarString "ui_selected_perk_ref" ( "" );
+
+		CHOICE_BUTTON_FOCUS_EX( 0, "button_0", "DAILY CHALLENGES", ;, 		
+		setLocalVarString "ui_selected_tier_ref" ( "DAILY CHALLENGES" ); 
+		setLocalVarString "ui_hint_text" ( "Daily Challenges" ), 
+		CLEAR_UI_HINT,
+		disabled when ( 1 ) )
+
+		CHOICE_BUTTON_FOCUS_EX( 1, "button_1", "WEEKLY CHALLENGES", ;, 		
+		setLocalVarString "ui_selected_tier_ref" ( "WEEKLY CHALLENGES" ); 
+		setLocalVarString "ui_hint_text" ( "Weekly Challenges" ), 
+		CLEAR_UI_HINT,
+		disabled when ( 1 ) )
+
+		CHOICE_BUTTON_FOCUS( 2, "button_2", "@CHALLENGE_PRIMARY_WEAPONS_CAPS", 
+		open "popup_challenge_weapon_primary", 
+		setLocalVarString "ui_selected_weapon_ref" ( "m4" );
+		setLocalVarString "ui_selected_tier_ref" ( "@CHALLENGE_PRIMARY_WEAPONS_CAPS" ); 
+		setLocalVarString "ui_hint_text" ( "@CHALLENGE_PRIMARY_WEAPONS_HINT" ), 
+		CLEAR_UI_HINT )
+
+		CHOICE_BUTTON_FOCUS( 3, "button_3", "@CHALLENGE_SECONDARY_WEAPONS_CAPS", 
+		open "popup_challenge_weapon_secondary", 
+		setLocalVarString "ui_selected_weapon_ref" ( "tmp" );
+		setLocalVarString "ui_selected_tier_ref" ( "@CHALLENGE_SECONDARY_WEAPONS_CAPS" ); 
+		setLocalVarString "ui_hint_text" ( "@CHALLENGE_SECONDARY_WEAPONS_HINT" ), 
+		CLEAR_UI_HINT )		
+
+		CHOICE_BUTTON_FOCUS( 4, "button_4", "@CHALLENGE_PERKS", ;,  
+		setLocalVarString "ui_selected_perk_ref" ( "specialty_scavenger" );
+		setLocalVarString "ui_selected_tier_ref" ( "@CHALLENGE_PERKS" ); 
+		setLocalVarString "ui_hint_text" ( "@CHALLENGE_PERK_CHALLENGES" ), 
+		CLEAR_UI_HINT )
+
+		CHOICE_BUTTON_EX( 5, "button_5", "LETHAL", ;, disabled when ( 1 ) )
+		CHOICE_BUTTON_EX( 6, "button_6", "TACTICAL", ;, disabled when ( 1 ) )
+		CHOICE_BUTTON_EX( 7, "button_7", "STRIKE PACKAGE", ;, disabled when ( 1 ) )
+
+		LOCAL_CH_BUTTON( 8, "button_8", 4 )
+		LOCAL_CH_BUTTON( 9, "button_9", 5 )
+		LOCAL_CH_BUTTON( 10, "button_10", 7 )
+		LOCAL_CH_BUTTON( 11, "button_11", 8 )
+		LOCAL_CH_BUTTON( 12, "button_12", 9 )
+		LOCAL_CH_BUTTON( 13, "button_13", 10 )
+		LOCAL_CH_BUTTON( 14, "button_14", 11 )
+		LOCAL_CH_BUTTON( 15, "button_15", 13 ) // first class
+		LOCAL_CH_BUTTON( 16, "button_16", 14 )
+
+		//LOCAL_CH_BUTTON( 8,  "button_8",  2 ) // perk
+		//LOCAL_CH_BUTTON( 9,  "button_9",  3 ) // tactical
+		//LOCAL_CH_BUTTON( 12, "button_12", 6 ) // killstreaks
+		//LOCAL_CH_BUTTON( 18, "button_18", 12 ) // first class
+
+		//CHOICE_DESCRIPTION( when( !menuisopen( "popup_callsign" ) ), 0, 355 )
+
+		itemDef
+		{
+			rect 155.3 42.933 143.333 72.6 2 1
+			decoration
+			visible 1
+			style 3
+			forecolor 1 1 1 1
+			textscale 0.55
+			exp rect x ( ( ( !dvarbool( "widescreen" ) ) * ( 0 - 50 ) ) + ( ( 130.2 + 25.1 ) ) + ( 0 ) )
+			visible when ( ( tablelookup( "mp/statsTable.csv" , 4 , localvarstring( "ui_selected_weapon_ref" ) , 6 ) != "" ) )
+			exp material ( tablelookup( "mp/statsTable.csv" , 4 , localvarstring( "ui_selected_weapon_ref" ) , 6 ) )
+		}
+		itemDef
+		{
+			rect 133.433 6 186.667 34.733 2 1
+			decoration
+			autowrapped
+			visible 1
+			style 1
+			forecolor 1 1 1 1
+			textfont 9
+			textalign 5
+			textscale 0.366667
+			exp rect x ( ( ( !dvarbool( "widescreen" ) ) * ( 0 - 50 ) ) + ( ( 130.2 + 3.233 ) ) + ( 0 ) )
+			exp forecolor r ( 1 )
+			exp forecolor g ( 1 )
+			exp forecolor b ( 1 )
+			visible when ( ( 1 ) )
+			exp text ( localvarstring( "ui_selected_tier_ref" ) )
+		}
+		itemDef
+		{
+			rect 133.333 116.7 186.667 92.5 2 1
+			decoration
+			autowrapped
+			visible 1
+			style 1
+			forecolor 1 1 1 1
+			textfont 3
+			textalign 5
+			textscale 0.375
+			exp rect x ( ( ( !dvarbool( "widescreen" ) ) * ( 0 - 50 ) ) + ( ( ( 130.2 ) + 3.133 ) ) + ( 0 ) )
+			//exp rect y ( ( select( ( ( tablelookup( "mp/statsTable.csv" , 4 , localvarstring( "ui_selected_weapon_ref" ) , 6 ) != "" ) || ( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "ui_selected_perk_ref" ) , 3 ) != "" ) || ( tablelookup( "mp/killstreakTable.csv" , 1 , localvarstring( "ui_selected_ks_ref" ) , 14 ) != "" ) ) , 0 , ( 0 - 58 ) ) ) + ( ( ( 6 + 110.7 ) ) ) + ( 0 ) )
+			visible when ( ( 1 ) )
+			exp text ( localvarstring( "ui_hint_text" ) )
+		}
+		itemDef
+		{
+			rect 190.667 42.933 72.6 72.6 2 1
+			decoration
+			visible 1
+			style 3
+			forecolor 1 1 1 1
+			textscale 0.55
+			exp rect x ( ( ( !dvarbool( "widescreen" ) ) * ( 0 - 50 ) ) + ( ( 130.2 + 60.467 ) ) + ( 0 ) )
+			visible when ( ( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "ui_selected_perk_ref" ) , 3 ) != "" ) )
+			exp material ( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "ui_selected_perk_ref" ) , 3 ) )
+		}
+
+		itemDef
+		{
+			rect 145.333 203.367 162.667 19.567 2 1
+			decoration
+			visible 0
+			style 1
+			forecolor 1 1 1 1
+			textfont 3
+			textalign 9
+			textscale 0.375
+			//exp rect x ( ( ( !dvarbool( "widescreen" ) ) * ( 0 - 50 ) ) + ( ( ( 130.2 ) + 15.133 ) ) + ( 0 ) )
+			//exp rect y ( ( select( ( ( tablelookup( "mp/statsTable.csv" , 4 , localvarstring( "ui_selected_weapon_ref" ) , 6 ) != "" ) || ( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "ui_selected_perk_ref" ) , 3 ) != "" ) || ( tablelookup( "mp/killstreakTable.csv" , 1 , localvarstring( "ui_selected_ks_ref" ) , 14 ) != "" ) ) , 0 , ( 0 - 58 ) ) ) + ( ( ( 6 + 110.7 ) + 86.667 ) ) + ( 0 ) )
+			exp forecolor r ( 1 )
+			exp forecolor g ( 1 )
+			exp forecolor b ( 1 )
+			//visible when ( !( int( tablelookup( "mp/allChallengesTable.csv" , 0 , localvarstring( "ui_selected_ref" ) , 6 + ( ( int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) - 1 ) * 2 ) ) ) == "" ) && localvarstring( "ui_selected_ref" ) != "ch_marathon_pro" && localvarstring( "ui_selected_ref" ) != "ch_lightweight_pro" )
+			exp text ( locstring( "@CHALLENGE_PROGRESS_X_OF_Y" , getplayerdata( "challengeProgress" , localvarstring( "ui_selected_ref" ) ) - 0 , int( tablelookup( "mp/allChallengesTable.csv" , 0 , localvarstring( "ui_selected_ref" ) , 6 + ( ( int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) - 1 ) * 2 ) ) ) - 0 ) )
+		}
+		itemDef
+		{
+			rect 145.333 203.367 162.667 19.567 2 1
+			decoration
+			visible 0
+			style 1
+			forecolor 1 1 1 1
+			textfont 3
+			textalign 9
+			textscale 0.375
+			//exp rect x ( ( ( !dvarbool( "widescreen" ) ) * ( 0 - 50 ) ) + ( ( ( 130.2 ) + 15.133 ) ) + ( 0 ) )
+			//exp rect y ( ( select( ( ( tablelookup( "mp/statsTable.csv" , 4 , localvarstring( "ui_selected_weapon_ref" ) , 6 ) != "" ) || ( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "ui_selected_perk_ref" ) , 3 ) != "" ) || ( tablelookup( "mp/killstreakTable.csv" , 1 , localvarstring( "ui_selected_ks_ref" ) , 14 ) != "" ) ) , 0 , ( 0 - 58 ) ) ) + ( ( ( 6 + 110.7 ) + 86.667 ) ) + ( 0 ) )
+			exp forecolor r ( 0.2 )
+			exp forecolor g ( 0.5 )
+			exp forecolor b ( 0.2 )
+			//visible when ( !( int( tablelookup( "mp/allChallengesTable.csv" , 0 , localvarstring( "ui_selected_ref" ) , 6 + ( ( int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) - 1 ) * 2 ) ) ) == "" ) && ( localvarstring( "ui_selected_ref" ) == "ch_marathon_pro" || localvarstring( "ui_selected_ref" ) == "ch_lightweight_pro" ) )
+			exp text ( locstring( "@CHALLENGE_PROGRESS_X_OF_Y" , int( ( getplayerdata( "challengeProgress" , localvarstring( "ui_selected_ref" ) ) - 0 ) / 5280 ) , int( ( int( tablelookup( "mp/allChallengesTable.csv" , 0 , localvarstring( "ui_selected_ref" ) , 6 + ( ( int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) - 1 ) * 2 ) ) ) - 0 ) / 5280 ) ) )
+		}
+		itemDef
+		{
+			rect 145.333 229.367 162.667 22.2 2 1
+			decoration
+			visible 1
+			style 1
+			forecolor 1 1 1 1
+			textfont 9
+			textalign 9
+			textscale 0.466667
+			exp rect x ( ( ( !dvarbool( "widescreen" ) ) * ( 0 - 50 ) ) + ( ( ( 130.2 ) + 15.133 ) ) + ( 0 ) )
+			visible when ( !( int( tablelookup( "mp/allChallengesTable.csv" , 0 , localvarstring( "ui_selected_ref" ) , 6 + ( ( int( max( getplayerdata( "challengeState" , localvarstring( "ui_selected_ref" ) ) , 1 ) ) - 1 ) * 2 ) ) ) == "" ) )
+			exp text ( "REWARDS" )
+		}
+		itemDef
+		{
+			rect 130.2 226.933 200 1.333 2 1
+			decoration
+			visible 1
+			style 3
+			forecolor 1 1 1 1
+			background "gradient_inset_rect"
+			textscale 0.55
+		}
+
+		itemDef
+		{
+			rect 237.6 -36 301.5 480 1 1
+			decoration
+			visible 1
+			style 3
+			forecolor 0 0 0 0.4
+			background "white"
+			textscale 0.55
+			exp rect w ( 226 )
+		}
+		itemDef
+		{
+			rect 237.5 -236 13 680 1 1
+			decoration
+			visible 1
+			style 3
+			forecolor 1 1 1 0.75
+			background "gradient"
+			textscale 0.55
+			exp rect x ( 457.5 )
+			exp forecolor r ( 0.596078 )
+			exp forecolor g ( 0.654902 )
+			exp forecolor b ( 0.603922 )
+		}
+		itemDef
+		{
+			rect 237.5 -236 13 680 1 1
+			decoration
+			visible 1
+			style 3
+			forecolor 1 1 1 0.75
+			background "gradient"
+			textscale 0.55
+			exp rect x ( 457.5 )
+			exp forecolor r ( 0.596078 )
+			exp forecolor g ( 0.654902 )
+			exp forecolor b ( 0.603922 )
+		}
+		PREPROC_SHADER_DRAW( 288.667 39.333 122 9.333 1 1, ORIGIN_NONE, "white", 0 0 0 1 ) // daily challenges
+		PREPROC_SHADER_DRAW( 288.667 59.333 122 9.333 1 1, ORIGIN_NONE, "white", 0 0 0 1 ) // weekly challenges
+		PREPROC_SHADER_DRAW( 288.667 79.333 122 9.333 1 1, ORIGIN_NONE, "white", 0 0 0 1 ) // primary weapons
+		PREPROC_SHADER_DRAW( 288.667 99.333 122 9.333 1 1, ORIGIN_NONE, "white", 0 0 0 1 ) // secondary weapons
+		PREPROC_SHADER_DRAW( 288.667 119.333 122 9.333 1 1, ORIGIN_NONE, "white", 0 0 0 1 ) // perks
+		PREPROC_SHADER_DRAW( 288.667 139.333 122 9.333 1 1, ORIGIN_NONE, "white", 0 0 0 1 ) // lethal
+		PREPROC_SHADER_DRAW( 288.667 159.333 122 9.333 1 1, ORIGIN_NONE, "white", 0 0 0 1 ) // tactical
+		PREPROC_SHADER_DRAW( 288.667 179.333 122 9.333 1 1, ORIGIN_NONE, "white", 0 0 0 1 ) // strike package
+		PREPROC_SHADER_DRAW( 288.667 199.333 122 9.333 1 1, ORIGIN_NONE, "white", 0 0 0 1 ) // basic training
+		PREPROC_SHADER_DRAW( 288.667 219.333 122 9.333 1 1, ORIGIN_NONE, "white", 0 0 0 1 ) // operations
+		PREPROC_SHADER_DRAW( 288.667 239.333 122 9.333 1 1, ORIGIN_NONE, "white", 0 0 0 1 ) // precisions
+		PREPROC_SHADER_DRAW( 288.667 259.333 122 9.333 1 1, ORIGIN_NONE, "white", 0 0 0 1 ) // finishing moves
+		PREPROC_SHADER_DRAW( 288.667 279.333 122 9.333 1 1, ORIGIN_NONE, "white", 0 0 0 1 ) // humiliation
+		PREPROC_SHADER_DRAW( 288.667 299.333 122 9.333 1 1, ORIGIN_NONE, "white", 0 0 0 1 ) // payback
+		PREPROC_SHADER_DRAW( 288.667 319.333 122 9.333 1 1, ORIGIN_NONE, "white", 0 0 0 1 ) // elite
+
+	}
+}

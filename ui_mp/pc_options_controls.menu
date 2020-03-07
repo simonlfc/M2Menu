@@ -1,0 +1,95 @@
+#include "ui/menudef.h"
+#include "ui_mp/iw4_macros.inc"
+
+#define CHOICE_GROUP		"pc_options_controls"
+
+#include "ui/iw5_setup_common.menu"
+#include "ui_mp/menustyle.inc"
+{
+	menuDef
+	{
+		name "pc_options_controls"
+		rect 0 0 640 480 0 0
+		foreColor CHOICE_TEXTCOLOR
+		focusColor CHOICE_TEXTCOLOR
+		fadeCycle 1
+		fadeClamp 1
+		fadeAmount 0.1
+		blurWorld 7
+		onOpen
+		{
+			setLocalVarBool "ui_hideBack" ( 1 );
+			execnow "profile_menuDvarsSetup; resetViewport";
+		}
+		onRequestClose
+		{
+			setLocalVarBool "ui_hideBack" ( 0 );
+		}
+		onEsc
+		{
+			close "self";
+			if ( localvarbool( "ui_showApply" ) || localvarbool( "ui_showAudioApply" ) )
+			{
+				if ( !menuisopen( "pc_options_advanced_video" ) && !menuisopen( "pc_options_video" ) && !menuisopen( "pc_options_Audio" ) && !menuisopen( "pc_options_controls" ) && !menuisopen( "pc_options_voice" ) )
+				{
+					open "all_restart_popmenu";
+				}
+			}
+			execnow "profile_menuDvarsFinish; resetViewport";
+		}
+		
+		#define BACKGROUND_BLUR
+		#include "ui_mp/bg.inc"
+		
+		itemDef
+		{
+			rect -64 3 276.667 24.233 1 1
+			decoration
+			visible 0
+			style 1
+			forecolor 1 1 1 1
+			textfont 9
+			textalign 14
+			textscale 0.5
+			visible when ( 1 )
+			exp text ( locstring( "@MENU_OPTIONS_CAPS" ) )
+		}
+		itemDef
+		{
+			rect 253.5 5 344 34 1 1
+			decoration
+			visible 1
+			forecolor 1 1 1 1
+			textfont 9
+			textalign 4
+			textscale 0.45
+			text "@MENU_CONTROLS"
+		}
+		#include "ui_mp/leftside_optionsx.inc"
+		
+		#undef CHOICE_X_START
+		#define CHOICE_X_START	4
+		
+		#undef CHOICE_TEXT_OFFSET_X
+		#define CHOICE_TEXT_OFFSET_X 4
+		
+		#undef CHOICE_TEXTALIGN
+		#define CHOICE_TEXTALIGN 4
+		
+		#undef CHOICE_DVAR_TEXTALIGN
+		#define CHOICE_DVAR_TEXTALIGN 4
+
+		#undef CHOICE_HIGHLIGHT_COLOR
+		#define CHOICE_HIGHLIGHT_COLOR 1 1 1 1
+
+		#undef CHOICE_TEXT_HIGHLIGHT
+		#define CHOICE_TEXT_HIGHLIGHT "gradient_center"
+		
+		CHOICE_BUTTON( 20, "movement", "@MENU_MOVEMENT", LOCAL_CLOSE_ALL_IW5 open "pc_options_movement"; )
+		CHOICE_BUTTON( 21, "actions", "@MENU_ACTIONS", LOCAL_CLOSE_ALL_IW5 open "pc_options_actions"; )
+		CHOICE_BUTTON( 22, "look", "@MENU_LOOK", LOCAL_CLOSE_ALL_IW5 open "pc_options_look"; )
+		CHOICE_BUTTON( 23, "chat", "@MENU_CHAT", LOCAL_CLOSE_ALL_IW5 open "controls_multi"; )
+		CHOICE_BUTTON( 24, "reset", "@MENU_RESTORE_DEFAULT_CONTROLS", LOCAL_CLOSE_ALL_IW5 open "options_control_defaults"; )
+
+	}	
+}

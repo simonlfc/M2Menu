@@ -1,0 +1,83 @@
+#include "ui/menudef.h"
+#include "ui_mp/iw4_macros.inc"
+
+#define CHOICE_GROUP		"team_marinesopfor"
+
+#include "ui/iw5_setup_common.menu"
+#include "ui_mp/menustyle.inc"
+{
+	menuDef
+	{
+		name "team_marinesopfor"
+		rect 0 0 640 480 0 0
+		forecolor 1 1 1 1
+		focuscolor 1 1 1 1
+		blurWorld 7
+		onOpen
+		{
+			setfocus "team_choose_auto";
+			setfocus "auto_assign";
+		}
+		onEsc
+		{
+			scriptmenuresponse "back";
+		}
+		#define BACKGROUND_BLUR
+		#include "ui_mp/bg.inc"
+		
+		#include "ui_mp/tactical_map.inc"
+		#include "ui_mp/teamicon.inc"
+		
+		itemDef
+		{
+			rect -64 3 276.667 24.233 1 1
+			decoration
+			visible 1
+			style 1
+			forecolor 1 1 1 1
+			textfont 9
+			textalign 10
+			textscale 0.5
+			exp text ( "@MENU_OPTIONS_UPPER_CASE" )
+		}
+		itemDef
+		{
+			rect -272.733 3 266.667 23.633 3 1
+			decoration
+			visible 1
+			style 1
+			forecolor 1 1 1 1
+			textfont 9
+			textalign 10
+			textscale 0.5
+			exp text ( gametypename( ) )
+		}
+		itemDef
+		{
+			rect -272.733 31.866 266.667 48.133 3 1
+			decoration
+			autowrapped
+			visible 1
+			style 1
+			forecolor 1 1 1 1
+			textfont 3
+			textalign 4
+			textscale 0.375
+			visible when ( 1 )
+			exp text ( gametypedescription( ) )
+		}
+		CHOICE_SEPERATOR( 0 )
+		CHOICE_BUTTON_EX_VIS( 0, "button_0", "@MPUI_SPECTATOR", scriptmenuresponse "spectator";, 1, disabled when ( team( "name" ) == "TEAM_SPECTATOR" || !dvarbool( "scr_game_spectatetype" ) ) )
+		CHOICE_BUTTON_EX( 1, "button_1", "@" + dvarstring( "g_TeamName_Axis" ), scriptmenuresponse "axis";, disabled when ( team( "name" ) == "TEAM_AXIS" ) )
+		CHOICE_BUTTON_EX( 2, "button_2", "@" + dvarstring( "g_TeamName_Allies" ), scriptmenuresponse "allies";, disabled when ( team( "name" ) == "TEAM_ALLIES" ) )
+		
+		CHOICE_SEPERATOR( 3 )
+
+		CHOICE_BUTTON( 3, "button_3", "@MPUI_AUTOASSIGN", scriptMenuResponse "autoassign"; )	
+
+		CHOICE_SEPERATOR_VIS( 4, when ( team( "name" ) == "TEAM_SPECTATOR" ) )
+
+		CHOICE_BUTTON_NOHI_VIS( 4, "button_4", "@MENU_END_GAME", open "popup_endgame", when( dvarbool( "sv_running" ) ) )
+		CHOICE_BUTTON_NOHI_VIS( 4, "button_4", "@MENU_LEAVE_GAME", SETUP_LEAVE_CALL, when( !dvarbool( "sv_running" ) ) )
+	}	
+}

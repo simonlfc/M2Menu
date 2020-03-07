@@ -1,0 +1,158 @@
+#include "ui/menudef.h"
+#include "ui_mp/common_macro.inc"
+#include "ui_mp/iw4_macros.inc"
+
+#define CHOICE_GROUP	"pc_options_video"
+
+#include "ui/iw5_setup_common.menu"
+#include "ui_mp/menustyle.inc"
+{
+	menuDef
+	{
+		name "pc_options_video"
+		rect 0 0 640 480 0 0
+		foreColor CHOICE_TEXTCOLOR
+		focusColor CHOICE_TEXTCOLOR
+		fadeCycle 1
+		fadeClamp 1
+		fadeAmount 0.1
+		blurWorld 7
+		onOpen
+		{
+			execNow "profile_menuDvarsSetup; resetViewport";
+			setLocalVarBool "ui_hideBack" ( 1 );
+			if ( !localvarint( "ui_showApply" ) )
+			{
+				exec "exec options_graphics.cfg";
+			}
+			execOnDvarFloatValue "r_zfeather" 0 "set ui_zfeather 0";
+			execOnDvarFloatValue "r_zfeather" 1 "set ui_zfeather 1";
+			execOnDvarFloatValue "r_depthPrepassModels" 1 "set ui_zfeather 2";
+			execNow "profile_menuDvarsSetup; resetViewport";
+		}
+		onRequestClose
+		{
+			execNow "profile_menuDvarsFinish; resetViewport";
+			setLocalVarBool "ui_hideBack" ( 0 );
+			execOnDvarIntValue "ui_zfeather" 0 "set r_zfeather 0;set r_depthPrepassModels 0";
+			execOnDvarIntValue "ui_zfeather" 1 "set r_zfeather 1;set r_depthPrepassModels 0";
+			execOnDvarIntValue "r_lodScaleRigid" 2 "set r_lodScaleSkinned 4; set r_lodBiasSkinned -200; set r_lodBiasRigid -100";
+			execOnDvarIntValue "r_lodScaleRigid" 1 "set r_lodScaleSkinned 1; set r_lodBiasSkinned 0; set r_lodBiasRigid 0";
+		}
+		onEsc
+		{
+			close "self";
+			if ( localvarbool( "ui_showApply" ) || localvarbool( "ui_showAudioApply" ) )
+			{
+				if ( !menuisopen( "pc_options_advanced_video" ) && !menuisopen( "pc_options_video" ) && !menuisopen( "pc_options_Audio" ) && !menuisopen( "pc_options_controls" ) && !menuisopen( "pc_options_voice" ) )
+				{
+					open "all_restart_popmenu";
+				}
+			}
+			execNow "profile_menuDvarsFinish; resetViewport";
+		}
+		
+		#define BACKGROUND_BLUR
+		#include "ui_mp/bg.inc"
+		
+		itemDef
+		{
+			rect -64 3 276.667 24.233 1 1
+			decoration
+			visible 0
+			style 1
+			forecolor 1 1 1 1
+			textfont 9
+			textalign 14
+			textscale 0.5
+			visible when ( 1 )
+			exp text ( locstring( "@MENU_OPTIONS_CAPS" ) )
+		}
+		itemDef
+		{
+			rect 253.5 5 344 34 1 1
+			decoration
+			visible 1
+			forecolor 1 1 1 1
+			textfont 9
+			textalign 4
+			textscale 0.45
+			text "@MENU_VIDEO"
+		}
+		#include "ui_mp/leftside_optionsx.inc"
+		
+		#undef CHOICE_X_START
+		#define CHOICE_X_START	4
+		
+		// caption
+		#undef CHOICE_TEXTALIGN
+		#define CHOICE_TEXTALIGN 4
+
+		#undef CHOICE_TEXT_OFFSET_X
+		#define CHOICE_TEXT_OFFSET_X 0
+
+		// dvar
+		#undef CHOICE_DVAR_TEXTALIGN
+		#define CHOICE_DVAR_TEXTALIGN 4
+		
+		#undef CHOICE_HIGHLIGHT_COLOR
+		#define CHOICE_HIGHLIGHT_COLOR 1 1 1 1
+
+		#undef CHOICE_TEXT_HIGHLIGHT
+		#define CHOICE_TEXT_HIGHLIGHT "gradient_center"
+				
+		PREPROC_SHADER_DRAW( 435 140.667 95 6 1 1, ORIGIN_NONE, "white", 0 0 0 1 )
+		//PREPROC_SHADER_DRAW( 435 140.667 0 6 1 1, ORIGIN_NONE, "white", 1 1 1 1 exp rect w( ( dvarFloat( "profileMenuOption_Gamma" ) + 20 ) ) )
+
+
+		CHOICE_DVARENUMLIST( 		20, "videomode", 		"@MENU_VIDEO_MODE",		"ui_r_mode", "r_mode", 	setlocalVarBool "ui_showApply" ( 1 ) ) 
+		CHOICE_DVARYESNO( 			21, "d3d9x",			"@MENU_D3D9EX",			"r_useD3D9Ex", 			setlocalVarBool "ui_showApply" ( 1 ) ) 
+		CHOICE_DVARYESNO( 			22, "fullscreen", 		"@MENU_FULLSCREEN", 	"ui_r_fullscreen", 		setLocalVarBool "ui_showApply" ( 1 ); exec "vid_xpos 0;vid_ypos 0"; )
+		CHOICE_DVARYESNO( 			23, "noborder", 		"@MENU_NOBORDER", 		"r_noborder", 			setLocalVarBool "ui_showApply" ( 1 ); exec "vid_xpos 0;vid_ypos 0"; )
+		CHOICE_DVARYESNO( 			24, "ncursor", 			"@MENU_NATIVECURSOR", 	"ui_nativeCursor", 		setLocalVarBool "ui_showApply" ( 1 ); exec "vid_xpos 0;vid_ypos 0"; )
+		CHOICE_DVARSLIDER_FOCUS( 	25, "brightness", 		"@MENU_BRIGHTNESS", 	"r_gamma", 0.8, 0.5, 3, ExecNow "profile_menuDvarsFinish";, setLocalVarString "ui_brightness_hint_display" ( 1 ), setLocalVarString "ui_brightness_hint_display" ( 0 ) )
+		CHOICE_DVARFLOATLIST_EX( 	26, "fov", 				"@MENU_FOV", 	"cg_fov", {"65 (Default)" 65 "80" 80 "90" 90 "120" 120}, setlocalVarBool "ui_showApply" ( 1 ), disabled when ( ( ( dvarstring( "gameMode" ) == "so" && ( dvarbool( "cl_ingame" ) || dvarbool( "sv_running" ) || inlobby( ) ) ) || ( dvarstring( "gameMode" ) == "mp" && ( dvarbool( "cl_ingame" ) || dvarbool( "sv_running" ) || inlobby( ) ) ) ) ) )
+		CHOICE_DVARFLOATLIST_EX( 	27, "fps", 				"@MENU_MAXFPS", "com_maxfps", { "30" 30 "85 (Default)" 85 "125" 125 "250" 250 "333" 333 "Unlimited" 0}, setlocalVarBool "ui_showApply" ( 1 ), disabled when ( ( ( dvarstring( "gameMode" ) == "so" && ( dvarbool( "cl_ingame" ) || dvarbool( "sv_running" ) || inlobby( ) ) ) || ( dvarstring( "gameMode" ) == "mp" && ( dvarbool( "cl_ingame" ) || dvarbool( "sv_running" ) || inlobby( ) ) ) ) ) )
+		
+		// repositioned accordingly to stock IW5
+		#undef CHOICE_TEXTALIGN
+		#define CHOICE_TEXTALIGN 6
+
+		#undef CHOICE_X_START
+		#define CHOICE_X_START 4
+		
+		#undef CHOICE_TEXT_OFFSET_X
+		#define CHOICE_TEXT_OFFSET_X -248
+		
+		CHOICE_BUTTON( 29, "advancedsettings", "@MENU_ADVANCED_VIDEO", LOCAL_CLOSE_ALL_IW5 open "pc_options_advanced_video"; )
+
+		itemDef
+		{
+			name "graphic_warning"
+			rect 10 -160 206 240 1 3
+			decoration
+			autowrapped
+			visible 1
+			style 1
+			forecolor 1 1 1 1
+			type 1
+			textscale 0.375
+			text "@MENU_GRAPHICS_WARNING"
+			visible when ( !localvarbool( "ui_brightness_hint_display" ) )
+		}
+		itemDef
+		{
+			name "brightness_hint"
+			rect 10 -160 206 240 1 3
+			decoration
+			autowrapped
+			visible 1
+			style 1
+			forecolor 1 1 1 1
+			type 1
+			textscale 0.375
+			text "@MENU_BRIGHTNESS_HINT_PC"
+			visible when ( localvarbool( "ui_brightness_hint_display" ) )
+		}
+	}	
+}

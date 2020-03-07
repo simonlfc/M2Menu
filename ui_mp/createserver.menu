@@ -1,0 +1,393 @@
+#include "ui/menudef.h"
+#include "ui_mp/common_macro.inc"
+#include "ui_mp/iw4_macros.inc"
+
+#define CHOICE_GROUP	"createserver"
+
+#include "ui/iw5_setup_common.menu"
+#include "ui_mp/menustyle.inc"
+{
+	menuDef
+	{
+		name "createserver"
+		rect 0 0 640 480 0 0
+		visible 1
+		forecolor 1 1 1 1
+		focuscolor 1 1 1 1
+		fullscreen 1
+		soundLoop "music_mainmenu_mp"
+		onOpen
+		{
+			uiScript "loadArenas";
+			execnow "xblive_rankedmatch" 0;
+			execnow "xblive_privatematch" 1;
+			exec "exec dvar_defaults.cfg";
+		}
+		onClose
+		{
+			open "main_text";
+		}
+		onESC
+		{
+			exec "xstopparty";
+			if (inprivateparty() && !privatepartyhost() && privatepartyhostinlobby())
+			{
+				exec "xstopprivateparty";
+				exec "xstartprivateparty";
+			}
+			setdvar "xblive_privatematch" 0;
+			close "self";
+		}
+		
+		#define BACKGROUND_BLUR
+		#include "ui_mp/bg.inc"
+
+		itemDef
+		{
+			rect -64 3 276.667 24.233 1 1
+			decoration
+			visible 1
+			style 1
+			forecolor 1 1 1 1
+			textfont 9
+			textalign 14
+			textscale 0.5
+			visible when ( 1 )
+			exp text ( locstring( "@MPUI_PRIVATE_MATCH_LOBBY" ) )		
+        }
+        CHOICE_SEPERATOR( 0 )
+        CHOICE_BUTTON_FOCUS(0, "button_0", "@MENU_START_GAME_CAPS", play "mouse_click"; exec "xpartygo";, setLocalVarString "ui_hint_text" ( "@MENU_DESC_START_MATCH" ), CLEAR_UI_HINT )
+        CHOICE_BUTTON_FOCUS(1, "button_1", "@MENU_GAME_SETUP_CAPS", open "popup_gamesetup", setLocalVarString "ui_hint_text" ( "@MPUI_DESC_GAME_SETUP"), CLEAR_UI_HINT )
+        CHOICE_SEPERATOR( 2 )
+		CHOICE_BUTTON_FOCUS_VIS_EX( 2, "button_2", "@MENU_CREATE_A_CLASS_CAPS", open "cac_popup", setLocalVarString "ui_hint_text" ( "@MPUI_DESC_CREATE_A_CLASS" ), CLEAR_UI_HINT, 1, disabled when ( !isitemunlocked( "cac" ) ) )
+		CHOICE_BUTTON_FOCUS_VIS_EX( 3, "button_3", "@MENU_PLAYERCARD_CAPS", open "popup_callsign", setLocalVarString "ui_hint_text" ( "@MPUI_DESC_PLAYERCARD" ), CLEAR_UI_HINT, 1, disabled when ( !isitemunlocked( "playercard" ) ) )
+        CHOICE_SEPERATOR( 4 )
+
+        CHOICE_DESCRIPTION( 1, 9.5, 113.334 )
+		
+		itemDef
+		{
+			rect -252.667 2.667 253.333 20 3 1
+			decoration
+			visible 1
+			style 1
+			forecolor 0.784314 0.784314 0.784314 1
+			background "white"
+			textfont 3
+			textalign 4
+			textalignx 20
+			textscale 0.375
+			visible when ( privatepartyhost( ) )
+			exp text ( locstring( "@MPUI_RECOMMENDEDPLAYERS" , int( min( dvarint( "party_maxPlayers" ) , maxrecommendedplayers( ) ) ) ) )
+		}
+		itemDef
+		{
+			rect 160 186 32 16 1 1
+			decoration
+			visible 1
+			style 1
+			forecolor 1 1 1 1
+            textfont 1
+			textalign 14
+			textscale 0.35
+			exp text ( "Auto Record: " )
+		}
+		itemDef
+		{
+			rect 180 186 32 16 1 1
+			decoration
+			visible 1
+			style 1
+			forecolor 1 1 1 1
+			textfont 1
+			textalign 14
+			textscale 0.35
+			visible when ( dvarint( "cl_autoRecord" ) )
+			exp text ( "@MENU_ON" )
+		}
+		itemDef
+		{
+			rect 180 186 32 16 1 1
+			decoration
+			visible 1
+			style 1
+			forecolor 1 1 1 1
+			textfont 1
+			textalign 14
+			textscale 0.35
+			visible when ( !dvarint( "cl_autoRecord" ) )
+			exp text ( "@MENU_OFF" )
+		}
+		itemDef
+		{
+			rect -64 212 301 113.333 1 1
+			decoration
+			visible 1
+			style 3
+			forecolor 1 1 1 1
+			textscale 0.55
+			exp material ("preview_" + dvarString ( "ui_mapname" ) )
+		}
+		itemDef
+		{
+			rect -64 212 301 113.333 1 1
+			decoration
+			visible 1
+			style 3
+			forecolor 0 0 0 0.95
+			textscale 0.55
+			exp material ( "gradient_fadein" )
+		}
+		itemDef
+		{
+			rect 50 252.667 161.333 16 1 1
+			decoration
+			visible 1
+			style 1
+			forecolor 1 1 1 1
+			textfont 3
+			textalign 10
+			textscale 0.340278
+			visible when ( ( 1 ) )
+			exp text ( getmapname() )
+		}
+		itemDef
+		{
+			rect 50 268.667 161.333 16 1 1
+			decoration
+			visible 1
+			style 1
+			forecolor 1 1 1 1
+			textfont 3
+			textalign 10
+			textscale 0.340278
+			visible when ( ( 1 ) )
+			exp text ( dvarString( "party_gametype" ) )
+        }
+		itemDef
+		{
+			rect -261 31 262 24 3 1
+			decoration
+			visible 1
+			style 3
+			forecolor 0.15 0.15 0.15 0.5
+			background "playercard_short_bg"
+			textscale 0.55
+			visible when ( 1 && ( getplayercardinfo( 0 , 3 , 0 ) != 0 ) )
+		}
+		
+		itemDef
+		{
+			rect -261 0 262 20 3 1
+			decoration
+			visible 1
+			style 3
+			forecolor 0 0 0 1
+			background "playercard_short_bg"
+			textscale 0.55
+			exp rect y ( 28 + ( dvarint( "party_selectedIndex" ) * 20 ) )
+			visible when ( ( dvarbool( "party_listFocus" ) ) && ( getplayercardinfo( 0 , 3 , dvarint( "party_selectedIndex" ) ) != 0 ) )
+		}
+		itemDef
+		{
+			rect -272 0 272 28 3 1
+			decoration
+			forecolor 1 1 1 0.15
+			textfont 10
+			textalign 12
+			textalignx 38
+			textaligny 3
+			textscale 0.3333
+			text "NAME"
+		}
+		itemDef
+		{
+			name "partyList"
+			rect -243 33 254 362 3 1
+			visible 1
+			forecolor 1 1 1 1
+			type 6
+			textaligny -2
+			textscale 0.375
+			feeder 25
+			elementWidth 291.333
+			elementHeight 19.5
+//			numcol			xpos	xwidth	textlen	  alignment
+			columns 1		38		16		40		  0
+			noscrollbars
+			doubleClick
+			{
+				play "mouse_click" open "player_popup";
+			}
+		}
+		itemDef
+		{
+			rect -272 0 272 28 3 1
+			decoration
+			forecolor 1 1 1 0.15
+			textfont 10
+			textalign 12
+			textalignx 194
+			textaligny 3
+			textscale 0.3333
+			text "RANK"
+		}
+		itemDef
+		{
+			rect -243 33 254 362 3 1
+			decoration
+			visible 1
+			forecolor 1 1 1 1
+			type 6
+			textaligny -2
+			textscale 0.375
+			feeder 40
+			elementWidth 291.333
+			elementHeight 19.5
+//			numcol			xpos	xwidth	textlen	  alignment
+			columns 2		200		20		3		  1
+							220		20		3		  1
+			noscrollbars
+		}
+		itemDef
+		{
+			rect 0 0 240 40 3 1
+			decoration
+			visible 1
+			style 3
+			forecolor 0 0 0 1
+			background "white"
+			textscale 0.55
+			exp rect x ( ( ( 0 - 306.333 ) + 6 + 20.666 ) )
+			exp rect y ( ( 16 + 6 ) )
+			visible when ( ( dvarbool( "party_listFocus" ) ) && ( getplayercardinfo( 0 , 3 , dvarint( "party_selectedIndex" ) ) != 0 ) )
+		}
+		itemDef
+		{
+			rect 0 0 237.333 37.333 3 1
+			decoration
+			visible 1
+			style 3
+			forecolor 1 1 1 1
+			background "cardtitle_248x48"
+			textscale 0.55
+			exp rect x ( ( ( 0 - 306.333 ) + 6 + 20.666 ) + 1.333 )
+			exp rect y ( ( 16 + 6 ) + 1.333 )
+			visible when ( ( dvarbool( "party_listFocus" ) ) && ( getplayercardinfo( 0 , 3 , dvarint( "party_selectedIndex" ) ) != 0 ) )
+		}
+		itemDef // card icon
+		{
+			rect 0 0 35.3 35.3 3 1
+			decoration
+			visible 1
+			style 3
+			forecolor 1 1 1 1
+			textscale 0.55
+			exp rect x ( ( ( 0 - 306.333 ) + 6 + 20.666 ) + 2.533 )
+			exp rect y ( ( 16 + 6 ) + 2.567 )
+			exp forecolor a ( 1 )
+			visible when ( ( dvarbool( "party_listFocus" ) ) && ( getplayercardinfo( 0 , 3 , dvarint( "party_selectedIndex" ) ) != 0 ) )
+			exp material ( tablelookupbyrow( "mp/cardIconTable.csv" , getplayercardinfo( 2 , 1 , 0 ) , 1 ) )
+		}
+		itemDef // card title
+		{
+			rect 0 0 156.667 31.333 3 1
+			decoration
+			visible 1
+			style 1
+			forecolor 1 1 1 1
+			backcolor 1 1 1 1
+			textfont 3
+			textstyle 8
+			textalign 9
+			textscale 0.375
+			exp rect x ( ( ( 0 - 306.333 ) + 6 + 20.666 ) + 33.9 )
+			exp rect y ( ( 16 + 6 ) + ( 0 - 4.1 ) )
+			visible when ( ( dvarbool( "party_listFocus" ) ) && ( getplayercardinfo( 0 , 3 , dvarint( "party_selectedIndex" ) ) != 0 ) )
+			exp text ( "@" + tablelookupbyrow( "mp/cardTitleTable.csv" , getplayercardinfo( 1 , 1 , 0 ) , 1 ) )
+			exp material ( tablelookupbyrow( "mp/cardTitleTable.csv" , getplayercardinfo( 1 , 1 , 0 ) , 2 ) )
+		}
+		itemDef // player name
+		{
+			rect 0 0 146.7 16.6 3 1
+			decoration
+			visible 1
+			style 1
+			forecolor 1 1 1 1
+			textfont 9
+			textstyle 8
+			textalign 8
+			textscale 0.375
+			exp rect x ( ( ( 0 - 306.333 ) + 6 + 20.666 ) + 40 )
+			exp rect y ( ( 16 + 6 ) + 21.5 )
+			exp forecolor r ( 0.941 )
+			exp forecolor g ( 0.773 )
+			exp forecolor b ( 0.361 )
+			visible when ( ( dvarbool( "party_listFocus" ) ) && ( getplayercardinfo( 0 , 3 , dvarint( "party_selectedIndex" ) ) != 0 ) )
+			exp text ( getplayercardinfo( 8 , 1 , 0 ) )
+		}
+		itemDef // clan tag
+		{
+			rect 0 0 51.333 18.033 3 1
+			decoration
+			visible 0
+			style 1
+			forecolor 0.941 0.773 0.361 1
+			textfont 3
+			textalign 8
+			textscale 0.375
+			exp rect x ( ( ( 0 - 306.333 ) + 6 + 20.666 ) + 188 )
+			exp rect y ( ( 16 + 6 ) + 2.5 )
+			exp forecolor a ( 1 )
+			//visible when ( ( dvarbool( "party_listFocus" ) ) && ( getplayercardinfo( 0 , 3 , dvarint( "party_selectedIndex" ) ) != 0 ) )
+			exp text ( "[" + getplayercardinfo( 9 , 1 , 0 ) + "]" )
+		}
+		itemDef // rank icon
+		{
+			rect 0 0 18.667 18.667 3 1
+			decoration
+			visible 1
+			style 3
+			forecolor 1 1 1 1
+			textscale 0.55
+			exp rect x ( ( ( 0 - 306.333 ) + 6 + 20.666 ) + 192 )
+			exp rect y ( ( 16 + 6 ) + 18.9 )
+			exp forecolor a ( 1 )
+			visible when ( ( dvarbool( "party_listFocus" ) ) && ( getplayercardinfo( 0 , 3 , dvarint( "party_selectedIndex" ) ) != 0 ) )
+			exp material ( tablelookup( "mp/rankIconTable.csv" , 0 , getplayercardinfo( 4 , 1 , 0 ) , ( getplayercardinfo( 5 , 1 , 0 ) + 1 ) ) )
+		}
+		itemDef // rank icon text
+		{
+			rect 0 0 22 18.033 3 1
+			decoration
+			visible 1
+			style 1
+			forecolor 1 1 1 1
+			textfont 3
+			textstyle 8
+			textalign 8
+			textscale 0.375
+			exp rect x ( ( ( 0 - 306.333 ) + 6 + 20.666 ) + 212 )
+			exp rect y ( ( 16 + 6 ) + 19.167 )
+			exp forecolor a ( 1 )
+			visible when ( ( dvarbool( "party_listFocus" ) ) && ( getplayercardinfo( 0 , 3 , dvarint( "party_selectedIndex" ) ) != 0 ) )
+			exp text ( tablelookup( "mp/rankTable.csv" , 0 , getplayercardinfo( 4 , 1 , 0 ) , 14 ) )
+		}
+		itemDef
+		{
+			rect -244 31 254 362 3 1
+			decoration
+			visible 1
+			forecolor 1 1 1 1
+			type 6
+			textaligny -2
+			textscale 0.375
+			feeder 26
+			elementWidth 291.333
+			elementHeight 19.5
+//			numcol			xpos	xwidth	textlen	  alignment
+			columns 1		2		20		40		  0
+			noscrollbars
+		}
+    }
+}

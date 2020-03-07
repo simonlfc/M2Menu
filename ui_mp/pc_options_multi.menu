@@ -1,0 +1,144 @@
+#include "ui/menudef.h"
+#include "ui_mp/iw4_macros.inc"
+
+#define CHOICE_GROUP		"pc_options_multi"
+
+#include "ui/iw5_setup_common.menu"
+#include "ui_mp/menustyle.inc"
+{
+	menuDef
+	{
+		name "pc_options_multi"
+		rect 0 0 640 480 0 0
+		foreColor CHOICE_TEXTCOLOR
+		focusColor CHOICE_TEXTCOLOR
+		fadeCycle 1
+		fadeClamp 1
+		fadeAmount 0.1
+		blurWorld 7
+		onOpen
+		{
+			exec "setfromdvar ui_name name";
+			execNow "profile_menuDvarsSetup; resetViewport";
+			setLocalVarBool "ui_hideBack" ( 1 );
+			if ( !localvarint( "ui_showApply" ) )
+			{
+				exec "exec options_graphics.cfg";
+			}
+			execOnDvarFloatValue "r_zfeather" 0 "set ui_zfeather 0";
+			execOnDvarFloatValue "r_zfeather" 1 "set ui_zfeather 1";
+			execOnDvarFloatValue "r_depthPrepassModels" 1 "set ui_zfeather 2";
+			execNow "profile_menuDvarsSetup; resetViewport";
+		}
+		onRequestClose
+		{
+			exec "setfromdvar ui_name name";
+			execNow "profile_menuDvarsFinish; resetViewport";
+			setLocalVarBool "ui_hideBack" ( 0 );
+			execOnDvarIntValue "ui_zfeather" 0 "set r_zfeather 0;set r_depthPrepassModels 0";
+			execOnDvarIntValue "ui_zfeather" 1 "set r_zfeather 1;set r_depthPrepassModels 0";
+			execOnDvarIntValue "r_lodScaleRigid" 2 "set r_lodScaleSkinned 4; set r_lodBiasSkinned -200; set r_lodBiasRigid -100";
+			execOnDvarIntValue "r_lodScaleRigid" 1 "set r_lodScaleSkinned 1; set r_lodBiasSkinned 0; set r_lodBiasRigid 0";
+		}
+		onEsc
+		{
+			close "self";
+			exec "setfromdvar ui_name name";
+			if ( localvarbool( "ui_showApply" ) || localvarbool( "ui_showAudioApply" ) )
+			{
+				if ( !menuisopen( "pc_options_advanced_video" ) && !menuisopen( "pc_options_video" ) && !menuisopen( "pc_options_Audio" ) && !menuisopen( "pc_options_controls" ) && !menuisopen( "pc_options_voice" ) )
+				{
+					open "all_restart_popmenu";
+				}
+			}
+			execNow "profile_menuDvarsFinish; resetViewport";
+		}
+		
+		#define BACKGROUND_BLUR
+		#include "ui_mp/bg.inc"
+		
+		itemDef
+		{
+			rect -64 3 276.667 24.233 1 1
+			decoration
+			visible 0
+			style 1
+			forecolor 1 1 1 1
+			textfont 9
+			textalign 14
+			textscale 0.5
+			visible when ( 1 )
+			exp text ( locstring( "@MENU_OPTIONS_CAPS" ) )
+		}
+		itemDef
+		{
+			rect 253.5 5 344 34 1 1
+			decoration
+			visible 1
+			forecolor 1 1 1 1
+			textfont 9
+			textalign 4
+			textscale 0.45
+			text "@MENU_MULTIPLAYER_CAPS"
+		}
+		#include "ui_mp/leftside_optionsx.inc"
+		
+		#undef CHOICE_X_START
+		#define CHOICE_X_START	4
+		
+		// caption
+		#undef CHOICE_TEXTALIGN
+		#define CHOICE_TEXTALIGN 4
+
+		#undef CHOICE_TEXT_OFFSET_X
+		#define CHOICE_TEXT_OFFSET_X 0
+
+		// dvar
+		#undef CHOICE_DVAR_TEXTALIGN
+		#define CHOICE_DVAR_TEXTALIGN 4
+		
+		#undef CHOICE_HIGHLIGHT_COLOR
+		#define CHOICE_HIGHLIGHT_COLOR 1 1 1 1
+
+		#undef CHOICE_TEXT_HIGHLIGHT
+		#define CHOICE_TEXT_HIGHLIGHT "gradient_center"
+				
+		CHOICE_DVAREDIT( 	 20, "pln", 		"@MENU_PLAYER_NAME", 			"ui_name", 15, ; )	
+		CHOICE_DVARFLOATLIST(21, "mp",			"@MENU_MAXPACKETS",	 			"cl_maxpackets", {"30" 30 "100" 100 "125" 125}, ; )
+		CHOICE_DVARFLOATLIST(22, "snaps",		"@MENU_SNAPS",	  				"snaps", {"20" 20 "30" 30}, ; )
+		CHOICE_DVARYESNO(	 23, "lago",		"@MENU_LAGOMETER",				"drawLagometer", ; )
+		CHOICE_DVARFLOATLIST(24, "dfps",		"@MENU_DRAWFPS",				"cg_drawFPS", {"Off" 0 "Simple" 1 "SimpleRanges" 2 "Verbose" 3 "Verbose+Viewpos" 4}, ; )
+		CHOICE_DVARYESNO(	 25, "fpsl",		"@MENU_FPSLABELS",				"cg_drawFPSLabels", ; )
+		CHOICE_DVARYESNO(	 26, "sfui",		"@MENU_STREAMFRIENDLY_UI",		"ui_streamFriendly", ; )
+		CHOICE_DVARFLOATLIST_FOCUS_VIS(27, "frn", "@MENU_FRIENDNOTIFY",			"cl_notifyFriendState", {"Always" -1 "Never" 0 "in Menu" 1}, ;, "@MPUI_DESC_FRIENDNOTIFY", ;, when( dvarBool( "ui_streamFriendly" ) ) )
+
+		itemDef
+		{
+			name "graphic_warning"
+			rect 10 -160 206 240 1 3
+			decoration
+			autowrapped
+			visible 1
+			style 1
+			forecolor 1 1 1 1
+			type 1
+			textscale 0.375
+			text "@MENU_GRAPHICS_WARNING"
+			visible when ( !localvarbool( "ui_brightness_hint_display" ) )
+		}
+		itemDef
+		{
+			name "brightness_hint"
+			rect 10 -160 206 240 1 3
+			decoration
+			autowrapped
+			visible 1
+			style 1
+			forecolor 1 1 1 1
+			type 1
+			textscale 0.375
+			text "@MENU_BRIGHTNESS_HINT_PC"
+			visible when ( localvarbool( "ui_brightness_hint_display" ) )
+		}
+	}	
+}

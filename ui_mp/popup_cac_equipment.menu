@@ -1,0 +1,153 @@
+#include "ui/menudef.h"
+
+#define CHOICE_GROUP		"popup_cac_weapon_secondary"
+
+#include "ui_mp/iw4_macros.inc"
+#include "ui_mp/cac_macros.inc"
+#include "ui_mp/cac.inc"
+
+#include "ui/iw5_setup_common.menu"
+#include "ui_mp/menustyle.inc"
+{
+	menuDef
+	{
+		name "popup_cac_equipment"
+		popup
+		rect 0 0 640 480 0 0
+		forecolor 1 1 1 1
+		focuscolor 1 1 1 1
+		fullscreen 1
+		soundLoop "music_mainmenu_mp"
+		onOpen
+		{
+			setLocalVarString "ui_selected_ref" ( "frag_grenade_mp" );
+			setLocalVarInt "ui_buttonNavGroupOffset" ( 0 );
+			setLocalVarInt "ui_buttonNavGroupCurrent" ( 0 );
+			setLocalVarString "ui_buttonNavGroupName" ( "invalid" );
+			setLocalVarBool "ui_swfSelectionButtonVis" ( 0 );
+			setLocalVarBool "ui_swfSelectionBarVis" ( 0 );
+			setLocalVarBool "ui_swfSelectionDisabled" ( 0 );
+			setLocalVarBool "ui_swfPopupSelectionButtonVis" ( 0 );
+			setLocalVarBool "ui_swfPopupSelectionBarVis" ( 0 );
+			setLocalVarBool "ui_swfPopupSelectionDisabled" ( 0 );
+			setLocalVarString "ui_swfPopupContext" ( "invalid" );
+		}
+		onRequestClose
+		{
+		}
+		onEsc
+		{
+			close "self";
+		}
+		#define BACKGROUND_BLUR
+		#include "ui_mp/bg.inc"
+		
+		itemDef
+		{
+			rect 237.6 -36 301.5 480 1 1
+			decoration
+			visible 1
+			style 3
+			forecolor 0 0 0 0.4
+			background "white"
+			textscale 0.55
+			exp rect w ( 226 )
+		}
+		itemDef
+		{
+			rect 237.5 -236 13 680 1 1
+			decoration
+			visible 1
+			style 3
+			forecolor 1 1 1 0.75
+			background "gradient"
+			textscale 0.55
+			exp rect x ( 457.5 )
+			exp forecolor r ( 0.596078 )
+			exp forecolor g ( 0.654902 )
+			exp forecolor b ( 0.603922 )
+		}
+		itemDef
+		{
+			rect 237.5 -236 13 680 1 1
+			decoration
+			visible 1
+			style 3
+			forecolor 1 1 1 0.75
+			background "gradient"
+			textscale 0.55
+			exp rect x ( 457.5 )
+			exp forecolor r ( 0.596078 )
+			exp forecolor g ( 0.654902 )
+			exp forecolor b ( 0.603922 )
+		}
+		itemDef
+		{
+			rect -64 3 276.667 24.233 1 1
+			decoration
+			visible 0
+			style 1
+			forecolor 1 1 1 1
+			textfont 9
+			textalign 14
+			textscale 0.5
+			visible when ( 1 )
+			exp text ( "@MENU_EQUIPMENT_CAPS" )
+		}
+		
+		CHOICE_SEPERATOR( 0 )
+		
+		LOCAL_EQUIPMENT_ITEM( 0, "cac_perk_frag_grenade_mp", "frag_grenade_mp" )
+		LOCAL_EQUIPMENT_ITEM( 1, "cac_perk_semtex_mp", "semtex_mp" )
+		LOCAL_EQUIPMENT_ITEM( 2, "cac_perk_throwingknife_mp", "throwingknife_mp" )
+		LOCAL_EQUIPMENT_ITEM( 3, "cac_perk_specialty_tacticalinsertion", "specialty_tacticalinsertion" )
+		LOCAL_EQUIPMENT_ITEM( 4, "cac_perk_specialty_blastshield", "specialty_blastshield" )
+		LOCAL_EQUIPMENT_ITEM( 5, "cac_perk_claymore_mp", "claymore_mp" )
+		LOCAL_EQUIPMENT_ITEM( 6, "cac_perk_c4_mp", "c4_mp" )
+
+		#include "ui_mp/cac_loadout.inc"
+		itemDef
+		{
+			rect 254.333 34.667 186.667 44.4 1 1
+			decoration
+			autowrapped
+			visible 1
+			style 1
+			forecolor 1 1 1 1
+			textfont 9
+			textalign 5
+			textscale 0.383333
+			exp rect x ( ( 0 ) + ( ( 261 + ( 0 - 6.667 ) ) ) + ( 0 ) )
+			visible when ( ( 1 ) )
+			exp text ( "@" + tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "ui_selected_ref" ) , 2 ) )
+		}
+		itemDef
+		{
+			rect 267.667 69.833 144 72 1 1
+			decoration
+			visible 1
+			style 3
+			forecolor 1 1 1 1
+			textscale 0.55
+			exp rect x ( ( 0 ) + ( ( 297 + 6.667 ) ) + ( 0 * 36 ) + 8 )
+			exp rect w ( 144 - ( 1 * 72 ) )
+			visible when ( ( 1 ) )
+			exp material ( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "ui_selected_ref" ) , 3 ) )
+		}
+		itemDef
+		{
+			rect 261 145.033 173.333 48 1 1
+			decoration
+			autowrapped
+			visible 1
+			style 1
+			forecolor 1 1 1 1
+			textfont 3
+			textalign 5
+			textscale 0.340278
+			exp rect x ( ( 0 ) + ( ( 261 ) ) + ( 0 ) )
+			visible when ( ( 1 ) )
+			exp text ( "@" + tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "ui_selected_ref" ) , 4 ) )
+		}
+	}
+}

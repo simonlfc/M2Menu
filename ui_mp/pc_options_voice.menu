@@ -1,0 +1,129 @@
+#include "ui/menudef.h"
+#include "ui_mp/iw4_macros.inc"
+
+#define CHOICE_GROUP		"pc_options_voice"
+
+#include "ui/iw5_setup_common.menu"
+#include "ui_mp/menustyle.inc"
+{
+	menuDef
+	{
+		name "pc_options_voice"
+		rect 0 0 640 480 0 0
+		forecolor CHOICE_TEXTCOLOR
+		focuscolor CHOICE_TEXTCOLOR
+		fadeCycle 1
+		fadeClamp 1
+		fadeAmount 0.1
+		blurWorld 7
+		onOpen
+		{
+			setLocalVarBool "ui_showApply" ( 0 );
+			setLocalVarBool "ui_hideBack" ( 1 );
+			setItemColor "fadebox" backcolor 0 0 0 1;
+			fadeout "fadebox";
+			setdvar "g_reloading" 0;
+			execnow "profile_menuDvarsSetup; resetViewport";
+		}
+		onRequestClose
+		{
+			setLocalVarBool "ui_hideBack" ( 0 );
+		}
+		onEsc
+		{
+			close "self";
+			if ( localvarbool( "ui_showApply" ) || localvarbool( "ui_showAudioApply" ) )
+			{
+				if ( !menuisopen( "pc_options_advanced_video" ) && !menuisopen( "pc_options_video" ) && !menuisopen( "pc_options_audio" ) && !menuisopen( "pc_options_controls" ) && !menuisopen( "pc_options_voice" ) )
+				{
+					open "all_restart_popmenu";
+				}
+			}
+			execnow "profile_menuDvarsFinish; resetViewport";
+		}
+
+		#define BACKGROUND_BLUR
+		#include "ui_mp/bg.inc"
+		
+		itemDef
+		{
+			rect -64 3 276.667 24.233 1 1
+			decoration
+			visible 0
+			style 1
+			forecolor 1 1 1 1
+			textfont 9
+			textalign 14
+			textscale 0.5
+			visible when ( 1 )
+			exp text ( locstring( "@MENU_OPTIONS_CAPS" ) )
+		}
+		itemDef
+		{
+			rect 253.5 5 344 34 1 1
+			decoration
+			visible 1
+			forecolor 1 1 1 1
+			textfont 9
+			textalign 4
+			textscale 0.45
+			text "@MENU_VOICE"
+		}
+		#include "ui_mp/leftside_optionsx.inc"
+		
+		#undef CHOICE_X_START
+		#define CHOICE_X_START	4
+		
+		#undef CHOICE_TEXT_OFFSET_X
+		#define CHOICE_TEXT_OFFSET_X 4
+		
+		#undef CHOICE_TEXTALIGN
+		#define CHOICE_TEXTALIGN 4
+		
+		#undef CHOICE_DVAR_TEXTALIGN
+		#define CHOICE_DVAR_TEXTALIGN 4
+
+		#undef CHOICE_HIGHLIGHT_COLOR
+		#define CHOICE_HIGHLIGHT_COLOR 1 1 1 1
+
+		#undef CHOICE_TEXT_HIGHLIGHT
+		#define CHOICE_TEXT_HIGHLIGHT "gradient_center"
+
+		CHOICE_BIND( 20, "voice_bind", "@MENU_VOICE_CHAT_BUTTON", "+talk", ; )
+		CHOICE_DVARSLIDER_EX( 21, "record_level", "@MENU_VOICECHAT_RECORD_LEVEL", "winvoice_mic_reclevel", 65535, 0, 65535, ;, disabled when ( dvarstring( "gameMode" ) == "sp" ) )
+		CHOICE_CAPTION( 22, "@MENU_VOICECHAT_LEVEL_INDICATOR" ) 
+
+		CHOICE_DVARYESNO_EX( 23, "mute_all", "@MENU_MUTE_ALL", "cl_voice", ;, disabled when ( dvarstring( "gameMode" ) == "sp" ) )
+		CHOICE_KEYBINDHELP
+		itemDef
+		{
+			name "voicechat_level_indicator"
+			rect 254 82 96 10 1 1
+			decoration
+			visible 1
+			ownerdraw 265
+			forecolor 1 1 1 1
+			disablecolor 0.6 0.55 0.55 1
+			background "menu_setting_selection_bar"
+			type 8
+			textfont 3
+			textalign 4
+			textalignx 180
+			textscale 0.375
+			visible when ( 1 )
+			disabled when ( dvarstring( "gameMode" ) == "sp" || ( ( dvarstring( "gameMode" ) == "so" && ( dvarbool( "cl_ingame" ) || dvarbool( "sv_running" ) || inlobby( ) ) ) || ( dvarstring( "gameMode" ) == "mp" && ( dvarbool( "cl_ingame" ) || dvarbool( "sv_running" ) || inlobby( ) ) ) ) )
+			action
+			{
+				play "mouse_click";
+			}
+			onFocus
+			{
+				setItemColor self backcolor 0 0 0 1 play "mouse_over";
+			}
+			leaveFocus
+			{
+				setItemColor self backcolor 0 0 0 0;
+			}
+		}
+	}
+}
