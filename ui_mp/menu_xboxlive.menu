@@ -108,6 +108,7 @@
 			close "popup_summary";
 			close "popup_unlocks1";
 			close "popup_unlocks2";
+			open "main_text";
 		}
 		onEsc
 		{
@@ -123,6 +124,7 @@
 				close "leaveprivatepartywarning";
 				close "popup_gettingdata";
 				close self;
+				open "main_text";
 			}
 		}
 
@@ -357,6 +359,7 @@
 			{
 				play "mouse_click";
 				close "self";
+				open "main_text";
 			}
 		}
 	}
