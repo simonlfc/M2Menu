@@ -1,5 +1,5 @@
 #include "ui/menudef.h"
-#include "ui/iw5_setup_common.menu"
+#include "ui/m2_setup_common.menu"
 #include "ui_mp/menustyle.inc"
 {
 	menuDef
@@ -58,8 +58,10 @@
 			style 1
 			forecolor 1 1 1 1
 			textfont 9
-			textalign 14
-			textscale 0.5
+			textalign 12
+			textalignx 41
+			textaligny 10
+			textscale TEXTSIZE_TITLE
 			visible when ( 1 )
 			text "GAME SETUP"
 		}
@@ -69,29 +71,12 @@
 
 		CHOICE_SEPERATOR( 0 )
 		CHOICE_BUTTON( 0, "maps", "MAPS", open "settings_map"; )
-		CHOICE_BUTTON( 1, "mode", "MODE", open "settings_gametype"; )
+		CHOICE_BUTTON( 1, "mode", "GAMETYPE", open "settings_gametype"; )
 		CHOICE_BUTTON( 2, "options", "OPTIONS", LOCAL_GAMERULES_ACTION; )
-		CHOICE_SEPERATOR( 3 )
-		CHOICE_BUTTON_EX( 3, "intermission", "INTERMISSION: DISABLED", open "menu_playercard_icon_popup";, disabled when( 1 ) )
-		CHOICE_BUTTON_EX( 4, "password", "CHANGE PASSWORD", open "menu_xboxlive";, disabled when( 1 ) )
-		CHOICE_BUTTON_EX( 15, "saverecipe", "SAVE RECIPE TO DISK", open "menu_playercard_icon_popup";, disabled when( 1 ) )
-		CHOICE_BUTTON_EX( 16, "loadrecipe", "LOAD RECIPE DISK", open "menu_playercard_icon_popup";, disabled when( 1 ) )
+		CHOICE_BUTTON( 3, "server", "SERVER SETTINGS", open "popup_serversettings"; )
+		CHOICE_SEPERATOR( 4 )
 
-		itemDef
-		{
-			rect -252.667 2.667 253.333 20 3 1
-			decoration
-			visible 1
-			style 1
-			forecolor 0.784314 0.784314 0.784314 1
-			background "white"
-			textfont 3
-			textalign 4
-			textalignx 20
-			textscale 0.375
-			visible when ( privatepartyhost( ) )
-			exp text ( locstring( "@MPUI_RECOMMENDEDPLAYERS" , int( min( dvarint( "party_maxPlayers" ) , maxrecommendedplayers( ) ) ) ) )
-		}
+
 		itemDef
 		{
 			rect 0 0 0 20 3 3
@@ -123,5 +108,116 @@
 				close "self";
 			}
 		}
+	}	
+	menuDef
+	{
+		name "popup_serversettings"
+		rect 0 0 640 480 0 0
+		visible 1
+		forecolor 1 1 1 1
+		focuscolor 1 1 1 1
+		fullscreen 1
+		soundLoop "music_mainmenu_mp"
+		onOpen
+		{
+			setLocalVarInt "ui_buttonNavGroupOffset" ( 0 );
+			setLocalVarInt "ui_buttonNavGroupCurrent" ( 0 );
+			setLocalVarString "ui_buttonNavGroupName" ( "invalid" );
+			setLocalVarBool "ui_swfSelectionButtonVis" ( 0 );
+			setLocalVarBool "ui_swfSelectionBarVis" ( 0 );
+			setLocalVarBool "ui_swfSelectionDisabled" ( 0 );
+			setLocalVarBool "ui_swfPopupSelectionButtonVis" ( 0 );
+			setLocalVarBool "ui_swfPopupSelectionBarVis" ( 0 );
+			setLocalVarBool "ui_swfPopupSelectionDisabled" ( 0 );
+			setLocalVarString "ui_swfPopupContext" ( "invalid" );
+			focusfirst;
+			setdvar "ui_version_show" 0;
+			setLocalVarBool "ui_centerPopup" ( 0 );
+			setLocalVarInt "ui_open_time" ( milliseconds( ) );
+			setLocalVarString "sharedBackgroundMusic" ( "music_mainmenu_mp" );
+			setLocalVarString "temp" ( debugprint( "DEBUG" , " MP Root Open" ) );
+			if ( menuisopen( "menu_xboxlive_partyended" ) )
+			{
+				setLocalVarInt "ui_buttonNavGroupOffset" ( 0 );
+				setLocalVarInt "ui_buttonNavGroupCurrent" ( 0 );
+				setLocalVarString "ui_buttonNavGroupName" ( "invalid" );
+				setLocalVarBool "ui_swfSelectionButtonVis" ( 0 );
+				setLocalVarBool "ui_swfSelectionBarVis" ( 0 );
+				setLocalVarBool "ui_swfSelectionDisabled" ( 0 );
+				close "menu_xboxlive_partyended";
+				open "menu_xboxlive_partyended";
+			}
+		}
+		onEsc
+		{
+			close self;
+		}
+
+		#undef BACKGROUND_BLUR
+		#define BACKGROUND_BLUR
+		#include "ui_mp/bg.inc"
+		
+		
+		itemDef
+		{
+			rect -64 3 276.667 24.233 1 1
+			decoration
+			visible 0
+			style 1
+			forecolor 1 1 1 1
+			textfont 9
+			textalign 12
+			textalignx 41
+			textaligny 10
+			textscale TEXTSIZE_TITLE
+			visible when ( 1 )
+			text "SERVER SETTINGS"
+		}
+		
+
+		CHOICE_SEPERATOR( 0 )
+		CHOICE_DVAREDIT( 0, "hostname", "SERVER NAME", "sv_hostname", 20, ; )	
+		CHOICE_BUTTON( 1, "password", "PASSWORD", open "popup_serverpassword"; )
+		CHOICE_DVAREDIT( 2, "maxplayers", "MAXIMUM PLAYERS", "party_maxplayers", 18, ; )	
+		CHOICE_DVAREDIT( 3, "maxping", "MAXIMUM PING", "sv_maxping", 999, ; )	
+		CHOICE_SEPERATOR( 4 )
+
+		/*
+		MENU_PANEL_ITEM(1, "hostname", ITEM_TYPE_EDITFIELD, "@MENU_SERVER_NAME", "sv_hostname", 18) \
+		MENU_PANEL_ITEM(2, "maxplayers", ITEM_TYPE_NUMERICFIELD, "@MENU_MAXIMUM_PLAYERS", "party_maxplayers", 2) \
+		MENU_PANEL_ITEM(3, "maxping", ITEM_TYPE_NUMERICFIELD, "@MENU_MAXIMUM_PING", "sv_maxping", 3)
+		*/
+		itemDef
+		{
+			rect 0 0 0 20 3 3
+			visible 1
+			foreColor 1 1 1 0.5
+			type 1
+			style 1
+			textFont UI_FONT_NORMAL
+			textAlignX 9
+			textAlignY 17
+			textScale 0.325
+			exp rect x ( -755 )
+			exp rect y ( -13.667 )
+			exp rect w ( 45 )
+			visible when ( dvarString( "wideScreen" ) == 1 )
+			text "BACK"
+			onFocus
+			{
+				play "mouse_over";
+				setItemColor self "backColor" 0 0 0 0.25;
+			}
+			leaveFocus
+			{
+				setItemColor self "backColor" 0 0 0 0;
+			}
+			action
+			{
+				play "mouse_click";
+				close "self";
+			}
+		}
+
 	}	
 }

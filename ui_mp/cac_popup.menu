@@ -7,7 +7,7 @@
 #include "ui_mp/cac.inc"
 #include "ui_mp/cac_macros.inc"
 
-#include "ui/iw5_setup_common.menu"
+#include "ui/m2_setup_common.menu"
 #include "ui_mp/menustyle.inc"
 {
 	menuDef
@@ -20,8 +20,6 @@
 		soundLoop "music_mainmenu_mp"
 		onOpen
 		{
-			setDvar "ui_weapon_level_fake_primary";
-			setDvar "ui_weapon_level_fake_secondary";
 			setLocalVarString "ui_selected_ref" ( "" );
 			setLocalVarString "ui_streak1Name" ( getplayerdata( "killstreaks" , 0 ) );
 			setLocalVarString "ui_streak2Name" ( getplayerdata( "killstreaks" , 1 ) );
@@ -43,8 +41,10 @@
 			style 1
 			forecolor 1 1 1 1
 			textfont 9
-			textalign 14
-			textscale 0.5
+			textalign 12
+			textalignx 41
+			textaligny 10
+			textscale TEXTSIZE_TITLE
 			visible when ( 1 )
 			exp text ( locstring( "@MENU_YOUR_CLASSES_CAPS" ) )
 		}		
@@ -58,35 +58,56 @@
 		CHOICE_BUTTON_FOCUS( 4, "SWF_CLASS_04", CAC_STATNAME( 4 ), CAC_STATNUM( 4 ), CAC_STATNUM_FOCUS( 4 ), CLEAR_UI_HINT )
 
 		CHOICE_BUTTON_FOCUS_VIS(5,"SWF_CLASS_05",CAC_STATNAME( 5 ), CAC_STATNUM( 5 ), CAC_STATNUM_FOCUS( 5 ), CLEAR_UI_HINT, when ( getplayerdata( "prestige" ) > 0 ) )
-		//CHOICE_NEWICON_VIS(5,when(getplayerdata("customClasses",5,"inUse")==0&&getplayerdata("prestige")>5))
-
 		CHOICE_BUTTON_FOCUS_VIS(6,"SWF_CLASS_06",CAC_STATNAME( 6 ), CAC_STATNUM( 6 ), CAC_STATNUM_FOCUS( 6 ), CLEAR_UI_HINT, when ( getplayerdata( "prestige" ) > 2 ) )
-		//CHOICE_NEWICON_VIS(6,when(getplayerdata("customClasses",6,"inUse")==0&&getplayerdata("prestige")>6))
-
 		CHOICE_BUTTON_FOCUS_VIS(7,"SWF_CLASS_07",CAC_STATNAME( 7 ), CAC_STATNUM( 7 ), CAC_STATNUM_FOCUS( 7 ), CLEAR_UI_HINT, when ( getplayerdata( "prestige" ) > 6 ) )
-		//CHOICE_NEWICON_VIS(7,when(getplayerdata("customClasses",7,"inUse")==0&&getplayerdata("prestige")>7))
-
 		CHOICE_BUTTON_FOCUS_VIS(8,"SWF_CLASS_08",CAC_STATNAME( 8 ), CAC_STATNUM( 8 ), CAC_STATNUM_FOCUS( 8 ), CLEAR_UI_HINT, when ( getplayerdata( "prestige" ) > 8 ) )
-		//CHOICE_NEWICON_VIS(8,when(getplayerdata("customClasses",8,"inUse")==0&&getplayerdata("prestige")>8))
-
 		CHOICE_BUTTON_FOCUS_VIS(9,"SWF_CLASS_09",CAC_STATNAME( 9 ), CAC_STATNUM( 9 ), CAC_STATNUM_FOCUS( 9 ), CLEAR_UI_HINT, when ( getplayerdata( "prestige" ) > 9 ) )
-		//CHOICE_NEWICON_VIS(9,when(getplayerdata("customClasses",9,"inUse")==0&&getplayerdata("prestige")>9))
-		
+
 		CHOICE_BUTTON_FOCUS_VIS(10,"SWF_CLASS_10",CAC_STATNAME( 10 ), CAC_STATNUM( 10 ), CAC_STATNUM_FOCUS( 10 ), CLEAR_UI_HINT, when ( getplayerdata( "prestige" ) > 9 ) )
-		//CHOICE_NEWICON_VIS(10,when(getplayerdata("customClasses",5,"inUse")==0&&getplayerdata("prestige")>9))
-
 		CHOICE_BUTTON_FOCUS_VIS(11,"SWF_CLASS_11",CAC_STATNAME( 11 ), CAC_STATNUM( 11 ), CAC_STATNUM_FOCUS( 11 ), CLEAR_UI_HINT, when ( getplayerdata( "prestige" ) > 9 ) )
-		//CHOICE_NEWICON_VIS(11,when(getplayerdata("customClasses",6,"inUse")==0&&getplayerdata("prestige")>9))
-
 		CHOICE_BUTTON_FOCUS_VIS(12,"SWF_CLASS_12",CAC_STATNAME( 12 ), CAC_STATNUM( 12 ), CAC_STATNUM_FOCUS( 12 ), CLEAR_UI_HINT, when ( getplayerdata( "prestige" ) > 9 ) )
-		//CHOICE_NEWICON_VIS(12,when(getplayerdata("customClasses",7,"inUse")==0&&getplayerdata("prestige")>9))
-
 		CHOICE_BUTTON_FOCUS_VIS(13,"SWF_CLASS_13",CAC_STATNAME( 13 ), CAC_STATNUM( 13 ), CAC_STATNUM_FOCUS( 13 ), CLEAR_UI_HINT, when ( getplayerdata( "prestige" ) > 9 ) )
-		//CHOICE_NEWICON_VIS(13,when(getplayerdata("customClasses",8,"inUse")==0&&getplayerdata("prestige")>9))
-
 		CHOICE_BUTTON_FOCUS_VIS(14,"SWF_CLASS_14",CAC_STATNAME( 14 ), CAC_STATNUM( 14 ), CAC_STATNUM_FOCUS( 14 ), CLEAR_UI_HINT, when ( getplayerdata( "prestige" ) > 9 ) )
-		//CHOICE_NEWICON_VIS(14,when(getplayerdata("customClasses",9,"inUse")==0&&getplayerdata("prestige")>9))
+
+		CHOICE_SEPERATOR_VIS( 5, when ( getplayerdata( "prestige" ) == 0 ) )
+		CHOICE_SEPERATOR_VIS( 6, when ( getplayerdata( "prestige" ) == 1 || getplayerdata( "prestige" ) == 2 ) )
+		CHOICE_SEPERATOR_VIS( 7, when ( getplayerdata( "prestige" ) == 3 || getplayerdata( "prestige" ) == 4 || getplayerdata( "prestige" ) == 5 || getplayerdata( "prestige" ) == 6 ) )
+		CHOICE_SEPERATOR_VIS( 8, when ( getplayerdata( "prestige" ) == 7 || getplayerdata( "prestige" ) == 8 ) )
+		CHOICE_SEPERATOR_VIS( 9, when ( getplayerdata( "prestige" ) == 9 ) )
+		CHOICE_SEPERATOR_VIS( 15, when ( getplayerdata( "prestige" ) > 9 ) )
 
 		#include "ui_mp/cac_loadout.inc"
+
+		itemDef
+		{
+			rect 0 0 0 20 3 3
+			visible 1
+			foreColor 1 1 1 0.5
+			type 1
+			style 1
+			textFont UI_FONT_NORMAL
+			textAlignX 9
+			textAlignY 17
+			textScale 0.325
+			exp rect x ( -755 )
+			exp rect y ( -13.667 )
+			exp rect w ( 45 )
+			visible when ( dvarString( "wideScreen" ) == 1 )
+			text "BACK"
+			onFocus
+			{
+				play "mouse_over";
+				setItemColor self "backColor" 0 0 0 0.25;
+			}
+			leaveFocus
+			{
+				setItemColor self "backColor" 0 0 0 0;
+			}
+			action
+			{
+				play "mouse_click";
+				close "self";
+			}
+		}
 	}
 }

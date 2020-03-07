@@ -6,7 +6,7 @@
 #include "ui_mp/cac_macros.inc"
 #include "ui_mp/cac.inc"
 
-#include "ui/iw5_setup_common.menu"
+#include "ui/m2_setup_common.menu"
 #include "ui_mp/menustyle.inc"
 
 {

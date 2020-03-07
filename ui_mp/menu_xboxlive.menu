@@ -2,7 +2,7 @@
 ***************** Dumped by aerosoul94 *******************
 *********************************************************/
 #include "ui/menudef.h"
-#include "ui/iw5_setup_common.menu"
+#include "ui/m2_setup_common.menu"
 #include "ui_mp/menustyle.inc"
 
 {
@@ -167,7 +167,7 @@
 		CHOICE_BUTTON( 2, "live_cac", "@MENU_CREATE_A_CLASS_CAPS", open "cac_popup"; )
 		CHOICE_BUTTON( 3, "live_playercard", "CALLSIGN", open "popup_callsign"; )
 		CHOICE_BUTTON( 4, "live_barracks", "@MENU_BARRACKS_CAPS", open "menu_online_barracks"; )
-		CHOICE_BUTTON( 5, "vault", "THEATER", open "pc_theater_menu"; )
+		CHOICE_BUTTON( 5, "vault", "VAULT", open "pc_theater_menu"; )
 		CHOICE_SEPERATOR( 6 )
 
 		itemDef

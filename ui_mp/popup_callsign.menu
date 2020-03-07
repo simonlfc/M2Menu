@@ -1,5 +1,5 @@
 #include "ui/menudef.h"
-#include "ui/iw5_setup_common.menu"
+#include "ui/m2_setup_common.menu"
 #include "ui_mp/menustyle.inc"
 {
 	menuDef
@@ -69,8 +69,7 @@
 		CHOICE_BUTTON( 0, "name", "NAME", open "popup_playername"; )
 		CHOICE_BUTTON( 1, "title", "TITLE", open "menu_playercard_title_popup"; )
 		CHOICE_BUTTON( 2, "emblem", "EMBLEM", open "menu_playercard_icon_popup"; )
-		CHOICE_BUTTON_EX( 3, "clantag", "CLAN TAG", open "menu_xboxlive" ;, disabled when ( 1 ) )
-		CHOICE_SEPERATOR( 4 )
+		CHOICE_SEPERATOR( 3 )
 
 		itemDef
 		{

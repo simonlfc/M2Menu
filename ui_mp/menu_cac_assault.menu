@@ -7,7 +7,7 @@
 #include "ui_mp/cac_macros.inc"
 #include "ui_mp/cac.inc"
 
-#include "ui/iw5_setup_common.menu"
+#include "ui/m2_setup_common.menu"
 #include "ui_mp/menustyle.inc"
 
 {
@@ -81,8 +81,10 @@
 			style 1
 			forecolor 1 1 1 1
 			textfont 9
-			textalign 14
-			textscale 0.5
+			textalign 12
+			textalignx 41
+			textaligny 10
+			textscale TEXTSIZE_TITLE
 			visible when ( 1 )
 			exp text ( getplayerdata( "customClasses" , localvarint( "classIndex" ) , "name" ) )
 		}
@@ -104,7 +106,7 @@
 
 		CHOICE_SEPERATOR( 7 )
 
-		CHOICE_BUTTON(7, "CAC_BUTTON_LIST_7", "STRIKE PACKAGE", open "menu_cas_popup"; )
+		CHOICE_BUTTON(7, "CAC_BUTTON_LIST_7", "KILLSTREAKS", open "menu_cas_popup"; )
 		CHOICE_BUTTON(8, "CAC_BUTTON_LIST_8", "@MENU_DEATHSTREAK_CAPS", open "popup_cac_deathstreak"; )
 
 		CHOICE_SEPERATOR( 9 )

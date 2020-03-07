@@ -4,7 +4,7 @@
 
 #define CHOICE_GROUP	"settings_quick_vip"
 
-#include "ui/iw5_setup_common.menu"
+#include "ui/m2_setup_common.menu"
 #include "ui_mp/menustyle.inc"
 {
 	menuDef

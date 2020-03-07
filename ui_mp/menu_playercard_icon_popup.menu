@@ -4,7 +4,7 @@
 
 #define CHOICE_GROUP	"menu_playercard_icon_popup"
 
-#include "ui/iw5_setup_common.menu"
+#include "ui/m2_setup_common.menu"
 #include "ui_mp/menustyle.inc"
 {
 	menuDef

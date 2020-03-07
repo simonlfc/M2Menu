@@ -3,7 +3,7 @@
 #define CHOICE_GROUP		"popup_primary_attachments_bling"
 
 #include "ui_mp/iw4_macros.inc"
-#include "ui/iw5_setup_common.menu"
+#include "ui/m2_setup_common.menu"
 #include "ui_mp/menustyle.inc"
 {
 	menuDef

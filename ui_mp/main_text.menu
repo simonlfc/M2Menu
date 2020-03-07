@@ -2,7 +2,7 @@
 
 #define CHOICE_GROUP		"main_text"
 
-#include "ui/iw5_setup_common.menu"
+#include "ui/m2_setup_common.menu"
 #include "ui_mp/menustyle.inc"
 {
 	menuDef
@@ -54,6 +54,8 @@
 		{
 			open "quit_popmenu";
 		}
+
+		#define BACKGROUND_BLUR
 		#include "ui_mp/bg.inc"
 
 		itemDef
@@ -178,7 +180,7 @@
 					setDvar "onlinegame" 1;
 					exec "xstartprivateparty";
 					open "menu_xboxlive" ;, disabled when ( 1 ) )
-		CHOICE_BUTTON_EX( 1, "operations", "OPERATIONS", close self; )	
+		CHOICE_BUTTON( 1, "operations", "OPERATIONS", close self; )	
 		CHOICE_SEPERATOR( 2 )
 		CHOICE_BUTTON( 2, "friends", "FRIENDS", open "popup_friends"; )
 		CHOICE_BUTTON( 3, "store", "STORE", open "pc_store"; )

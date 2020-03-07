@@ -2,7 +2,7 @@
 
 #define CHOICE_GROUP		"controls_multi"
 
-#include "ui/iw5_setup_common.menu"
+#include "ui/m2_setup_common.menu"
 {
 	menuDef
 	{
