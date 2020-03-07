@@ -9,7 +9,7 @@
 			textscale 0.55
 			visible when ( ! ( dvarbool( "cl_ingame" ) || dvarbool( "sv_running" ) ) )
 		}
-#ifdef BACKGROUND_BLUR
+#ifdef NO_BACKGROUND_BLUR
 		itemDef // blur bg
 		{
 			rect -426.667 -240 853.333 480 2 2

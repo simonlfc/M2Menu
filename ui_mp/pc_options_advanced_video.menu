@@ -36,7 +36,8 @@
 		{
 			close "self";
 		}
-		#define BACKGROUND_BLUR
+
+
 		#include "ui_mp/bg.inc"
 		
 		itemDef
@@ -47,63 +48,72 @@
 			style 1
 			forecolor 1 1 1 1
 			textfont 9
-			textalign 14
-			textscale 0.5
+			textalign 12
+			textalignx 41
+			textaligny 10
+			textscale TEXTSIZE_TITLE
 			visible when ( 1 )
 			exp text ( locstring( "@MENU_ADVANCED_VIDEO" ) )
 		}		
 		
+		itemDef
+		{
+			rect 0 0 0 20 3 3
+			visible 1
+			foreColor 1 1 1 0.5
+			type 1
+			style 1
+			textFont UI_FONT_NORMAL
+			textAlignX 9
+			textAlignY 17
+			textScale 0.325
+			exp rect x ( -755 )
+			exp rect y ( -13.667 )
+			exp rect w ( 45 )
+			text "BACK"
+			onFocus
+			{
+				play "mouse_over";
+				setItemColor self "backColor" 0 0 0 0.25;
+			}
+			leaveFocus
+			{
+				setItemColor self "backColor" 0 0 0 0;
+			}
+			action
+			{
+				play "mouse_click";
+				close "self";
+				open "pc_options_video";
+			}
+		}
+
+		#undef CHOICE_DVAR_OFFSET_X
+		#define CHOICE_DVAR_OFFSET_X 250
+
 		CHOICE_SEPERATOR( 0 )
 		CHOICE_SEPERATOR( 4 )
-		CHOICE_SEPERATOR( 8 )
-		CHOICE_SEPERATOR( 11 )
-		CHOICE_SEPERATOR( 12 )
-		
-		#undef CHOICE_X_START
-		#define CHOICE_X_START	-317
-		
-		// caption
-		#undef CHOICE_TEXTALIGN
-		#define CHOICE_TEXTALIGN 6
-		//
-		#undef CHOICE_TEXT_OFFSET_X
-		#define CHOICE_TEXT_OFFSET_X -258	
-		
-		// dvar
-		#undef CHOICE_DVAR_TEXTALIGN
-		#define CHOICE_DVAR_TEXTALIGN 4
-		// 
-		#undef CHOICE_DVAR_OFFSET_X
-		#define CHOICE_DVAR_OFFSET_X 338
-		
-		#undef CHOICE_SIZE_X
-		#define CHOICE_SIZE_X 544
-
-		#undef CHOICE_HIGHLIGHT_COLOR
-		#define CHOICE_HIGHLIGHT_COLOR 1 1 1 1
-
-		#undef CHOICE_TEXT_HIGHLIGHT
-		#define CHOICE_TEXT_HIGHLIGHT "menu_button_selection_bar"
+		CHOICE_SEPERATOR( 7 )
+		CHOICE_SEPERATOR( 10 )
+		CHOICE_SEPERATOR_VIS( 14, when( dvarInt( "ui_r_picmip_manual" ) ) )
 				
-		CHOICE_DVARFLOATLIST_EX( 20, "aspectratio", "@MENU_ASPECT_RATIO", "ui_r_aspectratio", { "@MENU_AUTO" 0 "@MENU_STANDARD_4_3" 1 "@MENU_WIDE_16_10" 2 "@MENU_WIDE_16_9" 3 }, setDvarInt r_aspectratio dvarInt( "ui_r_aspectratio" ); setLocalVarBool "ui_showApply" ( 1 ), disabled when ( ( ( dvarstring( "gameMode" ) == "so" && ( dvarbool( "cl_ingame" ) || dvarbool( "sv_running" ) || inlobby( ) ) ) || ( dvarstring( "gameMode" ) == "mp" && ( dvarbool( "cl_ingame" ) || dvarbool( "sv_running" ) || inlobby( ) ) ) ) ) )
-		CHOICE_DVARFLOATLIST_EX( 21, "antialiasing", "@MENU_ANTIALIASING", "ui_r_aasamples", { "@MENU_OFF" 1 "@MENU_2X" 2 "@MENU_4X" 4 }, setlocalVarBool "ui_showApply" ( 1 ), disabled when ( ( ( dvarstring( "gameMode" ) == "so" && ( dvarbool( "cl_ingame" ) || dvarbool( "sv_running" ) || inlobby( ) ) ) || ( dvarstring( "gameMode" ) == "mp" && ( dvarbool( "cl_ingame" ) || dvarbool( "sv_running" ) || inlobby( ) ) ) ) ) )
-		CHOICE_DVARENUMLIST_EX( 22, "refreshrate", "@MENU_SCREEN_REFRESH_RATE", "ui_r_displayRefresh", "r_displayRefresh", setlocalVarBool "ui_showApply" ( 1 ), disabled when ( ( ( dvarstring( "gameMode" ) == "so" && ( dvarbool( "cl_ingame" ) || dvarbool( "sv_running" ) || inlobby( ) ) ) || ( dvarstring( "gameMode" ) == "mp" && ( dvarbool( "cl_ingame" ) || dvarbool( "sv_running" ) || inlobby( ) ) ) ) ) )
-		CHOICE_DVARYESNO_EX( 23, "syncframe", "@MENU_SYNC_EVERY_FRAME", "ui_r_vsync", setlocalVarBool "ui_showApply" ( 1 ), disabled when ( ( ( dvarstring( "gameMode" ) == "so" && ( dvarbool( "cl_ingame" ) || dvarbool( "sv_running" ) || inlobby( ) ) ) || ( dvarstring( "gameMode" ) == "mp" && ( dvarbool( "cl_ingame" ) || dvarbool( "sv_running" ) || inlobby( ) ) ) ) ) )
+		CHOICE_DVARFLOATLIST_EX( 0, "aspectratio", "ASPECT RATIO", "ui_r_aspectratio", { "@MENU_AUTO" 0 "@MENU_STANDARD_4_3" 1 "@MENU_WIDE_16_10" 2 "@MENU_WIDE_16_9" 3 }, setDvarInt r_aspectratio dvarInt( "ui_r_aspectratio" ); setLocalVarBool "ui_showApply" ( 1 ), disabled when ( ( ( dvarstring( "gameMode" ) == "so" && ( dvarbool( "cl_ingame" ) || dvarbool( "sv_running" ) || inlobby( ) ) ) || ( dvarstring( "gameMode" ) == "mp" && ( dvarbool( "cl_ingame" ) || dvarbool( "sv_running" ) || inlobby( ) ) ) ) ) )
+		CHOICE_DVARFLOATLIST_EX( 1, "antialiasing", "ANTI-ALIASING", "ui_r_aasamples", { "@MENU_OFF" 1 "@MENU_2X" 2 "@MENU_4X" 4 }, setlocalVarBool "ui_showApply" ( 1 ), disabled when ( ( ( dvarstring( "gameMode" ) == "so" && ( dvarbool( "cl_ingame" ) || dvarbool( "sv_running" ) || inlobby( ) ) ) || ( dvarstring( "gameMode" ) == "mp" && ( dvarbool( "cl_ingame" ) || dvarbool( "sv_running" ) || inlobby( ) ) ) ) ) )
+		CHOICE_DVARENUMLIST_EX( 2, "refreshrate", "REFRESH RATE", "ui_r_displayRefresh", "r_displayRefresh", setlocalVarBool "ui_showApply" ( 1 ), disabled when ( ( ( dvarstring( "gameMode" ) == "so" && ( dvarbool( "cl_ingame" ) || dvarbool( "sv_running" ) || inlobby( ) ) ) || ( dvarstring( "gameMode" ) == "mp" && ( dvarbool( "cl_ingame" ) || dvarbool( "sv_running" ) || inlobby( ) ) ) ) ) )
+		CHOICE_DVARYESNO_EX( 3, "syncframe", "VERTICAL SYNC", "ui_r_vsync", setlocalVarBool "ui_showApply" ( 1 ), disabled when ( ( ( dvarstring( "gameMode" ) == "so" && ( dvarbool( "cl_ingame" ) || dvarbool( "sv_running" ) || inlobby( ) ) ) || ( dvarstring( "gameMode" ) == "mp" && ( dvarbool( "cl_ingame" ) || dvarbool( "sv_running" ) || inlobby( ) ) ) ) ) )
 
-		CHOICE_DVARYESNO( 24, "shadows", "@MENU_SHADOWS", "sm_enable", setlocalVarBool "ui_showApply" ( 1 ) )
-		CHOICE_DVARYESNO( 25, "specular", "@MENU_SPECULAR_MAP", "r_specular", setlocalVarBool "ui_showApply" ( 1 ) )
-		CHOICE_DVARYESNO( 26, "dof", "@MENU_DOF", "r_dof_enable", setlocalVarBool "ui_showApply" ( 1 ) )
-		CHOICE_DVARYESNO_EX( 27, "screenspace_ao", "Screen Space Ambient Occlusion", "iw5_dvar", setlocalVarBool "ui_showApply" ( 1 ), disabled when( 1 ) )	
+		CHOICE_DVARYESNO( 4, "shadows", "SHADOWS", "sm_enable", setlocalVarBool "ui_showApply" ( 1 ) )
+		CHOICE_DVARYESNO( 5, "specular", "SPECULAR MAP", "r_specular", setlocalVarBool "ui_showApply" ( 1 ) )
+		CHOICE_DVARYESNO( 6, "dof", "DEPTH OF FIELD", "r_dof_enable", setlocalVarBool "ui_showApply" ( 1 ) )
 		
-		CHOICE_DVARYESNO_EX( 28, "zfeather", "@MENU_ZFEATHER_SMOKE", "ui_zfeather", setlocalVarBool "ui_showApply" ( 1 ), disabled when ( ( ( dvarstring( "gameMode" ) == "so" && ( dvarbool( "cl_ingame" ) || dvarbool( "sv_running" ) || inlobby( ) ) ) || ( dvarstring( "gameMode" ) == "mp" && ( dvarbool( "cl_ingame" ) || dvarbool( "sv_running" ) || inlobby( ) ) ) ) ) )
-		CHOICE_DVARYESNO( 29, "ragdoll", "@MENU_RAGDOLL", "ragdoll_enable", setlocalVarBool "ui_showApply" ( 1 ) )
-		CHOICE_DVARYESNO( 30, "bulletimpact", "@MENU_BULLET_IMPACTS", "fx_marks", setlocalVarBool "ui_showApply" ( 1 ) )	
-		CHOICE_DVARYESNO_EX( 31, "imagequality", "Image Quality", "iw5_dvar", setlocalVarBool "ui_showApply" ( 1 ), disabled when( 1 ) )	
+		CHOICE_DVARYESNO_EX( 7, "zfeather", "SOFTER SMOKE EDGES", "ui_zfeather", setlocalVarBool "ui_showApply" ( 1 ), disabled when ( ( ( dvarstring( "gameMode" ) == "so" && ( dvarbool( "cl_ingame" ) || dvarbool( "sv_running" ) || inlobby( ) ) ) || ( dvarstring( "gameMode" ) == "mp" && ( dvarbool( "cl_ingame" ) || dvarbool( "sv_running" ) || inlobby( ) ) ) ) ) )
+		CHOICE_DVARYESNO( 8, "ragdoll", "RAGDOLL EFFECTS", "ragdoll_enable", setlocalVarBool "ui_showApply" ( 1 ) )
+		CHOICE_DVARYESNO( 9, "bulletimpact", "BULLET IMPACTS", "fx_marks", setlocalVarBool "ui_showApply" ( 1 ) )	
 
-		CHOICE_DVARFLOATLIST_EX( 32, "texquality", "@MENU_TEXTURE_QUALITY", "ui_r_picmip_manual", { "@MENU_AUTOMATIC" 0 "@MENU_MANUAL" 1 }, setlocalVarBool "ui_showApply" ( 1 ), disabled when ( ( ( dvarstring( "gameMode" ) == "so" && ( dvarbool( "cl_ingame" ) || dvarbool( "sv_running" ) || inlobby( ) ) ) || ( dvarstring( "gameMode" ) == "mp" && ( dvarbool( "cl_ingame" ) || dvarbool( "sv_running" ) || inlobby( ) ) ) ) ) )
-		CHOICE_DVARFLOATLIST_VIS( 33, "texres", "@MENU_TEXTURE_RESOLUTION", "ui_r_picmip", { "@MENU_LOW" 3 "@MENU_NORMAL" 2 "@MENU_HIGH" 1 "@MENU_EXTRA" 0 }, setlocalVarBool "ui_showApply" ( 1 ), when( dvarInt( "ui_r_picmip_manual" ) ) )
-		CHOICE_DVARFLOATLIST_VIS( 34, "normmap", "@MENU_NORMAL_MAP_RESOLUTION", "ui_r_picmip_bump", { "@MENU_LOW" 3 "@MENU_NORMAL" 2 "@MENU_HIGH" 1 "@MENU_EXTRA" 0 }, setlocalVarBool "ui_showApply" ( 1 ), when( dvarInt( "ui_r_picmip_manual" ) ) )
-		CHOICE_DVARFLOATLIST_VIS( 35, "specmap", "@MENU_SPECULAR_MAP_RESOLUTION", "ui_r_picmip_spec", { "@MENU_LOW" 3 "@MENU_NORMAL" 2 "@MENU_HIGH" 1 "@MENU_EXTRA" 0 }, setlocalVarBool "ui_showApply" ( 1 ), when( dvarInt( "ui_r_picmip_manual" ) ) )
-		}
+		CHOICE_DVARFLOATLIST_EX( 10, "texquality", "TEXTURE QUALITY", "ui_r_picmip_manual", { "@MENU_AUTOMATIC" 0 "@MENU_MANUAL" 1 }, setlocalVarBool "ui_showApply" ( 1 ), disabled when ( ( ( dvarstring( "gameMode" ) == "so" && ( dvarbool( "cl_ingame" ) || dvarbool( "sv_running" ) || inlobby( ) ) ) || ( dvarstring( "gameMode" ) == "mp" && ( dvarbool( "cl_ingame" ) || dvarbool( "sv_running" ) || inlobby( ) ) ) ) ) )
+		CHOICE_DVARFLOATLIST_VIS( 11, "texres", "TEXTURE RESOLUTION", "ui_r_picmip", { "@MENU_LOW" 3 "@MENU_NORMAL" 2 "@MENU_HIGH" 1 "@MENU_EXTRA" 0 }, setlocalVarBool "ui_showApply" ( 1 ), when( dvarInt( "ui_r_picmip_manual" ) ) )
+		CHOICE_DVARFLOATLIST_VIS( 12, "normmap", "NORMAL MAP RESOLUTION", "ui_r_picmip_bump", { "@MENU_LOW" 3 "@MENU_NORMAL" 2 "@MENU_HIGH" 1 "@MENU_EXTRA" 0 }, setlocalVarBool "ui_showApply" ( 1 ), when( dvarInt( "ui_r_picmip_manual" ) ) )
+		CHOICE_DVARFLOATLIST_VIS( 13, "specmap", "SPECULAR MAP RESOLUTION", "ui_r_picmip_spec", { "@MENU_LOW" 3 "@MENU_NORMAL" 2 "@MENU_HIGH" 1 "@MENU_EXTRA" 0 }, setlocalVarBool "ui_showApply" ( 1 ), when( dvarInt( "ui_r_picmip_manual" ) ) )
+	
 	}
 }	

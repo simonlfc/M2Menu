@@ -52,7 +52,7 @@
 			execNow "profile_menuDvarsFinish; resetViewport";
 		}
 		
-		#define BACKGROUND_BLUR
+		#define NO_BACKGROUND_BLUR
 		#include "ui_mp/bg.inc"
 		
 		itemDef
@@ -63,69 +63,65 @@
 			style 1
 			forecolor 1 1 1 1
 			textfont 9
-			textalign 14
-			textscale 0.5
+			textalign 12
+			textalignx 41
+			textaligny 10
+			textscale TEXTSIZE_TITLE
 			visible when ( 1 )
 			exp text ( locstring( "@MENU_OPTIONS_CAPS" ) )
 		}
 		itemDef
 		{
-			rect 253.5 5 344 34 1 1
+			rect 220 3 276.667 24.233 1 1
 			decoration
-			visible 1
+			visible 0
+			style 1
 			forecolor 1 1 1 1
 			textfont 9
-			textalign 4
-			textscale 0.45
-			text "@MENU_VIDEO"
+			textalign 12
+			textalignx 41
+			textaligny 10
+			textscale TEXTSIZE_TITLE
+			visible when ( 1 )
+			text "VIDEO"
 		}
 		#include "ui_mp/leftside_optionsx.inc"
-		
-		#undef CHOICE_X_START
-		#define CHOICE_X_START	4
-		
-		// caption
-		#undef CHOICE_TEXTALIGN
-		#define CHOICE_TEXTALIGN 4
 
-		#undef CHOICE_TEXT_OFFSET_X
-		#define CHOICE_TEXT_OFFSET_X 0
-
-		// dvar
-		#undef CHOICE_DVAR_TEXTALIGN
-		#define CHOICE_DVAR_TEXTALIGN 4
-		
-		#undef CHOICE_HIGHLIGHT_COLOR
-		#define CHOICE_HIGHLIGHT_COLOR 1 1 1 1
-
-		#undef CHOICE_TEXT_HIGHLIGHT
-		#define CHOICE_TEXT_HIGHLIGHT "gradient_center"
-				
-		PREPROC_SHADER_DRAW( 435 140.667 95 6 1 1, ORIGIN_NONE, "white", 0 0 0 1 )
-		//PREPROC_SHADER_DRAW( 435 140.667 0 6 1 1, ORIGIN_NONE, "white", 1 1 1 1 exp rect w( ( dvarFloat( "profileMenuOption_Gamma" ) + 20 ) ) )
-
-
-		CHOICE_DVARENUMLIST( 		20, "videomode", 		"@MENU_VIDEO_MODE",		"ui_r_mode", "r_mode", 	setlocalVarBool "ui_showApply" ( 1 ) ) 
-		CHOICE_DVARYESNO( 			21, "d3d9x",			"@MENU_D3D9EX",			"r_useD3D9Ex", 			setlocalVarBool "ui_showApply" ( 1 ) ) 
-		CHOICE_DVARYESNO( 			22, "fullscreen", 		"@MENU_FULLSCREEN", 	"ui_r_fullscreen", 		setLocalVarBool "ui_showApply" ( 1 ); exec "vid_xpos 0;vid_ypos 0"; )
-		CHOICE_DVARYESNO( 			23, "noborder", 		"@MENU_NOBORDER", 		"r_noborder", 			setLocalVarBool "ui_showApply" ( 1 ); exec "vid_xpos 0;vid_ypos 0"; )
-		CHOICE_DVARYESNO( 			24, "ncursor", 			"@MENU_NATIVECURSOR", 	"ui_nativeCursor", 		setLocalVarBool "ui_showApply" ( 1 ); exec "vid_xpos 0;vid_ypos 0"; )
-		CHOICE_DVARSLIDER_FOCUS( 	25, "brightness", 		"@MENU_BRIGHTNESS", 	"r_gamma", 0.8, 0.5, 3, ExecNow "profile_menuDvarsFinish";, setLocalVarString "ui_brightness_hint_display" ( 1 ), setLocalVarString "ui_brightness_hint_display" ( 0 ) )
-		CHOICE_DVARFLOATLIST_EX( 	26, "fov", 				"@MENU_FOV", 	"cg_fov", {"65 (Default)" 65 "80" 80 "90" 90 "120" 120}, setlocalVarBool "ui_showApply" ( 1 ), disabled when ( ( ( dvarstring( "gameMode" ) == "so" && ( dvarbool( "cl_ingame" ) || dvarbool( "sv_running" ) || inlobby( ) ) ) || ( dvarstring( "gameMode" ) == "mp" && ( dvarbool( "cl_ingame" ) || dvarbool( "sv_running" ) || inlobby( ) ) ) ) ) )
-		CHOICE_DVARFLOATLIST_EX( 	27, "fps", 				"@MENU_MAXFPS", "com_maxfps", { "30" 30 "85 (Default)" 85 "125" 125 "250" 250 "333" 333 "Unlimited" 0}, setlocalVarBool "ui_showApply" ( 1 ), disabled when ( ( ( dvarstring( "gameMode" ) == "so" && ( dvarbool( "cl_ingame" ) || dvarbool( "sv_running" ) || inlobby( ) ) ) || ( dvarstring( "gameMode" ) == "mp" && ( dvarbool( "cl_ingame" ) || dvarbool( "sv_running" ) || inlobby( ) ) ) ) ) )
-		
-		// repositioned accordingly to stock IW5
-		#undef CHOICE_TEXTALIGN
-		#define CHOICE_TEXTALIGN 6
+		#undef CHOICE_Y_START
+		#define CHOICE_Y_START 55
 
 		#undef CHOICE_X_START
-		#define CHOICE_X_START 4
-		
-		#undef CHOICE_TEXT_OFFSET_X
-		#define CHOICE_TEXT_OFFSET_X -248
-		
-		CHOICE_BUTTON( 29, "advancedsettings", "@MENU_ADVANCED_VIDEO", LOCAL_CLOSE_ALL_IW5 open "pc_options_advanced_video"; )
+		#define CHOICE_X_START 250
 
+		#undef CHOICE_DVAR_OFFSET_Y
+		#define CHOICE_DVAR_OFFSET_Y 1
+
+		#undef CHOICE_DVAR_OFFSET_X
+		#define CHOICE_DVAR_OFFSET_X 250
+
+		#undef CHOICE_TEXT_OFFSET_Y
+		#define CHOICE_TEXT_OFFSET_Y	2
+
+		
+
+		CHOICE_SEPERATOR( 0 )
+		CHOICE_DVARENUMLIST( 		0, "videomode", 		"RESOLUTION",		"ui_r_mode", "r_mode", 	setlocalVarBool "ui_showApply" ( 1 ) ) 
+		CHOICE_DVARYESNO( 			1, "d3d9x",			"DIRECT3D 9",			"r_useD3D9Ex", 			setlocalVarBool "ui_showApply" ( 1 ) ) 
+		CHOICE_DVARYESNO( 			2, "fullscreen", 		"FULLSCREEN", 	"ui_r_fullscreen", 		setLocalVarBool "ui_showApply" ( 1 ); exec "vid_xpos 0;vid_ypos 0"; )
+		CHOICE_DVARYESNO( 			3, "noborder", 		"DISABLE WINDOW BORDER", 		"r_noborder", 			setLocalVarBool "ui_showApply" ( 1 ); exec "vid_xpos 0;vid_ypos 0"; )
+		CHOICE_DVARFLOATLIST_EX( 	5, "fps", 				"FRAMERATE LIMIT", "com_maxfps", { "30" 30 "85 (Default)" 85 "125" 125 "250" 250 "333" 333 "Unlimited" 0}, setlocalVarBool "ui_showApply" ( 1 ), disabled when ( ( ( dvarstring( "gameMode" ) == "so" && ( dvarbool( "cl_ingame" ) || dvarbool( "sv_running" ) || inlobby( ) ) ) || ( dvarstring( "gameMode" ) == "mp" && ( dvarbool( "cl_ingame" ) || dvarbool( "sv_running" ) || inlobby( ) ) ) ) ) )
+		CHOICE_SEPERATOR( 6 )
+		CHOICE_BUTTON( 6, "advancedsettings", "ADVANCED VIDEO", LOCAL_CLOSE_ALL_IW5 open "pc_options_advanced_video"; )
+
+		#undef CHOICE_SIZE_X
+		#define CHOICE_SIZE_X 300
+
+		CHOICE_DVARSLIDER_FOCUS( 	4, "brightness", 		"BRIGHTNESS", 	"r_gamma", 0.8, 0.5, 3, ExecNow "profile_menuDvarsFinish";, setLocalVarString "ui_brightness_hint_display" ( 1 ), setLocalVarString "ui_brightness_hint_display" ( 0 ) )
+		
+		#undef CHOICE_SIZE_X
+		/* 		CHOICE_DVARFLOATLIST_EX( 	6, "fov", 				"FIELD OF VIEW", 	"cg_fov", {"65 (Default)" 65 "80" 80 "90" 90 "120" 120}, setlocalVarBool "ui_showApply" ( 1 ), disabled when ( ( ( dvarstring( "gameMode" ) == "so" && ( dvarbool( "cl_ingame" ) || dvarbool( "sv_running" ) || inlobby( ) ) ) || ( dvarstring( "gameMode" ) == "mp" && ( dvarbool( "cl_ingame" ) || dvarbool( "sv_running" ) || inlobby( ) ) ) ) ) )
+					MOVE TO MULTI */
+		/*
 		itemDef
 		{
 			name "graphic_warning"
@@ -154,5 +150,6 @@
 			text "@MENU_BRIGHTNESS_HINT_PC"
 			visible when ( localvarbool( "ui_brightness_hint_display" ) )
 		}
+		*/
 	}	
 }

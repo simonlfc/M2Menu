@@ -26,7 +26,7 @@
 			close "self";
 		}
 
-		#define BACKGROUND_BLUR
+		#define NO_BACKGROUND_BLUR
 		#include "ui_mp/bg.inc"
 
 		itemDef
@@ -218,8 +218,8 @@
 			open "settings_bonus_map"
 		}
 
-		#undef BACKGROUND_BLUR
-		#define BACKGROUND_BLUR
+		#undef NO_BACKGROUND_BLUR
+		#define NO_BACKGROUND_BLUR
 		#include "ui_mp/bg.inc"
 
 		itemDef

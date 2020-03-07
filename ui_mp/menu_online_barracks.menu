@@ -31,7 +31,7 @@
 			close self;
 		}
 		
-		#define BACKGROUND_BLUR
+		#define NO_BACKGROUND_BLUR
 		#include "ui_mp/bg.inc"
 		itemDef
 		{
@@ -757,6 +757,36 @@
 			textscale 0.55
 			visible when ( ( 1 ) && ( 1 ) )
 			exp material ( tablelookup( "mp/rankIconTable.csv" , 0 , levelforexperience( getplayerdata( "experience" ) ) , getplayerdata( "prestige" ) + 1 ) )
+		}
+		itemDef
+		{
+			rect 0 0 0 20 3 3
+			visible 1
+			foreColor 1 1 1 0.5
+			type 1
+			style 1
+			textFont UI_FONT_NORMAL
+			textAlignX 9
+			textAlignY 17
+			textScale 0.325
+			exp rect x ( -755 )
+			exp rect y ( -13.667 )
+			exp rect w ( 45 )
+			text "BACK"
+			onFocus
+			{
+				play "mouse_over";
+				setItemColor self "backColor" 0 0 0 0.25;
+			}
+			leaveFocus
+			{
+				setItemColor self "backColor" 0 0 0 0;
+			}
+			action
+			{
+				play "mouse_click";
+				close "self";
+			}
 		}
 	}		
 }

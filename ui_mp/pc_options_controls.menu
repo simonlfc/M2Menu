@@ -38,7 +38,7 @@
 			execnow "profile_menuDvarsFinish; resetViewport";
 		}
 		
-		#define BACKGROUND_BLUR
+		#define NO_BACKGROUND_BLUR
 		#include "ui_mp/bg.inc"
 		
 		itemDef

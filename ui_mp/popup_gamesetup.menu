@@ -46,7 +46,7 @@
 			close self;
 		}
 
-		#define BACKGROUND_BLUR
+		#define NO_BACKGROUND_BLUR
 		#include "ui_mp/bg.inc"
 		
 		
@@ -153,8 +153,8 @@
 			close self;
 		}
 
-		#undef BACKGROUND_BLUR
-		#define BACKGROUND_BLUR
+		#undef NO_BACKGROUND_BLUR
+		#define NO_BACKGROUND_BLUR
 		#include "ui_mp/bg.inc"
 		
 		

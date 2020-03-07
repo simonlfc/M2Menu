@@ -40,7 +40,7 @@
 			open "menu_xboxlive";
 		}
 		
-		#define BACKGROUND_BLUR
+		#define NO_BACKGROUND_BLUR
 		#include "ui_mp/bg.inc"
 
 		itemDef
@@ -137,7 +137,6 @@
 			exp rect x ( -755 )
 			exp rect y ( -13.667 )
 			exp rect w ( 45 )
-			visible when ( dvarString( "wideScreen" ) == 1 )
 			text "BACK"
 			onFocus
 			{
