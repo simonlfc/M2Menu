@@ -83,7 +83,7 @@
 			textaligny 10
 			textscale TEXTSIZE_TITLE
 			visible when ( 1 )
-			text "VIDEO"
+			text "GRAPHICS"
 		}
 		#include "ui_mp/leftside_optionsx.inc"
 
@@ -109,10 +109,10 @@
 		CHOICE_DVARYESNO( 			1, "d3d9x",			"DIRECT3D 9",			"r_useD3D9Ex", 			setlocalVarBool "ui_showApply" ( 1 ) ) 
 		CHOICE_DVARYESNO( 			2, "fullscreen", 		"FULLSCREEN", 	"ui_r_fullscreen", 		setLocalVarBool "ui_showApply" ( 1 ); exec "vid_xpos 0;vid_ypos 0"; )
 		CHOICE_DVARYESNO( 			3, "noborder", 		"DISABLE WINDOW BORDER", 		"r_noborder", 			setLocalVarBool "ui_showApply" ( 1 ); exec "vid_xpos 0;vid_ypos 0"; )
-		CHOICE_DVARFLOATLIST_EX( 	5, "fps", 				"FRAMERATE LIMIT", "com_maxfps", { "30" 30 "85 (Default)" 85 "125" 125 "250" 250 "333" 333 "Unlimited" 0}, setlocalVarBool "ui_showApply" ( 1 ), disabled when ( ( ( dvarstring( "gameMode" ) == "so" && ( dvarbool( "cl_ingame" ) || dvarbool( "sv_running" ) || inlobby( ) ) ) || ( dvarstring( "gameMode" ) == "mp" && ( dvarbool( "cl_ingame" ) || dvarbool( "sv_running" ) || inlobby( ) ) ) ) ) )
-		CHOICE_DVARFLOATLIST(6, "dfps",		"SHOW FRAMERATE",				"cg_drawFPS", {"Off" 0 "Simple" 1 "SimpleRanges" 2 "Verbose" 3 "Verbose+Viewpos" 4}, ; )
+		CHOICE_DVARFLOATLIST_EX( 	5, "fps", 				"FRAMERATE LIMIT", "com_maxfps", { "30" 30 "60" 60 "90" 90 "125" 125 "144" 144 "250" 250 "333" 333 "UNLIMITED" 0}, setlocalVarBool "ui_showApply" ( 1 ), disabled when ( ( ( dvarstring( "gameMode" ) == "so" && ( dvarbool( "cl_ingame" ) || dvarbool( "sv_running" ) || inlobby( ) ) ) || ( dvarstring( "gameMode" ) == "mp" && ( dvarbool( "cl_ingame" ) || dvarbool( "sv_running" ) || inlobby( ) ) ) ) ) )
+		CHOICE_DVARFLOATLIST(6, "dfps",		"SHOW FRAMERATE",				"cg_drawFPS", {"NO" 0 "YES" 1 "RANGES" 2 "VERBOSE" 3 "VERBOSE EXTRA" 4}, ; )
 		CHOICE_SEPERATOR( 7 )
-		CHOICE_BUTTON( 7, "advancedsettings", "ADVANCED VIDEO", LOCAL_CLOSE_ALL_IW5 open "pc_options_advanced_video"; )
+		CHOICE_BUTTON( 7, "advancedsettings", "ADVANCED SETTINGS", LOCAL_CLOSE_ALL_IW5 open "pc_options_advanced_video"; )
 
 		CHOICE_SEPERATOR( 8 )
 		#undef CHOICE_SIZE_X

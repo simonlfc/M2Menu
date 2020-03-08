@@ -115,33 +115,5 @@
 		CHOICE_DVARFLOATLIST_FOCUS_VIS(6, "frn", "FRIEND NOTIFICATIONS",			"cl_notifyFriendState", {"Always" -1 "Never" 0 "in Menu" 1}, ;, "@MPUI_DESC_FRIENDNOTIFY", ;, when( dvarBool( "ui_streamFriendly" ) ) )
 
 		CHOICE_SEPERATOR( 7 )
-		itemDef
-		{
-			name "graphic_warning"
-			rect 10 -160 206 240 1 3
-			decoration
-			autowrapped
-			visible 1
-			style 1
-			forecolor 1 1 1 1
-			type 1
-			textscale 0.375
-			text "@MENU_GRAPHICS_WARNING"
-			visible when ( !localvarbool( "ui_brightness_hint_display" ) )
-		}
-		itemDef
-		{
-			name "brightness_hint"
-			rect 10 -160 206 240 1 3
-			decoration
-			autowrapped
-			visible 1
-			style 1
-			forecolor 1 1 1 1
-			type 1
-			textscale 0.375
-			text "@MENU_BRIGHTNESS_HINT_PC"
-			visible when ( localvarbool( "ui_brightness_hint_display" ) )
-		}
 	}	
 }

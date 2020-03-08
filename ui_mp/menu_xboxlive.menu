@@ -147,8 +147,8 @@
 			text "MULTIPLAYER"
 		}
 		CHOICE_SEPERATOR( 0 )
-		CHOICE_BUTTON( 0, "live_servers", "BROWSE SERVERS", open "pc_join_unranked"; )
-		CHOICE_BUTTON( 1, "live_privategame", "@MENU_PRIVATE_MATCH_CAPS",
+		CHOICE_BUTTON_FOCUS( 0, "live_servers", "BROWSE SERVERS", open "pc_join_unranked";, setLocalVarString "ui_hint_text" ( "@MPUI_DESC_SERVERBROWSER"), CLEAR_UI_HINT )
+		CHOICE_BUTTON_FOCUS( 1, "live_privategame", "@MENU_PRIVATE_MATCH_CAPS",
 					exec "xrequirelivesignin";
 					setDvar "systemlink" 0;
 					setDvar "splitscreen" 0;
@@ -165,12 +165,14 @@
 					exec "ui_enumeratesaved";
 					setDvar "xblive_privateserver" 1;
 					exec "xstartprivatematch";
-					open "menu_xboxlive_privatelobby"; )
-		CHOICE_BUTTON( 2, "live_cac", "@MENU_CREATE_A_CLASS_CAPS", open "cac_popup"; )
-		CHOICE_BUTTON( 3, "live_playercard", "PLAYERCARD", open "popup_callsign"; )
-		CHOICE_BUTTON( 4, "live_barracks", "@MENU_BARRACKS_CAPS", open "menu_online_barracks"; )
-		CHOICE_BUTTON( 5, "vault", "VAULT", open "pc_theater_menu"; )
+					open "menu_xboxlive_privatelobby";, setLocalVarString "ui_hint_text" ( "@MPUI_DESC_PRIVMATCH"), CLEAR_UI_HINT )
+		CHOICE_BUTTON_FOCUS( 2, "live_cac", "@MENU_CREATE_A_CLASS_CAPS", open "cac_popup";, setLocalVarString "ui_hint_text" ( "@MPUI_DESC_CREATE_A_CLASS"), CLEAR_UI_HINT )
+		CHOICE_BUTTON_FOCUS( 3, "live_playercard", "PLAYERCARD", open "popup_callsign";, setLocalVarString "ui_hint_text" ( "@MPUI_DESC_PLAYERCARD"), CLEAR_UI_HINT )
+		CHOICE_BUTTON_FOCUS( 4, "live_barracks", "@MENU_BARRACKS_CAPS", open "menu_online_barracks";, setLocalVarString "ui_hint_text" ( "@MPUI_DESC_BARRACKS2"), CLEAR_UI_HINT )
+		CHOICE_BUTTON_FOCUS( 5, "vault", "VAULT", open "pc_theater_menu";, setLocalVarString "ui_hint_text" ( "@MPUI_DESC_VAULT"), CLEAR_UI_HINT )
 		CHOICE_SEPERATOR( 6 )
+
+		CHOICE_DESCRIPTION( 1, -20, 207.334 ) // vis, x, y
 
 		itemDef
 		{
@@ -316,19 +318,6 @@
 			speed 50
 			spacing 30
 			exp rect w ( 544 + ( dvarint( "wideScreen" ) * 182 ) )
-		}
-		itemDef
-		{
-			rect 0 220 212 18 1 1
-			decoration
-			autowrapped
-			visible 1
-			forecolor 1 1 1 0.65
-			textfont 3
-			textalign 6
-			textscale 0.375
-			visible when ( !localvarbool( "ui_centerPopup" ) && !localvarbool( "ui_leftPopup" ) )
-			exp text ( localvarstring( "ui_hint_text" ) )
 		}
 		itemDef
 		{

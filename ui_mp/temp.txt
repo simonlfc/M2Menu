@@ -1,0 +1,124 @@
+		
+		/*
+		
+		itemDef
+		{
+			name "server"
+			rect 0 103 10 16 0 0
+			visible 1
+			group "grpListHeader"
+			style 1
+			border 0
+			foreColor 1 1 1 1
+			backColor 0.3 0.5 0.2 0.3
+			borderColor 0.1 0.1 0.1 0.25
+			type 1
+			textFont 1
+			textAlign 8
+			textAlignX 2
+			textScale 0.25
+			text "NAME"
+			exp rect x ( ( 6 + 22 ) )
+			exp rect w ( 249 )
+			onFocus
+			{
+				play "mouse_over";
+				setItemColor "serverColumn" borderColor 1 1 1 1;
+				setLocalVarString "ui_hint_text" ( "Sort by server name" );
+			}
+			leaveFocus
+			{
+				setItemColor "serverColumn" borderColor 0.5 0.5 0.5 0.5;
+				setLocalVarString "ui_hint_text" ( "@NULL_EMPTY" );
+			}
+			action
+			{
+				play "mouse_click";
+				uiScript "ServerSort" 2;
+				setItemColor "grpListHeader" backColor 0.3 0.5 0.2 0.3;
+				setItemColor self "backColor" 0.6039 0.6353 0.6039 1;
+				setItemColor "grpColumn" backColor 0 0 0 0;
+				setItemColor "serverColumn" backColor 0 0 0 0.2;
+			}
+		}
+		itemDef
+		{
+			name "players"
+			rect 0 103 10 16 0 0
+			visible 1
+			group "grpListHeader"
+			style 1
+			border 0
+			foreColor 1 1 1 1
+			backColor 0.3 0.5 0.2 0.3
+			borderColor 0.1 0.1 0.1 0.25
+			type 1
+			textFont 1
+			textAlign 8
+			textAlignX 2
+			textScale 0.25
+			text "PLAYERS"
+			exp rect x ( 367 )
+			exp rect w ( 48 )
+			onFocus
+			{
+				play "mouse_over";
+				setItemColor "playerColumn" borderColor 1 1 1 1;
+				setLocalVarString "ui_hint_text" ( "Sort by player count" );
+			}
+			leaveFocus
+			{
+				setItemColor "playerColumn" borderColor 0.5 0.5 0.5 0.5;
+				setLocalVarString "ui_hint_text" ( "@NULL_EMPTY" );
+			}
+			action
+			{
+				play "mouse_click";
+				uiScript "ServerSort" 4;
+				setItemColor "grpListHeader" backColor 0.3 0.5 0.2 0.3;
+				setItemColor self "backColor" 0.6039 0.6353 0.6039 1;
+				setItemColor "grpColumn" backColor 0 0 0 0;
+				setItemColor "playerColumn" backColor 0 0 0 0.2;
+			}
+		}
+		itemDef
+		{
+			name "ping"
+			rect 0 103 10 16 0 0
+			visible 1
+			group "grpListHeader"
+			style 1
+			border 0
+			foreColor 1 1 1 1
+			backColor 0.3 0.5 0.2 0.3
+			borderColor 0.1 0.1 0.1 0.25
+			type 1
+			textFont 1
+			textAlign 8
+			textAlignX 2
+			textScale 0.25
+			text "PING"
+			exp rect x ( 566 )
+			exp rect w ( 63 )
+			onFocus
+			{
+				play "mouse_over";
+				setItemColor "pingColumn" borderColor 1 1 1 1;
+				setLocalVarString "ui_hint_text" ( "Sort by server ping" );
+			}
+			leaveFocus
+			{
+				setItemColor "pingColumn" borderColor 0.5 0.5 0.5 0.5;
+				setLocalVarString "ui_hint_text" ( "@NULL_EMPTY" );
+			}
+			action
+			{
+				play "mouse_click";
+				uiScript "ServerSort" 7;
+				setItemColor "grpListHeader" backColor 0.3 0.5 0.2 0.3;
+				setItemColor self "backColor" 0.6039 0.6353 0.6039 1;
+				setItemColor "grpColumn" backColor 0 0 0 0;
+				setItemColor "pingColumn" backColor 0 0 0 0.2;
+			}
+		}
+		*/

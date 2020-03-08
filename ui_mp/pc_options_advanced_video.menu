@@ -53,7 +53,7 @@
 			textaligny 10
 			textscale TEXTSIZE_TITLE
 			visible when ( 1 )
-			text "ADVANCED VIDEO"
+			text "ADVANCED SETTINGS"
 		}		
 		
 		itemDef

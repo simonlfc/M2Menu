@@ -1,14 +1,14 @@
 // IW3 
 
 CHOICE_SEPERATOR( 0 )
-CHOICE_BUTTON( 0, "options_0", "VIDEO",                  LOCAL_CLOSE_ALL_IW5 open "pc_options_video"; )
+CHOICE_BUTTON( 0, "options_0", "GRAPHICS",                  LOCAL_CLOSE_ALL_IW5 open "pc_options_video"; )
 CHOICE_BUTTON( 1, "options_1", "AUDIO",                  LOCAL_CLOSE_ALL_IW5 open "pc_options_audio"; )
 CHOICE_BUTTON( 2, "options_2", "CONTROLS",               LOCAL_CLOSE_ALL_IW5 open "pc_options_controls"; )
 CHOICE_BUTTON( 3, "options_3", "MULTIPLAYER",                   LOCAL_CLOSE_ALL_IW5 open "pc_options_multi"; )
 
 CHOICE_SEPERATOR( 4 )
 
-CHOICE_BUTTON_EX( 4, "options_4", "OPTIMAL VIDEO AND AUDIO",                  LOCAL_CLOSE_ALL_IW5 open "options_graphics_defaults";, disabled when ( ( ( dvarstring( "gameMode" ) == "so" && ( dvarbool( "cl_ingame" ) || dvarbool( "sv_running" ) || inlobby() ) ) || ( dvarstring( "gameMode" ) == "mp" && ( dvarbool( "cl_ingame" ) || dvarbool( "sv_running" ) || inlobby() ) ) ) ) )
+CHOICE_BUTTON_EX( 4, "options_4", "OPTIMAL GRAPHICS AND AUDIO",                  LOCAL_CLOSE_ALL_IW5 open "options_graphics_defaults";, disabled when ( ( ( dvarstring( "gameMode" ) == "so" && ( dvarbool( "cl_ingame" ) || dvarbool( "sv_running" ) || inlobby() ) ) || ( dvarstring( "gameMode" ) == "mp" && ( dvarbool( "cl_ingame" ) || dvarbool( "sv_running" ) || inlobby() ) ) ) ) )
 
 CHOICE_SEPERATOR ( 5 )
 

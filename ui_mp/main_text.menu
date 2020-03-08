@@ -75,20 +75,16 @@
 		}
 		
 		CHOICE_SEPERATOR( 0 )
-		CHOICE_BUTTON( 0, "play_online", "PLAY ONLINE",
+		CHOICE_BUTTON_FOCUS( 0, "play_online", "PLAY ONLINE",
 					setDvar "onlinegame" 1;
 					exec "xstartprivateparty";
-					open "menu_xboxlive" ; )
-		CHOICE_BUTTON( 1, "operations", "OPERATIONS", open "main_operations"; )	
-		CHOICE_BUTTON( 2, "options", "@MENU_OPTIONS_CAPS", open "main_options_popout"; )
-		CHOICE_BUTTON( 3, "quit", "@MENU_QUIT_CAPS", open "quit_popmenu"; )
+					open "menu_xboxlive";, setLocalVarString "ui_hint_text" ( "@MPUI_DESC_PLAYONLINE"), CLEAR_UI_HINT )
+		CHOICE_BUTTON_FOCUS( 1, "operations", "OPERATIONS", open "main_operations";, setLocalVarString "ui_hint_text" ( "@MPUI_DESC_OPERATIONS"), CLEAR_UI_HINT )	
+		CHOICE_BUTTON_FOCUS( 2, "options", "@MENU_OPTIONS_CAPS", open "main_options_popout";, setLocalVarString "ui_hint_text" ( "@MPUI_DESC_OPTIONS"), CLEAR_UI_HINT )
+		CHOICE_BUTTON_FOCUS( 3, "quit", "@MENU_QUIT_CAPS", open "quit_popmenu";, setLocalVarString "ui_hint_text" ( "@MPUI_DESC_QUIT"), CLEAR_UI_HINT )
 		CHOICE_SEPERATOR( 4 )
-		/*
-		C
-		C
-		CHOICE_BUTTON( 3, "servers", "SERVERS", open "pc_join_unranked"; )
-		CHOICE_SEPERATOR( 6 )
-		*/
+
+        CHOICE_DESCRIPTION( 1, -20, 160.334 ) // vis, x, y
 	}
 	menuDef
 	{
@@ -182,21 +178,18 @@
 					setDvar "onlinegame" 1;
 					exec "xstartprivateparty";
 					open "menu_xboxlive" ;, disabled when ( 1 ) )
-		CHOICE_BUTTON( 1, "operations", "OPERATIONS", close self; )	
+		CHOICE_BUTTON_FOCUS( 1, "operations", "OPERATIONS", close self;, setLocalVarString "ui_hint_text" ( "@MPUI_DESC_CLOSEOPS"), CLEAR_UI_HINT )
 		CHOICE_SEPERATOR( 2 )
-		CHOICE_BUTTON( 2, "friends", "FRIENDS", open "popup_friends"; )
-		CHOICE_BUTTON( 3, "store", "STORE", open "pc_store"; )
-		CHOICE_BUTTON( 4, "mods", "MODS", open "mods_menu"; )
+		CHOICE_BUTTON_FOCUS( 2, "friends", "FRIENDS", open "popup_friends";, setLocalVarString "ui_hint_text" ( "@MPUI_DESC_FRIENDS2"), CLEAR_UI_HINT )
+		CHOICE_BUTTON_FOCUS( 3, "store", "STORE", open "pc_store";, setLocalVarString "ui_hint_text" ( "@MPUI_DESC_PCSTORE"), CLEAR_UI_HINT )
+		CHOICE_BUTTON_FOCUS( 4, "mods", "MODS", open "mods_menu";, setLocalVarString "ui_hint_text" ( "@MPUI_DESC_MODSMENU"), CLEAR_UI_HINT )
 		CHOICE_SEPERATOR( 5 )
 		CHOICE_BUTTON_EX( 5, "options", "@MENU_OPTIONS_CAPS", open "main_options";, disabled when ( 1 ) )	
 		CHOICE_BUTTON_EX( 6, "quit", "@MENU_QUIT_CAPS", open "quit_popmenu";, disabled when ( 1 ) )	
 		CHOICE_SEPERATOR( 7 )
-		/*
-		C
-		C
-		CHOICE_BUTTON( 3, "servers", "SERVERS", open "pc_join_unranked"; )
-		CHOICE_SEPERATOR( 6 )
-		*/
+
+		CHOICE_DESCRIPTION( 1, -20, 230.334 ) // vis, x, y
+
 		itemDef
 		{
 			rect 0 0 0 20 3 3
@@ -321,21 +314,18 @@
 					exec "xstartprivateparty";
 					open "menu_xboxlive" ;, disabled when ( 1 ) )
 		CHOICE_BUTTON_EX( 1, "operations", "OPERATIONS", open "main_operations";, disabled when ( 1 ) )	
-		CHOICE_BUTTON( 2, "options", "@MENU_OPTIONS_CAPS", close self; )
+		CHOICE_BUTTON_FOCUS( 2, "options", "@MENU_OPTIONS_CAPS", close self;, setLocalVarString "ui_hint_text" ( "@MPUI_DESC_CLOSEOPTIONS"), CLEAR_UI_HINT )
 		CHOICE_SEPERATOR( 3 )
-		CHOICE_BUTTON( 3, "video", "VIDEO", open "pc_options_video"; )
-		CHOICE_BUTTON( 4, "audio", "AUDIO", open "pc_options_audio"; )
-		CHOICE_BUTTON( 5, "controls", "CONTROLS", open "pc_options_controls"; )
-		CHOICE_BUTTON( 6, "multi", "MULTIPLAYER", open "pc_options_multi"; )
+		CHOICE_BUTTON_FOCUS( 3, "video", "GRAPHICS", open "pc_options_video";, setLocalVarString "ui_hint_text" ( "@MPUI_DESC_VID"), CLEAR_UI_HINT )
+		CHOICE_BUTTON_FOCUS( 4, "audio", "AUDIO", open "pc_options_audio";, setLocalVarString "ui_hint_text" ( "@MPUI_DESC_AUD"), CLEAR_UI_HINT )
+		CHOICE_BUTTON_FOCUS( 5, "controls", "CONTROLS", open "pc_options_controls";, setLocalVarString "ui_hint_text" ( "@MPUI_DESC_CNTRLS"), CLEAR_UI_HINT )
+		CHOICE_BUTTON_FOCUS( 6, "multi", "MULTIPLAYER", open "pc_options_multi";, setLocalVarString "ui_hint_text" ( "@MPUI_DESC_OPTMULTI"), CLEAR_UI_HINT )
 		CHOICE_SEPERATOR( 7 )
 		CHOICE_BUTTON_EX( 7, "quit", "@MENU_QUIT_CAPS", open "quit_popmenu";, disabled when ( 1 ) )	
 		CHOICE_SEPERATOR( 8 )
-		/*
-		C
-		C
-		CHOICE_BUTTON( 3, "servers", "SERVERS", open "pc_join_unranked"; )
-		CHOICE_SEPERATOR( 6 )
-		*/
+		
+		CHOICE_DESCRIPTION( 1, -20, 257.334 ) // vis, x, y
+
 		itemDef
 		{
 			rect 0 0 0 20 3 3

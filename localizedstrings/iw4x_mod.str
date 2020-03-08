@@ -1,0 +1,62 @@
+REFERENCE           MPUI_DESC_PLAYERCARD
+LANG_ENGLISH        "Customise your title, emblem and name."
+
+REFERENCE           MPUI_DESC_GAME_SETUP
+LANG_ENGLISH        "Change the selected map."
+
+REFERENCE           KILLSTREAKS_REWARD
+LANG_ENGLISH        "Set your killstreak rewards."
+	
+REFERENCE           MPUI_DESC_SERVERBROWSER
+LANG_ENGLISH        "Browse and join dedicated servers."
+
+REFERENCE           MPUI_DESC_PRIVMATCH
+LANG_ENGLISH        "Create and customise a private match."
+
+REFERENCE           MPUI_DESC_BARRACKS2
+LANG_ENGLISH        "View your statistics and achievements."
+
+REFERENCE           MPUI_DESC_VAULT
+LANG_ENGLISH        "Watch replays of your previous games."
+
+REFERENCE           MPUI_DESC_PLAYONLINE
+LANG_ENGLISH        "Play IW4x online."
+
+REFERENCE           MPUI_DESC_OPERATIONS
+LANG_ENGLISH        "Access Friends, Store and Mods."
+
+REFERENCE           MPUI_DESC_OPTIONS
+LANG_ENGLISH        "Modify game options."
+
+REFERENCE           MPUI_DESC_QUIT
+LANG_ENGLISH        "Quit the game."
+
+REFERENCE           MPUI_DESC_CLOSEOPS
+LANG_ENGLISH        "Close Operations menu."
+
+REFERENCE           MPUI_DESC_FRIENDS2
+LANG_ENGLISH        "View your Friends list."
+
+REFERENCE           MPUI_DESC_PCSTORE
+LANG_ENGLISH        "View downloadable content."
+
+REFERENCE           MPUI_DESC_MODSMENU
+LANG_ENGLISH        "Manage your mods."
+
+REFERENCE           MPUI_DESC_CLOSEOPTIONS
+LANG_ENGLISH        "Close Options menu."
+
+REFERENCE           MPUI_DESC_VID
+LANG_ENGLISH        "Adjust graphics quality settings."
+
+REFERENCE           MPUI_DESC_AUD
+LANG_ENGLISH        "Adjust volume levels and voice chat."
+
+REFERENCE           MPUI_DESC_CNTRLS
+LANG_ENGLISH        "Adjust controls to your liking."
+
+REFERENCE           MPUI_DESC_OPTMULTI
+LANG_ENGLISH        "Adjust extra multiplayer settings."
+
+REFERENCE           MPUI_DESC_RESETVIDAUD
+LANG_ENGLISH        "Use recommended settings for Graphics and Audio."

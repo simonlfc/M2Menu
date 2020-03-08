@@ -57,8 +57,10 @@
 			style 1
 			forecolor 1 1 1 1
 			textfont 9
-			textalign 14
-			textscale 0.5
+			textalign 12
+			textalignx 41
+			textaligny 10
+			textscale TEXTSIZE_TITLE
 			visible when ( 1 )
 			exp text ( locstring( "@MENU_STORE_CAPS" ) )
 		}
@@ -72,34 +74,16 @@
 		CHOICE_BUTTON_FOCUS( itemIndex, buttonName, textArg, actionArg, LOCAL_DLC_FOCUS( name, desc, icon ), ; )
 		
 		CHOICE_SEPERATOR( 0 )
-
-		LOCAL_DLC_SELECTION( 0, "button_0", "@PATCH_DLC1", uiScript downloadDLC 1, "PATCH_DLC1", "PATCH_DESC_DLC1", "preview_dlc1" )
-		//CHOICE_NEWICON_VIS( 0, when(!dvarbool( "isDlcInstalled_1" ) ) )
-		
+		LOCAL_DLC_SELECTION( 0, "button_0", "@PATCH_DLC1", uiScript downloadDLC 1, "PATCH_DLC1", "PATCH_DESC_DLC1", "preview_dlc1" )		
 		LOCAL_DLC_SELECTION( 1, "button_1", "@PATCH_DLC2", uiScript downloadDLC 2, "PATCH_DLC2", "PATCH_DESC_DLC2", "preview_dlc2" )
-		//CHOICE_NEWICON_VIS( 1, when(!dvarbool( "isDlcInstalled_2" ) ) )
-		
 		CHOICE_SEPERATOR( 2 )
-
 		LOCAL_DLC_SELECTION( 2, "button_2", "@PATCH_DLC4", uiScript downloadDLC 4, "PATCH_DLC4", "PATCH_DESC_DLC4", "preview_dlc4" )
-		//CHOICE_NEWICON_VIS( 2, when(!dvarbool( "isDlcInstalled_4" ) ) )
-		
-		LOCAL_DLC_SELECTION( 3, "button_3", "@PATCH_DLC5", uiScript downloadDLC 5, "PATCH_DLC5", "PATCH_DESC_DLC5", "preview_dlc5" )
-		//CHOICE_NEWICON_VIS( 3, when(!dvarbool( "isDlcInstalled_5" ) ) )
-		
-		LOCAL_DLC_SELECTION( 4, "button_4", "@PATCH_DLC7", uiScript downloadDLC 7, "PATCH_DLC7", "PATCH_DESC_DLC7", "preview_dlc7" )
-		//CHOICE_NEWICON_VIS( 4, when(!dvarbool( "isDlcInstalled_7" ) ) )
-		
-		LOCAL_DLC_SELECTION( 5, "button_5", "@PATCH_DLC8", uiScript downloadDLC 8, "PATCH_DLC8", "PATCH_DESC_DLC8", "preview_dlc8" )
-		//CHOICE_NEWICON_VIS( 5, when(!dvarbool( "isDlcInstalled_8" ) ) )
-		
+		LOCAL_DLC_SELECTION( 3, "button_3", "@PATCH_DLC5", uiScript downloadDLC 5, "PATCH_DLC5", "PATCH_DESC_DLC5", "preview_dlc5" )		
+		LOCAL_DLC_SELECTION( 4, "button_4", "@PATCH_DLC7", uiScript downloadDLC 7, "PATCH_DLC7", "PATCH_DESC_DLC7", "preview_dlc7" )	
+		LOCAL_DLC_SELECTION( 5, "button_5", "@PATCH_DLC8", uiScript downloadDLC 8, "PATCH_DLC8", "PATCH_DESC_DLC8", "preview_dlc8" )	
 		CHOICE_SEPERATOR( 6 )
-
 		LOCAL_DLC_SELECTION( 6, "button_6", "@PATCH_DLC3", uiScript downloadDLC 3, "PATCH_DLC3", "PATCH_DESC_DLC3", "preview_dlc3" )
-		//CHOICE_NEWICON_VIS( 6, when(!dvarbool( "isDlcInstalled_3" ) ) )
-		
 		LOCAL_DLC_SELECTION( 7, "button_7", "@PATCH_DLC6", uiScript downloadDLC 6, "PATCH_DLC6", "PATCH_DESC_DLC6", "preview_dlc6" )
-		//CHOICE_NEWICON_VIS( 7, when(!dvarbool( "isDlcInstalled_6" ) ) )
 		
 		itemDef
 		{
@@ -173,22 +157,22 @@
 		{
 			rect 0 0 0 20 3 3
 			visible 1
-			foreColor 1 1 1 1
+			foreColor 1 1 1 0.5
 			type 1
 			style 1
-			textFont 3
-			textAlign 8
-			textAlignX 10
-			textScale 0.375
-			exp rect x ( -73 )
-			exp rect y ( -20.667 )
-			exp rect w ( 75 )
+			textFont UI_FONT_NORMAL
+			textAlignX 9
+			textAlignY 17
+			textScale 0.325
+			exp rect x ( -755 )
+			exp rect y ( -13.667 )
+			exp rect w ( 45 )
 			visible when ( dvarString( "wideScreen" ) == 1 )
-			text "Back ^2ESC"
+			text "BACK"
 			onFocus
 			{
 				play "mouse_over";
-				setItemColor self "backColor" 0.6 0.6314 0.6 1;
+				setItemColor self "backColor" 0 0 0 0.25;
 			}
 			leaveFocus
 			{
@@ -199,5 +183,6 @@
 				play "mouse_click";
 				close "self";
 			}
+		}
 	}	
 }

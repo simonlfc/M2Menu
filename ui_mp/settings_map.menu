@@ -38,10 +38,12 @@
 			style 1
 			forecolor 1 1 1 1
 			textfont 9
-			textalign 14
-			textscale 0.5
+			textalign 12
+			textalignx 41
+			textaligny 10
+			textscale TEXTSIZE_TITLE
 			visible when ( 1 )
-			text "MAPS"
+			text "ORIGINALS"
 		}
 
 		itemDef
@@ -100,47 +102,28 @@
 				setLocalVarString "ui_info_icon" ( "loadscreen_mp_bonusmaps" ); \
 		
 		#undef CHOICE_TEXTCOLOR
-		#define CHOICE_TEXTCOLOR		0.55 0.93 0.56 1
-		
-		CHOICE_BUTTON_FOCUS( 0, "button_0", "^3BONUS MAPS", open "settings_bonus_map";, LOCAL_XDLC_FOCUS, ; )
-		
+		#define CHOICE_TEXTCOLOR		0.55 0.93 0.56 1		
 		#undef CHOICE_TEXTCOLOR
 		#define CHOICE_TEXTCOLOR		1 1 1 1
 		
 		CHOICE_SEPERATOR( 0 )
-		LOCAL_MAP_BUTTON( 1,  "button_1", "mp_afghan", 			"MPUI_AFGHAN", 		"MPUI_DESC_MAP_AFGHAN", 	"preview_mp_afghan" 		)
-		LOCAL_MAP_BUTTON( 2,  "button_2", "mp_derail", 			"MPUI_DERAIL", 		"MPUI_DESC_MAP_DERAIL", 	"preview_mp_derail" 		)
-		LOCAL_MAP_BUTTON( 3,  "button_3", "mp_estate", 			"MPUI_ESTATE", 		"MPUI_DESC_MAP_ESTATE", 	"preview_mp_estate" 		)
-		LOCAL_MAP_BUTTON( 4,  "button_4", "mp_favela", 			"MPUI_FAVELA", 		"MPUI_DESC_MAP_FAVELA", 	"preview_mp_favela" 		)
-		LOCAL_MAP_BUTTON( 5,  "button_5", "mp_highrise",		"MPUI_HIGHRISE", 	"MPUI_DESC_MAP_HIGHRISE", 	"preview_mp_highrise" 		)
-		LOCAL_MAP_BUTTON( 6,  "button_6", "mp_invasion",		"MPUI_INVASION", 	"MPUI_DESC_MAP_INVASION", 	"preview_mp_invasion" 		)
-		LOCAL_MAP_BUTTON( 7,  "button_7", "mp_checkpoint", 		"MPUI_CHECKPOINT", 	"MPUI_DESC_MAP_CHECKPOINT", "preview_mp_checkpoint" 	)
-		LOCAL_MAP_BUTTON( 8,  "button_8", "mp_quarry", 			"MPUI_QUARRY", 		"MPUI_DESC_MAP_QUARRY", 	"preview_mp_quarry" 		)
-		LOCAL_MAP_BUTTON( 9,  "button_9", "mp_rundown",			"MPUI_RUNDOWN", 	"MPUI_DESC_MAP_RUNDOWN", 	"preview_mp_rundown" 		)
-		LOCAL_MAP_BUTTON( 10, "button_10", "mp_rust",			"MPUI_RUST", 		"MPUI_DESC_MAP_RUST", 		"preview_mp_rust" 			)
-		LOCAL_MAP_BUTTON( 11, "button_11", "mp_boneyard",		"MPUI_BONEYARD", 	"MPUI_DESC_MAP_BONEYARD", 	"preview_mp_boneyard" 		)
-		LOCAL_MAP_BUTTON( 12, "button_12", "mp_skidrow",		"MPUI_RAID", 		"MPUI_DESC_MAP_NIGHTSHIFT", "preview_mp_nightshift" 	)
-		LOCAL_MAP_BUTTON( 13, "button_13", "mp_subbase",		"MPUI_SUBBASE", 	"MPUI_DESC_MAP_SUBBASE", 	"preview_mp_subbase" 		)
-		LOCAL_MAP_BUTTON( 14, "button_14", "mp_terminal",		"MPUI_TERMINAL", 	"MPUI_DESC_MAP_TERMINAL", 	"preview_mp_terminal" 		)
-		LOCAL_MAP_BUTTON( 15, "button_15", "mp_underpass", 		"MPUI_UNDERPASS", 	"MPUI_DESC_MAP_UNDERPASS", 	"preview_mp_underpass" 		)
-		LOCAL_MAP_BUTTON( 16, "button_16", "mp_brecourt",		"MPUI_WASTELAND", 	"MPUI_DESC_MAP_BRECOURT", 	"preview_mp_brecourt" 		)
+		LOCAL_MAP_BUTTON( 0,  "button_1", "mp_afghan", 			"MPUI_AFGHAN", 		"MPUI_DESC_MAP_AFGHAN", 	"preview_mp_afghan" 		)
+		LOCAL_MAP_BUTTON( 1,  "button_2", "mp_derail", 			"MPUI_DERAIL", 		"MPUI_DESC_MAP_DERAIL", 	"preview_mp_derail" 		)
+		LOCAL_MAP_BUTTON( 2,  "button_3", "mp_estate", 			"MPUI_ESTATE", 		"MPUI_DESC_MAP_ESTATE", 	"preview_mp_estate" 		)
+		LOCAL_MAP_BUTTON( 3,  "button_4", "mp_favela", 			"MPUI_FAVELA", 		"MPUI_DESC_MAP_FAVELA", 	"preview_mp_favela" 		)
+		LOCAL_MAP_BUTTON( 4,  "button_5", "mp_highrise",		"MPUI_HIGHRISE", 	"MPUI_DESC_MAP_HIGHRISE", 	"preview_mp_highrise" 		)
+		LOCAL_MAP_BUTTON( 5,  "button_6", "mp_invasion",		"MPUI_INVASION", 	"MPUI_DESC_MAP_INVASION", 	"preview_mp_invasion" 		)
+		LOCAL_MAP_BUTTON( 6,  "button_7", "mp_checkpoint", 		"MPUI_CHECKPOINT", 	"MPUI_DESC_MAP_CHECKPOINT", "preview_mp_checkpoint" 	)
+		LOCAL_MAP_BUTTON( 7,  "button_8", "mp_quarry", 			"MPUI_QUARRY", 		"MPUI_DESC_MAP_QUARRY", 	"preview_mp_quarry" 		)
+		LOCAL_MAP_BUTTON( 8,  "button_9", "mp_rundown",			"MPUI_RUNDOWN", 	"MPUI_DESC_MAP_RUNDOWN", 	"preview_mp_rundown" 		)
+		LOCAL_MAP_BUTTON( 9, "button_10", "mp_rust",			"MPUI_RUST", 		"MPUI_DESC_MAP_RUST", 		"preview_mp_rust" 			)
+		LOCAL_MAP_BUTTON( 10, "button_11", "mp_boneyard",		"MPUI_BONEYARD", 	"MPUI_DESC_MAP_BONEYARD", 	"preview_mp_boneyard" 		)
+		LOCAL_MAP_BUTTON( 11, "button_12", "mp_skidrow",		"MPUI_RAID", 		"MPUI_DESC_MAP_NIGHTSHIFT", "preview_mp_nightshift" 	)
+		LOCAL_MAP_BUTTON( 12, "button_13", "mp_subbase",		"MPUI_SUBBASE", 	"MPUI_DESC_MAP_SUBBASE", 	"preview_mp_subbase" 		)
+		LOCAL_MAP_BUTTON( 13, "button_14", "mp_terminal",		"MPUI_TERMINAL", 	"MPUI_DESC_MAP_TERMINAL", 	"preview_mp_terminal" 		)
+		LOCAL_MAP_BUTTON( 14, "button_15", "mp_underpass", 		"MPUI_UNDERPASS", 	"MPUI_DESC_MAP_UNDERPASS", 	"preview_mp_underpass" 		)
+		LOCAL_MAP_BUTTON( 15, "button_16", "mp_brecourt",		"MPUI_WASTELAND", 	"MPUI_DESC_MAP_BRECOURT", 	"preview_mp_brecourt" 		)
 
-		
-		itemDef
-		{
-			rect -252.667 2.667 253.333 20 3 1
-			decoration
-			visible 1
-			style 1
-			forecolor 0.784314 0.784314 0.784314 1
-			background "white"
-			textfont 3
-			textalign 4
-			textalignx 20
-			textscale 0.375
-			visible when ( privatepartyhost( ) )
-			exp text ( locstring( "@MPUI_RECOMMENDEDPLAYERS" , int( min( dvarint( "party_maxPlayers" ) , maxrecommendedplayers( ) ) ) ) )
-		}
 
 	  	itemDef
 		{
