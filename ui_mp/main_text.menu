@@ -305,7 +305,7 @@
 
 		itemDef // dropdown bg
 		{
-			rect -391 127 202 120 2 1
+			rect -391 127 202 97 2 1
 			decoration
 			visible 0
 			style 3
@@ -326,11 +326,10 @@
 		CHOICE_BUTTON( 3, "video", "VIDEO", open "pc_options_video"; )
 		CHOICE_BUTTON( 4, "audio", "AUDIO", open "pc_options_audio"; )
 		CHOICE_BUTTON( 5, "controls", "CONTROLS", open "pc_options_controls"; )
-		CHOICE_BUTTON( 6, "voice", "VOICE", open "pc_options_voice"; )
-		CHOICE_BUTTON( 7, "multi", "MULTIPLAYER", open "pc_options_multi"; )
+		CHOICE_BUTTON( 6, "multi", "MULTIPLAYER", open "pc_options_multi"; )
+		CHOICE_SEPERATOR( 7 )
+		CHOICE_BUTTON_EX( 7, "quit", "@MENU_QUIT_CAPS", open "quit_popmenu";, disabled when ( 1 ) )	
 		CHOICE_SEPERATOR( 8 )
-		CHOICE_BUTTON_EX( 8, "quit", "@MENU_QUIT_CAPS", open "quit_popmenu";, disabled when ( 1 ) )	
-		CHOICE_SEPERATOR( 9 )
 		/*
 		C
 		C

@@ -15,7 +15,7 @@
 		fadeCycle 1
 		fadeClamp 1
 		fadeAmount 0.1
-		blurWorld 7
+		blurWorld 10
 		onOpen
 		{
 			setLocalVarBool "ui_hideBack" ( 1 );
@@ -29,7 +29,6 @@
 		{
 			close "self";
 		}
-		#define NO_BACKGROUND_BLUR
 		#include "ui_mp/bg.inc"
 		
 		itemDef
@@ -40,46 +39,64 @@
 			style 1
 			forecolor 1 1 1 1
 			textfont 9
-			textalign 14
-			textscale 0.5
+			textalign 12
+			textalignx 41
+			textaligny 10
+			textscale TEXTSIZE_TITLE
 			visible when ( 1 )
-			exp text ( locstring( "@MENU_LOOK" ) )
+			text "LOOK"
+		}		
+		
+		itemDef
+		{
+			rect 0 0 0 20 3 3
+			visible 1
+			foreColor 1 1 1 0.5
+			type 1
+			style 1
+			textFont UI_FONT_NORMAL
+			textAlignX 9
+			textAlignY 17
+			textScale 0.325
+			exp rect x ( -755 )
+			exp rect y ( -13.667 )
+			exp rect w ( 45 )
+			text "BACK"
+			onFocus
+			{
+				play "mouse_over";
+				setItemColor self "backColor" 0 0 0 0.25;
+			}
+			leaveFocus
+			{
+				setItemColor self "backColor" 0 0 0 0;
+			}
+			action
+			{
+				play "mouse_click";
+				close "self";
+				open "pc_options_video";
+			}
 		}
-		CHOICE_SEPERATOR( 0 )
-		
-		#undef CHOICE_X_START
-		#define CHOICE_X_START	-317
-		
-		// caption
-		#undef CHOICE_TEXTALIGN
-		#define CHOICE_TEXTALIGN 6
-		//
-		#undef CHOICE_TEXT_OFFSET_X
-		#define CHOICE_TEXT_OFFSET_X -258	
-		
-		// dvar
-		#undef CHOICE_DVAR_TEXTALIGN
-		#define CHOICE_DVAR_TEXTALIGN 4
-		// 
+
 		#undef CHOICE_DVAR_OFFSET_X
-		#define CHOICE_DVAR_OFFSET_X 338
+		#define CHOICE_DVAR_OFFSET_X 250
 		
-		#undef CHOICE_SIZE_X
-		#define CHOICE_SIZE_X 544
-
-		#undef CHOICE_HIGHLIGHT_COLOR
-		#define CHOICE_HIGHLIGHT_COLOR 1 1 1 1
-
-		#undef CHOICE_TEXT_HIGHLIGHT
-		#define CHOICE_TEXT_HIGHLIGHT "menu_button_selection_bar"
+		CHOICE_SEPERATOR( 0 )
+		CHOICE_DVARSLIDER( 0, "sensitivity", "SENSITIVITY", "sensitivity", 5, 1, 10, ; )
+		CHOICE_DVARSLIDER( 1, "accel", "ACCELERATION", "cl_mouseAccel", 0, 0, 100, ; )
+		CHOICE_DVARYESNO( 2, "sm", "SMOOTH MOUSE", "m_filter", ; )
+		CHOICE_DVARYESNO( 3, "fl", "FREE LOOK", "cl_freelook", ; )
+		CHOICE_SEPERATOR( 4 )
+		CHOICE_BIND( 4, "lp", "LOOK UP", "+lookup", ; )
+		CHOICE_BIND( 5, "ld", "LOOK DOWN", "+lookdown", ; )
+		CHOICE_BIND( 6, "tl", "TURN LEFT", "+left", ; )
+		CHOICE_BIND( 7, "tr", "TURN RIGHT", "+right", ; )
+		CHOICE_SEPERATOR( 8 )
+		CHOICE_BIND( 8, "ml", "MOUSE LOOK", "+mlook", ; )
+		CHOICE_BIND( 9, "cv", "RE-CENTER VIEW", "centerview", ; )
+		CHOICE_SEPERATOR( 10 )
 		
-		CHOICE_DVARSLIDER( 20, "sensitivity", "@MENU_MOUSE_SENSITIVITY", "sensitivity", 5, 1, 30, ; )
-		CHOICE_DVARYESNO( 21, "sm", "@MENU_SMOOTH_MOUSE", "m_filter", ; )
-		CHOICE_DVARYESNO( 22, "fl", "@MENU_FREE_LOOK", "cl_freelook", ; )
-		CHOICE_BIND( 23, "lp", "@MENU_LOOK_UP", "+lookup", ; )
-		CHOICE_BIND( 24, "ld", "@MENU_LOOK_DOWN", "+lookdown", ; )
-		CHOICE_BIND( 25, "ml", "@MENU_MOUSE_LOOK", "+mlook", ; )
-		CHOICE_BIND( 26, "cv", "@MENU_CENTER_VIEW", "centerview", ; )
 		
 		CHOICE_KEYBINDHELP
 

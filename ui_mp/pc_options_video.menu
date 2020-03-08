@@ -68,7 +68,7 @@
 			textaligny 10
 			textscale TEXTSIZE_TITLE
 			visible when ( 1 )
-			exp text ( locstring( "@MENU_OPTIONS_CAPS" ) )
+			text "OPTIONS"
 		}
 		itemDef
 		{
@@ -110,9 +110,11 @@
 		CHOICE_DVARYESNO( 			2, "fullscreen", 		"FULLSCREEN", 	"ui_r_fullscreen", 		setLocalVarBool "ui_showApply" ( 1 ); exec "vid_xpos 0;vid_ypos 0"; )
 		CHOICE_DVARYESNO( 			3, "noborder", 		"DISABLE WINDOW BORDER", 		"r_noborder", 			setLocalVarBool "ui_showApply" ( 1 ); exec "vid_xpos 0;vid_ypos 0"; )
 		CHOICE_DVARFLOATLIST_EX( 	5, "fps", 				"FRAMERATE LIMIT", "com_maxfps", { "30" 30 "85 (Default)" 85 "125" 125 "250" 250 "333" 333 "Unlimited" 0}, setlocalVarBool "ui_showApply" ( 1 ), disabled when ( ( ( dvarstring( "gameMode" ) == "so" && ( dvarbool( "cl_ingame" ) || dvarbool( "sv_running" ) || inlobby( ) ) ) || ( dvarstring( "gameMode" ) == "mp" && ( dvarbool( "cl_ingame" ) || dvarbool( "sv_running" ) || inlobby( ) ) ) ) ) )
-		CHOICE_SEPERATOR( 6 )
-		CHOICE_BUTTON( 6, "advancedsettings", "ADVANCED VIDEO", LOCAL_CLOSE_ALL_IW5 open "pc_options_advanced_video"; )
+		CHOICE_DVARFLOATLIST(6, "dfps",		"SHOW FRAMERATE",				"cg_drawFPS", {"Off" 0 "Simple" 1 "SimpleRanges" 2 "Verbose" 3 "Verbose+Viewpos" 4}, ; )
+		CHOICE_SEPERATOR( 7 )
+		CHOICE_BUTTON( 7, "advancedsettings", "ADVANCED VIDEO", LOCAL_CLOSE_ALL_IW5 open "pc_options_advanced_video"; )
 
+		CHOICE_SEPERATOR( 8 )
 		#undef CHOICE_SIZE_X
 		#define CHOICE_SIZE_X 300
 

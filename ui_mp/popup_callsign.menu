@@ -62,7 +62,7 @@
 			textaligny 10
 			textscale TEXTSIZE_TITLE
 			visible when ( 1 )
-			text "CALLSIGN"
+			text "PLAYERCARD"
 		}
 		
 		CHOICE_SEPERATOR( 0 )

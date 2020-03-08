@@ -59,43 +59,52 @@
 			style 1
 			forecolor 1 1 1 1
 			textfont 9
-			textalign 14
-			textscale 0.5
+			textalign 12
+			textalignx 41
+			textaligny 10
+			textscale TEXTSIZE_TITLE
 			visible when ( 1 )
-			exp text ( locstring( "@MENU_OPTIONS_CAPS" ) )
+			text "OPTIONS"
 		}
 		itemDef
 		{
-			rect 253.5 5 344 34 1 1
+			rect 220 3 276.667 24.233 1 1
 			decoration
-			visible 1
+			visible 0
+			style 1
 			forecolor 1 1 1 1
 			textfont 9
-			textalign 4
-			textscale 0.45
-			text "@MENU_AUDIO"
+			textalign 12
+			textalignx 41
+			textaligny 10
+			textscale TEXTSIZE_TITLE
+			visible when ( 1 )
+			text "AUDIO"
 		}
 		#include "ui_mp/leftside_optionsx.inc"
-		
+
+		#undef CHOICE_Y_START
+		#define CHOICE_Y_START 55
+
 		#undef CHOICE_X_START
-		#define CHOICE_X_START	4
-		
-		#undef CHOICE_TEXT_OFFSET_X
-		#define CHOICE_TEXT_OFFSET_X 4
-		
-		#undef CHOICE_TEXTALIGN
-		#define CHOICE_TEXTALIGN 4
-		
-		#undef CHOICE_DVAR_TEXTALIGN
-		#define CHOICE_DVAR_TEXTALIGN 4
+		#define CHOICE_X_START 250
 
-		#undef CHOICE_HIGHLIGHT_COLOR
-		#define CHOICE_HIGHLIGHT_COLOR 1 1 1 1
+		#undef CHOICE_DVAR_OFFSET_Y
+		#define CHOICE_DVAR_OFFSET_Y 1
 
-		#undef CHOICE_TEXT_HIGHLIGHT
-		#define CHOICE_TEXT_HIGHLIGHT "gradient_center"
+		#undef CHOICE_DVAR_OFFSET_X
+		#define CHOICE_DVAR_OFFSET_X 250
+
+		#undef CHOICE_TEXT_OFFSET_Y
+		#define CHOICE_TEXT_OFFSET_Y	2
 		
-		CHOICE_DVARSLIDER( 20, "mastervolume", "@MENU_MASTER_VOLUME", "snd_volume", 0.8, 0, 0.8, execNow "profile_menuDvarsFinish"; )
-		CHOICE_DVARSTRINGLIST_EX( 21, "speakerconfig",  "@MENU_SPEAKER_CONFIG", "ui_outputConfig", { "@MENU_WINDOWS_DEFAULT"; "Windows Default"; "@MENU_MONO"; "Mono"; "@MENU_STEREO"; "Stereo"; "@MENU_FOUR_SPEAKERS"; "4 Speakers"; "@MENU_FIVE_ONE_SPEAKERS"; "5.1 Speakers"; }, setlocalVarBool "ui_showApply" ( 1 ), disabled when ( ( ( dvarstring( "gameMode" ) == "so" && ( dvarbool( "cl_ingame" ) || dvarbool( "sv_running" ) || inlobby( ) ) ) || ( dvarstring( "gameMode" ) == "mp" && ( dvarbool( "cl_ingame" ) || dvarbool( "sv_running" ) || inlobby( ) ) ) ) ) )
+		CHOICE_SEPERATOR( 0 )
+		CHOICE_DVARSLIDER( 0, "mastervolume", "MASTER VOLUME", "snd_volume", 0.8, 0, 0.8, execNow "profile_menuDvarsFinish"; )
+		CHOICE_DVARSTRINGLIST_EX( 1, "speakerconfig",  "SPEAKER SETUP", "ui_outputConfig", { "@MENU_WINDOWS_DEFAULT"; "Windows Default"; "@MENU_MONO"; "Mono"; "@MENU_STEREO"; "Stereo"; "@MENU_FOUR_SPEAKERS"; "4 Speakers"; "@MENU_FIVE_ONE_SPEAKERS"; "5.1 Speakers"; }, setlocalVarBool "ui_showApply" ( 1 ), disabled when ( ( ( dvarstring( "gameMode" ) == "so" && ( dvarbool( "cl_ingame" ) || dvarbool( "sv_running" ) || inlobby( ) ) ) || ( dvarstring( "gameMode" ) == "mp" && ( dvarbool( "cl_ingame" ) || dvarbool( "sv_running" ) || inlobby( ) ) ) ) ) )
+		CHOICE_SEPERATOR( 2 )
+		CHOICE_DVARSLIDER_EX( 2, "record_level", "MICROPHONE VOLUME", "winvoice_mic_reclevel", 65535, 0, 65535, ;, disabled when ( dvarstring( "gameMode" ) == "sp" ) )
+		CHOICE_DVARYESNO_EX( 3, "mute_all", "MUTE ALL PLAYERS", "cl_voice", ;, disabled when ( dvarstring( "gameMode" ) == "sp" ) )
+		CHOICE_SEPERATOR( 4 )
+	
 	}	
 }

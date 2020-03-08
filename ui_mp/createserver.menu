@@ -63,7 +63,7 @@
         CHOICE_BUTTON_FOCUS(0, "button_0", "@MENU_START_GAME_CAPS", play "mouse_click"; exec "xpartygo";, setLocalVarString "ui_hint_text" ( "@MENU_DESC_START_MATCH" ), CLEAR_UI_HINT )
         CHOICE_BUTTON_FOCUS(1, "button_1", "@MENU_GAME_SETUP_CAPS", open "popup_gamesetup", setLocalVarString "ui_hint_text" ( "@MPUI_DESC_GAME_SETUP"), CLEAR_UI_HINT )
 		CHOICE_BUTTON_FOCUS_VIS_EX( 2, "button_2", "@MENU_CREATE_A_CLASS_CAPS", open "cac_popup", setLocalVarString "ui_hint_text" ( "@MPUI_DESC_CREATE_A_CLASS" ), CLEAR_UI_HINT, 1, disabled when ( !isitemunlocked( "cac" ) ) )
-		CHOICE_BUTTON_FOCUS_VIS_EX( 3, "button_3", "CALLSIGN", open "popup_callsign", setLocalVarString "ui_hint_text" ( "@MPUI_DESC_PLAYERCARD" ), CLEAR_UI_HINT, 1, disabled when ( !isitemunlocked( "playercard" ) ) )
+		CHOICE_BUTTON_FOCUS_VIS_EX( 3, "button_3", "PLAYERCARD", open "popup_callsign", setLocalVarString "ui_hint_text" ( "@MPUI_DESC_PLAYERCARD" ), CLEAR_UI_HINT, 1, disabled when ( !isitemunlocked( "playercard" ) ) )
         CHOICE_SEPERATOR( 4 )
 
         CHOICE_DESCRIPTION( 1, -20, 160.334 ) // vis, x, y

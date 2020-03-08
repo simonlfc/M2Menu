@@ -65,53 +65,56 @@
 			style 1
 			forecolor 1 1 1 1
 			textfont 9
-			textalign 14
-			textscale 0.5
+			textalign 12
+			textalignx 41
+			textaligny 10
+			textscale TEXTSIZE_TITLE
 			visible when ( 1 )
-			exp text ( locstring( "@MENU_OPTIONS_CAPS" ) )
+			text "OPTIONS"
 		}
 		itemDef
 		{
-			rect 253.5 5 344 34 1 1
+			rect 220 3 276.667 24.233 1 1
 			decoration
-			visible 1
+			visible 0
+			style 1
 			forecolor 1 1 1 1
 			textfont 9
-			textalign 4
-			textscale 0.45
-			text "@MENU_MULTIPLAYER_CAPS"
+			textalign 12
+			textalignx 41
+			textaligny 10
+			textscale TEXTSIZE_TITLE
+			visible when ( 1 )
+			text "MULTIPLAYER"
 		}
 		#include "ui_mp/leftside_optionsx.inc"
-		
+
+		#undef CHOICE_Y_START
+		#define CHOICE_Y_START 55
+
 		#undef CHOICE_X_START
-		#define CHOICE_X_START	4
+		#define CHOICE_X_START 250
+
+		#undef CHOICE_DVAR_OFFSET_Y
+		#define CHOICE_DVAR_OFFSET_Y 1
+
+		#undef CHOICE_DVAR_OFFSET_X
+		#define CHOICE_DVAR_OFFSET_X 250
+
+		#undef CHOICE_TEXT_OFFSET_Y
+		#define CHOICE_TEXT_OFFSET_Y	2
 		
-		// caption
-		#undef CHOICE_TEXTALIGN
-		#define CHOICE_TEXTALIGN 4
+		CHOICE_SEPERATOR( 0 )
 
-		#undef CHOICE_TEXT_OFFSET_X
-		#define CHOICE_TEXT_OFFSET_X 0
+		CHOICE_DVARFLOATLIST(0, "mp",			"MAX PACKETS",	 			"cl_maxpackets", {"30" 30 "100" 100 "125" 125}, ; )	
+		CHOICE_DVARFLOATLIST(1, "snaps",		"SNAPSHOT RATE",	  				"snaps", {"20" 20 "30" 30}, ; )
+		CHOICE_DVARYESNO(	 2, "lago",		"SHOW LAGOMETER",				"drawLagometer", ; )
+		CHOICE_DVARYESNO(	 3, "sfui",		"STREAMER MODE",		"ui_streamFriendly", ; )
+		CHOICE_DVARYESNO(	 4, "sfui",		"SHOW BLOOD",		"cg_blood", ; )
+		CHOICE_DVAREDIT( 5, "rec", "VAULT LIMIT", "cl_demoskeep", 3, ; )	
+		CHOICE_DVARFLOATLIST_FOCUS_VIS(6, "frn", "FRIEND NOTIFICATIONS",			"cl_notifyFriendState", {"Always" -1 "Never" 0 "in Menu" 1}, ;, "@MPUI_DESC_FRIENDNOTIFY", ;, when( dvarBool( "ui_streamFriendly" ) ) )
 
-		// dvar
-		#undef CHOICE_DVAR_TEXTALIGN
-		#define CHOICE_DVAR_TEXTALIGN 4
-		
-		#undef CHOICE_HIGHLIGHT_COLOR
-		#define CHOICE_HIGHLIGHT_COLOR 1 1 1 1
-
-		#undef CHOICE_TEXT_HIGHLIGHT
-		#define CHOICE_TEXT_HIGHLIGHT "gradient_center"
-				
-		CHOICE_DVAREDIT( 	 20, "pln", 		"@MENU_PLAYER_NAME", 			"ui_name", 15, ; )	
-		CHOICE_DVARFLOATLIST(21, "mp",			"@MENU_MAXPACKETS",	 			"cl_maxpackets", {"30" 30 "100" 100 "125" 125}, ; )
-		CHOICE_DVARFLOATLIST(22, "snaps",		"@MENU_SNAPS",	  				"snaps", {"20" 20 "30" 30}, ; )
-		CHOICE_DVARYESNO(	 23, "lago",		"@MENU_LAGOMETER",				"drawLagometer", ; )
-		CHOICE_DVARFLOATLIST(24, "dfps",		"@MENU_DRAWFPS",				"cg_drawFPS", {"Off" 0 "Simple" 1 "SimpleRanges" 2 "Verbose" 3 "Verbose+Viewpos" 4}, ; )
-		CHOICE_DVARYESNO(	 25, "fpsl",		"@MENU_FPSLABELS",				"cg_drawFPSLabels", ; )
-		CHOICE_DVARYESNO(	 26, "sfui",		"@MENU_STREAMFRIENDLY_UI",		"ui_streamFriendly", ; )
-		CHOICE_DVARFLOATLIST_FOCUS_VIS(27, "frn", "@MENU_FRIENDNOTIFY",			"cl_notifyFriendState", {"Always" -1 "Never" 0 "in Menu" 1}, ;, "@MPUI_DESC_FRIENDNOTIFY", ;, when( dvarBool( "ui_streamFriendly" ) ) )
-
+		CHOICE_SEPERATOR( 7 )
 		itemDef
 		{
 			name "graphic_warning"
