@@ -70,7 +70,6 @@
 			close "self";
 		}
 		
-		#define NO_BACKGROUND_BLUR
 		#include "ui_mp/bg.inc"
 						
 		itemDef
@@ -113,6 +112,8 @@
 
 		CHOICE_BUTTON(9, "CAC_BUTTON_LIST_9", "@MENU_RENAME_CAPS", open "pc_rename"; )
 		CHOICE_BUTTON(10, "CAC_BUTTON_LIST_10", "@MENU_RESET_CLASS_CAPS", open "popup_cac_template"; )
+
+		CHOICE_SEPERATOR( 11 )
 
 		#include "ui_mp/cac_loadout.inc"
 	}

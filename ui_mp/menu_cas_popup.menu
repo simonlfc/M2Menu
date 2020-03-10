@@ -317,13 +317,16 @@
 		{
 			rect -64 3 276.667 24.233 1 1
 			decoration
-			visible 1
+			visible 0
 			style 1
 			forecolor 1 1 1 1
 			textfont 9
-			textalign 14
-			textscale 0.5
-			exp text ( "ASSAULT" )
+			textalign 12
+			textalignx 41
+			textaligny 10
+			textscale TEXTSIZE_TITLE
+			visible when ( 1 )
+			text "KILLSTREAKS"
 		}
 
 		CHOICE_SEPERATOR( 0 )

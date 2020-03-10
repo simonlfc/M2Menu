@@ -8,15 +8,16 @@
 			rect CHOICE_RECT( itemIndex ) \
 			visible 1 \
 			group "mw2_button" \
-			style 1 \
-			foreColor 1 1 1 1 \
-			disableColor 0.6 0.55 0.55 1 \
+			foreColor CHOICE_TEXTCOLOR \
+			disableColor CHOICE_TEXTCOLOR_DISABLED \
+			style CHOICE_TEXTSTYLE \
 			background CHOICE_TEXT_HIGHLIGHT \
 			type 1 \
-			textFont 3 \
-			textAlign 6 \
-			textAlignX -32 \
-			textScale 0.375 \
+			textAlign CHOICE_TEXTALIGN \
+			textAlignX CHOICE_TEXT_OFFSET_X \
+			textAlignY CHOICE_TEXT_OFFSET_Y \
+			textScale CHOICE_TEXTSIZE \
+			textFont CHOICE_TEXTFONT \
 			disabled when ( ( !( isitemunlocked( streakName ) && getplayerdata( "killstreakUnlocked" , streakName ) ) \
 			&& !localvarint( "ui_numTokens" ) ) || ( ( isitemunlocked( streakName ) \
 			&& getplayerdata( "killstreakUnlocked" , streakName ) ) \

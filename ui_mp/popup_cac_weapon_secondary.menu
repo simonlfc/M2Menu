@@ -130,21 +130,7 @@
 			visible when ( ( 1 ) )
 			exp text ( "@" + tablelookup( "mp/statsTable.csv" , 4 , localvarstring( "loadoutSecondary" ) , 3 ) )
 		}
-		itemDef
-		{
-			rect 254.333 49.667 186.667 44.4 1 1
-			decoration
-			autowrapped
-			visible 1
-			style 1
-			forecolor 1 1 1 1
-			textfont 9
-			textalign 5
-			textscale 0.383333
-			exp rect x ( ( 0 ) + ( ( 261 + ( 0 - 6.667 ) ) ) + ( 0 ) )
-			visible when ( ( 1 ) )
-			exp text ( "WEAPON LEVEL N/A" )
-		}
+		
 		itemDef
 		{
 			rect 267.667 69.833 144 72 1 1
