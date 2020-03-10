@@ -90,7 +90,7 @@
 		#undef CHOICE_TEXT_OFFSET_X
 		#define CHOICE_TEXT_OFFSET_X	0
 
-		
+		#undef CHOICE_TEXTCOLOR
 		#define CHOICE_TEXTCOLOR 1 1 1 0.2
 
 
@@ -224,7 +224,7 @@
 		#undef CHOICE_TEXT_OFFSET_X
 		#define CHOICE_TEXT_OFFSET_X	0
 
-		
+		#undef CHOICE_TEXTCOLOR
 		#define CHOICE_TEXTCOLOR 1 1 1 0.2
 
 
