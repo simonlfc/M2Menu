@@ -81,36 +81,36 @@ itemDef
 #endif
 
 #ifdef WEAPON
-itemDef
-{
-	rect 60 326 186.667 44.4 1 1
-	name "weapname"
-	decoration
-	autowrapped
-	visible 1
-	style 1
-	forecolor 1 1 1 0.25
-	textfont UI_FONT_NORMAL
-	textalign 6
-	textscale 0.2
-	visible when ( ( 1 ) )
-	exp text ( "@" + tablelookup( "mp/statsTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 3 ) )
-}
-itemDef
-{
-	rect -15 326 186.667 44.4 1 1
-	name "weapdesc"
-	decoration
-	autowrapped
-	visible 1
-	style 1
-	forecolor 1 1 1 1
-	textfont UI_FONT_NORMAL
-	textalign 4
-	textscale 0.2
-	visible when ( ( 1 ) )
-	exp text ( "@" + tablelookup( "mp/statstable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 7 ) )
-}
+	itemDef
+	{
+		rect 60 326 186.667 44.4 1 1
+		name "weapname"
+		decoration
+		autowrapped
+		visible 1
+		style 1
+		forecolor 1 1 1 0.25
+		textfont UI_FONT_NORMAL
+		textalign 6
+		textscale 0.2
+		visible when ( ( 1 ) )
+		exp text ( "@" + tablelookup( "mp/statsTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 3 ) )
+	}
+	itemDef
+	{
+		rect -15 326 186.667 44.4 1 1
+		name "weapdesc"
+		decoration
+		autowrapped
+		visible 1
+		style 1
+		forecolor 1 1 1 1
+		textfont UI_FONT_NORMAL
+		textalign 4
+		textscale 0.2
+		visible when ( ( 1 ) )
+		exp text ( "@" + tablelookup( "mp/statstable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 7 ) )
+	}
 
 // Stat Bars
 
@@ -147,7 +147,7 @@ itemDef
 		}
 		itemDef
 		{
-			rect -15 349 90 8 1 1
+			rect -14 350 90 6 1 1
 			name "accuracystat"
 			decoration
 			visible 1
@@ -155,7 +155,7 @@ itemDef
 			forecolor 0.65 0.65 0.65 1
 			background "white"
 			textscale 0.55
-			exp rect w ( ( tablelookup( "mp/statsTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 22 ) / 100 ) * 75 )
+			exp rect w ( ( tablelookup( "mp/statsTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 22 ) / 100 ) * 74 )
 			visible when ( tablelookup( "mp/statsTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 22 ) && 1 )
 		}
 
@@ -192,7 +192,7 @@ itemDef
 		}
 		itemDef
 		{
-			rect 76 349 90 8 1 1
+			rect 77 350 90 6 1 1
 			name "damagestat"
 			decoration
 			visible 1
@@ -200,7 +200,7 @@ itemDef
 			forecolor 0.65 0.65 0.65 1
 			background "white"
 			textscale 0.55
-			exp rect w ( ( tablelookup( "mp/statsTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 23 ) / 100 ) * 75 )
+			exp rect w ( ( tablelookup( "mp/statsTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 23 ) / 100 ) * 74 )
 			visible when ( tablelookup( "mp/statsTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 23 ) && 1 )
 		}
 
@@ -237,7 +237,7 @@ itemDef
 		}
 		itemDef
 		{
-			rect 168 349 90 8 1 1
+			rect 169 350 90 6 1 1
 			name "rangestat"
 			decoration
 			visible 1
@@ -245,7 +245,7 @@ itemDef
 			forecolor 0.65 0.65 0.65 1
 			background "white"
 			textscale 0.55
-			exp rect w ( ( tablelookup( "mp/statsTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 24 ) / 100 ) * 75 )
+			exp rect w ( ( tablelookup( "mp/statsTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 24 ) / 100 ) * 74 )
 			visible when ( tablelookup( "mp/statsTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 24 ) && 1 )
 		}
 
@@ -282,7 +282,7 @@ itemDef
 		}
 		itemDef
 		{
-			rect -15 371 90 8 1 1
+			rect -14 372 90 6 1 1
 			name "fireratestat"
 			decoration
 			visible 1
@@ -290,7 +290,7 @@ itemDef
 			forecolor 0.65 0.65 0.65 1
 			background "white"
 			textscale 0.55
-			exp rect w ( ( tablelookup( "mp/statsTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 25 ) / 100 ) * 75 )
+			exp rect w ( ( tablelookup( "mp/statsTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 25 ) / 100 ) * 74 )
 			visible when ( tablelookup( "mp/statsTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 25 ) && 1 )
 		}
 
@@ -327,7 +327,7 @@ itemDef
 		}
 		itemDef
 		{
-			rect 76 371 90 8 1 1
+			rect 77 372 90 6 1 1
 			name "mobilitystat"
 			decoration
 			visible 1
@@ -335,7 +335,7 @@ itemDef
 			forecolor 0.65 0.65 0.65 1
 			background "white"
 			textscale 0.55
-			exp rect w ( ( tablelookup( "mp/statsTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 26 ) / 100 ) * 75 )
+			exp rect w ( ( tablelookup( "mp/statsTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 26 ) / 100 ) * 74 )
 			visible when ( tablelookup( "mp/statsTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 25 ) && 1 )
 		}
 #endif
