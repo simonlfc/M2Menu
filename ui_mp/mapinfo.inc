@@ -35,23 +35,20 @@ itemDef
 	forecolor 1 1 1 1
 	textfont UI_FONT_NORMAL
 	textalign 8
-	textscale 0.35
+	textscale TEXTSIZE_SMALL
 	visible when ( ( 1 ) )
 	exp text ( "@" + localvarstring( "ui_info_name" )  )
 }
 itemDef
 {
 	name "description"
-	rect 95 211 260 45 2 1
+	rect 99 196 260 45 2 1
 	decoration
 	autowrapped
 	visible 1
-	style 1
 	forecolor 1 1 1 1
-	type 21
-	textfont UI_FONT_NORMAL
-	textalign 4
-	textalignx 4
+	textfont 3
+	textalign 8
 	textscale 0.3
 	visible when ( ( 1 ) )
 	exp text ( "@" + localvarstring( "ui_info_desc" )  )
