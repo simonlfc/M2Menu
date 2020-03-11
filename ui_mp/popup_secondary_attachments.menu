@@ -35,53 +35,15 @@
 		onRequestClose
 		{
 			setLocalVarInt "ui_tabDepth" ( localvarint( "ui_tabDepth" ) - 1 );
+			close "menu_cac_secondary_dropdown";
 		}
 		onEsc
 		{
 			close self;
 		}
-		#define NO_BACKGROUND_BLUR
 		#include "ui_mp/bg.inc"
-		
-		itemDef
-		{
-			rect 237.6 -36 301.5 480 1 1
-			decoration
-			visible 1
-			style 3
-			forecolor 0 0 0 0.4
-			background "white"
-			textscale 0.55
-			exp rect w ( 226 )
-		}
-		itemDef
-		{
-			rect 237.5 -236 13 680 1 1
-			decoration
-			visible 1
-			style 3
-			forecolor 1 1 1 0.75
-			background "gradient"
-			textscale 0.55
-			exp rect x ( 457.5 )
-			exp forecolor r ( 0.596078 )
-			exp forecolor g ( 0.654902 )
-			exp forecolor b ( 0.603922 )
-		}
-		itemDef
-		{
-			rect 237.5 -236 13 680 1 1
-			decoration
-			visible 1
-			style 3
-			forecolor 1 1 1 0.75
-			background "gradient"
-			textscale 0.55
-			exp rect x ( 457.5 )
-			exp forecolor r ( 0.596078 )
-			exp forecolor g ( 0.654902 )
-			exp forecolor b ( 0.603922 )
-		}
+		#include "ui_mp/cac_loadout.inc"
+
 		itemDef
 		{
 			rect -64 3 276.667 24.233 1 1
@@ -90,13 +52,57 @@
 			style 1
 			forecolor 1 1 1 1
 			textfont 9
-			textalign 14
-			textscale 0.5
+			textalign 12
+			textalignx 41
+			textaligny 10
+			textscale TEXTSIZE_TITLE
 			visible when ( 1 )
 			exp text ( "@MENU_ATTACHMENTS_CAPS" )
-		}		
-		
-		CHOICE_SEPERATOR( 0 )
+		}
+
+		itemDef
+		{
+			rect -85 -100 2560 1440 2 1
+			decoration
+			border 1
+			bordersize 0.5
+			bordercolor 1 1 1 0.1
+			visible 1
+			style 3
+			forecolor 0 0 0 0.35
+			textscale 0.55
+			exp material ( "white" )
+		}
+
+		#undef CHOICE_SIZE_X
+		#define CHOICE_SIZE_X				141
+
+		#undef CHOICE_X_SPACING
+		#define CHOICE_X_SPACING			144
+
+		#undef CHOICE_SIZE_Y
+		#define CHOICE_SIZE_Y				48.5
+
+		#undef CHOICE_Y_SPACING
+		#define CHOICE_Y_SPACING			51.5
+
+		#undef CHOICE_TEXTSIZE
+		#define CHOICE_TEXTSIZE				0.275
+
+		#undef CHOICE_TEXT_OFFSET_X
+		#define CHOICE_TEXT_OFFSET_X		7
+
+		#undef CHOICE_TEXT_OFFSET_Y
+		#define CHOICE_TEXT_OFFSET_Y		6
+
+		#undef CHOICE_BORDER
+		#define CHOICE_BORDER 1
+
+		#undef CHOICE_BORDERCOLOR
+		#define CHOICE_BORDERCOLOR 1 1 1 0.1
+
+		#undef CHOICE_BORDERSIZE
+		#define CHOICE_BORDERSIZE 0.5
 
 		CHOICE_BUTTON_FOCUS_EX( 0, "swf_00", "@"+tablelookup("mp/attachmentTable.csv",4,"none",3), UI_TABDEPTH2( ;,"@"+tablelookup("mp/perkTable.csv",1,"none",2))LOCAL_CACSETVARSTRINGS LOCAL_CAC_WEAPON_ATTACHMENT_TYPE( REF_IS_PRIMARY_ATTACHMENT, "none" ),
 		setLocalVarString "ui_selected_ref" ( "none" );
@@ -105,18 +111,14 @@
 		setLocalVarString "ui_challenge_ref" ( tablelookup( "mp/unlockTable.csv" , 0 , localvarstring( "ui_unlock_ref" ) , 3 ) );
 		setLocalVarInt "ui_challenge_state" ( 1 );LOCAL_CH_REF( "ch_marksman_" );, setLocalVarString "tempName" ( getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , 0 , "weapon" ) ); if ( localvarstring( "ui_selected_ref" ) != "" ) { setPlayerData( "attachmentNew" , "localVarString" ( "tempName" ) , "localVarString" ( "ui_selected_ref" ) , "false" ); };, ; )
 
-		LOCAL_ATTACHMENT2_ITEM( 1, "swf_01", 11 )
-		LOCAL_ATTACHMENT2_ITEM( 2, "swf_02", 12 )
-		LOCAL_ATTACHMENT2_ITEM( 3, "swf_03", 13 )
-		LOCAL_ATTACHMENT2_ITEM( 4, "swf_04", 14 )
-		LOCAL_ATTACHMENT2_ITEM( 5, "swf_05", 15 )
-		LOCAL_ATTACHMENT2_ITEM( 6, "swf_06", 16 )
-		LOCAL_ATTACHMENT2_ITEM( 7, "swf_07", 17 )
-		LOCAL_ATTACHMENT2_ITEM( 8, "swf_08", 18 )
-		LOCAL_ATTACHMENT2_ITEM( 9, "swf_09", 19 )
-		LOCAL_ATTACHMENT2_ITEM( 10, "swf_10", 20 )
+		LOCAL_ATTACHMENT2_ITEM( 20, "swf_01", 11 )
+		LOCAL_ATTACHMENT2_ITEM( 1, "swf_02", 12 )		LOCAL_ATTACHMENT2_ITEM( 21, "swf_03", 13 )
+		LOCAL_ATTACHMENT2_ITEM( 2, "swf_04", 14 )		LOCAL_ATTACHMENT2_ITEM( 22, "swf_05", 15 )
+		LOCAL_ATTACHMENT2_ITEM( 3, "swf_06", 16 )		LOCAL_ATTACHMENT2_ITEM( 23, "swf_07", 17 )
+		LOCAL_ATTACHMENT2_ITEM( 4, "swf_08", 18 )		LOCAL_ATTACHMENT2_ITEM( 24, "swf_09", 19 )
+		LOCAL_ATTACHMENT2_ITEM( 5, "swf_10", 20 )
 
-		#include "ui_mp/cac_loadout.inc"
+		/*
 		itemDef
 		{
 			rect 254.333 34.667 186.667 44.4 1 1
@@ -410,5 +412,7 @@
 			//exp rect x ( ( select( localvarbool( "ui_shelfTimeInvert" ) , select( ( milliseconds( ) - localvarfloat( "ui_shelfTime" ) ) > 100 , ( 0 - 242 ) , ( ( milliseconds( ) - localvarfloat( "ui_shelfTime" ) ) / 100 ) * ( 0 - 242 ) ) , select( ( milliseconds( ) - localvarfloat( "ui_shelfTime" ) ) > 100 , 0 , ( 1 - ( milliseconds( ) - localvarfloat( "ui_shelfTime" ) ) / 100 ) * ( 0 - 242 ) ) ) ) + ( ( 261 + ( 0 - 13.333 ) ) ) + ( 0 ) )
 			//visible when ( ( ( ( ( ( localvarstring( "loadoutPrimary" ) != "none" ) && ( localvarstring( "loadoutPrimary" ) != "throwingknife" ) ) || ( localvarstring( "ui_info_filter" ) == "riotshield" ) ) || 0 || 0 ) ) )
 		}
+		*/
+		
 	}
 }
