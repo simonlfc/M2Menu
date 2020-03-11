@@ -87,13 +87,13 @@
 
 		itemDef
 		{
-			rect -25.125 213.75 202 110 1 1
+			rect -25.125 214.5 202 110 1 1
 			decoration
 			visible 1
 			style 3
 			forecolor 1 1 1 1
 			textscale 0.55
-			exp rect y ( 205 )
+			exp rect y ( 206 )
 			exp material ("preview_" + dvarString ( "ui_mapname" ) )
 		}
 
@@ -112,7 +112,7 @@
 		}
 		itemDef
 		{
-			rect -17 335.667 161.333 16 1 1
+			rect -17 334.5 161.333 16 1 1
 			decoration
 			visible 1
 			style 1
