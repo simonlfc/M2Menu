@@ -60,16 +60,22 @@
 		}
 
 		#undef CHOICE_Y_START
-		#define CHOICE_Y_START 30
+		#define CHOICE_Y_START 31
 
 		#undef CHOICE_SEP_WIDTH
 		#define CHOICE_SEP_WIDTH 580
+
+		#undef CHOICE_X_START
+		#define CHOICE_X_START 180
 		
 		CHOICE_SEPERATOR( 1 )
 
 
 		#undef CHOICE_Y_START
-		#define CHOICE_Y_START 39
+		#define CHOICE_Y_START 41
+
+		#undef CHOICE_X_START
+		#define CHOICE_X_START 192
 
 		#undef CHOICE_TEXTSIZE
 		#define CHOICE_TEXTSIZE 0.225
@@ -140,29 +146,6 @@
 					uiScript "UpdateFilter";,
 					when( dvarInt( "ui_netSource" ) == 0 ) )
 
-		#undef CHOICE_X_START
-		#define CHOICE_X_START 440
-
-		#undef CHOICE_TEXTCOLOR
-		#define CHOICE_TEXTCOLOR 1 1 1 1
-
-		#undef CHOICE_TEXTSIZE
-		#define CHOICE_TEXTSIZE	TEXTSIZE_SMALL
-
-		#undef CHOICE_TEXTALIGN
-		#define	CHOICE_TEXTALIGN 6
-
-		#undef CHOICE_SIZE_X
-		#define CHOICE_SIZE_X 201.5
-
-		#undef CHOICE_SIZE_Y
-		#define CHOICE_SIZE_Y 23
-
-		#undef CHOICE_TEXT_OFFSET_X
-		#define CHOICE_TEXT_OFFSET_X -10
-
-		#undef CHOICE_Y_START
-		#define CHOICE_Y_START -165
 
 		#undef CHOICE_SEP_OFFSET_Y
 		#define CHOICE_SEP_OFFSET_Y	-7
@@ -173,37 +156,70 @@
 		#undef CHOICE_HIGHLIGHT_COLOR 
 		#define CHOICE_HIGHLIGHT_COLOR 	0 0 0 0.2
 
-		CHOICE_SEPERATOR( 50 )
-		CHOICE_BUTTON( 50, "connect", "CONNECT", 
+		#undef CHOICE_TEXT_OFFSET_X
+		#define CHOICE_TEXT_OFFSET_X	10
+
+		#undef CHOICE_TEXT_OFFSET_Y
+		#define CHOICE_TEXT_OFFSET_Y	1
+
+		#undef CHOICE_TEXTSIZE
+		#define CHOICE_TEXTSIZE			TEXTSIZE_SMALL
+
+		#undef CHOICE_TEXTALIGN
+		#define	CHOICE_TEXTALIGN		4
+
+		#undef CHOICE_X_START
+		#define CHOICE_X_START				-28
+		
+		#undef CHOICE_X_SPACING
+		#define CHOICE_X_SPACING			250
+
+		#undef CHOICE_Y_START
+		#define CHOICE_Y_START				55.667
+
+		#undef CHOICE_Y_SPACING
+		#define CHOICE_Y_SPACING			24
+		
+		#undef CHOICE_SIZE_Y
+		#define CHOICE_SIZE_Y				23
+
+		#undef CHOICE_SIZE_X
+		#define CHOICE_SIZE_X				201.5
+
+		#undef CHOICE_SEP_OFFSET_Y
+		#define CHOICE_SEP_OFFSET_Y			-6
+
+		CHOICE_SEPERATOR( 0 )
+		CHOICE_BUTTON( 0, "connect", "CONNECT", 
 					uiScript "JoinServer"; )
 
-		CHOICE_BUTTON( 51, "pass", "PASSWORD", 
+		CHOICE_BUTTON( 1, "pass", "PASSWORD", 
 					open "popup_joinpassword"; )
 
-		CHOICE_BUTTON_VIS( 52, "removefav", "REMOVE FAVOURITE", 
+		CHOICE_BUTTON_VIS( 2, "removefav", "REMOVE FAVOURITE", 
 					uiScript "DeleteFavorite";,
 					when( dvarInt( "ui_netSource" ) == 2 ) )
 
-		CHOICE_BUTTON_VIS( 52, "addfav", "ADD FAVOURITE", 
+		CHOICE_BUTTON_VIS( 2, "addfav", "ADD FAVOURITE", 
 					uiScript "CreateListFavorite";,
 					when( dvarInt( "ui_netSource" ) != 2 ) )
 
-		CHOICE_BUTTON( 53, "filter", "FILTER SERVERS", 
+		CHOICE_BUTTON( 3, "filter", "FILTER SERVERS", 
 					play "mouse_click";
 					open "filter_popmenu"; )
 
-		CHOICE_BUTTON( 54, "refresh", "REFRESH SERVERS", 
+		CHOICE_BUTTON( 4, "refresh", "REFRESH SERVERS", 
 					play "mouse_click";
 					uiScript "RefreshServers"; )
 
-		CHOICE_SEPERATOR( 55 )
+		CHOICE_SEPERATOR( 5 )
 
 			
 
 		itemDef
 		{
 			name "serverBrowserList"
-			rect -61 107 575 320 0 0
+			rect 135 115 575 320 0 0
 			visible 1
 			foreColor 1 1 1 1
 			outlineColor 1 1 1 0.1
@@ -238,10 +254,10 @@
 		}	
 
 		#undef CHOICE_X_START
-		#define CHOICE_X_START -9
+		#define CHOICE_X_START 186
 
 		#undef CHOICE_Y_START
-		#define CHOICE_Y_START 59
+		#define CHOICE_Y_START 65
 
 		#undef CHOICE_TEXTSIZE
 		#define CHOICE_TEXTSIZE 0.225
