@@ -134,7 +134,7 @@
     		style 3
     		forecolor 1 1 1 1
     		textscale 0.55
-    		visible when ( itemisunlocked( "ak47classic" ) )
+    		visible when ( isitemunlocked( "ak47classic" ) )
             exp material ( "weapon_ak47_classic" )
     	}
     #endif
@@ -815,5 +815,175 @@
     		textscale 0.55
     		visible when ( 1 )
             exp material ( "weapon_smokegrenade" )
+        }
+    #endif
+
+// Deathstreaks
+    #ifdef COPYCAT
+        itemDef
+    	{
+    		rect -660 65 35.25 33.25 3 1
+    		decoration
+    		visible 1
+    		style 3
+    		forecolor 1 1 1 1
+    		textscale 0.55
+    		visible when ( isitemunlocked( "specialty_copycat" ) )
+            exp material ( "specialty_copycat" )
+    	}
+    #endif
+
+    #ifdef JUICED
+        itemDef
+    	{
+    		rect -515 65 35.25 33.25 3 1
+    		decoration
+    		visible 1
+    		style 3
+    		forecolor 1 1 1 1
+    		textscale 0.55
+    		visible when ( isitemunlocked( "specialty_combathigh" ) )
+            exp material ( "specialty_painkiller" )
+    	}
+    #endif
+
+    #ifdef MARTYRDOM
+        itemDef
+    	{
+    		rect -660 115 35.25 33.25 3 1
+    		decoration
+    		visible 1
+    		style 3
+    		forecolor 1 1 1 1
+    		textscale 0.55
+    		visible when ( isitemunlocked( "specialty_grenadepulldeath" ) )
+            exp material ( "specialty_grenadepulldeath" )
+        }
+    #endif
+
+    #ifdef FINALSTAND
+        itemDef
+    	{
+    		rect -515 115 35.25 33.25 3 1
+    		decoration
+    		visible 1
+    		style 3
+    		forecolor 1 1 1 1
+    		textscale 0.55
+    		visible when ( isitemunlocked( "specialty_finalstand" ) )
+            exp material ( "specialty_finalstand" )
+    	}
+    #endif
+
+// Camos
+    #ifdef DESERT
+        itemDef
+    	{
+    		rect -573 56.5 105 46.75 3 1
+    		decoration
+    		visible 1
+    		style 3
+    		forecolor 1 1 1 0.5
+    		textscale 0.55
+    		visible when ( isitemunlocked( getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , 0 , "weapon" ) + " " + ( "desert" ) ) )
+            exp material ( "ui_camoskin_desert" )
+    	}
+    #endif
+
+    #ifdef ARCTIC
+        itemDef
+    	{
+    		rect -718 108 105 46.75 3 1
+    		decoration
+    		visible 1
+    		style 3
+    		forecolor 1 1 1 0.5
+    		textscale 0.55
+    		visible when ( isitemunlocked( getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , 0 , "weapon" ) + " " + ( "arctic" ) ) )
+            exp material ( "ui_camoskin_arctic" )
+        }
+    #endif
+
+    #ifdef WOODLAND
+        itemDef
+    	{
+    		rect -573 108 105 46.75 3 1
+    		decoration
+    		visible 1
+    		style 3
+    		forecolor 1 1 1 0.5
+    		textscale 0.55
+    		visible when ( isitemunlocked( getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , 0 , "weapon" ) + " " + ( "woodland" ) ) )
+            exp material ( "ui_camoskin_woodland" )
+    	}
+    #endif
+
+    #ifdef DIGITAL
+        itemDef
+    	{
+    		rect -718 159.5 105 46.75 3 1
+    		decoration
+    		visible 1
+    		style 3
+    		forecolor 1 1 1 0.5
+    		textscale 0.55
+    		visible when ( isitemunlocked( getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , 0 , "weapon" ) + " " + ( "digital" ) ) )
+            exp material ( "ui_camoskin_digital" )
+        }
+    #endif
+
+    #ifdef REDURBAN
+        itemDef
+    	{
+    		rect -573 159.5 105 46.75 3 1
+    		decoration
+    		visible 1
+    		style 3
+    		forecolor 1 1 1 0.5
+    		textscale 0.55
+    		visible when ( isitemunlocked( getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , 0 , "weapon" ) + " " + ( "red_urban" ) ) )
+            exp material ( "ui_camoskin_red_urban" )
+    	}
+    #endif
+
+    #ifdef BLUETIGER
+        itemDef
+    	{
+    		rect -718 211 105 46.75 3 1
+    		decoration
+    		visible 1
+    		style 3
+    		forecolor 1 1 1 0.5
+    		textscale 0.55
+    		visible when ( isitemunlocked( getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , 0 , "weapon" ) + " " + ( "blue_tiger" ) ) )
+            exp material ( "ui_camoskin_blue_tiger" )
+        }
+    #endif
+
+    #ifdef REDTIGER
+        itemDef
+    	{
+    		rect -573 211 105 46.75 3 1
+    		decoration
+    		visible 1
+    		style 3
+    		forecolor 1 1 1 0.5
+    		textscale 0.55
+    		visible when ( isitemunlocked( getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , 0 , "weapon" ) + " " + ( "red_tiger" ) ) )
+            exp material ( "ui_camoskin_red_tiger" )
+    	}
+    #endif
+
+    #ifdef FALL
+        itemDef
+    	{
+    		rect -718 262.5 105 46.75 3 1
+    		decoration
+    		visible 1
+    		style 3
+    		forecolor 1 1 1 0.5
+    		textscale 0.55
+    		visible when ( isitemunlocked( getplayerdata( "customClasses" , localvarint( "classIndex" ) , "weaponSetups" , 0 , "weapon" ) + " " + ( "orange_fall" ) ) )
+            exp material ( "ui_camoskin_orange_fall" )
         }
     #endif
