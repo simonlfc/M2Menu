@@ -86,7 +86,7 @@
 
 		itemDef
 		{
-			rect -430 139.733 310.667 18.633 3 1
+			rect -430 140.733 310.667 18.633 3 1
 			decoration
 			visible 1
 			style 1
@@ -211,7 +211,7 @@
 
 		itemDef
 		{
-			rect -430 290.733 310.667 18.633 3 1
+			rect -430 291.733 310.667 18.633 3 1
 			decoration
 			visible 1
 			style 1
