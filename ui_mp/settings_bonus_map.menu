@@ -77,26 +77,12 @@
 				open "popup_gamesetup";
 			}
 		}
-		itemDef
-		{
-			rect -252.667 2.667 253.333 20 3 1
-			decoration
-			visible 1
-			style 1
-			forecolor 0.784314 0.784314 0.784314 1
-			background "white"
-			textfont 3
-			textalign 4
-			textalignx 20
-			textscale 0.375
-			visible when ( privatepartyhost( ) )
-			exp text ( locstring( "@MPUI_RECOMMENDEDPLAYERS" , int( min( dvarint( "party_maxPlayers" ) , maxrecommendedplayers( ) ) ) ) )
-		}
 
 		// norm 
 		#define LOCAL_MAP_ACTION( mapname ) \
 				setdvar ui_mapname mapname; \
 				close "settings_map"; \
+				close "maps_popout" ; \
 				close "self"; \
 
 		#define LOCAL_MAP_FOCUS( name, desc, icon ) \
@@ -131,69 +117,10 @@
 		LOCAL_MAP_BUTTON( 8, "button_9", "mp_trailerpark", 	"PATCH_TRAILERPARK",	"PATCH_DESC_MAP_TRAILERPARK", 	"preview_mp_trailerpark" 	)
 		LOCAL_MAP_BUTTON( 9, "button_10", "mp_vacant",		"PATCH_VACANT", 		"MPUI_DESC_MAP_VACANT", 		"preview_mp_vacant"			)
 		
-	  	itemDef
-		{
-			rect 91 33 272 20 2 1
-			style 3
-			foreColor 0.1569 0.1725 0.1608 1
-			background "white"
-			decoration 
-			textScale 0.55
-			visible 1
-		}
-		
-		itemDef
-		{
-			rect 91.333 202.334 272 50 2 1
-			style 3
-			foreColor 0.3098 0.349 0.2745 1
-			background "white"
-			decoration 
-			textScale 0.55
-			visible 1
-		}
-		itemDef
-		{
-			rect 91.333 49 272 153.333 2 1
-			decoration
-			visible 1
-			style 3
-			forecolor 1 1 1 1
-			textscale 0.55
-			visible when ( 1 )
-			exp material ( localvarstring( "ui_info_icon" )  )
-		}
-		itemDef
-		{
-			name "longname"
-			rect 91.333 29.334 272 20.833 2 1
-			decoration
-			visible 1
-			style 1
-			forecolor 1 1 1 1
-			textfont 9
-			textalign 9
-			textscale 0.375
-			visible when ( ( 1 ) )
-			exp text ( "@" + localvarstring( "ui_info_name" )  )
-		}
-		itemDef
-		{
-			name "description"
-			rect 94.2663 209.1 260 40 2 1
-			decoration
-			autowrapped
-			visible 1
-			style 1
-			forecolor 1 1 1 1
-			type 21
-			textfont 3
-			textalign 4
-			textalignx 4
-			textscale 0.383333
-			visible when ( ( 1 ) )
-			exp text ( "@" + localvarstring( "ui_info_desc" )  )
-		}
+		CHOICE_SEPERATOR( 10 )
+	  	
+		#include "ui_mp/mapinfo.inc"
+
 	}
 	menuDef
 	{
@@ -284,91 +211,28 @@
 		LOCAL_MAP_BUTTON( 1,   "button_2", "mp_bog", 			"MPUI_BOG_SH",			"MPUI_DESC_MAP_BOG",			"preview_mp_bog_sh"			)
 		LOCAL_MAP_BUTTON( 2,   "button_3", "mp_storm_spring",	"MPUI_STORM_SPRING",	"MPUI_DESC_MAP_STORM_SPRING", 	"preview_mp_storm_spring"	)
 		LOCAL_MAP_BUTTON( 3,   "button_4", "mp_crash_tropical",	"MPUI_CRASH_TROPICAL",	"MPUI_DESC_MAP_CRASH_TROPICAL",	"preview_mp_crash_tropical"	)
-		
-		CHOICE_SEPERATOR( 4 )
-
 		LOCAL_MAP_BUTTON( 4,   "button_5", "mp_cross_fire",		"MPUI_CROSSFIRE",		"MPUI_DESC_MAP_CROSSFIRE",		"preview_mp_cross_fire"		)
 		LOCAL_MAP_BUTTON( 5,   "button_6", "mp_estate_tropical","MPUI_ESTATE_TROPICAL",	"MPUI_DESC_MAP_ESTATE_TROPICAL","preview_mp_estate_tropical")
 		LOCAL_MAP_BUTTON( 6,   "button_7", "mp_fav_tropical",	"MPUI_FAV_TROPICAL",	"MPUI_DESC_MAP_FAV_TROPICAL",	"preview_mp_fav_tropical"	)
 		LOCAL_MAP_BUTTON( 7,   "button_8", "mp_firingrange",	"MPUI_FIRINGRANGE",		"MPUI_DESC_MAP_FIRINGRANGE",	"preview_mp_firingrange"	)
-		
-		CHOICE_SEPERATOR( 8 )
 
 		LOCAL_MAP_BUTTON( 8,   "button_9", "mp_bloc_sh",		"MPUI_BLOC_SH",			"MPUI_DESC_MAP_BLOC_SH",		"preview_mp_bloc_sh"		)
 		LOCAL_MAP_BUTTON( 9,  "button_10", "mp_cargoship_sh",	"MPUI_CARGOSHIP_SH",	"MPUI_DESC_MAP_CARGOSHIP_SH",	"preview_mp_cargoship_sh"	)
 		LOCAL_MAP_BUTTON( 10,  "button_11", "mp_killhouse",		"MPUI_KILLHOUSE",		"MPUI_DESC_MAP_KILLHOUSE",		"preview_mp_killhouse"		)
 		LOCAL_MAP_BUTTON( 11,  "button_12", "mp_nuked",			"MPUI_NUKED",			"MPUI_DESC_MAP_NUKED", 			"preview_mp_nuked" 			)
-
-		CHOICE_SEPERATOR( 12 )
-
 		LOCAL_MAP_BUTTON( 12,  "button_13", "oilrig", 			"MPUI_OILRIG",			"MPUI_DESC_MAP_OILRIG",			"preview_oilrig" 			)
-		LOCAL_MAP_BUTTON( 13,  "button_14", "mp_rust_long",		"MPUI_RUST_LONG",		"MPUI_DESC_MAP_RUST_LONG",		"preview_mp_rust_long"		)
-		LOCAL_MAP_BUTTON( 14,  "button_15", "mp_shipment_long",	"MPUI_SHIPMENT_LONG",	"MPUI_DESC_MAP_SHIPMENT_LONG",	"preview_mp_shipment_long"	)
-		LOCAL_MAP_BUTTON( 15,  "button_16", "co_hunted",		"MPUI_CO_HUNTED",		"MPUI_DESC_MAP_CO_HUNTED",		"preview_co_hunted"			)
-		LOCAL_MAP_BUTTON( 16,  "button_17", "mp_cargoship",		"MPUI_CARGOSHIP",		"MPUI_DESC_MAP_CARGOSHIP",		"preview_mp_cargoship"		)
 
-	  	itemDef
-		{
-			rect 91 33 272 20 2 1
-			style 3
-			foreColor 0.1569 0.1725 0.1608 1
-			background "white"
-			decoration 
-			textScale 0.55
-			visible 1
-		}
-		
-		itemDef
-		{
-			rect 91.333 202.334 272 50 2 1
-			style 3
-			foreColor 0.3098 0.349 0.2745 1
-			background "white"
-			decoration 
-			textScale 0.55
-			visible 1
-		}
-		itemDef
-		{
-			rect 91.333 49 272 153.333 2 1
-			decoration
-			visible 1
-			style 3
-			forecolor 1 1 1 1
-			textscale 0.55
-			visible when ( 1 )
-			exp material ( localvarstring( "ui_info_icon" )  )
-		}
-		itemDef
-		{
-			name "longname"
-			rect 91.333 29.334 272 20.833 2 1
-			decoration
-			visible 1
-			style 1
-			forecolor 1 1 1 1
-			textfont 9
-			textalign 9
-			textscale 0.375
-			visible when ( ( 1 ) )
-			exp text ( "@" + localvarstring( "ui_info_name" )  )
-		}
-		itemDef
-		{
-			name "description"
-			rect 94.2663 209.1 260 40 2 1
-			decoration
-			autowrapped
-			visible 1
-			style 1
-			forecolor 1 1 1 1
-			type 21
-			textfont 3
-			textalign 4
-			textalignx 4
-			textscale 0.383333
-			visible when ( ( 1 ) )
-			exp text ( "@" + localvarstring( "ui_info_desc" )  )
-		}
+		CHOICE_SEPERATOR( 13 )
+
+		CHOICE_SEPERATOR( 20 )
+
+		LOCAL_MAP_BUTTON( 20,  "button_14", "mp_rust_long",		"MPUI_RUST_LONG",		"MPUI_DESC_MAP_RUST_LONG",		"preview_mp_rust_long"		)
+		LOCAL_MAP_BUTTON( 21,  "button_15", "mp_shipment_long",	"MPUI_SHIPMENT_LONG",	"MPUI_DESC_MAP_SHIPMENT_LONG",	"preview_mp_shipment_long"	)
+		LOCAL_MAP_BUTTON( 22,  "button_16", "co_hunted",		"MPUI_CO_HUNTED",		"MPUI_DESC_MAP_CO_HUNTED",		"preview_co_hunted"			)
+		LOCAL_MAP_BUTTON( 23,  "button_17", "mp_cargoship",		"MPUI_CARGOSHIP",		"MPUI_DESC_MAP_CARGOSHIP",		"preview_mp_cargoship"		)
+
+		CHOICE_SEPERATOR( 24 )
+
+	  	#include "ui_mp/mapinfo.inc"
 	}
 }
