@@ -28,7 +28,6 @@
 			setLocalVarBool "ui_centerPopup" ( 0 );
 			setLocalVarInt "ui_open_time" ( milliseconds( ) );
 			setLocalVarString "sharedBackgroundMusic" ( "music_mainmenu_mp" );
-			setLocalVarString "temp" ( debugprint( "DEBUG" , " MP Root Open" ) );
 			if ( menuisopen( "menu_xboxlive_partyended" ) )
 			{
 				setLocalVarInt "ui_buttonNavGroupOffset" ( 0 );
