@@ -93,6 +93,15 @@
 
 		#undef CHOICE_TEXT_OFFSET_Y
 		#define CHOICE_TEXT_OFFSET_Y		6
+
+		#undef CHOICE_BORDER
+		#define CHOICE_BORDER 1
+
+		#undef CHOICE_BORDERCOLOR
+		#define CHOICE_BORDERCOLOR 1 1 1 0.1
+
+		#undef CHOICE_BORDERSIZE
+		#define CHOICE_BORDERSIZE 0.5
 		
 	
 		LOCAL_EQUIPMENT_ITEM( 0, "cac_perk_frag_grenade_mp", "frag_grenade_mp" )		LOCAL_EQUIPMENT_ITEM( 20, "cac_perk_semtex_mp", "semtex_mp" )
@@ -102,5 +111,14 @@
 
 		#define EQUIPMENT
 		#include "ui_mp/popup_cac_stats.inc"
+
+		#define FRAG
+		#define SEMTEX
+		#define TKNIFE
+		#define TACINSERT
+		#define BLASTSHIELD
+		#define CLAYMORE
+		#define C4
+		#include "ui_mp/popup_cac_previews.inc"
 	}
 }

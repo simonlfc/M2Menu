@@ -86,6 +86,15 @@
 
 		#undef CHOICE_TEXT_OFFSET_Y
 		#define CHOICE_TEXT_OFFSET_Y		6
+
+		#undef CHOICE_BORDER
+		#define CHOICE_BORDER 1
+
+		#undef CHOICE_BORDERCOLOR
+		#define CHOICE_BORDERCOLOR 1 1 1 0.1
+
+		#undef CHOICE_BORDERSIZE
+		#define CHOICE_BORDERSIZE 0.5
 		
 	
 		LOCAL_EXTRA_ITEM( 0, "cac_flash_grenade", "flash_grenade" )		LOCAL_EXTRA_ITEM( 20, "cac_concussion_grenade", "concussion_grenade" )
@@ -93,5 +102,10 @@
 		
 		#define SPECIAL
 		#include "ui_mp/popup_cac_stats.inc"
+
+		#define FLASH
+		#define STUN
+		#define SMOKE
+		#include "ui_mp/popup_cac_previews.inc"
 	}
 }

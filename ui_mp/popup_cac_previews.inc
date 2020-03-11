@@ -675,3 +675,145 @@
             exp material ( "weapon_rpg7" )
         }
     #endif
+
+// Equipment
+    #ifdef FRAG
+        itemDef
+    	{
+    		rect -655 65 33.25 33.25 3 1
+    		decoration
+    		visible 1
+    		style 3
+    		forecolor 1 1 1 1
+    		textscale 0.55
+    		visible when ( 1 )
+            exp material ( "equipment_frag" )
+    	}
+    #endif
+
+    #ifdef SEMTEX
+        itemDef
+    	{
+    		rect -510 65 33.25 33.25 3 1
+    		decoration
+    		visible 1
+    		style 3
+    		forecolor 1 1 1 1
+    		textscale 0.55
+    		visible when ( 1 )
+            exp material ( "equipment_semtex" )
+    	}
+    #endif
+
+    #ifdef TKNIFE
+        itemDef
+    	{
+    		rect -655 115 33.25 33.25 3 1
+    		decoration
+    		visible 1
+    		style 3
+    		forecolor 1 1 1 1
+    		textscale 0.55
+    		visible when ( 1 )
+            exp material ( "equipment_throwing_knife" )
+        }
+    #endif
+
+    #ifdef TACINSERT
+        itemDef
+    	{
+    		rect -510 115 33.25 33.25 3 1
+    		decoration
+    		visible 1
+    		style 3
+    		forecolor 1 1 1 1
+    		textscale 0.55
+    		visible when ( 1 )
+            exp material ( "equipment_flare" )
+    	}
+    #endif
+
+    #ifdef BLASTSHIELD
+        itemDef
+    	{
+    		rect -655 165 33.25 33.25 3 1
+    		decoration
+    		visible 1
+    		style 3
+    		forecolor 1 1 1 1
+    		textscale 0.55
+    		visible when ( 1 )
+            exp material ( "equipment_blast_shield" )
+        }
+    #endif
+	
+    #ifdef CLAYMORE
+        itemDef
+    	{
+    		rect -510 165 33.25 33.25 3 1
+    		decoration
+    		visible 1
+    		style 3
+    		forecolor 1 1 1 1
+    		textscale 0.55
+    		visible when ( 1 )
+            exp material ( "equipment_claymore" )
+    	}
+    #endif
+
+    #ifdef C4
+        itemDef
+    	{
+    		rect -655 220 33.25 33.25 3 1
+    		decoration
+    		visible 1
+    		style 3
+    		forecolor 1 1 1 1
+    		textscale 0.55
+    		visible when ( 1 )
+            exp material ( "equipment_c4" )
+        }
+    #endif
+
+// Special Grenade
+    #ifdef FLASH
+        itemDef
+    	{
+    		rect -655 65 33.25 33.25 3 1
+    		decoration
+    		visible 1
+    		style 3
+    		forecolor 1 1 1 1
+    		textscale 0.55
+    		visible when ( 1 )
+            exp material ( "weapon_flashbang" )
+    	}
+    #endif
+
+    #ifdef STUN
+        itemDef
+    	{
+    		rect -510 65 33.25 33.25 3 1
+    		decoration
+    		visible 1
+    		style 3
+    		forecolor 1 1 1 1
+    		textscale 0.55
+    		visible when ( 1 )
+            exp material ( "weapon_concgrenade" )
+    	}
+    #endif
+
+    #ifdef SMOKE
+        itemDef
+    	{
+    		rect -655 115 33.25 33.25 3 1
+    		decoration
+    		visible 1
+    		style 3
+    		forecolor 1 1 1 1
+    		textscale 0.55
+    		visible when ( 1 )
+            exp material ( "weapon_smokegrenade" )
+        }
+    #endif
