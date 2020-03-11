@@ -88,18 +88,7 @@
 		LOCAL_GAMETYPE_SELECTION( 11, "button_3", "gtnw",  "gtnw" )
 		CHOICE_SEPERATOR( 12 )
 
-		itemDef
-		{
-			rect 251 204.667 200 20 1 1
-			decoration
-			autowrapped
-			visible 1
-			forecolor 1 1 1 1
-			textfont 3
-			textalign 9
-			textscale 0.340278
-			exp text ( localvarstring( "ui_info_desc" ) )
-		}
+		
 		itemDef
 		{
 			rect 0 0 0 20 3 3
