@@ -19,6 +19,7 @@
 		{
 			setdvar "ui_sbHasServerSelected" 0;
 			setdvar "ui_sbEnableAddToFavorite" 0;
+			setLocalVarInt "ui_setsource" ( 7 );
 			setLocalVarInt "ui_sbFilterPanel" ( 0 );
 			setLocalVarString "ui_sb_toolTip" ( "" );
 			setLocalVarString "ui_internetFilterDesc" ( "" );
@@ -34,7 +35,7 @@
 			uiScript "LoadArenas";
 			uiScript "RefreshServers";
 			uiScript "UpdateFilter";
-
+			uiScript "ServerSort" 7;
 		}
 		onEsc
 		{
@@ -64,7 +65,7 @@
 		#define CHOICE_Y_START 30
 
 		#undef CHOICE_SEP_WIDTH
-		#define CHOICE_SEP_WIDTH 750
+		#define CHOICE_SEP_WIDTH 580
 		
 		CHOICE_SEPERATOR( 1 )
 
@@ -93,6 +94,9 @@
 		#undef CHOICE_TEXTCOLOR
 		#define CHOICE_TEXTCOLOR 1 1 1 0.2
 
+		#undef CHOICE_HIGHLIGHT_COLOR 
+		#define CHOICE_HIGHLIGHT_COLOR 	0 0 0 0
+
 
 		CHOICE_BUTTON( 0, "internet", "INTERNET", 
 					play "mouse_click";
@@ -110,6 +114,33 @@
 					setDvar "ui_sbHasServerSelected" 0;
 					setDvar "ui_sbEnableAddToFavorite" 0;
 					uiScript "UpdateFilter"; )
+
+		#undef CHOICE_TEXTCOLOR
+		#define CHOICE_TEXTCOLOR 1 1 1 1
+
+		#undef CHOICE_HIGHLIGHT_COLOR 
+		#define CHOICE_HIGHLIGHT_COLOR 	0 0 0 0
+
+
+		CHOICE_BUTTON_VIS( 0, "internet2", "INTERNET", 
+					play "mouse_click";
+					setDvar "ui_netSource" 1;
+					uiScript "UpdateFilter";,
+					when( dvarInt( "ui_netSource" ) == 1 ) )
+		
+		CHOICE_BUTTON_VIS( 20, "fav2", "FAVOURITES", 
+					play "mouse_click";
+					setDvar "ui_netSource" 2;
+					uiScript "UpdateFilter";,
+					when( dvarInt( "ui_netSource" ) == 2 ) )
+
+		CHOICE_BUTTON_VIS( 40, "lan2", "LOCAL", 
+					play "mouse_click";
+					setDvar "ui_netSource" 0;
+					setDvar "ui_sbHasServerSelected" 0;
+					setDvar "ui_sbEnableAddToFavorite" 0;
+					uiScript "UpdateFilter";,
+					when( dvarInt( "ui_netSource" ) == 0 ) )
 
 		#undef CHOICE_X_START
 		#define CHOICE_X_START 440
@@ -141,26 +172,33 @@
 		#undef CHOICE_SEP_WIDTH
 		#define CHOICE_SEP_WIDTH 201.5
 
+		#undef CHOICE_HIGHLIGHT_COLOR 
+		#define CHOICE_HIGHLIGHT_COLOR 	0 0 0 0.2
+
 		CHOICE_SEPERATOR( 50 )
-		CHOICE_BUTTON( 50, "filter", "FILTER SERVERS", 
+		CHOICE_BUTTON( 50, "connect", "CONNECT", 
+					uiScript "JoinServer"; )
+
+		CHOICE_BUTTON( 51, "pass", "PASSWORD", 
+					open "popup_joinpassword"; )
+
+		CHOICE_BUTTON_VIS( 52, "removefav", "REMOVE FAVOURITE", 
+					uiScript "DeleteFavorite";,
+					when( dvarInt( "ui_netSource" ) == 2 ) )
+
+		CHOICE_BUTTON_VIS( 52, "addfav", "ADD FAVOURITE", 
+					uiScript "CreateListFavorite";,
+					when( dvarInt( "ui_netSource" ) != 2 ) )
+
+		CHOICE_BUTTON( 53, "filter", "FILTER SERVERS", 
 					play "mouse_click";
-					setDvar "ui_navbarBottom" 1;
 					open "filter_popmenu"; )
 
-		CHOICE_BUTTON( 51, "refresh", "REFRESH SERVERS", 
+		CHOICE_BUTTON( 54, "refresh", "REFRESH SERVERS", 
 					play "mouse_click";
-					setDvar "ui_navbarBottom" 2;
 					uiScript "RefreshServers"; )
 
-		CHOICE_BUTTON( 52, "pass", "PASSWORD", 
-					open "popup_joinpassword";
-					setDvar "ui_navbarBottom" 6; )
-
-		CHOICE_BUTTON( 53, "connect", "CONNECT", 
-					uiScript "JoinServer";
-					setDvar "ui_navbarBottom" 7; )
-
-		CHOICE_SEPERATOR( 54 )
+		CHOICE_SEPERATOR( 55 )
 
 			
 
@@ -171,6 +209,7 @@
 			visible 1
 			foreColor 1 1 1 1
 			outlineColor 1 1 1 0.1
+			backcolor 1 1 1 0.03
 			type 6
 			textFont 1
 			textScale 0.25
@@ -178,11 +217,11 @@
 			feeder 2
 			elementHeight 20
 //			numcol			xpos	xwidth	textlen
-			columns 8		6		22		1
-							28		249		0
+			columns 8		8		22		1
+							30		249		0
 							28		90		51 // hostname
 							247		48		20 // map
-							335		151		5 // players
+							335		151		10 // players
 							384		22		50 //gamemode
 							590		40		0 //mod
 							530		40		20 //ping
@@ -227,38 +266,94 @@
 		#undef CHOICE_TEXTCOLOR
 		#define CHOICE_TEXTCOLOR 1 1 1 0.2
 
+		#undef CHOICE_HIGHLIGHT_COLOR 
+		#define CHOICE_HIGHLIGHT_COLOR 	0 0 0 0
+
 
 		CHOICE_BUTTON( 0, "name", "NAME", 
 					play "mouse_click";
-					uiScript "ServerSort" 2; )
+					uiScript "ServerSort" 2;
+					setLocalVarInt "ui_setsource" ( 2 ); )
 
 		#undef CHOICE_X_SPACING
 		#define CHOICE_X_SPACING 216
 		
 		CHOICE_BUTTON( 20, "map", "MAP", 
 					play "mouse_click";
-					uiScript "ServerSort" 3; )
+					uiScript "ServerSort" 3;
+					setLocalVarInt "ui_setsource" ( 3 ); )
 
 		#undef CHOICE_X_SPACING
-		#define CHOICE_X_SPACING 155
+		#define CHOICE_X_SPACING 155.5
 
 		CHOICE_BUTTON( 40, "players", "PLAYERS", 
 					play "mouse_click";
-					uiScript "ServerSort" 4; )
+					uiScript "ServerSort" 4;
+					setLocalVarInt "ui_setsource" ( 4 ); )
 
 		#undef CHOICE_X_SPACING
 		#define CHOICE_X_SPACING 122
 		
 		CHOICE_BUTTON( 60, "gmode", "GAMEMODE", 
 					play "mouse_click";
-					uiScript "ServerSort" 5; )
+					uiScript "ServerSort" 5;
+					setLocalVarInt "ui_setsource" ( 5 ); )
 
 		#undef CHOICE_X_SPACING
 		#define CHOICE_X_SPACING 125
 
 		CHOICE_BUTTON( 80, "ping", "PING", 
 					play "mouse_click";
-					uiScript "ServerSort" 7; )
+					uiScript "ServerSort" 7;
+					setLocalVarInt "ui_setsource" ( 7 ); )
+
+		#undef CHOICE_TEXTCOLOR
+		#define CHOICE_TEXTCOLOR 1 1 1 1
+
+		#undef CHOICE_HIGHLIGHT_COLOR 
+		#define CHOICE_HIGHLIGHT_COLOR 	0 0 0 0
+
+		CHOICE_BUTTON_VIS( 0, "name", "NAME", 
+					play "mouse_click";
+					uiScript "ServerSort" 2;
+					setLocalVarInt "ui_setsource" ( 2 );,
+					when ( localVarInt( "ui_setSource" ) == 2 ) )
+
+		#undef CHOICE_X_SPACING
+		#define CHOICE_X_SPACING 216
+		
+		CHOICE_BUTTON_VIS( 20, "map", "MAP", 
+					play "mouse_click";
+					uiScript "ServerSort" 3;
+					setLocalVarInt "ui_setsource" ( 3 );,
+					when ( localVarInt( "ui_setSource" ) == 3 ) )
+
+		#undef CHOICE_X_SPACING
+		#define CHOICE_X_SPACING 156
+
+		CHOICE_BUTTON_VIS( 40, "players", "PLAYERS", 
+					play "mouse_click";
+					uiScript "ServerSort" 4;
+					setLocalVarInt "ui_setsource" ( 4 );,
+					when ( localVarInt( "ui_setSource" ) == 4 ) )
+
+		#undef CHOICE_X_SPACING
+		#define CHOICE_X_SPACING 122
+		
+		CHOICE_BUTTON_VIS( 60, "gmode", "GAMEMODE", 
+					play "mouse_click";
+					uiScript "ServerSort" 5;
+					setLocalVarInt "ui_setsource" ( 5 );,
+					when ( localVarInt( "ui_setSource" ) == 5 ) )
+
+		#undef CHOICE_X_SPACING
+		#define CHOICE_X_SPACING 125
+
+		CHOICE_BUTTON_VIS( 80, "ping", "PING", 
+					play "mouse_click";
+					uiScript "ServerSort" 7;
+					setLocalVarInt "ui_setsource" ( 7 );,
+					when ( localVarInt( "ui_setSource" ) == 7 ) )
 
 		itemDef
 		{
