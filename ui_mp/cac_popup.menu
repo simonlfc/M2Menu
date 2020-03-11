@@ -20,7 +20,8 @@
 		soundLoop "music_mainmenu_mp"
 		onOpen
 		{
-			setLocalVarString "ui_selected_ref" ( "" );
+			focusFirst;
+			setLocalVarString "ui_selected_ref" ( "SWF_CLASS_00" );
 			setLocalVarString "ui_streak1Name" ( getplayerdata( "killstreaks" , 0 ) );
 			setLocalVarString "ui_streak2Name" ( getplayerdata( "killstreaks" , 1 ) );
 			setLocalVarString "ui_streak3Name" ( getplayerdata( "killstreaks" , 2 ) );
