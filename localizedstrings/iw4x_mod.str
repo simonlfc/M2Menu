@@ -60,3 +60,15 @@ LANG_ENGLISH        "Adjust extra multiplayer settings."
 
 REFERENCE           MPUI_DESC_RESETVIDAUD
 LANG_ENGLISH        "Use recommended settings for Graphics and Audio."
+
+REFERENCE           MPUI_DAMAGE_CAPS
+LANG_ENGLISH        "DAMAGE"
+
+REFERENCE           MPUI_RANGE_CAPS
+LANG_ENGLISH        "RANGE"
+
+REFERENCE           MPUI_FIRERATE_CAPS
+LANG_ENGLISH        "FIRE RATE"
+
+REFERENCE           MPUI_MOBILITY_CAPS
+LANG_ENGLISH        "MOBILITY"

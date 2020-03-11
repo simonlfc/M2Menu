@@ -122,6 +122,7 @@
 #define NEW_Y_OFFSET 0
 #endif
 
+
 #if !defined( CHOICE_SEP_1 ) || !defined( CHOICE_SEP_SPACING )
 #define CHOICE_SEP_TOTAL_SPACING( itemIndex )	0
 

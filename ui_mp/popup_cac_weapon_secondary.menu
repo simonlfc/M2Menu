@@ -51,48 +51,11 @@
 		{
 			close self;
 		}
-		#define NO_BACKGROUND_BLUR
+
 		#include "ui_mp/bg.inc"
+		#include "ui_mp/cac_loadout.inc"
 		
-		itemDef
-		{
-			rect 237.6 -36 301.5 480 1 1
-			decoration
-			visible 1
-			style 3
-			forecolor 0 0 0 0.4
-			background "white"
-			textscale 0.55
-			exp rect w ( 226 )
-		}
-		itemDef
-		{
-			rect 237.5 -236 13 680 1 1
-			decoration
-			visible 1
-			style 3
-			forecolor 1 1 1 0.75
-			background "gradient"
-			textscale 0.55
-			exp rect x ( 457.5 )
-			exp forecolor r ( 0.596078 )
-			exp forecolor g ( 0.654902 )
-			exp forecolor b ( 0.603922 )
-		}
-		itemDef
-		{
-			rect 237.5 -236 13 680 1 1
-			decoration
-			visible 1
-			style 3
-			forecolor 1 1 1 0.75
-			background "gradient"
-			textscale 0.55
-			exp rect x ( 457.5 )
-			exp forecolor r ( 0.596078 )
-			exp forecolor g ( 0.654902 )
-			exp forecolor b ( 0.603922 )
-		}
+		
 		itemDef
 		{
 			rect -64 3 276.667 24.233 1 1
@@ -101,11 +64,27 @@
 			style 1
 			forecolor 1 1 1 1
 			textfont 9
-			textalign 14
-			textscale 0.5
+			textalign 12
+			textalignx 41
+			textaligny 10
+			textscale TEXTSIZE_TITLE
 			visible when ( 1 )
 			exp text ( "SECONDARY" )
-		}		
+		}	
+
+		itemDef
+		{
+			rect -85 -100 2560 1440 2 1
+			decoration
+			border 1
+			bordersize 0.5
+			bordercolor 1 1 1 0.1
+			visible 1
+			style 3
+			forecolor 0 0 0 0.35
+			textscale 0.55
+			exp material ( "white" )
+		}	
 		
 		CHOICE_SEPERATOR( 0 )
 		
@@ -114,7 +93,6 @@
 		CHOICE_BUTTON(2,"cac_secondary_handgun","@MENU_HANDGUNS_CAPS", open "popup_cac_handgun_secondary"; )
 		CHOICE_BUTTON(3,"cac_secondary_rocket","@MENU_ROCKETS_CAPS", open "popup_cac_rocket_secondary"; )
 		
-		#include "ui_mp/cac_loadout.inc"
 		itemDef
 		{
 			rect 254.333 34.667 186.667 44.4 1 1
