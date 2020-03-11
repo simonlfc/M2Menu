@@ -70,7 +70,6 @@
 			exp material ( "white" )
 		}
 
-		CHOICE_SEPERATOR( 0 )
 
 		#undef CHOICE_SIZE_X
 		#define CHOICE_SIZE_X				141
@@ -99,6 +98,13 @@
 
 		#define WEAPON
 		#include "ui_mp/popup_cac_stats.inc"
+
+		#define L86
+		#define RPD
+		#define MG4
+		#define AUG
+		#define M240
+		#include "ui_mp/popup_cac_previews.inc"
 
 	}
 }

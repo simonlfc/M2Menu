@@ -100,6 +100,18 @@
 
 		#define WEAPON
 		#include "ui_mp/popup_cac_stats.inc"
+
+		#define M4A1
+		#define FAMAS
+		#define SCARH
+		#define TAR21
+		#define FAL
+		#define M16A4
+		#define ACR
+		#define F2000
+		#define AK47
+		#define AK47C
+		#include "ui_mp/popup_cac_previews.inc"
 		
 	}
 }

@@ -70,8 +70,6 @@
 			exp material ( "white" )
 		}
 
-		CHOICE_SEPERATOR( 0 )
-
 		#undef CHOICE_SIZE_X
 		#define CHOICE_SIZE_X				141
 
@@ -100,6 +98,15 @@
 
 		#define WEAPON
 		#include "ui_mp/popup_cac_stats.inc"
+
+		#define MP5K
+		#define UMP45
+		#define VECTOR
+		#define P90
+		#define UZI
+		#define AK74U
+		#define PEACEKEEPER
+		#include "ui_mp/popup_cac_previews.inc"
 
 	}
 }

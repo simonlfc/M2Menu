@@ -71,7 +71,6 @@
 			exp material ( "white" )
 		}	
 		
-		CHOICE_SEPERATOR( 0 )
 
 		#undef CHOICE_SIZE_X
 		#define CHOICE_SIZE_X				141
@@ -100,6 +99,14 @@
 	
 		#define WEAPON
 		#include "ui_mp/popup_cac_stats.inc"
+
+		#define CHEYTAC
+		#define BARRETT
+		#define WA2000
+		#define M21
+		#define M40A3
+		#define DRAGUNOV
+		#include "ui_mp/popup_cac_previews.inc"
 
 	}
 }
