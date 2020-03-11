@@ -134,6 +134,10 @@
 #define CHOICE_BORDERSIZE 1
 #endif
 
+#ifndef CHOICE_BACKCOLOR
+#define CHOICE_BACKCOLOR 0 0 0 0
+#endif
+
 
 #if !defined( CHOICE_SEP_1 ) || !defined( CHOICE_SEP_SPACING )
 #define CHOICE_SEP_TOTAL_SPACING( itemIndex )	0
@@ -222,6 +226,7 @@
 			disableColor CHOICE_TEXTCOLOR_DISABLED \
 			style CHOICE_TEXTSTYLE \
 			background CHOICE_TEXT_HIGHLIGHT \
+			backcolor CHOICE_BACKCOLOR \
 			border CHOICE_BORDER \ 
 			bordercolor CHOICE_BORDERCOLOR \
 			bordersize CHOICE_BORDERSIZE \

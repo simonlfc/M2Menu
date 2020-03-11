@@ -92,17 +92,15 @@
 		#undef CHOICE_TEXT_OFFSET_Y
 		#define CHOICE_TEXT_OFFSET_Y		6
 
-		#ifndef CHOICE_BORDER
+		#undef CHOICE_BORDER
 		#define CHOICE_BORDER 1
-		#endif
 
-		#ifndef CHOICE_BORDERCOLOR
+		#undef CHOICE_BORDERCOLOR
 		#define CHOICE_BORDERCOLOR 1 1 1 0.1
-		#endif
 
-		#ifndef CHOICE_BORDERSIZE
+		#undef CHOICE_BORDERSIZE
 		#define CHOICE_BORDERSIZE 0.5
-		#endif
+
 		
 		LOCAL_WEAPON_ITEM( 0, "cac_weapon_m4", "m4" )				LOCAL_WEAPON_ITEM( 20, "cac_weapon_famas", "famas" )
 		LOCAL_WEAPON_ITEM( 1, "cac_weapon_scar", "scar" )			LOCAL_WEAPON_ITEM( 21, "cac_weapon_tavor", "tavor" )

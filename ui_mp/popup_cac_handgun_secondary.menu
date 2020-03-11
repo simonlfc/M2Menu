@@ -70,8 +70,6 @@
 			exp material ( "white" )
 		}
 
-		CHOICE_SEPERATOR( 0 )
-
 		#undef CHOICE_SIZE_X
 		#define CHOICE_SIZE_X				141
 
@@ -92,6 +90,15 @@
 
 		#undef CHOICE_TEXT_OFFSET_Y
 		#define CHOICE_TEXT_OFFSET_Y		6
+
+		#undef CHOICE_BORDER
+		#define CHOICE_BORDER 1
+
+		#undef CHOICE_BORDERCOLOR
+		#define CHOICE_BORDERCOLOR 1 1 1 0.1
+
+		#undef CHOICE_BORDERSIZE
+		#define CHOICE_BORDERSIZE 0.5
 		
 		LOCAL_WEAPON2_ITEM( 0, "cac_weapon_usp", "usp" )				LOCAL_WEAPON2_ITEM( 20, "cac_weapon_coltanaconda", "coltanaconda" )
 		LOCAL_WEAPON2_ITEM( 1, "cac_weapon_beretta", "beretta" )		LOCAL_WEAPON2_ITEM( 21, "cac_weapon_deserteagle", "deserteagle" )
@@ -99,6 +106,13 @@
 
 		#define WEAPON
 		#include "ui_mp/popup_cac_stats.inc"
+
+		#define USP
+		#define MAGNUM
+		#define M9
+		#define DEAGLE
+		#define DEAGLEGOLD
+		#include "ui_mp/popup_cac_previews.inc"
 
 	}
 }

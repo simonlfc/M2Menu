@@ -90,6 +90,15 @@
 
 		#undef CHOICE_TEXT_OFFSET_Y
 		#define CHOICE_TEXT_OFFSET_Y		6
+
+		#undef CHOICE_BORDER
+		#define CHOICE_BORDER 1
+
+		#undef CHOICE_BORDERCOLOR
+		#define CHOICE_BORDERCOLOR 1 1 1 0.1
+
+		#undef CHOICE_BORDERSIZE
+		#define CHOICE_BORDERSIZE 0.5
 		
 		LOCAL_WEAPON_ITEM( 0, "cac_weapon_mp5k", "mp5k" )		LOCAL_WEAPON_ITEM( 20, "cac_weapon_ump45", "ump45" )
 		LOCAL_WEAPON_ITEM( 1, "cac_weapon_kriss", "kriss" )		LOCAL_WEAPON_ITEM( 21, "cac_weapon_p90", "p90" )

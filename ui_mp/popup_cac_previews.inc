@@ -391,3 +391,287 @@
             exp material ( "weapon_dragunov" )
     	}
     #endif
+
+// Machine Pistols
+    #ifdef PP2000
+        itemDef
+    	{
+    		rect -685 65 66.5 33.25 3 1
+    		decoration
+    		visible 1
+    		style 3
+    		forecolor 1 1 1 1
+    		textscale 0.55
+    		visible when ( 1 )
+            exp material ( "weapon_pp2000" )
+    	}
+    #endif
+
+    #ifdef GLOCK
+        itemDef
+    	{
+    		rect -540 65 66.5 33.25 3 1
+    		decoration
+    		visible 1
+    		style 3
+    		forecolor 1 1 1 1
+    		textscale 0.55
+    		visible when ( 1 )
+            exp material ( "weapon_glock" )
+    	}
+    #endif
+
+    #ifdef M93
+        itemDef
+    	{
+    		rect -685 115 66.5 33.25 3 1
+    		decoration
+    		visible 1
+    		style 3
+    		forecolor 1 1 1 1
+    		textscale 0.55
+    		visible when ( 1 )
+            exp material ( "weapon_beretta393" )
+        }
+    #endif
+
+    #ifdef TMP
+        itemDef
+    	{
+    		rect -540 115 66.5 33.25 3 1
+    		decoration
+    		visible 1
+    		style 3
+    		forecolor 1 1 1 1
+    		textscale 0.55
+    		visible when ( 1 )
+            exp material ( "weapon_tmp" )
+    	}
+    #endif
+
+// Shotguns
+    #ifdef SPAS12
+        itemDef
+    	{
+    		rect -685 65 66.5 33.25 3 1
+    		decoration
+    		visible 1
+    		style 3
+    		forecolor 1 1 1 1
+    		textscale 0.55
+    		visible when ( 1 )
+            exp material ( "weapon_spas12" )
+    	}
+    #endif
+
+    #ifdef AA12
+        itemDef
+    	{
+    		rect -540 65 66.5 33.25 3 1
+    		decoration
+    		visible 1
+    		style 3
+    		forecolor 1 1 1 1
+    		textscale 0.55
+    		visible when ( 1 )
+            exp material ( "weapon_aa12" )
+    	}
+    #endif
+
+    #ifdef STRIKER
+        itemDef
+    	{
+    		rect -685 115 66.5 33.25 3 1
+    		decoration
+    		visible 1
+    		style 3
+    		forecolor 1 1 1 1
+    		textscale 0.55
+    		visible when ( 1 )
+            exp material ( "weapon_striker" )
+        }
+    #endif
+
+    #ifdef RANGER
+        itemDef
+    	{
+    		rect -540 115 66.5 33.25 3 1
+    		decoration
+    		visible 1
+    		style 3
+    		forecolor 1 1 1 1
+    		textscale 0.55
+    		visible when ( 1 )
+            exp material ( "weapon_ranger" )
+    	}
+    #endif
+
+    #ifdef M1014
+        itemDef
+    	{
+    		rect -685 165 66.5 33.25 3 1
+    		decoration
+    		visible 1
+    		style 3
+    		forecolor 1 1 1 1
+    		textscale 0.55
+    		visible when ( 1 )
+            exp material ( "weapon_m1014" )
+        }
+    #endif
+
+    #ifdef MODEL1887
+        itemDef
+    	{
+    		rect -540 165 66.5 33.25 3 1
+    		decoration
+    		visible 1
+    		style 3
+    		forecolor 1 1 1 1
+    		textscale 0.55
+    		visible when ( 1 )
+            exp material ( "weapon_model1887" )
+    	}
+    #endif
+
+// Handguns
+    #ifdef USP
+        itemDef
+    	{
+    		rect -685 65 66.5 33.25 3 1
+    		decoration
+    		visible 1
+    		style 3
+    		forecolor 1 1 1 1
+    		textscale 0.55
+    		visible when ( 1 )
+            exp material ( "weapon_usp_45" )
+    	}
+    #endif
+
+    #ifdef MAGNUM
+        itemDef
+    	{
+    		rect -540 65 66.5 33.25 3 1
+    		decoration
+    		visible 1
+    		style 3
+    		forecolor 1 1 1 1
+    		textscale 0.55
+    		visible when ( 1 )
+            exp material ( "weapon_colt_anaconda" )
+    	}
+    #endif
+
+    #ifdef M9
+        itemDef
+    	{
+    		rect -685 115 66.5 33.25 3 1
+    		decoration
+    		visible 1
+    		style 3
+    		forecolor 1 1 1 1
+    		textscale 0.55
+    		visible when ( 1 )
+            exp material ( "weapon_m9beretta" )
+        }
+    #endif
+
+    #ifdef DEAGLE
+        itemDef
+    	{
+    		rect -540 115 66.5 33.25 3 1
+    		decoration
+    		visible 1
+    		style 3
+    		forecolor 1 1 1 1
+    		textscale 0.55
+    		visible when ( 1 )
+            exp material ( "weapon_desert_eagle" )
+    	}
+    #endif
+
+    #ifdef DEAGLEGOLD
+        itemDef
+    	{
+    		rect -685 165 66.5 33.25 3 1
+    		decoration
+    		visible 1
+    		style 3
+    		forecolor 1 1 1 1
+    		textscale 0.55
+    		visible when ( 1 )
+            exp material ( "weapon_desert_eagle_gold" )
+        }
+    #endif
+
+// Launchers
+    #ifdef AT4
+        itemDef
+    	{
+    		rect -685 65 66.5 33.25 3 1
+    		decoration
+    		visible 1
+    		style 3
+    		forecolor 1 1 1 1
+    		textscale 0.55
+    		visible when ( 1 )
+            exp material ( "weapon_at4" )
+    	}
+    #endif
+
+    #ifdef THUMPER
+        itemDef
+    	{
+    		rect -540 65 66.5 33.25 3 1
+    		decoration
+    		visible 1
+    		style 3
+    		forecolor 1 1 1 1
+    		textscale 0.55
+    		visible when ( 1 )
+            exp material ( "weapon_m79" )
+    	}
+    #endif
+
+    #ifdef STINGER
+        itemDef
+    	{
+    		rect -685 115 66.5 33.25 3 1
+    		decoration
+    		visible 1
+    		style 3
+    		forecolor 1 1 1 1
+    		textscale 0.55
+    		visible when ( 1 )
+            exp material ( "weapon_stinger" )
+        }
+    #endif
+
+    #ifdef JAVELIN
+        itemDef
+    	{
+    		rect -540 115 66.5 33.25 3 1
+    		decoration
+    		visible 1
+    		style 3
+    		forecolor 1 1 1 1
+    		textscale 0.55
+    		visible when ( 1 )
+            exp material ( "weapon_javelin" )
+    	}
+    #endif
+
+    #ifdef RPG
+        itemDef
+    	{
+    		rect -685 165 66.5 33.25 3 1
+    		decoration
+    		visible 1
+    		style 3
+    		forecolor 1 1 1 1
+    		textscale 0.55
+    		visible when ( 1 )
+            exp material ( "weapon_rpg7" )
+        }
+    #endif

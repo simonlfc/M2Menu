@@ -92,12 +92,27 @@
 
 		#undef CHOICE_TEXT_OFFSET_Y
 		#define CHOICE_TEXT_OFFSET_Y		6
+
+		#undef CHOICE_BORDER
+		#define CHOICE_BORDER 1
+
+		#undef CHOICE_BORDERCOLOR
+		#define CHOICE_BORDERCOLOR 1 1 1 0.1
+
+		#undef CHOICE_BORDERSIZE
+		#define CHOICE_BORDERSIZE 0.5
 		
 		LOCAL_WEAPON2_ITEM( 0, "cac_weapon_pp2000", "pp2000" )		LOCAL_WEAPON2_ITEM( 20, "cac_weapon_glock", "glock" )
 		LOCAL_WEAPON2_ITEM( 1, "cac_weapon_beretta393", "beretta393" )		LOCAL_WEAPON2_ITEM( 21, "cac_weapon_tmp", "tmp" )
 		
 		#define WEAPON
 		#include "ui_mp/popup_cac_stats.inc"
+
+		#define PP2000
+		#define GLOCK
+		#define M93
+		#define TMP
+		#include "ui_mp/popup_cac_previews.inc"
 
 		
 	}

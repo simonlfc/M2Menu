@@ -85,6 +85,15 @@
 
 		#undef CHOICE_TEXT_OFFSET_Y
 		#define CHOICE_TEXT_OFFSET_Y		6
+
+		#undef CHOICE_BORDER
+		#define CHOICE_BORDER 1
+
+		#undef CHOICE_BORDERCOLOR
+		#define CHOICE_BORDERCOLOR 1 1 1 0.1
+
+		#undef CHOICE_BORDERSIZE
+		#define CHOICE_BORDERSIZE 0.5
 		
 		LOCAL_WEAPON2_ITEM( 0, "cac_weapon_at4", "at4" )			LOCAL_WEAPON2_ITEM( 20, "cac_weapon_m79", "m79" )
 		LOCAL_WEAPON2_ITEM( 1, "cac_weapon_stinger", "stinger" )	LOCAL_WEAPON2_ITEM( 21, "cac_weapon_javelin", "javelin" )
@@ -92,6 +101,13 @@
 
 		#define WEAPON
 		#include "ui_mp/popup_cac_stats.inc"
+
+		#define AT4
+		#define THUMPER
+		#define STINGER
+		#define JAVELIN
+		#define RPG
+		#include "ui_mp/popup_cac_previews.inc"
 
 	}
 }
