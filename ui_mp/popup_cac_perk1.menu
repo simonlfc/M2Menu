@@ -55,48 +55,9 @@
 		{
 			close self;
 		}
-		#define NO_BACKGROUND_BLUR
 		#include "ui_mp/bg.inc"
-		
-		itemDef
-		{
-			rect 237.6 -36 301.5 480 1 1
-			decoration
-			visible 1
-			style 3
-			forecolor 0 0 0 0.4
-			background "white"
-			textscale 0.55
-			exp rect w ( 226 )
-		}
-		itemDef
-		{
-			rect 237.5 -236 13 680 1 1
-			decoration
-			visible 1
-			style 3
-			forecolor 1 1 1 0.75
-			background "gradient"
-			textscale 0.55
-			exp rect x ( 457.5 )
-			exp forecolor r ( 0.596078 )
-			exp forecolor g ( 0.654902 )
-			exp forecolor b ( 0.603922 )
-		}
-		itemDef
-		{
-			rect 237.5 -236 13 680 1 1
-			decoration
-			visible 1
-			style 3
-			forecolor 1 1 1 0.75
-			background "gradient"
-			textscale 0.55
-			exp rect x ( 457.5 )
-			exp forecolor r ( 0.596078 )
-			exp forecolor g ( 0.654902 )
-			exp forecolor b ( 0.603922 )
-		}
+		#include "ui_mp/cac_loadout.inc"
+
 		itemDef
 		{
 			rect -64 3 276.667 24.233 1 1
@@ -105,102 +66,65 @@
 			style 1
 			forecolor 1 1 1 1
 			textfont 9
-			textalign 14
-			textscale 0.5
+			textalign 12
+			textalignx 41
+			textaligny 10
+			textscale TEXTSIZE_TITLE
 			visible when ( 1 )
 			exp text ( "@MENU_PERK1_CAPS" )
 		}
-		
-		CHOICE_SEPERATOR( 0 )
+
+		itemDef
+		{
+			rect -85 -100 2560 1440 2 1
+			decoration
+			border 1
+			bordersize 0.5
+			bordercolor 1 1 1 0.1
+			visible 1
+			style 3
+			forecolor 0 0 0 0.35
+			textscale 0.55
+			exp material ( "white" )
+		}
+
+		#undef CHOICE_SIZE_X
+		#define CHOICE_SIZE_X				141
+
+		#undef CHOICE_X_SPACING
+		#define CHOICE_X_SPACING			144
+
+		#undef CHOICE_SIZE_Y
+		#define CHOICE_SIZE_Y				48.5
+
+		#undef CHOICE_Y_SPACING
+		#define CHOICE_Y_SPACING			51.5
+
+		#undef CHOICE_TEXTSIZE
+		#define CHOICE_TEXTSIZE				0.275
+
+		#undef CHOICE_TEXT_OFFSET_X
+		#define CHOICE_TEXT_OFFSET_X		7
+
+		#undef CHOICE_TEXT_OFFSET_Y
+		#define CHOICE_TEXT_OFFSET_Y		6
+
+		#undef CHOICE_BORDER
+		#define CHOICE_BORDER 1
+
+		#undef CHOICE_BORDERCOLOR
+		#define CHOICE_BORDERCOLOR 1 1 1 0.1
+
+		#undef CHOICE_BORDERSIZE
+		#define CHOICE_BORDERSIZE 0.5
 		
 		LOCAL_PERK1_ITEM( 0, "cac_perk_specialty_marathon", "specialty_marathon" )
 		LOCAL_PERK1_ITEM( 1, "cac_perk_specialty_fastreload", "specialty_fastreload" )
 		LOCAL_PERK1_ITEM( 2, "cac_perk_specialty_scavenger", "specialty_scavenger" )
 		LOCAL_PERK1_ITEM( 3, "cac_perk_specialty_bling", "specialty_bling" )
 		LOCAL_PERK1_ITEM( 4, "cac_perk_specialty_onemanarmy", "specialty_onemanarmy" )
+
+		#include "ui_mp/popup_perk_previews.inc"
 		
-		#include "ui_mp/cac_loadout.inc"
-		itemDef
-		{
-			rect 254.333 34.667 186.667 44.4 1 1
-			decoration
-			autowrapped
-			visible 1
-			style 1
-			forecolor 1 1 1 1
-			textfont 9
-			textalign 5
-			textscale 0.383333
-			exp rect x ( ( 0 ) + ( ( 261 + ( 0 - 6.667 ) ) ) + ( 0 ) )
-			visible when ( ( 1 ) )
-			exp text ( "@" + tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "ui_selected_ref" ) , 2 ) )
-		}
-		itemDef
-		{
-			rect 267.667 69.833 144 72 1 1
-			decoration
-			visible 1
-			style 3
-			forecolor 1 1 1 1
-			textscale 0.55
-			exp rect x ( ( 0 ) + ( ( 297 + 6.667 ) ) + ( 0 * 36 ) + 8 )
-			exp rect w ( 144 - ( 1 * 72 ) )
-			visible when ( ( 1 ) )
-			exp material ( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "ui_selected_ref" ) , 3 ) )
-		}
-		itemDef
-		{
-			rect 261 145.033 173.333 48 1 1
-			decoration
-			autowrapped
-			visible 1
-			style 1
-			forecolor 1 1 1 1
-			textfont 3
-			textalign 5
-			textscale 0.340278
-			exp rect x ( ( 0 ) + ( ( 261 ) ) + ( 0 ) )
-			visible when ( ( 1 ) )
-			exp text ( "@" + tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "ui_selected_ref" ) , 4 ) )
-		}
-		itemDef
-		{
-			rect 254.333 207 186.667 44.4 1 1
-			decoration
-			autowrapped
-			visible 1
-			style 1
-			forecolor 1 1 1 1
-			textfont 9
-			textalign 5
-			textscale 0.383333
-			exp text ( "@" + tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "ui_selected_ref" ) , int( 9 ) ) )
-		}
-		itemDef
-		{
-			rect 267.667 242.166 144 72 1 1
-			decoration
-			visible 1
-			style 3
-			forecolor 1 1 1 1
-			textscale 0.55
-			exp rect x ( ( 0 ) + ( ( 297 + 6.667 ) ) + ( 0 * 36 ) + 8 )
-			exp rect w ( 144 - ( 1 * 72 ) )
-			exp material ( ( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "ui_selected_ref" ) , 3 ) + "_upgrade" ) )
-		}
-		itemDef
-		{
-			rect 261 317.366 173.333 48 1 1
-			decoration
-			autowrapped
-			visible 1
-			style 1
-			forecolor 1 1 1 1
-			type 21
-			textfont 3
-			textalign 5
-			textscale 0.340278
-			exp text ( "@" + tablelookup( "mp/perkTable.csv" , 1 , tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "ui_selected_ref" ) , 8 ) , 4 ) )
-		}
 	}
 }
