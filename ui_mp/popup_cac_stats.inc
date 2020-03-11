@@ -4,11 +4,11 @@ itemDef
 	name "statbox"
 	decoration
 	border 1
-	bordersize 0.5
-	bordercolor 1 1 1 0.1
-	visible 1
-	style 3
-	forecolor 0 0 0 0.25
+    bordersize 0.5
+    bordercolor 0.7 0.7 0.7 0.01
+    visible 1
+    style 3
+    forecolor 0 0 0 0.12
 	textscale 0.55
 	exp material ( "white" )
 }
@@ -77,6 +77,40 @@ itemDef
 		textscale 0.3
 		visible when ( ( 1 ) )
 		exp text ( localvarstring( "ui_info_desc" ) )
+	}
+#endif
+
+#ifdef DEATHSTREAK
+	itemDef
+	{
+		rect -15 326 186.667 44.4 1 1
+		name "specialname"
+		decoration
+		autowrapped
+		visible 1
+		style 1
+		forecolor 1 1 1 1
+		textfont UI_FONT_NORMAL
+		textalign 4
+		textscale TEXTSIZE_SMALL
+		visible when ( ( 1 ) )
+		exp text ( "@" + tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "ui_selected_ref" ) , 2 ) )
+	}
+
+	itemDef
+	{
+		rect -15 347 186.667 44.4 1 1
+		name "specialdesc"
+		decoration
+		autowrapped
+		visible 1
+		style 1
+		forecolor 1 1 1 1
+		textfont 3
+		textalign 4
+		textscale 0.3
+		visible when ( ( 1 ) )
+		exp text ( "@" + tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "ui_selected_ref" ) , 4 ) )
 	}
 #endif
 
