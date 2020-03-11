@@ -70,7 +70,6 @@
 			exp material ( "white" )
 		}
 
-		CHOICE_SEPERATOR( 0 )
 
 		#undef CHOICE_SIZE_X
 		#define CHOICE_SIZE_X				141

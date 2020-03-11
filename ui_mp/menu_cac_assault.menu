@@ -70,6 +70,7 @@
 			close "self";
 		}
 		
+		#define NO_BACKGROUND_BLUR
 		#include "ui_mp/bg.inc"
 						
 		itemDef
