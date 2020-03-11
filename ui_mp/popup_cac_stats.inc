@@ -12,7 +12,75 @@ itemDef
 	textscale 0.55
 	exp material ( "white" )
 }
+#ifdef EQUIPMENT
+	itemDef
+	{
+		rect -15 326 186.667 44.4 1 1
+		name "equname"
+		decoration
+		autowrapped
+		visible 1
+		style 1
+		forecolor 1 1 1 1
+		textfont UI_FONT_NORMAL
+		textalign 4
+		textscale TEXTSIZE_SMALL
+		visible when ( ( 1 ) )
+		exp text ( "@" + tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "ui_selected_ref" ) , 2 ) )
+	}
 
+	itemDef
+	{
+		rect -15 347 186.667 44.4 1 1
+		name "equdesc"
+		decoration
+		autowrapped
+		visible 1
+		style 1
+		forecolor 1 1 1 1
+		textfont 3
+		textalign 4
+		textscale 0.3
+		visible when ( ( 1 ) )
+		exp text ( "@" + tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "ui_selected_ref" ) , 4 ) )
+	}
+#endif
+
+#ifdef SPECIAL
+	itemDef
+	{
+		rect -15 326 186.667 44.4 1 1
+		name "specialname"
+		decoration
+		autowrapped
+		visible 1
+		style 1
+		forecolor 1 1 1 1
+		textfont UI_FONT_NORMAL
+		textalign 4
+		textscale TEXTSIZE_SMALL
+		visible when ( ( 1 ) )
+		exp text ( localvarstring( "ui_info_name" ) )
+	}
+
+	itemDef
+	{
+		rect -15 347 186.667 44.4 1 1
+		name "specialdesc"
+		decoration
+		autowrapped
+		visible 1
+		style 1
+		forecolor 1 1 1 1
+		textfont 3
+		textalign 4
+		textscale 0.3
+		visible when ( ( 1 ) )
+		exp text ( localvarstring( "ui_info_desc" ) )
+	}
+#endif
+
+#ifdef WEAPON
 itemDef
 {
 	rect 60 326 186.667 44.4 1 1
@@ -28,7 +96,6 @@ itemDef
 	visible when ( ( 1 ) )
 	exp text ( "@" + tablelookup( "mp/statsTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 3 ) )
 }
-
 itemDef
 {
 	rect -15 326 186.667 44.4 1 1
@@ -271,3 +338,4 @@ itemDef
 			exp rect w ( ( tablelookup( "mp/statsTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 26 ) / 100 ) * 75 )
 			visible when ( tablelookup( "mp/statsTable.csv" , 4 , localvarstring( "ui_selected_ref" ) , 25 ) && 1 )
 		}
+#endif

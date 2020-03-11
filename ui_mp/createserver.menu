@@ -99,25 +99,25 @@
 
 		itemDef
 		{
-			rect -17 318 161.333 16 1 1
+			rect -17 320 161.333 16 1 1
 			decoration
 			visible 1
 			style 1
 			forecolor 1 1 1 1
 			textfont UI_FONT_NORMAL
 			textalign 12
-			textscale 0.33
+			textscale TEXTSIZE_SMALL
 			visible when ( ( 1 ) )
 			exp text ( getmapname() )
 		}
 		itemDef
 		{
-			rect -17 333.667 161.333 16 1 1
+			rect -17 335.667 161.333 16 1 1
 			decoration
 			visible 1
 			style 1
 			forecolor 1 1 1 1
-			textfont UI_FONT_NORMAL
+			textfont 3
 			textalign 12
 			textscale 0.3
 			visible when ( ( 1 ) )

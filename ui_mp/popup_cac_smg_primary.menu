@@ -98,6 +98,7 @@
 		LOCAL_WEAPON_ITEM( 2, "cac_weapon_uzi", "uzi" )			LOCAL_WEAPON_ITEM( 22, "cac_weapon_ak74u", "ak74u" )
 		LOCAL_WEAPON_ITEM( 3, "cac_weapon_peacekeeper", "peacekeeper" )
 
+		#define WEAPON
 		#include "ui_mp/popup_cac_stats.inc"
 
 	}

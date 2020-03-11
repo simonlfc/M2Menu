@@ -97,6 +97,7 @@
 		LOCAL_WEAPON2_ITEM( 1, "cac_weapon_beretta", "beretta" )		LOCAL_WEAPON2_ITEM( 21, "cac_weapon_deserteagle", "deserteagle" )
 		LOCAL_WEAPON2_ITEM( 2, "cac_weapon_deserteaglegold", "deserteaglegold" )
 
+		#define WEAPON
 		#include "ui_mp/popup_cac_stats.inc"
 
 	}

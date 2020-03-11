@@ -90,6 +90,7 @@
 		LOCAL_WEAPON2_ITEM( 1, "cac_weapon_stinger", "stinger" )	LOCAL_WEAPON2_ITEM( 21, "cac_weapon_javelin", "javelin" )
 		LOCAL_WEAPON2_ITEM( 2, "cac_weapon_rpg", "rpg" )
 
+		#define WEAPON
 		#include "ui_mp/popup_cac_stats.inc"
 
 	}
