@@ -19,7 +19,6 @@
 		{
 			setdvar "ui_sbHasServerSelected" 0;
 			setdvar "ui_sbEnableAddToFavorite" 0;
-			setLocalVarInt "ui_setsource" ( 7 );
 			setLocalVarInt "ui_sbFilterPanel" ( 0 );
 			setLocalVarString "ui_sb_toolTip" ( "" );
 			setLocalVarString "ui_internetFilterDesc" ( "" );
@@ -35,7 +34,6 @@
 			uiScript "LoadArenas";
 			uiScript "RefreshServers";
 			uiScript "UpdateFilter";
-			uiScript "ServerSort" 7;
 		}
 		onEsc
 		{
@@ -217,14 +215,14 @@
 			feeder 2
 			elementHeight 20
 //			numcol			xpos	xwidth	textlen
-			columns 8		8		22		1
-							30		249		0
-							28		90		51 // hostname
-							247		48		20 // map
-							335		151		10 // players
-							384		22		50 //gamemode
-							590		40		0 //mod
-							530		40		20 //ping
+			columns 8		11		22		1 	// password
+							0		0		0	// unknown
+							28		90		51 	// hostname
+							247		48		20 	// map
+							335		151		10 	// players
+							384		22		50 	// gamemode
+							0		0		0 	// mod name
+							530		40		20 	// ping
 			mouseEnter
 			{
 				play "mouse_submenu_over";
