@@ -8,7 +8,7 @@
     		style 3
     		forecolor 1 1 1 1
     		textscale 0.55
-    		visible when ( 1 )
+    		visible when ( isitemunlocked( "m4" ) )
             exp material ( "weapon_m4carbine" )
     	}
     #endif
@@ -22,7 +22,7 @@
     		style 3
     		forecolor 1 1 1 1
     		textscale 0.55
-    		visible when ( 1 )
+    		visible when ( isitemunlocked( "famas" ) )
             exp material ( "weapon_famas" )
     	}
     #endif
@@ -36,7 +36,7 @@
     		style 3
     		forecolor 1 1 1 1
     		textscale 0.55
-    		visible when ( 1 )
+    		visible when ( isitemunlocked( "scar" ) )
             exp material ( "weapon_scar_h" )
         }
     #endif
@@ -50,7 +50,7 @@
     		style 3
     		forecolor 1 1 1 1
     		textscale 0.55
-    		visible when ( 1 )
+    		visible when ( isitemunlocked( "tavor" ) )
             exp material ( "weapon_tavor" )
     	}
     #endif
@@ -64,7 +64,7 @@
     		style 3
     		forecolor 1 1 1 1
     		textscale 0.55
-    		visible when ( 1 )
+    		visible when ( isitemunlocked( "fal" ) )
             exp material ( "weapon_fnfal" )
         }
     #endif
@@ -78,7 +78,7 @@
     		style 3
     		forecolor 1 1 1 1
     		textscale 0.55
-    		visible when ( 1 )
+    		visible when ( isitemunlocked( "m16" ) )
             exp material ( "weapon_m16a4" )
     	}
     #endif
@@ -92,7 +92,7 @@
     		style 3
     		forecolor 1 1 1 1
     		textscale 0.55
-    		visible when ( 1 )
+    		visible when ( isitemunlocked( "masada" ) )
             exp material ( "weapon_masada" )
         }
     #endif
@@ -106,7 +106,7 @@
     		style 3
     		forecolor 1 1 1 1
     		textscale 0.55
-    		visible when ( 1 )
+    		visible when ( isitemunlocked( "fn2000" ) )
             exp material ( "weapon_fn2000" )
     	}
     #endif
@@ -120,7 +120,7 @@
     		style 3
     		forecolor 1 1 1 1
     		textscale 0.55
-    		visible when ( 1 )
+    		visible when ( isitemunlocked( "ak47" ) )
             exp material ( "weapon_ak47" )
         }
     #endif
@@ -134,7 +134,7 @@
     		style 3
     		forecolor 1 1 1 1
     		textscale 0.55
-    		visible when ( 1 )
+    		visible when ( itemisunlocked( "ak47classic" ) )
             exp material ( "weapon_ak47_classic" )
     	}
     #endif
@@ -149,7 +149,7 @@
     		style 3
     		forecolor 1 1 1 1
     		textscale 0.55
-    		visible when ( 1 )
+    		visible when ( isitemunlocked( "mp5k" ) )
             exp material ( "weapon_mp5k" )
     	}
     #endif
@@ -163,7 +163,7 @@
     		style 3
     		forecolor 1 1 1 1
     		textscale 0.55
-    		visible when ( 1 )
+    		visible when ( isitemunlocked( "ump45" ) )
             exp material ( "weapon_ump45" )
     	}
     #endif
@@ -177,7 +177,7 @@
     		style 3
     		forecolor 1 1 1 1
     		textscale 0.55
-    		visible when ( 1 )
+    		visible when ( isitemunlocked( "kriss" ) )
             exp material ( "weapon_kriss" )
         }
     #endif
@@ -191,7 +191,7 @@
     		style 3
     		forecolor 1 1 1 1
     		textscale 0.55
-    		visible when ( 1 )
+    		visible when ( isitemunlocked( "p90" ) )
             exp material ( "weapon_p90" )
     	}
     #endif
@@ -205,7 +205,7 @@
     		style 3
     		forecolor 1 1 1 1
     		textscale 0.55
-    		visible when ( 1 )
+    		visible when ( isitemunlocked( "uzi" ) )
             exp material ( "weapon_mini_uzi" )
         }
     #endif
@@ -219,7 +219,7 @@
     		style 3
     		forecolor 1 1 1 1
     		textscale 0.55
-    		visible when ( 1 )
+    		visible when ( isitemunlocked( "ak74u" ) )
             exp material ( "weapon_aks74u" )
     	}
     #endif
@@ -233,7 +233,7 @@
     		style 3
     		forecolor 1 1 1 1
     		textscale 0.55
-    		visible when ( 1 )
+    		visible when ( isitemunlocked( "peacekeeper" ) )
             exp material ( "weapon_peacekeeper" )
         }
     #endif
@@ -247,7 +247,7 @@
     		style 3
     		forecolor 1 1 1 1
     		textscale 0.55
-    		visible when ( 1 )
+    		visible when ( isitemunlocked( "sa80" ) )
             exp material ( "weapon_sa80" )
     	}
     #endif
@@ -261,7 +261,7 @@
     		style 3
     		forecolor 1 1 1 1
     		textscale 0.55
-    		visible when ( 1 )
+    		visible when ( isitemunlocked( "rpd" ) )
             exp material ( "weapon_rpd" )
     	}
     #endif
@@ -275,7 +275,7 @@
     		style 3
     		forecolor 1 1 1 1
     		textscale 0.55
-    		visible when ( 1 )
+    		visible when ( isitemunlocked( "mg4" ) )
             exp material ( "weapon_mg4" )
         }
     #endif
@@ -289,7 +289,7 @@
     		style 3
     		forecolor 1 1 1 1
     		textscale 0.55
-    		visible when ( 1 )
+    		visible when ( isitemunlocked( "aug" ) )
             exp material ( "weapon_aug" )
     	}
     #endif
@@ -303,7 +303,7 @@
     		style 3
     		forecolor 1 1 1 1
     		textscale 0.55
-    		visible when ( 1 )
+    		visible when ( isitemunlocked( "m240" ) )
             exp material ( "weapon_m240" )
         }
     #endif
@@ -317,7 +317,7 @@
     		style 3
     		forecolor 1 1 1 1
     		textscale 0.55
-    		visible when ( 1 )
+    		visible when ( isitemunlocked( "cheytac" ) )
             exp material ( "weapon_cheytac" )
     	}
     #endif
@@ -331,8 +331,8 @@
     		style 3
     		forecolor 1 1 1 1
     		textscale 0.55
-    		visible when ( 1 )
-            exp material ( "weapon_barrett50cal" )
+    		visible when ( isitemunlocked( "barrett" ) )            
+			exp material ( "weapon_barrett50cal" )
     	}
     #endif
 
@@ -345,7 +345,7 @@
     		style 3
     		forecolor 1 1 1 1
     		textscale 0.55
-    		visible when ( 1 )
+    		visible when ( isitemunlocked( "wa2000" ) )
             exp material ( "weapon_wa2000" )
         }
     #endif
@@ -359,7 +359,7 @@
     		style 3
     		forecolor 1 1 1 1
     		textscale 0.55
-    		visible when ( 1 )
+    		visible when ( isitemunlocked( "m21" ) )
             exp material ( "weapon_m14ebr" )
     	}
     #endif
@@ -373,7 +373,7 @@
     		style 3
     		forecolor 1 1 1 1
     		textscale 0.55
-    		visible when ( 1 )
+    		visible when ( isitemunlocked( "m40a3" ) )
             exp material ( "weapon_m40a3" )
         }
     #endif
@@ -387,7 +387,7 @@
     		style 3
     		forecolor 1 1 1 1
     		textscale 0.55
-    		visible when ( 1 )
+    		visible when ( isitemunlocked( "dragunov" ) )
             exp material ( "weapon_dragunov" )
     	}
     #endif
@@ -402,7 +402,7 @@
     		style 3
     		forecolor 1 1 1 1
     		textscale 0.55
-    		visible when ( 1 )
+    		visible when ( isitemunlocked( "pp2000" ) )
             exp material ( "weapon_pp2000" )
     	}
     #endif
@@ -416,7 +416,7 @@
     		style 3
     		forecolor 1 1 1 1
     		textscale 0.55
-    		visible when ( 1 )
+    		visible when ( isitemunlocked( "glock" ) )
             exp material ( "weapon_glock" )
     	}
     #endif
@@ -430,7 +430,7 @@
     		style 3
     		forecolor 1 1 1 1
     		textscale 0.55
-    		visible when ( 1 )
+    		visible when ( isitemunlocked( "beretta393" ) )
             exp material ( "weapon_beretta393" )
         }
     #endif
@@ -444,7 +444,7 @@
     		style 3
     		forecolor 1 1 1 1
     		textscale 0.55
-    		visible when ( 1 )
+    		visible when ( isitemunlocked( "tmp" ) )
             exp material ( "weapon_tmp" )
     	}
     #endif
@@ -459,7 +459,7 @@
     		style 3
     		forecolor 1 1 1 1
     		textscale 0.55
-    		visible when ( 1 )
+    		visible when ( isitemunlocked( "spas12" ) )
             exp material ( "weapon_spas12" )
     	}
     #endif
@@ -473,7 +473,7 @@
     		style 3
     		forecolor 1 1 1 1
     		textscale 0.55
-    		visible when ( 1 )
+    		visible when ( isitemunlocked( "aa12" ) )
             exp material ( "weapon_aa12" )
     	}
     #endif
@@ -487,7 +487,7 @@
     		style 3
     		forecolor 1 1 1 1
     		textscale 0.55
-    		visible when ( 1 )
+    		visible when ( isitemunlocked( "striker" ) )
             exp material ( "weapon_striker" )
         }
     #endif
@@ -501,7 +501,7 @@
     		style 3
     		forecolor 1 1 1 1
     		textscale 0.55
-    		visible when ( 1 )
+    		visible when ( isitemunlocked( "ranger" ) )
             exp material ( "weapon_ranger" )
     	}
     #endif
@@ -515,7 +515,7 @@
     		style 3
     		forecolor 1 1 1 1
     		textscale 0.55
-    		visible when ( 1 )
+    		visible when ( isitemunlocked( "m1014" ) )
             exp material ( "weapon_m1014" )
         }
     #endif
@@ -529,7 +529,7 @@
     		style 3
     		forecolor 1 1 1 1
     		textscale 0.55
-    		visible when ( 1 )
+    		visible when ( isitemunlocked( "model1887" ) )
             exp material ( "weapon_model1887" )
     	}
     #endif
@@ -544,7 +544,7 @@
     		style 3
     		forecolor 1 1 1 1
     		textscale 0.55
-    		visible when ( 1 )
+    		visible when ( isitemunlocked( "usp" ) )
             exp material ( "weapon_usp_45" )
     	}
     #endif
@@ -558,7 +558,7 @@
     		style 3
     		forecolor 1 1 1 1
     		textscale 0.55
-    		visible when ( 1 )
+    		visible when ( isitemunlocked( "coltanaconda" ) )
             exp material ( "weapon_colt_anaconda" )
     	}
     #endif
@@ -572,7 +572,7 @@
     		style 3
     		forecolor 1 1 1 1
     		textscale 0.55
-    		visible when ( 1 )
+    		visible when ( isitemunlocked( "beretta" ) )
             exp material ( "weapon_m9beretta" )
         }
     #endif
@@ -586,7 +586,7 @@
     		style 3
     		forecolor 1 1 1 1
     		textscale 0.55
-    		visible when ( 1 )
+    		visible when ( isitemunlocked( "deserteagle" ) )
             exp material ( "weapon_desert_eagle" )
     	}
     #endif
@@ -600,7 +600,7 @@
     		style 3
     		forecolor 1 1 1 1
     		textscale 0.55
-    		visible when ( 1 )
+    		visible when ( isitemunlocked( "deserteaglegold" ) )
             exp material ( "weapon_desert_eagle_gold" )
         }
     #endif
@@ -615,7 +615,7 @@
     		style 3
     		forecolor 1 1 1 1
     		textscale 0.55
-    		visible when ( 1 )
+    		visible when ( isitemunlocked( "at4" ) )
             exp material ( "weapon_at4" )
     	}
     #endif
@@ -629,7 +629,7 @@
     		style 3
     		forecolor 1 1 1 1
     		textscale 0.55
-    		visible when ( 1 )
+    		visible when ( isitemunlocked( "m79" ) )
             exp material ( "weapon_m79" )
     	}
     #endif
@@ -643,7 +643,7 @@
     		style 3
     		forecolor 1 1 1 1
     		textscale 0.55
-    		visible when ( 1 )
+    		visible when ( isitemunlocked( "stinger" ) )
             exp material ( "weapon_stinger" )
         }
     #endif
@@ -657,7 +657,7 @@
     		style 3
     		forecolor 1 1 1 1
     		textscale 0.55
-    		visible when ( 1 )
+    		visible when ( isitemunlocked( "javelin" ) )
             exp material ( "weapon_javelin" )
     	}
     #endif
@@ -671,7 +671,7 @@
     		style 3
     		forecolor 1 1 1 1
     		textscale 0.55
-    		visible when ( 1 )
+    		visible when ( isitemunlocked( "rpg" ) )
             exp material ( "weapon_rpg7" )
         }
     #endif
@@ -686,7 +686,7 @@
     		style 3
     		forecolor 1 1 1 1
     		textscale 0.55
-    		visible when ( 1 )
+    		visible when ( isitemunlocked( "frag_grenade_mp" ) )
             exp material ( "equipment_frag" )
     	}
     #endif
@@ -700,7 +700,7 @@
     		style 3
     		forecolor 1 1 1 1
     		textscale 0.55
-    		visible when ( 1 )
+    		visible when ( isitemunlocked( "semtex_mp" ) )
             exp material ( "equipment_semtex" )
     	}
     #endif
@@ -714,7 +714,7 @@
     		style 3
     		forecolor 1 1 1 1
     		textscale 0.55
-    		visible when ( 1 )
+    		visible when ( isitemunlocked( "throwingknife_mp" ) )
             exp material ( "equipment_throwing_knife" )
         }
     #endif
@@ -728,7 +728,7 @@
     		style 3
     		forecolor 1 1 1 1
     		textscale 0.55
-    		visible when ( 1 )
+    		visible when ( isitemunlocked( "specialty_tacticalinsertion" ) )
             exp material ( "equipment_flare" )
     	}
     #endif
@@ -742,7 +742,7 @@
     		style 3
     		forecolor 1 1 1 1
     		textscale 0.55
-    		visible when ( 1 )
+    		visible when ( isitemunlocked( "specialty_blastshield" ) )
             exp material ( "equipment_blast_shield" )
         }
     #endif
@@ -756,7 +756,7 @@
     		style 3
     		forecolor 1 1 1 1
     		textscale 0.55
-    		visible when ( 1 )
+    		visible when ( isitemunlocked( "claymore_mp" ) )
             exp material ( "equipment_claymore" )
     	}
     #endif
@@ -770,7 +770,7 @@
     		style 3
     		forecolor 1 1 1 1
     		textscale 0.55
-    		visible when ( 1 )
+    		visible when ( isitemunlocked( "c4_mp" ) )
             exp material ( "equipment_c4" )
         }
     #endif
