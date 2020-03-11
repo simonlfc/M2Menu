@@ -1,4 +1,3 @@
-
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // PRIMARY WEAPON
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -19,11 +18,11 @@
 
 	itemDef
 	{
-		rect -161 98 26.667 26.667 3 1		
+		rect -350 31 220 99.5 3 1	
 		decoration
 		visible 1
 		style 3
-		forecolor 1 1 1 1
+		forecolor 1 1 1 0.35
 		textscale 0.55
 		visible when ( 1 )
 		exp material ( tablelookup( "mp/camoTable.csv" , 1 , localvarstring( "loadoutPrimaryCamo" ) , 4 ) )
@@ -45,7 +44,7 @@
 
 	itemDef // PRIMARY WEAPON IMAGE
 	{
-		rect -269.333 40 133 66.5 3 1
+		rect -269.333 50 133 66.5 3 1
 		decoration
 		visible 1
 		style 3
@@ -73,7 +72,7 @@
 
 		itemDef
 		{
-			rect -425 133.733 310.667 18.633 3 1
+			rect -430 131.733 310.667 18.633 3 1
 			decoration
 			visible 1
 			style 1
@@ -87,7 +86,7 @@
 
 		itemDef
 		{
-			rect -425 142.733 310.667 18.633 3 1
+			rect -430 139.733 310.667 18.633 3 1
 			decoration
 			visible 1
 			style 1
@@ -101,7 +100,7 @@
 
 		itemDef
 		{
-			rect -425 153.733 310.667 18.633 3 1
+			rect -430 151.733 310.667 18.633 3 1
 			decoration
 			visible 1
 			style 1
@@ -198,7 +197,7 @@
 
 		itemDef
 		{
-			rect -425 283.733 310.667 18.633 3 1
+			rect -430 281.733 310.667 18.633 3 1
 			decoration
 			visible 1
 			style 1
@@ -212,7 +211,7 @@
 
 		itemDef
 		{
-			rect -425 292.733 310.667 18.633 3 1
+			rect -430 290.733 310.667 18.633 3 1
 			decoration
 			visible 1
 			style 1
@@ -240,117 +239,117 @@
 // GRENADE OR EQUIPMENT
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-itemDef
-{
-	rect 240 180 125 71 2 1
-	decoration
-	border 1
-	bordersize 0.5
-	bordercolor 1 1 1 0.1
-	visible 1
-	style 3
-	forecolor 0 0 0 0.25
-	textscale 0.55
-	exp material ( "white" )
-}
+	itemDef
+	{
+		rect 240 180 125 71 2 1
+		decoration
+		border 1
+		bordersize 0.5
+		bordercolor 1 1 1 0.1
+		visible 1
+		style 3
+		forecolor 0 0 0 0.25
+		textscale 0.55
+		exp material ( "white" )
+	}
 
-itemDef
-{
-	rect -115 182 310.667 18.633 3 1
-	decoration
-	visible 1
-	style 1
-	forecolor 1 1 1 0.25
-	textfont UI_FONT_NORMAL
-	textalign 8
-	textscale 0.2
-	visible when ( 1 )
-	text "EQUIPMENT"
-}
+	itemDef
+	{
+		rect -116 181 310.667 18.633 3 1
+		decoration
+		visible 1
+		style 1
+		forecolor 1 1 1 0.25
+		textfont UI_FONT_NORMAL
+		textalign 8
+		textscale 0.2
+		visible when ( 1 )
+		text "EQUIPMENT"
+	}
 
-itemDef
-{
-	rect -114 191 310.667 18.633 3 1
-	decoration
-	visible 1
-	style 1
-	forecolor 1 1 1 1
-	textfont UI_FONT_NORMAL
-	textalign 8
-	textscale 0.25
-	visible when ( 1 )
-	exp text ( "@" + tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "loadoutEquipment" ) , 2 ) )
-}
+	itemDef
+	{
+		rect -115 190 310.667 18.633 3 1
+		decoration
+		visible 1
+		style 1
+		forecolor 1 1 1 1
+		textfont UI_FONT_NORMAL
+		textalign 8
+		textscale 0.25
+		visible when ( 1 )
+		exp text ( "@" + tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "loadoutEquipment" ) , 2 ) )
+	}
 
-itemDef
-{
-	rect -45 208 35.667 35.667 3 1
-	decoration
-	visible 1
-	style 3
-	forecolor 1 1 1 1
-	textscale 0.55
-	visible when ( 1 )
-	exp material ( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "loadoutEquipment" ) , 3 ) )
-}
+	itemDef
+	{
+		rect -45 208 35.667 35.667 3 1
+		decoration
+		visible 1
+		style 3
+		forecolor 1 1 1 1
+		textscale 0.55
+		visible when ( 1 )
+		exp material ( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "loadoutEquipment" ) , 3 ) )
+	}
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // SPECIAL GRENADE
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-itemDef
-{
-	rect 240 255 125 71 2 1
-	decoration
-	border 1
-	bordersize 0.5
-	bordercolor 1 1 1 0.1
-	visible 1
-	style 3
-	forecolor 0 0 0 0.25
-	textscale 0.55
-	exp material ( "white" )
-}
+	itemDef
+	{
+		rect 240 255 125 71 2 1
+		decoration
+		border 1
+		bordersize 0.5
+		bordercolor 1 1 1 0.1
+		visible 1
+		style 3
+		forecolor 0 0 0 0.25
+		textscale 0.55
+		exp material ( "white" )
+	}
 
-itemDef
-{
-	rect -115 257 310.667 18.633 3 1
-	decoration
-	visible 1
-	style 1
-	forecolor 1 1 1 0.25
-	textfont UI_FONT_NORMAL
-	textalign 8
-	textscale 0.2
-	visible when ( 1 )
-	text "SPECIAL GRENADE"
-}
+	itemDef
+	{
+		rect -115 256 310.667 18.633 3 1
+		decoration
+		visible 1
+		style 1
+		forecolor 1 1 1 0.25
+		textfont UI_FONT_NORMAL
+		textalign 8
+		textscale 0.2
+		visible when ( 1 )
+		text "SPECIAL GRENADE"
+	}
 
-itemDef
-{
-	rect -115 266 310.667 18.633 3 1
-	decoration
-	visible 1
-	style 1
-	forecolor 1 1 1 1
-	textfont UI_FONT_NORMAL
-	textalign 8
-	textscale 0.25
-	visible when ( 1 )
-	exp text ( locstring( "@MPUI_N_XN" , "@" + tablelookup( "mp/statsTable.csv" , 4 , localvarstring( "loadoutOffhandSecondary" ) , 3 ) , int( tablelookup( "mp/statsTable.csv" , 4 , localvarstring( "loadoutOffhandSecondary" ) , 5 ) ) ) )
-}
+	itemDef
+	{
+		rect -115 265 310.667 18.633 3 1
+		decoration
+		visible 1
+		style 1
+		forecolor 1 1 1 1
+		textfont UI_FONT_NORMAL
+		textalign 8
+		textscale 0.25
+		visible when ( 1 )
+		exp text ( locstring( "@MPUI_N_XN" , "@" + tablelookup( "mp/statsTable.csv" , 4 , localvarstring( "loadoutOffhandSecondary" ) , 3 ) , int( tablelookup( "mp/statsTable.csv" , 4 , localvarstring( "loadoutOffhandSecondary" ) , 5 ) ) ) )
+	}
 
-itemDef
-{
-	rect -45 283 32.667 35.667 3 1
-	decoration
-	visible 1
-	style 3
-	forecolor 1 1 1 1
-	textscale 0.55
-	visible when ( 1 )
-	exp material ( tablelookup( "mp/statsTable.csv" , 4 , localvarstring( "loadoutOffhandSecondary" ) , 6 ) )
-}
+	itemDef
+	{
+		rect -45 283 32.667 35.667 3 1
+		decoration
+		visible 1
+		style 3
+		forecolor 1 1 1 1
+		textscale 0.55
+		visible when ( 1 )
+		exp material ( tablelookup( "mp/statsTable.csv" , 4 , localvarstring( "loadoutOffhandSecondary" ) , 6 ) )
+	}
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -374,7 +373,7 @@ itemDef
 
 		itemDef
 		{
-			rect -425 332 310.667 18.633 3 1
+			rect -430 330 310.667 18.633 3 1
 			decoration
 			visible 1
 			style 1
@@ -388,7 +387,7 @@ itemDef
 
 		itemDef
 		{
-			rect -425 341 95.667 18.633 3 1
+			rect -430 339 95.667 18.633 3 1
 			autowrapped
 			decoration
 			visible 1
@@ -430,7 +429,7 @@ itemDef
 
 		itemDef
 		{
-			rect -297 332 310.667 18.633 3 1
+			rect -302 330 310.667 18.633 3 1
 			decoration
 			visible 1
 			style 1
@@ -444,7 +443,7 @@ itemDef
 
 		itemDef
 		{
-			rect -297 341 95.667 18.633 3 1
+			rect -302 339 95.667 18.633 3 1
 			autowrapped
 			decoration
 			visible 1
@@ -486,7 +485,7 @@ itemDef
 
 		itemDef
 		{
-			rect -170 332 310.667 18.633 3 1
+			rect -175 330 310.667 18.633 3 1
 			decoration
 			visible 1
 			style 1
@@ -500,7 +499,7 @@ itemDef
 
 		itemDef
 		{
-			rect -169 341 95.667 18.633 3 1
+			rect -175 339 95.667 18.633 3 1
 			autowrapped
 			decoration
 			visible 1
@@ -530,60 +529,60 @@ itemDef
 // DEATHSTREAK
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-itemDef
-{
-	rect 309 330 56 52 2 1
-	decoration
-	border 1
-	bordersize 0.5
-	bordercolor 1 1 1 0.1
-	visible 1
-	style 3
-	forecolor 0 0 0 0.25
-	textscale 0.55
-	exp material ( "white" )
-}
+	itemDef
+	{
+		rect 309 330 56 52 2 1
+		decoration
+		border 1
+		bordersize 0.5
+		bordercolor 1 1 1 0.1
+		visible 1
+		style 3
+		forecolor 0 0 0 0.25
+		textscale 0.55
+		exp material ( "white" )
+	}
 
-itemDef
-{
-	rect -46 332 310.667 18.633 3 1
-	decoration
-	visible 1
-	style 1
-	forecolor 1 1 1 0.25
-	textfont UI_FONT_NORMAL
-	textalign 8
-	textscale 0.2
-	visible when ( 1 )
-	text "DEATHSTREAK"
-}
+	itemDef
+	{
+		rect -48 330 310.667 18.633 3 1
+		decoration
+		visible 1
+		style 1
+		forecolor 1 1 1 0.25
+		textfont UI_FONT_NORMAL
+		textalign 8
+		textscale 0.2
+		visible when ( 1 )
+		text "DEATHSTREAK"
+	}
 
-itemDef
-{
-	rect -46 341 50 18.633 3 1
-	autowrapped
-	decoration
-	visible 1
-	style 1
-	forecolor 1 1 1 1
-	textfont UI_FONT_NORMAL
-	textalign 8
-	textscale 0.25
-	visible when ( 1 )
-	exp text ( "@" + tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "loadoutDeathStreak" ) , 2 ) )
-}
+	itemDef
+	{
+		rect -48 339 50 18.633 3 1
+		autowrapped
+		decoration
+		visible 1
+		style 1
+		forecolor 1 1 1 1
+		textfont UI_FONT_NORMAL
+		textalign 8
+		textscale 0.25
+		visible when ( 1 )
+		exp text ( "@" + tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "loadoutDeathStreak" ) , 2 ) )
+	}
 
-itemDef
-{
-	rect -25 357 18.667 18.667 3 1
-	decoration
-	visible 1
-	style 3
-	forecolor 1 1 1 1
-	textscale 0.55
-	visible when ( 1 )
-	exp material ( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "loadoutDeathStreak" ) , 3 ) )
-}
+	itemDef
+	{
+		rect -25 357 18.667 18.667 3 1
+		decoration
+		visible 1
+		style 3
+		forecolor 1 1 1 1
+		textscale 0.55
+		visible when ( 1 )
+		exp material ( tablelookup( "mp/perkTable.csv" , 1 , localvarstring( "loadoutDeathStreak" ) , 3 ) )
+	}
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // PERKS
@@ -788,34 +787,34 @@ itemDef
 // BACK BUTTON
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-itemDef
-{
-	rect 0 0 0 20 3 3
-	visible 1
-	foreColor 1 1 1 0.5
-	type 1
-	style 1
-	textFont UI_FONT_NORMAL
-	textAlignX 9
-	textAlignY 17
-	textScale 0.325
-	exp rect x ( -755 )
-	exp rect y ( -13.667 )
-	exp rect w ( 45 )
-	visible when ( dvarString( "wideScreen" ) == 1 )
-	text "BACK"
-	onFocus
+	itemDef
 	{
-		play "mouse_over";
-		setItemColor self "backColor" 0 0 0 0.25;
+		rect 0 0 0 20 3 3
+		visible 1
+		foreColor 1 1 1 0.5
+		type 1
+		style 1
+		textFont UI_FONT_NORMAL
+		textAlignX 9
+		textAlignY 17
+		textScale 0.325
+		exp rect x ( -755 )
+		exp rect y ( -13.667 )
+		exp rect w ( 45 )
+		visible when ( dvarString( "wideScreen" ) == 1 )
+		text "BACK"
+		onFocus
+		{
+			play "mouse_over";
+			setItemColor self "backColor" 0 0 0 0.25;
+		}
+		leaveFocus
+		{
+			setItemColor self "backColor" 0 0 0 0;
+		}
+		action
+		{
+			play "mouse_click";
+			close "self";
+		}
 	}
-	leaveFocus
-	{
-		setItemColor self "backColor" 0 0 0 0;
-	}
-	action
-	{
-		play "mouse_click";
-		close "self";
-	}
-}
