@@ -10,6 +10,7 @@ A fresh take on an MW2 menu. Based off IW5Menu by reaaLx.
 
 # Known issues
 - Assault Rifle, SMG and Sniper weapon menus can take a while to load because the custom weapon images are weird
+- Everything breaks when using a non-16:9 resolution. Sorry
 
 # To-do
 - Loading screen
