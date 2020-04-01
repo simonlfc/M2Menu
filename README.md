@@ -9,7 +9,7 @@ A fresh take on an MW2 menu. Based off IW5Menu by reaaLx.
 ![camoselect](https://i.imgur.com/kpqZT1A.jpg)
 
 # Known issues
-- Assault Rifle, SMG and Sniper weapon menus take a while to load because the custom weapon images are weird
+- Assault Rifle, SMG and Sniper weapon menus can take a while to load because the custom weapon images are weird
 
 # Credits
 reaaLx - IW5Menu
