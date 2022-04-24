@@ -1,6 +1,5 @@
-
+*.stat
 *.dm_13
 *.json
 *.log
 logs/console_mp.log.*
-bots.txt
