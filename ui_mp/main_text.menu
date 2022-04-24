@@ -16,16 +16,63 @@ menuDef
 	soundloop			"music_mainmenu_mp"
 	onOpen
 	{
+		setLocalVarString "ui_maintext_submenu" ( "" );
 		exec "selectStringTableEntryInDvar mp/didyouknow.csv 0 didyouknow";
 		uiScript "checkFirstLaunch";
+	}
+	onEsc
+	{
+		open "quit_popmenu";
 	}
 	
 	#include "ui_mp/includes/background.h"
 
 	CHOICE_SEPARATOR( 0, 1 )
 	CHOICE_BUTTON( 0, "PLAY ONLINE", open "menu_xboxlive", 1 )
-	CHOICE_BUTTON( 1, "OPERATIONS", ;, 1 )
-	CHOICE_BUTTON( 2, "OPTIONS", ;, 1 )
-	CHOICE_BUTTON( 3, "QUIT", open "quit_popmenu", 1 )
-	CHOICE_SEPARATOR( 4, 1 )
+	CHOICE_BUTTON( 1, "OPERATIONS", setLocalVarString "ui_maintext_submenu" ( "OPERATIONS" ); open "main_text_submenu";, 1 )
+	CHOICE_BUTTON( 2, "OPTIONS", setLocalVarString "ui_maintext_submenu" ( "OPTIONS" ); open "main_text_submenu";, localVarString( "ui_maintext_submenu" ) == "" || localVarString( "ui_maintext_submenu" ) == "OPTIONS" )
+	CHOICE_BUTTON( 3, "QUIT", open "quit_popmenu", localVarString( "ui_maintext_submenu" ) == "" )
+	CHOICE_SEPARATOR( 4, localVarString( "ui_maintext_submenu" ) == "" )
+}
+
+
+menuDef
+{
+	name 				"main_text_submenu"
+	rect 				0 0 640 480 4 4;
+	focuscolor			1 1 1 1
+	popup
+	onOpen
+	{
+		lerp x "from" -300 "to" 0 "over" 0.2;
+		lerp alpha "from" 0 "to" 1 "over" 0.2;
+	}
+	onClose
+	{
+		setLocalVarString "ui_maintext_submenu" ( "" );
+	}
+	onEsc
+	{
+		close "self";
+	}
+	CREATE_SHADER_EX( 200 0 2560 480 4 4, "white", 0 0 0 0.35, 1, border 1;
+			bordersize 0.5;
+			bordercolor 1 1 1 0.1 )
+
+	CHOICE_SEPARATOR( 2, localVarString( "ui_maintext_submenu" ) == "OPERATIONS" )
+	CHOICE_BUTTON( 2, "FRIENDS", open "popup_friends", localVarString( "ui_maintext_submenu" ) == "OPERATIONS" )
+	CHOICE_BUTTON( 3, "STORE", open "pc_store";, localVarString( "ui_maintext_submenu" ) == "OPERATIONS" )
+	CHOICE_BUTTON( 4, "MODS", open "mods_menu";, localVarString( "ui_maintext_submenu" ) == "OPERATIONS" )
+	CHOICE_SEPARATOR( 5, localVarString( "ui_maintext_submenu" ) == "OPERATIONS" )
+	CHOICE_BUTTON( 5, "BACK", close "self"; open "main_text", localVarString( "ui_maintext_submenu" ) == "OPERATIONS" )
+
+	CHOICE_SEPARATOR( 3, localVarString( "ui_maintext_submenu" ) == "OPTIONS" )
+	CHOICE_BUTTON( 3, "GRAPHICS", open "pc_options_video", localVarString( "ui_maintext_submenu" ) == "OPTIONS" )
+	CHOICE_BUTTON( 4, "AUDIO", open "pc_options_audio";, localVarString( "ui_maintext_submenu" ) == "OPTIONS" )
+	CHOICE_BUTTON( 5, "CONTROLS", open "pc_options_controls";, localVarString( "ui_maintext_submenu" ) == "OPTIONS" )
+	CHOICE_BUTTON( 6, "MULTIPLAYER", open "pc_options_multi";, localVarString( "ui_maintext_submenu" ) == "OPTIONS" )
+	CHOICE_BUTTON( 7, "GAME", open "pc_options_game";, localVarString( "ui_maintext_submenu" ) == "OPTIONS" )
+	CHOICE_BUTTON( 8, "CONTROLLER", open "pc_options_gamepad";, localVarString( "ui_maintext_submenu" ) == "OPTIONS" )
+	CHOICE_SEPARATOR( 9, localVarString( "ui_maintext_submenu" ) == "OPTIONS" )
+	CHOICE_BUTTON( 9, "BACK", close "self"; open "main_text", localVarString( "ui_maintext_submenu" ) == "OPTIONS" )
 }

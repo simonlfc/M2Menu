@@ -15,8 +15,10 @@ menuDef
 	rect 				0 0 640 480 4 4;
 	focuscolor			1 1 1 1
 	soundloop			"music_mainmenu_mp"
-	onOpen
+	onEsc
 	{
+		close "self";
+		open "main_text";
 	}
 	
 	#include "ui_mp/includes/background.h"
@@ -29,7 +31,7 @@ menuDef
 	CHOICE_BUTTON( 3, "KILLSTREAKS", open "menu_cas_popup";, 1 )
 	CHOICE_BUTTON( 4, "PLAYERCARD", open "popup_callsign", 1 )
 	CHOICE_BUTTON( 5, "BARRACKS", open "menu_online_barracks", 1 )
-	CHOICE_BUTTON( 6, "THEATER", open "theater_menu", 1 )
+	CHOICE_BUTTON( 6, "THEATER", open "pc_theater_menu", 1 )
 	CHOICE_SEPARATOR( 7, 1 )
 
 	BACK_BUTTON( close "self"; open "main_text", 1 )
