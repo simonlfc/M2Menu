@@ -1,0 +1,180 @@
+#include "ui_mp/includes/menudef.h"
+#include "ui_mp/includes/macros.h"
+
+#include "ui_mp/includes/widgets/back_button.h"
+#include "ui_mp/includes/widgets/choice_button.h"
+#include "ui_mp/includes/widgets/choice_separator.h"
+
+#define MENU_NAME		"pc_join_unranked"
+#define MENU_TITLE		"BROWSE SERVERS"
+#define MENU_BACKGROUND	"mw2_main_sp_image"
+
+#define SERVER_BROWSER_SORT( x, string ) \
+		CREATE_TEXT( ( CHOICE_X_START + CHOICE_X_SIZE + 30 + x ) ( CHOICE_Y_START + 10 ) 0 0 1 1, string, 1 1 1 0.75, 1, textalign ITEM_ALIGN_MIDDLE_LEFT; textscale 0.2; textfont UI_FONT_DEFAULT )
+
+menuDef
+{
+	name 				MENU_NAME
+	rect 				0 0 640 480 4 4;
+	focuscolor			1 1 1 1
+	soundloop			"music_mainmenu_mp"
+	onOpen
+	{
+		uiScript "LoadArenas";
+		uiScript "UpdateFilter";
+		uiScript "RefreshServers";
+		setFocus "serverlist";
+		if ( dvarInt( "ui_netsort" ) == "" ) // default sort is ping
+		{
+			setdvar "ui_netsort" 7;
+		}
+	}
+	onEsc
+	{
+		close "self";
+		open "menu_xboxlive";
+	}
+
+	#include "ui_mp/includes/background.h"
+
+	CREATE_TEXT( CHOICE_RECT( 0 ), "SOURCE: ", 1 1 1 0.25, 1, textalign ITEM_ALIGN_MIDDLE_LEFT; textscale 0.2; textfont UI_FONT_DEFAULT; textalignx 10 )
+	CREATE_TEXT( CHOICE_RECT( 1 ), "SORT BY: ", 1 1 1 0.25, 1, textalign ITEM_ALIGN_MIDDLE_LEFT; textscale 0.2; textfont UI_FONT_DEFAULT; textalignx 10 )
+	itemDef
+	{
+		rect 			CHOICE_RECT( 0 )
+        style           WINDOW_STYLE_FILLED
+        type            ITEM_TYPE_MULTI
+		visible 		when ( 1 )
+        background      "white"
+        forecolor       1 1 1 0.9
+        backcolor       0 0 0 0
+        textfont        UI_FONT_DEFAULT
+        textscale       0.3
+        textstyle       ITEM_TEXTSTYLE_NORMAL
+        textalign       ITEM_ALIGN_MIDDLE_LEFT
+        textalignx      49
+		dvar			"ui_netsource"
+		dvarFloatlist
+		{
+			"LOCAL" 		0
+			"INTERNET" 		1
+			"FAVOURITES" 	2
+		}
+        onFocus
+		{
+            setItemColor self backcolor 0 0 0 0.25;
+			play "mouse_over";
+		}
+        leaveFocus
+        {
+            setItemColor self backcolor 0 0 0 0;
+        }
+		action
+		{
+			play "mouse_click";
+            uiScript "RefreshFilter";
+        }
+	}
+	itemDef
+	{
+		rect 			CHOICE_RECT( 1 )
+        style           WINDOW_STYLE_FILLED
+        type            ITEM_TYPE_MULTI
+		visible 		when ( 1 )
+        background      "white"
+        forecolor       1 1 1 0.9
+        backcolor       0 0 0 0
+        textfont        UI_FONT_DEFAULT
+        textscale       0.3
+        textstyle       ITEM_TEXTSTYLE_NORMAL
+        textalign       ITEM_ALIGN_MIDDLE_LEFT
+        textalignx      49
+		dvar			"ui_netsort"
+		dvarFloatlist
+		{
+			"SERVER NAME" 	2
+			"MAP" 			3
+			"PLAYERS" 		4
+			"GAMEMODE" 		5
+			"PING" 			7
+		}
+        onFocus
+		{
+            setItemColor self backcolor 0 0 0 0.25;
+			play "mouse_over";
+		}
+        leaveFocus
+        {
+            setItemColor self backcolor 0 0 0 0;
+        }
+		action
+		{
+			play "mouse_click";
+            if ( dvarInt( "ui_netsort" ) == 2 ) { uiScript "ServerSort" 2; }
+            if ( dvarInt( "ui_netsort" ) == 3 ) { uiScript "ServerSort" 3; }
+            if ( dvarInt( "ui_netsort" ) == 4 ) { uiScript "ServerSort" 4; }
+            if ( dvarInt( "ui_netsort" ) == 5 ) { uiScript "ServerSort" 5; }
+            if ( dvarInt( "ui_netsort" ) == 7 ) { uiScript "ServerSort" 7; }
+        }
+	}
+
+	CHOICE_SEPARATOR( 2, 1 )
+	CHOICE_BUTTON( 2, "CONNECT", uiScript "JoinServer", 1 )
+	CHOICE_BUTTON( 3, "SERVER INFO", open "serverinfo_popmenu", 1 )
+	CHOICE_BUTTON( 4, "ENTER PASSWORD", open "popup_joinpassword", 1 )
+	CHOICE_BUTTON( 5, "FILTER SERVERS", open "filter_popmenu";, 1 )
+	CHOICE_BUTTON( 6, "REFRESH SERVERS", uiScript "RefreshServers";, 1 )
+	CHOICE_BUTTON( 7, "QUICK REFRESH", uiScript "RefreshFilter";, 1 )
+	CHOICE_SEPARATOR( 8, 1 )
+	CHOICE_BUTTON_EX( 8, "ADD FAVOURITE", open "createfavorite_popmenu", 1, disabled when ( dvarInt( "ui_netsource" ) == 2 ) )
+	CHOICE_BUTTON_EX( 9, "DELETE FAVOURITE", uiScript "DeleteFavorite", 1, disabled when ( dvarInt( "ui_netsource" ) != 2 ) )
+
+	CREATE_TEXT( CHOICE_ORIGIN( 11 ) 0 0 1 1, "@MPUI_SERVERQUERIED", 1 1 1 0.75, 1, textalign ITEM_ALIGN_TOP_LEFT; textscale 0.2; textalignx 10; textfont UI_FONT_DEFAULT )
+
+	BACK_BUTTON( close "self"; open "menu_xboxlive", 1 )
+
+	SERVER_BROWSER_SORT( 28, "SERVER NAME" )
+	SERVER_BROWSER_SORT( 247, "MAP" )
+	SERVER_BROWSER_SORT( 335, "PLAYERS" )
+	SERVER_BROWSER_SORT( 384, "GAMEMODE" )
+	SERVER_BROWSER_SORT( 520, "PING" )
+	
+	itemDef
+	{
+		name "serverlist"
+		rect ( CHOICE_X_START + CHOICE_X_SIZE + 30 ) CHOICE_Y( 1 ) 565 320 1 1
+		origin 0 -3
+		visible 1
+		forecolor 1 1 1 1
+		outlinecolor 1 1 1 0.1
+		backcolor 1 1 1 0.03
+		type ITEM_TYPE_LISTBOX
+		textFont 1
+		textScale 0.25
+		textAlign ITEM_ALIGN_MIDDLE_LEFT
+		textaligny -3.5
+		feeder 2
+		elementHeight CHOICE_Y_SIZE
+//		numcol			xpos	xwidth	textlen
+		columns 8		11		22		1 	// password
+						0		0		0	// type (dedi/party?? who cares nobody usin that shit)
+						28		90		51 	// hostname
+						247		48		20 	// map
+						335		151		10 	// players
+						384		22		50 	// gamemode
+						0		0		0 	// mod (i ran out of space and aesthetics > functionality besides every server modded to shit anyway)
+						520		40		20 	// ping
+		mouseEnter
+		{
+			play "mouse_submenu_over";
+		}
+		doubleClick
+		{ 
+			uiScript "JoinServer";
+		}	
+		mouseExit
+		{
+			setItemColor self forecolor 1 1 1 1;
+		}
+	}	
+}
